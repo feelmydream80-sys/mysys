@@ -1702,17 +1702,13 @@ function initDataAccessPermissionTab() {
         tabButton.addEventListener('click', () => loadDataAccessUsers());
     }
 
-    if (dataAccessElements.userSearchBtn) {
-        dataAccessElements.userSearchBtn.addEventListener('click', () => {
-            loadDataAccessUsers(dataAccessElements.userSearchInput.value);
-        });
-    }
-
     if (dataAccessElements.userSearchInput) {
-        dataAccessElements.userSearchInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
+        let debounceTimer;
+        dataAccessElements.userSearchInput.addEventListener('input', () => {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
                 loadDataAccessUsers(dataAccessElements.userSearchInput.value);
-            }
+            }, 300); // 300ms 후에 검색 실행
         });
     }
 
