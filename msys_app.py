@@ -27,7 +27,7 @@ def create_app():
             if isinstance(obj, (datetime, date)):
                 return obj.isoformat()  # "2025-12-16T10:30:00" 또는 "2025-12-16" 형식
             if isinstance(obj, decimal.Decimal):
-                return float(obj)  # 또는 str(obj)로 정확도 100% 보장
+                return str(obj)  # 정확도 100% 보장을 위해 문자열로 변환
             # 필요시 다른 타입 추가 (예: bytes, set 등)
             try:
                 return super().default(obj)

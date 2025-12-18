@@ -1,1267 +1,259 @@
-2025-12-08 13:03:40,357 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+2025-12-18 16:53:26,091 -  * Debugger is active!
+2025-12-18 16:53:26,108 -  * Debugger PIN: 298-168-793
+2025-12-18 16:53:26,478 -  * Debugger is active!
+2025-12-18 16:53:26,490 -  * Debugger PIN: 528-349-624
+2025-12-18 16:53:50,969 - 127.0.0.1 - - [18/Dec/2025 16:53:50] "GET /api/auth/status HTTP/1.1" 200 -
+2025-12-18 16:54:50,986 - 127.0.0.1 - - [18/Dec/2025 16:54:50] "GET /api/auth/status HTTP/1.1" 200 -
+2025-12-18 16:55:23,266 -  * Detected change in 'd:\\dev\\msys\\routes\\api\\analysis_api.py', reloading
+2025-12-18 16:55:23,524 -  * Detected change in 'd:\\dev\\msys\\routes\\api\\analysis_api.py', reloading
+2025-12-18 16:55:24,197 -  * Debugger is active!
+2025-12-18 16:55:24,202 -  * Debugger PIN: 298-168-793
+2025-12-18 16:55:24,327 -  * Debugger is active!
+2025-12-18 16:55:24,339 -  * Debugger PIN: 528-349-624
+2025-12-18 16:55:24,554 -  * Debugger is active!
+2025-12-18 16:55:24,556 -  * Debugger is active!
+2025-12-18 16:55:24,556 -  * Debugger is active!
+2025-12-18 16:55:24,556 -  * Debugger PIN: 298-168-793
+2025-12-18 16:55:24,556 -  * Debugger PIN: 298-168-793
+2025-12-18 16:55:24,556 -  * Debugger PIN: 298-168-793
+2025-12-18 16:55:50,974 - 127.0.0.1 - - [18/Dec/2025 16:55:50] "GET /api/auth/status HTTP/1.1" 200 -
+2025-12-18 16:55:58,088 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:18080
  * Running on http://10.200.153.130:18080
-2025-12-08 13:03:40,359 - [33mPress CTRL+C to quit[0m
-2025-12-08 13:03:45,238 - 127.0.0.1 - - [08/Dec/2025 13:03:45] "GET /chart_analysis HTTP/1.1" 200 -
-2025-12-08 13:03:45,277 - 127.0.0.1 - - [08/Dec/2025 13:03:45] "GET /static/vendor/css/tailwindcss.css?v=1765134225.213969 HTTP/1.1" 200 -
-2025-12-08 13:03:45,401 - 127.0.0.1 - - [08/Dec/2025 13:03:45] "GET /static/vendor/css/inter.css?v=1765134225.213969 HTTP/1.1" 200 -
-2025-12-08 13:03:45,558 - 127.0.0.1 - - [08/Dec/2025 13:03:45] "GET /static/vendor/css/flatpickr.min.css?v=1765134225.213969 HTTP/1.1" 200 -
-2025-12-08 13:03:45,559 - 127.0.0.1 - - [08/Dec/2025 13:03:45] "GET /static/vendor/css/dataTables.tailwindcss.min.css?v=1765134225.213969 HTTP/1.1" 200 -
-2025-12-08 13:03:45,560 - 127.0.0.1 - - [08/Dec/2025 13:03:45] "GET /static/css/common.css?v=1765134225.213969 HTTP/1.1" 200 -
-2025-12-08 13:03:45,560 - 127.0.0.1 - - [08/Dec/2025 13:03:45] "GET /static/vendor/js/luxon.min.js HTTP/1.1" 200 -
-2025-12-08 13:03:45,597 - 127.0.0.1 - - [08/Dec/2025 13:03:45] "GET /static/vendor/js/d3.v7.min.js HTTP/1.1" 200 -
-2025-12-08 13:03:45,718 - 127.0.0.1 - - [08/Dec/2025 13:03:45] "GET /static/vendor/js/jquery-3.6.0.min.js HTTP/1.1" 200 -
-2025-12-08 13:03:45,886 - 127.0.0.1 - - [08/Dec/2025 13:03:45] "GET /static/vendor/js/flatpickr.min.js HTTP/1.1" 200 -
-2025-12-08 13:03:45,886 - 127.0.0.1 - - [08/Dec/2025 13:03:45] "GET /static/vendor/js/dataTables.js HTTP/1.1" 200 -
-2025-12-08 13:03:45,886 - 127.0.0.1 - - [08/Dec/2025 13:03:45] "GET /static/vendor/js/dataTables.tailwindcss.min.js HTTP/1.1" 200 -
-2025-12-08 13:03:45,888 - 127.0.0.1 - - [08/Dec/2025 13:03:45] "GET /static/vendor/js/chart.umd.js HTTP/1.1" 200 -
-2025-12-08 13:03:45,904 - 127.0.0.1 - - [08/Dec/2025 13:03:45] "GET /static/vendor/js/chartjs-adapter-luxon.min.js HTTP/1.1" 200 -
-2025-12-08 13:03:46,023 - 127.0.0.1 - - [08/Dec/2025 13:03:46] "GET /static/vendor/js/chartjs-plugin-datalabels.min.js HTTP/1.1" 200 -
-2025-12-08 13:03:46,202 - 127.0.0.1 - - [08/Dec/2025 13:03:46] "GET /static/js/router.js?v=1765134225.213969 HTTP/1.1" 200 -
-2025-12-08 13:03:46,203 - 127.0.0.1 - - [08/Dec/2025 13:03:46] "GET /static/js/session_timer.js?v=1765134225.213969 HTTP/1.1" 200 -
-2025-12-08 13:03:46,205 - 127.0.0.1 - - [08/Dec/2025 13:03:46] "GET /static/js/utils/toast.js?v=1765134225.213969 HTTP/1.1" 200 -
-2025-12-08 13:03:46,205 - 127.0.0.1 - - [08/Dec/2025 13:03:46] "GET /static/js/pages/chart_analysis.js HTTP/1.1" 200 -
-2025-12-08 13:03:46,534 - 127.0.0.1 - - [08/Dec/2025 13:03:46] "GET /static/js/modules/common/api/client.js HTTP/1.1" 200 -
-2025-12-08 13:03:46,535 - 127.0.0.1 - - [08/Dec/2025 13:03:46] "GET /static/js/modules/common/api/auth.js HTTP/1.1" 200 -
-2025-12-08 13:03:46,536 - 127.0.0.1 - - [08/Dec/2025 13:03:46] "GET /static/js/modules/common/utils.js HTTP/1.1" 200 -
-2025-12-08 13:03:46,540 - 127.0.0.1 - - [08/Dec/2025 13:03:46] "GET /static/js/modules/chart_analysis/data.js HTTP/1.1" 200 -
-2025-12-08 13:03:46,544 - 127.0.0.1 - - [08/Dec/2025 13:03:46] "GET /static/js/modules/dashboard/ui.js HTTP/1.1" 200 -
-2025-12-08 13:03:46,546 - 127.0.0.1 - - [08/Dec/2025 13:03:46] "GET /static/js/modules/chart_analysis/ui.js HTTP/1.1" 200 -
-2025-12-08 13:03:46,853 - 127.0.0.1 - - [08/Dec/2025 13:03:46] "GET /static/js/modules/chart_analysis/events.js HTTP/1.1" 200 -
-2025-12-08 13:03:46,853 - 127.0.0.1 - - [08/Dec/2025 13:03:46] "GET /static/js/modules/ui_components/collapsible.js HTTP/1.1" 200 -
-2025-12-08 13:03:46,854 - 127.0.0.1 - - [08/Dec/2025 13:03:46] "GET /static/js/utils/toast.js HTTP/1.1" 200 -
-2025-12-08 13:03:46,863 - 127.0.0.1 - - [08/Dec/2025 13:03:46] "GET /static/js/modules/common/api/mst.js HTTP/1.1" 200 -
-2025-12-08 13:03:46,865 - 127.0.0.1 - - [08/Dec/2025 13:03:46] "GET /static/js/modules/common/api/dashboard.js HTTP/1.1" 200 -
-2025-12-08 13:03:46,866 - 127.0.0.1 - - [08/Dec/2025 13:03:46] "GET /static/js/modules/common/api/mngr_sett.js HTTP/1.1" 200 -
-2025-12-08 13:03:47,177 - 127.0.0.1 - - [08/Dec/2025 13:03:47] "GET /static/js/modules/common/api/analytics.js HTTP/1.1" 200 -
-2025-12-08 13:03:47,497 - 127.0.0.1 - - [08/Dec/2025 13:03:47] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:03:47,500 - 127.0.0.1 - - [08/Dec/2025 13:03:47] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:03:47,501 - 127.0.0.1 - - [08/Dec/2025 13:03:47] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
-2025-12-08 13:03:47,513 - 127.0.0.1 - - [08/Dec/2025 13:03:47] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:03:47,533 - 127.0.0.1 - - [08/Dec/2025 13:03:47] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:03:47,777 - 127.0.0.1 - - [08/Dec/2025 13:03:47] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:03:47,812 - 127.0.0.1 - - [08/Dec/2025 13:03:47] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:03:47,833 - 127.0.0.1 - - [08/Dec/2025 13:03:47] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:03:47,843 - 127.0.0.1 - - [08/Dec/2025 13:03:47] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:03:48,128 - 127.0.0.1 - - [08/Dec/2025 13:03:48] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:03:48,129 - 127.0.0.1 - - [08/Dec/2025 13:03:48] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:03:48,135 - 127.0.0.1 - - [08/Dec/2025 13:03:48] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:03:48,452 - 127.0.0.1 - - [08/Dec/2025 13:03:48] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:03:48,481 - 127.0.0.1 - - [08/Dec/2025 13:03:48] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:03:49,838 - 127.0.0.1 - - [08/Dec/2025 13:03:49] "GET /collection_schedule HTTP/1.1" 200 -
-2025-12-08 13:03:50,080 - 127.0.0.1 - - [08/Dec/2025 13:03:50] "[36mGET /static/js/pages/collection_schedule.js HTTP/1.1[0m" 304 -
-2025-12-08 13:03:50,168 - 127.0.0.1 - - [08/Dec/2025 13:03:50] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:03:50,406 - 127.0.0.1 - - [08/Dec/2025 13:03:50] "GET /api/collection_schedule?view=weekly HTTP/1.1" 200 -
-2025-12-08 13:03:52,180 - 127.0.0.1 - - [08/Dec/2025 13:03:52] "GET /card_summary HTTP/1.1" 200 -
-2025-12-08 13:03:52,497 - 127.0.0.1 - - [08/Dec/2025 13:03:52] "[36mGET /static/css/card_summary.css HTTP/1.1[0m" 304 -
-2025-12-08 13:03:52,498 - 127.0.0.1 - - [08/Dec/2025 13:03:52] "[36mGET /static/js/pages/card_summary.js HTTP/1.1[0m" 304 -
-2025-12-08 13:03:52,752 - 127.0.0.1 - - [08/Dec/2025 13:03:52] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:03:52,825 - 127.0.0.1 - - [08/Dec/2025 13:03:52] "GET /api/card_summary HTTP/1.1" 200 -
-2025-12-08 13:03:54,862 - 127.0.0.1 - - [08/Dec/2025 13:03:54] "GET /dashboard HTTP/1.1" 200 -
-2025-12-08 13:03:55,181 - 127.0.0.1 - - [08/Dec/2025 13:03:55] "[36mGET /static/js/pages/dashboard.js HTTP/1.1[0m" 304 -
-2025-12-08 13:03:55,428 - 127.0.0.1 - - [08/Dec/2025 13:03:55] "[36mGET /static/js/modules/dashboard/events.js HTTP/1.1[0m" 304 -
-2025-12-08 13:03:55,493 - 127.0.0.1 - - [08/Dec/2025 13:03:55] "[36mGET /static/js/modules/ui_components/pagination.js HTTP/1.1[0m" 304 -
-2025-12-08 13:03:55,753 - 127.0.0.1 - - [08/Dec/2025 13:03:55] "[36mGET /static/js/modules/dashboard/dashboardTable.js HTTP/1.1[0m" 304 -
-2025-12-08 13:03:55,754 - 127.0.0.1 - - [08/Dec/2025 13:03:55] "[36mGET /static/js/modules/dashboard/data.js HTTP/1.1[0m" 304 -
-2025-12-08 13:03:55,755 - 127.0.0.1 - - [08/Dec/2025 13:03:55] "[36mGET /static/js/modules/dashboard/eventLog.js HTTP/1.1[0m" 304 -
-2025-12-08 13:03:55,760 - 127.0.0.1 - - [08/Dec/2025 13:03:55] "[36mGET /static/js/modules/common/dateUtils.js HTTP/1.1[0m" 304 -
-2025-12-08 13:03:56,083 - 127.0.0.1 - - [08/Dec/2025 13:03:56] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:03:56,330 - 127.0.0.1 - - [08/Dec/2025 13:03:56] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:03:56,439 - 127.0.0.1 - - [08/Dec/2025 13:03:56] "GET /api/dashboard/event-log?start_date=2025-12-08&end_date=2025-12-08 HTTP/1.1" 200 -
-2025-12-08 13:03:56,439 - 127.0.0.1 - - [08/Dec/2025 13:03:56] "GET /api/dashboard/summary?start_date=2025-01-01&end_date=2025-12-08&all_data=true HTTP/1.1" 200 -
-2025-12-08 13:03:56,439 - 127.0.0.1 - - [08/Dec/2025 13:03:56] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:03:58,365 - 127.0.0.1 - - [08/Dec/2025 13:03:58] "GET /jandi HTTP/1.1" 200 -
-2025-12-08 13:03:58,689 - 127.0.0.1 - - [08/Dec/2025 13:03:58] "[36mGET /static/js/pages/jandi.js HTTP/1.1[0m" 304 -
-2025-12-08 13:03:58,954 - 127.0.0.1 - - [08/Dec/2025 13:03:58] "[36mGET /static/js/modules/data_analysis/heatmap.js HTTP/1.1[0m" 304 -
-2025-12-08 13:03:59,001 - 127.0.0.1 - - [08/Dec/2025 13:03:59] "[36mGET /static/js/modules/dashboard/jobInfo.js HTTP/1.1[0m" 304 -
-2025-12-08 13:03:59,018 - 127.0.0.1 - - [08/Dec/2025 13:03:59] "GET /api/job-list?length=-1&start_date=2024-07-08&end_date=2025-12-08&allData=false HTTP/1.1" 200 -
-2025-12-08 13:03:59,331 - 127.0.0.1 - - [08/Dec/2025 13:03:59] "GET /api/jandi-data?job_id=CD101&start_date=2024-07-08&end_date=2025-12-08&allData=false HTTP/1.1" 200 -
-2025-12-08 13:03:59,597 - 127.0.0.1 - - [08/Dec/2025 13:03:59] "GET /api/jandi-data?job_id=CD102&start_date=2024-07-08&end_date=2025-12-08&allData=false HTTP/1.1" 200 -
-2025-12-08 13:03:59,651 - 127.0.0.1 - - [08/Dec/2025 13:03:59] "GET /api/jandi-data?job_id=CD103&start_date=2024-07-08&end_date=2025-12-08&allData=false HTTP/1.1" 200 -
-2025-12-08 13:03:59,913 - 127.0.0.1 - - [08/Dec/2025 13:03:59] "GET /api/jandi-data?job_id=CD104&start_date=2024-07-08&end_date=2025-12-08&allData=false HTTP/1.1" 200 -
-2025-12-08 13:03:59,972 - 127.0.0.1 - - [08/Dec/2025 13:03:59] "GET /api/jandi-data?job_id=CD301&start_date=2024-07-08&end_date=2025-12-08&allData=false HTTP/1.1" 200 -
-2025-12-08 13:04:00,222 - 127.0.0.1 - - [08/Dec/2025 13:04:00] "GET /api/jandi-data?job_id=CD302&start_date=2024-07-08&end_date=2025-12-08&allData=false HTTP/1.1" 200 -
-2025-12-08 13:04:00,300 - 127.0.0.1 - - [08/Dec/2025 13:04:00] "GET /api/jandi-data?job_id=CD303&start_date=2024-07-08&end_date=2025-12-08&allData=false HTTP/1.1" 200 -
-2025-12-08 13:04:07,840 - 127.0.0.1 - - [08/Dec/2025 13:04:07] "GET /data_analysis HTTP/1.1" 200 -
-2025-12-08 13:04:08,165 - 127.0.0.1 - - [08/Dec/2025 13:04:08] "[36mGET /static/js/pages/data_analysis.js HTTP/1.1[0m" 304 -
-2025-12-08 13:04:08,424 - 127.0.0.1 - - [08/Dec/2025 13:04:08] "[36mGET /static/js/modules/data_analysis/events.js HTTP/1.1[0m" 304 -
-2025-12-08 13:04:08,471 - 127.0.0.1 - - [08/Dec/2025 13:04:08] "GET /static/js/modules/data_analysis/data.js HTTP/1.1" 200 -
-2025-12-08 13:04:08,745 - 127.0.0.1 - - [08/Dec/2025 13:04:08] "[36mGET /static/js/modules/data_analysis/ui.js HTTP/1.1[0m" 304 -
-2025-12-08 13:04:08,745 - 127.0.0.1 - - [08/Dec/2025 13:04:08] "[36mGET /static/js/modules/data_analysis/utils.js HTTP/1.1[0m" 304 -
-2025-12-08 13:04:09,090 - 127.0.0.1 - - [08/Dec/2025 13:04:09] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:04:09,103 - 127.0.0.1 - - [08/Dec/2025 13:04:09] "GET /api/analysis/job_ids HTTP/1.1" 200 -
-2025-12-08 13:04:09,319 - 127.0.0.1 - - [08/Dec/2025 13:04:09] "GET /api/analysis/error_code_map HTTP/1.1" 200 -
-2025-12-08 13:04:09,413 - 127.0.0.1 - - [08/Dec/2025 13:04:09] "GET /api/analysis/error_codes HTTP/1.1" 200 -
-2025-12-08 13:04:09,653 - 127.0.0.1 - - [08/Dec/2025 13:04:09] "GET /api/analysis/summary?start_date=2025-01-01&end_date=2025-12-08 HTTP/1.1" 200 -
-2025-12-08 13:04:09,731 - 127.0.0.1 - - [08/Dec/2025 13:04:09] "GET /api/analysis/trend?start_date=2025-01-01&end_date=2025-12-08 HTTP/1.1" 200 -
-2025-12-08 13:04:09,747 - 127.0.0.1 - - [08/Dec/2025 13:04:09] "GET /api/analysis/raw_data?start_date=2025-01-01&end_date=2025-12-08 HTTP/1.1" 200 -
-2025-12-08 13:04:09,762 - 127.0.0.1 - - [08/Dec/2025 13:04:09] "GET /api/job_mst_info?job_ids=CD101,CD102,CD104,CD103,CD301,CD302,CD303 HTTP/1.1" 200 -
-2025-12-08 13:04:10,729 - 127.0.0.1 - - [08/Dec/2025 13:04:10] "GET /chart_analysis HTTP/1.1" 200 -
-2025-12-08 13:04:10,982 - 127.0.0.1 - - [08/Dec/2025 13:04:10] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:04:11,057 - 127.0.0.1 - - [08/Dec/2025 13:04:11] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:04:11,075 - 127.0.0.1 - - [08/Dec/2025 13:04:11] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:04:11,077 - 127.0.0.1 - - [08/Dec/2025 13:04:11] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:04:11,086 - 127.0.0.1 - - [08/Dec/2025 13:04:11] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:04:11,396 - 127.0.0.1 - - [08/Dec/2025 13:04:11] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:04:12,714 - 127.0.0.1 - - [08/Dec/2025 13:04:12] "GET /raw_data HTTP/1.1" 200 -
-2025-12-08 13:04:12,976 - 127.0.0.1 - - [08/Dec/2025 13:04:12] "[36mGET /static/js/pages/raw_data.js HTTP/1.1[0m" 304 -
-2025-12-08 13:04:13,054 - 127.0.0.1 - - [08/Dec/2025 13:04:13] "[36mGET /static/js/modules/rawData/api.js HTTP/1.1[0m" 304 -
-2025-12-08 13:04:13,054 - 127.0.0.1 - - [08/Dec/2025 13:04:13] "[36mGET /static/js/modules/rawData/ui.js HTTP/1.1[0m" 304 -
-2025-12-08 13:04:13,288 - 127.0.0.1 - - [08/Dec/2025 13:04:13] "[36mGET /static/js/modules/rawData/events.js HTTP/1.1[0m" 304 -
-2025-12-08 13:04:13,288 - 127.0.0.1 - - [08/Dec/2025 13:04:13] "[36mGET /static/js/modules/rawData/utils.js HTTP/1.1[0m" 304 -
-2025-12-08 13:04:13,288 - 127.0.0.1 - - [08/Dec/2025 13:04:13] "[36mGET /static/js/modules/common/ui.js HTTP/1.1[0m" 304 -
-2025-12-08 13:04:13,288 - 127.0.0.1 - - [08/Dec/2025 13:04:13] "[36mGET /static/vendor/js/xlsx.full.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:04:13,606 - 127.0.0.1 - - [08/Dec/2025 13:04:13] "[36mGET /static/js/modules/common/apiConfig.js HTTP/1.1[0m" 304 -
-2025-12-08 13:04:13,871 - 127.0.0.1 - - [08/Dec/2025 13:04:13] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:04:13,935 - 127.0.0.1 - - [08/Dec/2025 13:04:13] "GET /api/analysis/job_ids HTTP/1.1" 200 -
-2025-12-08 13:04:14,180 - 127.0.0.1 - - [08/Dec/2025 13:04:14] "GET /api/analysis/error_code_map HTTP/1.1" 200 -
-2025-12-08 13:04:14,201 - 127.0.0.1 - - [08/Dec/2025 13:04:14] "GET /api/raw_data?start_date=2025-07-10&end_date=2025-12-05 HTTP/1.1" 200 -
-2025-12-08 13:04:47,768 - 127.0.0.1 - - [08/Dec/2025 13:04:47] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:06:38,786 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+2025-12-18 16:55:58,088 - [33mPress CTRL+C to quit[0m
+2025-12-18 16:55:58,090 -  * Restarting with stat
+2025-12-18 16:55:58,770 -  * Debugger is active!
+2025-12-18 16:55:58,774 -  * Debugger PIN: 528-349-624
+2025-12-18 16:56:02,471 - 127.0.0.1 - - [18/Dec/2025 16:56:02] "GET /collection_schedule HTTP/1.1" 200 -
+2025-12-18 16:56:02,487 - 127.0.0.1 - - [18/Dec/2025 16:56:02] "GET /api/mst_list HTTP/1.1" 200 -
+2025-12-18 16:56:02,673 - 127.0.0.1 - - [18/Dec/2025 16:56:02] "GET /api/collection_schedule?view=weekly HTTP/1.1" 200 -
+2025-12-18 16:56:03,078 - 127.0.0.1 - - [18/Dec/2025 16:56:03] "GET /card_summary HTTP/1.1" 200 -
+2025-12-18 16:56:03,097 - 127.0.0.1 - - [18/Dec/2025 16:56:03] "GET /api/card_summary HTTP/1.1" 200 -
+2025-12-18 16:56:03,110 - 127.0.0.1 - - [18/Dec/2025 16:56:03] "[36mGET /static/css/card_summary.css HTTP/1.1[0m" 304 -
+2025-12-18 16:56:04,326 - 127.0.0.1 - - [18/Dec/2025 16:56:04] "GET /dashboard HTTP/1.1" 200 -
+2025-12-18 16:56:04,347 - 127.0.0.1 - - [18/Dec/2025 16:56:04] "GET /api/mst_list HTTP/1.1" 200 -
+2025-12-18 16:56:04,361 - 127.0.0.1 - - [18/Dec/2025 16:56:04] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
+2025-12-18 16:56:04,369 - 127.0.0.1 - - [18/Dec/2025 16:56:04] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
+2025-12-18 16:56:04,373 - 127.0.0.1 - - [18/Dec/2025 16:56:04] "GET /api/dashboard/event-log?start_date=2025-12-18&end_date=2025-12-18 HTTP/1.1" 200 -
+2025-12-18 16:56:04,385 - 127.0.0.1 - - [18/Dec/2025 16:56:04] "GET /api/dashboard/summary?start_date=2025-01-01&end_date=2025-12-18&all_data=true HTTP/1.1" 200 -
+2025-12-18 16:56:04,756 - 127.0.0.1 - - [18/Dec/2025 16:56:04] "GET /jandi HTTP/1.1" 200 -
+2025-12-18 16:56:04,774 - 127.0.0.1 - - [18/Dec/2025 16:56:04] "GET /api/job-list?length=-1&start_date=2024-02-07&end_date=2025-12-18&allData=false HTTP/1.1" 200 -
+2025-12-18 16:56:04,783 - 127.0.0.1 - - [18/Dec/2025 16:56:04] "GET /api/jandi-data?job_id=CD101&start_date=2024-02-07&end_date=2025-12-18&allData=false HTTP/1.1" 200 -
+2025-12-18 16:56:04,790 - 127.0.0.1 - - [18/Dec/2025 16:56:04] "GET /api/jandi-data?job_id=CD102&start_date=2024-02-07&end_date=2025-12-18&allData=false HTTP/1.1" 200 -
+2025-12-18 16:56:04,796 - 127.0.0.1 - - [18/Dec/2025 16:56:04] "GET /api/jandi-data?job_id=CD103&start_date=2024-02-07&end_date=2025-12-18&allData=false HTTP/1.1" 200 -
+2025-12-18 16:56:04,802 - 127.0.0.1 - - [18/Dec/2025 16:56:04] "GET /api/jandi-data?job_id=CD104&start_date=2024-02-07&end_date=2025-12-18&allData=false HTTP/1.1" 200 -
+2025-12-18 16:56:04,808 - 127.0.0.1 - - [18/Dec/2025 16:56:04] "GET /api/jandi-data?job_id=CD301&start_date=2024-02-07&end_date=2025-12-18&allData=false HTTP/1.1" 200 -
+2025-12-18 16:56:04,813 - 127.0.0.1 - - [18/Dec/2025 16:56:04] "GET /api/jandi-data?job_id=CD302&start_date=2024-02-07&end_date=2025-12-18&allData=false HTTP/1.1" 200 -
+2025-12-18 16:56:04,818 - 127.0.0.1 - - [18/Dec/2025 16:56:04] "GET /api/jandi-data?job_id=CD303&start_date=2024-02-07&end_date=2025-12-18&allData=false HTTP/1.1" 200 -
+2025-12-18 16:56:05,106 - 127.0.0.1 - - [18/Dec/2025 16:56:05] "GET /data_analysis HTTP/1.1" 200 -
+2025-12-18 16:56:05,130 - 127.0.0.1 - - [18/Dec/2025 16:56:05] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
+2025-12-18 16:56:05,162 - 127.0.0.1 - - [18/Dec/2025 16:56:05] "GET /api/analytics/job_ids HTTP/1.1" 200 -
+2025-12-18 16:56:05,169 - 127.0.0.1 - - [18/Dec/2025 16:56:05] "GET /api/analytics/error_code_map HTTP/1.1" 200 -
+2025-12-18 16:56:05,175 - 127.0.0.1 - - [18/Dec/2025 16:56:05] "GET /api/analytics/error_codes HTTP/1.1" 200 -
+2025-12-18 16:56:05,205 - 127.0.0.1 - - [18/Dec/2025 16:56:05] "GET /api/analytics/raw_data?start_date=2025-01-01&end_date=2025-12-18 HTTP/1.1" 200 -
+2025-12-18 16:56:05,206 - 127.0.0.1 - - [18/Dec/2025 16:56:05] "GET /api/analytics/summary?start_date=2025-01-01&end_date=2025-12-18 HTTP/1.1" 200 -
+2025-12-18 16:56:05,215 - 127.0.0.1 - - [18/Dec/2025 16:56:05] "GET /api/analytics/trend?start_date=2025-01-01&end_date=2025-12-18 HTTP/1.1" 200 -
+2025-12-18 16:56:05,222 - 127.0.0.1 - - [18/Dec/2025 16:56:05] "GET /api/job_mst_info?job_ids=CD101,CD102,CD104,CD103,CD301,CD302,CD303 HTTP/1.1" 200 -
+2025-12-18 16:56:05,427 - 127.0.0.1 - - [18/Dec/2025 16:56:05] "GET /chart_analysis HTTP/1.1" 200 -
+2025-12-18 16:56:05,441 - 127.0.0.1 - - [18/Dec/2025 16:56:05] "GET /api/auth/status HTTP/1.1" 200 -
+2025-12-18 16:56:05,448 - 127.0.0.1 - - [18/Dec/2025 16:56:05] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
+2025-12-18 16:56:05,456 - 127.0.0.1 - - [18/Dec/2025 16:56:05] "GET /api/mst_list HTTP/1.1" 200 -
+2025-12-18 16:56:05,477 - 127.0.0.1 - - [18/Dec/2025 16:56:05] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
+2025-12-18 16:56:05,490 - 127.0.0.1 - - [18/Dec/2025 16:56:05] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-18&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
+2025-12-18 16:56:05,496 - 127.0.0.1 - - [18/Dec/2025 16:56:05] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-18&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
+2025-12-18 16:56:06,588 - 127.0.0.1 - - [18/Dec/2025 16:56:06] "GET /data_analysis HTTP/1.1" 200 -
+2025-12-18 16:56:06,606 - 127.0.0.1 - - [18/Dec/2025 16:56:06] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
+2025-12-18 16:56:06,626 - 127.0.0.1 - - [18/Dec/2025 16:56:06] "GET /api/analytics/job_ids HTTP/1.1" 200 -
+2025-12-18 16:56:06,633 - 127.0.0.1 - - [18/Dec/2025 16:56:06] "GET /api/analytics/error_code_map HTTP/1.1" 200 -
+2025-12-18 16:56:06,638 - 127.0.0.1 - - [18/Dec/2025 16:56:06] "GET /api/analytics/error_codes HTTP/1.1" 200 -
+2025-12-18 16:56:06,667 - 127.0.0.1 - - [18/Dec/2025 16:56:06] "GET /api/analytics/raw_data?start_date=2025-01-01&end_date=2025-12-18 HTTP/1.1" 200 -
+2025-12-18 16:56:06,670 - 127.0.0.1 - - [18/Dec/2025 16:56:06] "GET /api/analytics/summary?start_date=2025-01-01&end_date=2025-12-18 HTTP/1.1" 200 -
+2025-12-18 16:56:06,673 - 127.0.0.1 - - [18/Dec/2025 16:56:06] "GET /api/analytics/trend?start_date=2025-01-01&end_date=2025-12-18 HTTP/1.1" 200 -
+2025-12-18 16:56:06,679 - 127.0.0.1 - - [18/Dec/2025 16:56:06] "GET /api/job_mst_info?job_ids=CD101,CD102,CD104,CD103,CD301,CD302,CD303 HTTP/1.1" 200 -
+2025-12-18 16:56:07,084 - 127.0.0.1 - - [18/Dec/2025 16:56:07] "GET /jandi HTTP/1.1" 200 -
+2025-12-18 16:56:07,105 - 127.0.0.1 - - [18/Dec/2025 16:56:07] "GET /api/job-list?length=-1&start_date=2024-02-07&end_date=2025-12-18&allData=false HTTP/1.1" 200 -
+2025-12-18 16:56:07,113 - 127.0.0.1 - - [18/Dec/2025 16:56:07] "GET /api/jandi-data?job_id=CD101&start_date=2024-02-07&end_date=2025-12-18&allData=false HTTP/1.1" 200 -
+2025-12-18 16:56:07,120 - 127.0.0.1 - - [18/Dec/2025 16:56:07] "GET /api/jandi-data?job_id=CD102&start_date=2024-02-07&end_date=2025-12-18&allData=false HTTP/1.1" 200 -
+2025-12-18 16:56:07,126 - 127.0.0.1 - - [18/Dec/2025 16:56:07] "GET /api/jandi-data?job_id=CD103&start_date=2024-02-07&end_date=2025-12-18&allData=false HTTP/1.1" 200 -
+2025-12-18 16:56:07,132 - 127.0.0.1 - - [18/Dec/2025 16:56:07] "GET /api/jandi-data?job_id=CD104&start_date=2024-02-07&end_date=2025-12-18&allData=false HTTP/1.1" 200 -
+2025-12-18 16:56:07,138 - 127.0.0.1 - - [18/Dec/2025 16:56:07] "GET /api/jandi-data?job_id=CD301&start_date=2024-02-07&end_date=2025-12-18&allData=false HTTP/1.1" 200 -
+2025-12-18 16:56:07,143 - 127.0.0.1 - - [18/Dec/2025 16:56:07] "GET /api/jandi-data?job_id=CD302&start_date=2024-02-07&end_date=2025-12-18&allData=false HTTP/1.1" 200 -
+2025-12-18 16:56:07,149 - 127.0.0.1 - - [18/Dec/2025 16:56:07] "GET /api/jandi-data?job_id=CD303&start_date=2024-02-07&end_date=2025-12-18&allData=false HTTP/1.1" 200 -
+2025-12-18 16:56:08,426 - 127.0.0.1 - - [18/Dec/2025 16:56:08] "GET /dashboard HTTP/1.1" 200 -
+2025-12-18 16:56:08,455 - 127.0.0.1 - - [18/Dec/2025 16:56:08] "GET /api/mst_list HTTP/1.1" 200 -
+2025-12-18 16:56:08,471 - 127.0.0.1 - - [18/Dec/2025 16:56:08] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
+2025-12-18 16:56:08,482 - 127.0.0.1 - - [18/Dec/2025 16:56:08] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
+2025-12-18 16:56:08,486 - 127.0.0.1 - - [18/Dec/2025 16:56:08] "GET /api/dashboard/event-log?start_date=2025-12-18&end_date=2025-12-18 HTTP/1.1" 200 -
+2025-12-18 16:56:08,503 - 127.0.0.1 - - [18/Dec/2025 16:56:08] "GET /api/dashboard/summary?start_date=2025-01-01&end_date=2025-12-18&all_data=true HTTP/1.1" 200 -
+2025-12-18 16:56:08,909 - 127.0.0.1 - - [18/Dec/2025 16:56:08] "GET /card_summary HTTP/1.1" 200 -
+2025-12-18 16:56:08,918 - 127.0.0.1 - - [18/Dec/2025 16:56:08] "[36mGET /static/css/card_summary.css HTTP/1.1[0m" 304 -
+2025-12-18 16:56:08,932 - 127.0.0.1 - - [18/Dec/2025 16:56:08] "GET /api/card_summary HTTP/1.1" 200 -
+2025-12-18 16:56:09,371 - 127.0.0.1 - - [18/Dec/2025 16:56:09] "GET /collection_schedule HTTP/1.1" 200 -
+2025-12-18 16:56:09,386 - 127.0.0.1 - - [18/Dec/2025 16:56:09] "GET /api/mst_list HTTP/1.1" 200 -
+2025-12-18 16:56:09,427 - 127.0.0.1 - - [18/Dec/2025 16:56:09] "GET /api/collection_schedule?view=weekly HTTP/1.1" 200 -
+2025-12-18 16:56:12,531 - 127.0.0.1 - - [18/Dec/2025 16:56:12] "GET /mngr_sett HTTP/1.1" 200 -
+2025-12-18 16:56:12,556 - 127.0.0.1 - - [18/Dec/2025 16:56:12] "GET /api/mngr_sett/icons/all HTTP/1.1" 200 -
+2025-12-18 16:56:12,569 - 127.0.0.1 - - [18/Dec/2025 16:56:12] "GET /api/mngr_sett/users?_=1766044572545 HTTP/1.1" 200 -
+2025-12-18 16:56:12,590 - 127.0.0.1 - - [18/Dec/2025 16:56:12] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
+2025-12-18 16:56:13,193 - 127.0.0.1 - - [18/Dec/2025 16:56:13] "GET /data_spec HTTP/1.1" 200 -
+2025-12-18 16:56:13,215 - 127.0.0.1 - - [18/Dec/2025 16:56:13] "GET /api/data-spec HTTP/1.1" 200 -
+2025-12-18 16:56:50,970 - 127.0.0.1 - - [18/Dec/2025 16:56:50] "GET /api/auth/status HTTP/1.1" 200 -
+2025-12-18 16:57:50,838 - 127.0.0.1 - - [18/Dec/2025 16:57:50] "GET /api/auth/status HTTP/1.1" 200 -
+2025-12-18 16:58:50,831 - 127.0.0.1 - - [18/Dec/2025 16:58:50] "GET /api/auth/status HTTP/1.1" 200 -
+2025-12-18 16:59:50,826 - 127.0.0.1 - - [18/Dec/2025 16:59:50] "GET /api/auth/status HTTP/1.1" 200 -
+2025-12-18 17:00:50,837 - 127.0.0.1 - - [18/Dec/2025 17:00:50] "GET /api/auth/status HTTP/1.1" 200 -
+2025-12-18 17:01:50,848 - 127.0.0.1 - - [18/Dec/2025 17:01:50] "GET /api/auth/status HTTP/1.1" 200 -
+2025-12-18 17:02:48,176 -  * Detected change in 'd:\\dev\\msys\\utils\\auth_middleware.py', reloading
+2025-12-18 17:02:48,246 -  * Restarting with stat
+2025-12-18 17:02:48,713 -  * Detected change in 'd:\\dev\\msys\\utils\\auth_middleware.py', reloading
+2025-12-18 17:02:48,713 -  * Detected change in 'd:\\dev\\msys\\utils\\auth_middleware.py', reloading
+2025-12-18 17:02:48,730 -  * Detected change in 'd:\\dev\\msys\\utils\\auth_middleware.py', reloading
+2025-12-18 17:02:48,731 -  * Detected change in 'd:\\dev\\msys\\utils\\auth_middleware.py', reloading
+2025-12-18 17:02:49,247 -  * Debugger is active!
+2025-12-18 17:02:49,262 -  * Debugger PIN: 528-349-624
+2025-12-18 17:02:49,744 -  * Debugger is active!
+2025-12-18 17:02:49,744 -  * Debugger is active!
+2025-12-18 17:02:49,744 -  * Debugger is active!
+2025-12-18 17:02:49,758 -  * Debugger PIN: 298-168-793
+2025-12-18 17:02:49,761 -  * Debugger PIN: 298-168-793
+2025-12-18 17:02:49,761 -  * Debugger PIN: 298-168-793
+2025-12-18 17:02:49,761 -  * Debugger is active!
+2025-12-18 17:02:49,761 -  * Debugger PIN: 298-168-793
+2025-12-18 17:02:50,826 - 127.0.0.1 - - [18/Dec/2025 17:02:50] "GET /api/auth/status HTTP/1.1" 200 -
+2025-12-18 17:02:59,328 -  * Detected change in 'd:\\dev\\msys\\utils\\auth_middleware.py', reloading
+2025-12-18 17:02:59,332 -  * Detected change in 'd:\\dev\\msys\\utils\\auth_middleware.py', reloading
+2025-12-18 17:02:59,337 -  * Detected change in 'd:\\dev\\msys\\utils\\auth_middleware.py', reloading
+2025-12-18 17:02:59,338 -  * Detected change in 'd:\\dev\\msys\\utils\\auth_middleware.py', reloading
+2025-12-18 17:02:59,463 -  * Detected change in 'd:\\dev\\msys\\utils\\auth_middleware.py', reloading
+2025-12-18 17:02:59,544 -  * Restarting with stat
+2025-12-18 17:03:00,377 -  * Debugger is active!
+2025-12-18 17:03:00,377 -  * Debugger PIN: 298-168-793
+2025-12-18 17:03:00,377 -  * Debugger PIN: 298-168-793
+2025-12-18 17:03:00,393 -  * Debugger is active!
+2025-12-18 17:03:00,393 -  * Debugger is active!
+2025-12-18 17:03:00,393 -  * Debugger PIN: 298-168-793
+2025-12-18 17:03:00,393 -  * Debugger PIN: 298-168-793
+2025-12-18 17:03:00,481 -  * Debugger is active!
+2025-12-18 17:03:00,493 -  * Debugger PIN: 528-349-624
+2025-12-18 17:03:11,540 -  * Detected change in 'd:\\dev\\msys\\utils\\auth_middleware.py', reloading
+2025-12-18 17:03:11,624 -  * Restarting with stat
+2025-12-18 17:03:12,127 -  * Detected change in 'd:\\dev\\msys\\utils\\auth_middleware.py', reloading
+2025-12-18 17:03:12,143 -  * Detected change in 'd:\\dev\\msys\\utils\\auth_middleware.py', reloading
+2025-12-18 17:03:12,144 -  * Detected change in 'd:\\dev\\msys\\utils\\auth_middleware.py', reloading
+2025-12-18 17:03:12,144 -  * Detected change in 'd:\\dev\\msys\\utils\\auth_middleware.py', reloading
+2025-12-18 17:03:12,561 -  * Debugger is active!
+2025-12-18 17:03:12,566 -  * Debugger PIN: 528-349-624
+2025-12-18 17:03:13,126 -  * Debugger is active!
+2025-12-18 17:03:13,126 -  * Debugger is active!
+2025-12-18 17:03:13,126 -  * Debugger PIN: 298-168-793
+2025-12-18 17:03:13,126 -  * Debugger PIN: 298-168-793
+2025-12-18 17:03:13,142 -  * Debugger is active!
+2025-12-18 17:03:13,142 -  * Debugger is active!
+2025-12-18 17:03:13,143 -  * Debugger PIN: 298-168-793
+2025-12-18 17:03:13,143 -  * Debugger PIN: 298-168-793
+2025-12-18 17:03:23,704 -  * Detected change in 'd:\\dev\\msys\\utils\\auth_middleware.py', reloading
+2025-12-18 17:03:23,705 -  * Detected change in 'd:\\dev\\msys\\utils\\auth_middleware.py', reloading
+2025-12-18 17:03:23,705 -  * Detected change in 'd:\\dev\\msys\\utils\\auth_middleware.py', reloading
+2025-12-18 17:03:23,707 -  * Detected change in 'd:\\dev\\msys\\utils\\auth_middleware.py', reloading
+2025-12-18 17:03:24,715 -  * Detected change in 'd:\\dev\\msys\\utils\\auth_middleware.py', reloading
+2025-12-18 17:03:24,770 -  * Debugger is active!
+2025-12-18 17:03:24,776 -  * Debugger PIN: 298-168-793
+2025-12-18 17:03:24,778 -  * Debugger PIN: 298-168-793
+2025-12-18 17:03:24,779 -  * Debugger is active!
+2025-12-18 17:03:24,779 -  * Debugger is active!
+2025-12-18 17:03:24,779 -  * Debugger PIN: 298-168-793
+2025-12-18 17:03:24,779 -  * Debugger PIN: 298-168-793
+2025-12-18 17:03:24,794 -  * Restarting with stat
+2025-12-18 17:03:25,559 -  * Debugger is active!
+2025-12-18 17:03:25,576 -  * Debugger PIN: 528-349-624
+2025-12-18 17:03:38,554 -  * Detected change in 'd:\\dev\\msys\\dao\\schedule_settings_dao.py', reloading
+2025-12-18 17:03:38,559 -  * Detected change in 'd:\\dev\\msys\\dao\\schedule_settings_dao.py', reloading
+2025-12-18 17:03:38,560 -  * Detected change in 'd:\\dev\\msys\\dao\\schedule_settings_dao.py', reloading
+2025-12-18 17:03:38,562 -  * Detected change in 'd:\\dev\\msys\\dao\\schedule_settings_dao.py', reloading
+2025-12-18 17:03:38,858 -  * Detected change in 'd:\\dev\\msys\\dao\\schedule_settings_dao.py', reloading
+2025-12-18 17:03:38,991 -  * Restarting with stat
+2025-12-18 17:03:39,528 -  * Debugger is active!
+2025-12-18 17:03:39,528 -  * Debugger PIN: 298-168-793
+2025-12-18 17:03:39,732 -  * Debugger is active!
+2025-12-18 17:03:39,733 -  * Debugger is active!
+2025-12-18 17:03:39,733 -  * Debugger is active!
+2025-12-18 17:03:39,736 -  * Debugger PIN: 298-168-793
+2025-12-18 17:03:39,736 -  * Debugger PIN: 298-168-793
+2025-12-18 17:03:39,736 -  * Debugger PIN: 298-168-793
+2025-12-18 17:03:39,970 -  * Debugger is active!
+2025-12-18 17:03:39,974 -  * Debugger PIN: 528-349-624
+2025-12-18 17:03:49,311 -  * Detected change in 'd:\\dev\\msys\\dao\\schedule_settings_dao.py', reloading
+2025-12-18 17:03:49,328 -  * Detected change in 'd:\\dev\\msys\\dao\\schedule_settings_dao.py', reloading
+2025-12-18 17:03:49,328 -  * Detected change in 'd:\\dev\\msys\\dao\\schedule_settings_dao.py', reloading
+2025-12-18 17:03:49,827 -  * Detected change in 'd:\\dev\\msys\\dao\\schedule_settings_dao.py', reloading
+2025-12-18 17:03:49,942 -  * Detected change in 'd:\\dev\\msys\\dao\\schedule_settings_dao.py', reloading
+2025-12-18 17:03:50,066 -  * Restarting with stat
+2025-12-18 17:03:50,458 -  * Debugger is active!
+2025-12-18 17:03:50,459 -  * Debugger PIN: 298-168-793
+2025-12-18 17:03:50,477 -  * Debugger is active!
+2025-12-18 17:03:50,477 -  * Debugger PIN: 298-168-793
+2025-12-18 17:03:50,477 -  * Debugger is active!
+2025-12-18 17:03:50,492 -  * Debugger PIN: 298-168-793
+2025-12-18 17:03:50,827 - 127.0.0.1 - - [18/Dec/2025 17:03:50] "GET /api/auth/status HTTP/1.1" 200 -
+2025-12-18 17:03:50,977 -  * Debugger is active!
+2025-12-18 17:03:50,977 -  * Debugger is active!
+2025-12-18 17:03:50,977 -  * Debugger PIN: 298-168-793
+2025-12-18 17:03:50,977 -  * Debugger PIN: 528-349-624
+2025-12-18 17:04:01,940 -  * Detected change in 'd:\\dev\\msys\\dao\\schedule_settings_dao.py', reloading
+2025-12-18 17:04:02,034 -  * Detected change in 'd:\\dev\\msys\\dao\\schedule_settings_dao.py', reloading
+2025-12-18 17:04:02,034 -  * Detected change in 'd:\\dev\\msys\\dao\\schedule_settings_dao.py', reloading
+2025-12-18 17:04:02,063 -  * Detected change in 'd:\\dev\\msys\\dao\\schedule_settings_dao.py', reloading
+2025-12-18 17:04:02,183 -  * Restarting with stat
+2025-12-18 17:04:02,391 -  * Detected change in 'd:\\dev\\msys\\dao\\schedule_settings_dao.py', reloading
+2025-12-18 17:04:03,077 -  * Debugger is active!
+2025-12-18 17:04:03,077 -  * Debugger PIN: 298-168-793
+2025-12-18 17:04:03,193 -  * Debugger is active!
+2025-12-18 17:04:03,193 -  * Debugger PIN: 298-168-793
+2025-12-18 17:04:03,210 -  * Debugger is active!
+2025-12-18 17:04:03,210 -  * Debugger PIN: 298-168-793
+2025-12-18 17:04:03,243 -  * Debugger is active!
+2025-12-18 17:04:03,243 -  * Debugger PIN: 528-349-624
+2025-12-18 17:04:03,443 -  * Debugger is active!
+2025-12-18 17:04:03,443 -  * Debugger PIN: 298-168-793
+2025-12-18 17:04:22,824 -  * Detected change in 'd:\\dev\\msys\\dao\\schedule_settings_dao.py', reloading
+2025-12-18 17:04:22,922 -  * Detected change in 'd:\\dev\\msys\\dao\\schedule_settings_dao.py', reloading
+2025-12-18 17:04:23,028 -  * Restarting with stat
+2025-12-18 17:04:23,030 -  * Detected change in 'd:\\dev\\msys\\dao\\schedule_settings_dao.py', reloading
+2025-12-18 17:04:23,037 -  * Detected change in 'd:\\dev\\msys\\dao\\schedule_settings_dao.py', reloading
+2025-12-18 17:04:23,240 -  * Detected change in 'd:\\dev\\msys\\dao\\schedule_settings_dao.py', reloading
+2025-12-18 17:04:23,929 -  * Debugger is active!
+2025-12-18 17:04:23,936 -  * Debugger PIN: 298-168-793
+2025-12-18 17:04:24,046 -  * Debugger is active!
+2025-12-18 17:04:24,046 -  * Debugger PIN: 528-349-624
+2025-12-18 17:04:24,107 -  * Debugger is active!
+2025-12-18 17:04:24,112 -  * Debugger is active!
+2025-12-18 17:04:24,112 -  * Debugger PIN: 298-168-793
+2025-12-18 17:04:24,112 -  * Debugger PIN: 298-168-793
+2025-12-18 17:04:24,276 -  * Debugger is active!
+2025-12-18 17:04:24,276 -  * Debugger PIN: 298-168-793
+2025-12-18 17:04:37,276 -  * Detected change in 'd:\\dev\\msys\\dao\\schedule_settings_dao.py', reloading
+2025-12-18 17:04:37,373 -  * Restarting with stat
+2025-12-18 17:04:37,567 -  * Detected change in 'd:\\dev\\msys\\dao\\schedule_settings_dao.py', reloading
+2025-12-18 17:04:37,793 -  * Detected change in 'd:\\dev\\msys\\dao\\schedule_settings_dao.py', reloading
+2025-12-18 17:04:37,793 -  * Detected change in 'd:\\dev\\msys\\dao\\schedule_settings_dao.py', reloading
+2025-12-18 17:04:37,793 -  * Detected change in 'd:\\dev\\msys\\dao\\schedule_settings_dao.py', reloading
+2025-12-18 17:04:38,307 -  * Debugger is active!
+2025-12-18 17:04:38,309 -  * Debugger PIN: 528-349-624
+2025-12-18 17:04:38,759 -  * Debugger is active!
+2025-12-18 17:04:38,773 -  * Debugger PIN: 298-168-793
+2025-12-18 17:04:38,775 -  * Debugger is active!
+2025-12-18 17:04:38,775 -  * Debugger is active!
+2025-12-18 17:04:38,775 -  * Debugger is active!
+2025-12-18 17:04:38,775 -  * Debugger PIN: 298-168-793
+2025-12-18 17:04:38,775 -  * Debugger PIN: 298-168-793
+2025-12-18 17:04:38,775 -  * Debugger PIN: 298-168-793
+2025-12-18 17:04:50,844 - 127.0.0.1 - - [18/Dec/2025 17:04:50] "GET /api/auth/status HTTP/1.1" 200 -
+2025-12-18 17:05:19,976 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:18080
  * Running on http://10.200.153.130:18080
-2025-12-08 13:06:38,786 - [33mPress CTRL+C to quit[0m
-2025-12-08 13:06:41,462 - 127.0.0.1 - - [08/Dec/2025 13:06:41] "GET /chart_analysis HTTP/1.1" 200 -
-2025-12-08 13:06:41,501 - 127.0.0.1 - - [08/Dec/2025 13:06:41] "GET /static/vendor/css/tailwindcss.css?v=1765134401.452584 HTTP/1.1" 200 -
-2025-12-08 13:06:41,680 - 127.0.0.1 - - [08/Dec/2025 13:06:41] "GET /static/vendor/css/inter.css?v=1765134401.452584 HTTP/1.1" 200 -
-2025-12-08 13:06:41,791 - 127.0.0.1 - - [08/Dec/2025 13:06:41] "GET /static/css/common.css?v=1765134401.452584 HTTP/1.1" 200 -
-2025-12-08 13:06:41,791 - 127.0.0.1 - - [08/Dec/2025 13:06:41] "GET /static/vendor/css/dataTables.tailwindcss.min.css?v=1765134401.452584 HTTP/1.1" 200 -
-2025-12-08 13:06:41,791 - 127.0.0.1 - - [08/Dec/2025 13:06:41] "GET /static/vendor/css/flatpickr.min.css?v=1765134401.452584 HTTP/1.1" 200 -
-2025-12-08 13:06:41,791 - 127.0.0.1 - - [08/Dec/2025 13:06:41] "[36mGET /static/vendor/js/luxon.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:06:41,824 - 127.0.0.1 - - [08/Dec/2025 13:06:41] "[36mGET /static/vendor/js/d3.v7.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:06:41,994 - 127.0.0.1 - - [08/Dec/2025 13:06:41] "[36mGET /static/vendor/js/jquery-3.6.0.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:06:42,114 - 127.0.0.1 - - [08/Dec/2025 13:06:42] "[36mGET /static/vendor/js/flatpickr.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:06:42,114 - 127.0.0.1 - - [08/Dec/2025 13:06:42] "[36mGET /static/vendor/js/dataTables.js HTTP/1.1[0m" 304 -
-2025-12-08 13:06:42,116 - 127.0.0.1 - - [08/Dec/2025 13:06:42] "[36mGET /static/vendor/js/dataTables.tailwindcss.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:06:42,118 - 127.0.0.1 - - [08/Dec/2025 13:06:42] "[36mGET /static/vendor/js/chart.umd.js HTTP/1.1[0m" 304 -
-2025-12-08 13:06:42,138 - 127.0.0.1 - - [08/Dec/2025 13:06:42] "[36mGET /static/vendor/js/chartjs-adapter-luxon.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:06:42,308 - 127.0.0.1 - - [08/Dec/2025 13:06:42] "GET /static/js/session_timer.js?v=1765134401.452584 HTTP/1.1" 200 -
-2025-12-08 13:06:42,431 - 127.0.0.1 - - [08/Dec/2025 13:06:42] "[36mGET /static/vendor/js/chartjs-plugin-datalabels.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:06:42,434 - 127.0.0.1 - - [08/Dec/2025 13:06:42] "GET /static/js/utils/toast.js?v=1765134401.452584 HTTP/1.1" 200 -
-2025-12-08 13:06:42,434 - 127.0.0.1 - - [08/Dec/2025 13:06:42] "GET /static/js/router.js?v=1765134401.452584 HTTP/1.1" 200 -
-2025-12-08 13:06:42,434 - 127.0.0.1 - - [08/Dec/2025 13:06:42] "[36mGET /static/js/pages/chart_analysis.js HTTP/1.1[0m" 304 -
-2025-12-08 13:06:42,756 - 127.0.0.1 - - [08/Dec/2025 13:06:42] "[36mGET /static/js/modules/common/api/client.js HTTP/1.1[0m" 304 -
-2025-12-08 13:06:42,757 - 127.0.0.1 - - [08/Dec/2025 13:06:42] "[36mGET /static/js/modules/common/api/auth.js HTTP/1.1[0m" 304 -
-2025-12-08 13:06:42,759 - 127.0.0.1 - - [08/Dec/2025 13:06:42] "[36mGET /static/js/modules/common/utils.js HTTP/1.1[0m" 304 -
-2025-12-08 13:06:42,762 - 127.0.0.1 - - [08/Dec/2025 13:06:42] "[36mGET /static/js/modules/chart_analysis/ui.js HTTP/1.1[0m" 304 -
-2025-12-08 13:06:42,763 - 127.0.0.1 - - [08/Dec/2025 13:06:42] "GET /static/js/modules/chart_analysis/data.js HTTP/1.1" 200 -
-2025-12-08 13:06:42,763 - 127.0.0.1 - - [08/Dec/2025 13:06:42] "GET /static/js/modules/dashboard/ui.js HTTP/1.1" 200 -
-2025-12-08 13:06:43,075 - 127.0.0.1 - - [08/Dec/2025 13:06:43] "[36mGET /static/js/modules/chart_analysis/events.js HTTP/1.1[0m" 304 -
-2025-12-08 13:06:43,077 - 127.0.0.1 - - [08/Dec/2025 13:06:43] "[36mGET /static/js/modules/ui_components/collapsible.js HTTP/1.1[0m" 304 -
-2025-12-08 13:06:43,079 - 127.0.0.1 - - [08/Dec/2025 13:06:43] "[36mGET /static/js/utils/toast.js HTTP/1.1[0m" 304 -
-2025-12-08 13:06:43,081 - 127.0.0.1 - - [08/Dec/2025 13:06:43] "[36mGET /static/js/modules/common/api/mst.js HTTP/1.1[0m" 304 -
-2025-12-08 13:06:43,081 - 127.0.0.1 - - [08/Dec/2025 13:06:43] "[36mGET /static/js/modules/common/api/dashboard.js HTTP/1.1[0m" 304 -
-2025-12-08 13:06:43,082 - 127.0.0.1 - - [08/Dec/2025 13:06:43] "[36mGET /static/js/modules/common/api/mngr_sett.js HTTP/1.1[0m" 304 -
-2025-12-08 13:06:43,388 - 127.0.0.1 - - [08/Dec/2025 13:06:43] "[36mGET /static/js/modules/common/api/analytics.js HTTP/1.1[0m" 304 -
-2025-12-08 13:06:43,699 - 127.0.0.1 - - [08/Dec/2025 13:06:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:06:43,708 - 127.0.0.1 - - [08/Dec/2025 13:06:43] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:06:43,722 - 127.0.0.1 - - [08/Dec/2025 13:06:43] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:06:43,821 - 127.0.0.1 - - [08/Dec/2025 13:06:43] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:06:43,969 - 127.0.0.1 - - [08/Dec/2025 13:06:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:06:44,020 - 127.0.0.1 - - [08/Dec/2025 13:06:44] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:06:44,029 - 127.0.0.1 - - [08/Dec/2025 13:06:44] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:06:44,099 - 127.0.0.1 - - [08/Dec/2025 13:06:44] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:06:44,138 - 127.0.0.1 - - [08/Dec/2025 13:06:44] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:06:44,285 - 127.0.0.1 - - [08/Dec/2025 13:06:44] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:06:44,300 - 127.0.0.1 - - [08/Dec/2025 13:06:44] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:06:44,606 - 127.0.0.1 - - [08/Dec/2025 13:06:44] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:06:44,620 - 127.0.0.1 - - [08/Dec/2025 13:06:44] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:07:43,709 - 127.0.0.1 - - [08/Dec/2025 13:07:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:08:27,608 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on http://127.0.0.1:18080
- * Running on http://10.200.153.130:18080
-2025-12-08 13:08:27,608 - [33mPress CTRL+C to quit[0m
-2025-12-08 13:08:43,395 - 127.0.0.1 - - [08/Dec/2025 13:08:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:09:11,025 - 127.0.0.1 - - [08/Dec/2025 13:09:11] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:09:11,057 - 127.0.0.1 - - [08/Dec/2025 13:09:11] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:09:43,403 - 127.0.0.1 - - [08/Dec/2025 13:09:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:10:43,722 - 127.0.0.1 - - [08/Dec/2025 13:10:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:10:55,688 - 127.0.0.1 - - [08/Dec/2025 13:10:55] "GET /chart_analysis HTTP/1.1" 200 -
-2025-12-08 13:10:55,990 - 127.0.0.1 - - [08/Dec/2025 13:10:55] "GET /static/vendor/css/tailwindcss.css?v=1765134655.687172 HTTP/1.1" 200 -
-2025-12-08 13:10:56,022 - 127.0.0.1 - - [08/Dec/2025 13:10:56] "GET /static/vendor/css/inter.css?v=1765134655.687172 HTTP/1.1" 200 -
-2025-12-08 13:10:56,023 - 127.0.0.1 - - [08/Dec/2025 13:10:56] "GET /static/vendor/css/flatpickr.min.css?v=1765134655.687172 HTTP/1.1" 200 -
-2025-12-08 13:10:56,023 - 127.0.0.1 - - [08/Dec/2025 13:10:56] "GET /static/vendor/css/dataTables.tailwindcss.min.css?v=1765134655.687172 HTTP/1.1" 200 -
-2025-12-08 13:10:56,023 - 127.0.0.1 - - [08/Dec/2025 13:10:56] "GET /static/css/common.css?v=1765134655.687172 HTTP/1.1" 200 -
-2025-12-08 13:10:56,023 - 127.0.0.1 - - [08/Dec/2025 13:10:56] "[36mGET /static/vendor/js/luxon.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:10:56,308 - 127.0.0.1 - - [08/Dec/2025 13:10:56] "[36mGET /static/vendor/js/d3.v7.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:10:56,341 - 127.0.0.1 - - [08/Dec/2025 13:10:56] "GET /static/js/session_timer.js?v=1765134655.687172 HTTP/1.1" 200 -
-2025-12-08 13:10:56,343 - 127.0.0.1 - - [08/Dec/2025 13:10:56] "[36mGET /static/vendor/js/jquery-3.6.0.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:10:56,343 - 127.0.0.1 - - [08/Dec/2025 13:10:56] "GET /static/js/utils/toast.js?v=1765134655.687172 HTTP/1.1" 200 -
-2025-12-08 13:10:56,343 - 127.0.0.1 - - [08/Dec/2025 13:10:56] "GET /static/js/router.js?v=1765134655.687172 HTTP/1.1" 200 -
-2025-12-08 13:10:56,345 - 127.0.0.1 - - [08/Dec/2025 13:10:56] "[36mGET /static/vendor/js/flatpickr.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:10:56,618 - 127.0.0.1 - - [08/Dec/2025 13:10:56] "[36mGET /static/vendor/js/dataTables.js HTTP/1.1[0m" 304 -
-2025-12-08 13:10:56,649 - 127.0.0.1 - - [08/Dec/2025 13:10:56] "[36mGET /static/vendor/js/dataTables.tailwindcss.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:10:56,650 - 127.0.0.1 - - [08/Dec/2025 13:10:56] "[36mGET /static/vendor/js/chart.umd.js HTTP/1.1[0m" 304 -
-2025-12-08 13:10:56,651 - 127.0.0.1 - - [08/Dec/2025 13:10:56] "[36mGET /static/vendor/js/chartjs-adapter-luxon.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:10:56,653 - 127.0.0.1 - - [08/Dec/2025 13:10:56] "[36mGET /static/vendor/js/chartjs-plugin-datalabels.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:10:56,656 - 127.0.0.1 - - [08/Dec/2025 13:10:56] "[36mGET /static/js/pages/chart_analysis.js HTTP/1.1[0m" 304 -
-2025-12-08 13:10:56,965 - 127.0.0.1 - - [08/Dec/2025 13:10:56] "[36mGET /static/js/modules/common/api/client.js HTTP/1.1[0m" 304 -
-2025-12-08 13:10:56,966 - 127.0.0.1 - - [08/Dec/2025 13:10:56] "[36mGET /static/js/modules/common/api/auth.js HTTP/1.1[0m" 304 -
-2025-12-08 13:10:56,967 - 127.0.0.1 - - [08/Dec/2025 13:10:56] "[36mGET /static/js/modules/common/utils.js HTTP/1.1[0m" 304 -
-2025-12-08 13:10:56,969 - 127.0.0.1 - - [08/Dec/2025 13:10:56] "[36mGET /static/js/modules/chart_analysis/data.js HTTP/1.1[0m" 304 -
-2025-12-08 13:10:56,970 - 127.0.0.1 - - [08/Dec/2025 13:10:56] "[36mGET /static/js/modules/chart_analysis/ui.js HTTP/1.1[0m" 304 -
-2025-12-08 13:10:56,973 - 127.0.0.1 - - [08/Dec/2025 13:10:56] "[36mGET /static/js/modules/dashboard/ui.js HTTP/1.1[0m" 304 -
-2025-12-08 13:10:57,280 - 127.0.0.1 - - [08/Dec/2025 13:10:57] "[36mGET /static/js/modules/chart_analysis/events.js HTTP/1.1[0m" 304 -
-2025-12-08 13:10:57,280 - 127.0.0.1 - - [08/Dec/2025 13:10:57] "[36mGET /static/js/modules/ui_components/collapsible.js HTTP/1.1[0m" 304 -
-2025-12-08 13:10:57,287 - 127.0.0.1 - - [08/Dec/2025 13:10:57] "[36mGET /static/js/utils/toast.js HTTP/1.1[0m" 304 -
-2025-12-08 13:10:57,288 - 127.0.0.1 - - [08/Dec/2025 13:10:57] "[36mGET /static/js/modules/common/api/mst.js HTTP/1.1[0m" 304 -
-2025-12-08 13:10:57,289 - 127.0.0.1 - - [08/Dec/2025 13:10:57] "[36mGET /static/js/modules/common/api/dashboard.js HTTP/1.1[0m" 304 -
-2025-12-08 13:10:57,291 - 127.0.0.1 - - [08/Dec/2025 13:10:57] "[36mGET /static/js/modules/common/api/mngr_sett.js HTTP/1.1[0m" 304 -
-2025-12-08 13:10:57,591 - 127.0.0.1 - - [08/Dec/2025 13:10:57] "[36mGET /static/js/modules/common/api/analytics.js HTTP/1.1[0m" 304 -
-2025-12-08 13:10:57,905 - 127.0.0.1 - - [08/Dec/2025 13:10:57] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:10:57,913 - 127.0.0.1 - - [08/Dec/2025 13:10:57] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:10:57,919 - 127.0.0.1 - - [08/Dec/2025 13:10:57] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:10:57,942 - 127.0.0.1 - - [08/Dec/2025 13:10:57] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:10:58,173 - 127.0.0.1 - - [08/Dec/2025 13:10:58] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:10:58,211 - 127.0.0.1 - - [08/Dec/2025 13:10:58] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:10:58,229 - 127.0.0.1 - - [08/Dec/2025 13:10:58] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:10:58,259 - 127.0.0.1 - - [08/Dec/2025 13:10:58] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:10:58,263 - 127.0.0.1 - - [08/Dec/2025 13:10:58] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:10:58,489 - 127.0.0.1 - - [08/Dec/2025 13:10:58] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:10:58,511 - 127.0.0.1 - - [08/Dec/2025 13:10:58] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:10:58,812 - 127.0.0.1 - - [08/Dec/2025 13:10:58] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:10:58,819 - 127.0.0.1 - - [08/Dec/2025 13:10:58] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:11:01,115 - 127.0.0.1 - - [08/Dec/2025 13:11:01] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:11:01,124 - 127.0.0.1 - - [08/Dec/2025 13:11:01] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:11:02,786 - 127.0.0.1 - - [08/Dec/2025 13:11:02] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:11:03,080 - 127.0.0.1 - - [08/Dec/2025 13:11:03] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:11:12,701 - 127.0.0.1 - - [08/Dec/2025 13:11:12] "GET /chart_analysis HTTP/1.1" 200 -
-2025-12-08 13:11:12,711 - 127.0.0.1 - - [08/Dec/2025 13:11:12] "GET /static/vendor/css/tailwindcss.css?v=1765134672.698304 HTTP/1.1" 200 -
-2025-12-08 13:11:12,939 - 127.0.0.1 - - [08/Dec/2025 13:11:12] "GET /static/vendor/css/inter.css?v=1765134672.698304 HTTP/1.1" 200 -
-2025-12-08 13:11:13,022 - 127.0.0.1 - - [08/Dec/2025 13:11:13] "GET /static/vendor/css/flatpickr.min.css?v=1765134672.698304 HTTP/1.1" 200 -
-2025-12-08 13:11:13,022 - 127.0.0.1 - - [08/Dec/2025 13:11:13] "GET /static/vendor/css/dataTables.tailwindcss.min.css?v=1765134672.698304 HTTP/1.1" 200 -
-2025-12-08 13:11:13,023 - 127.0.0.1 - - [08/Dec/2025 13:11:13] "GET /static/css/common.css?v=1765134672.698304 HTTP/1.1" 200 -
-2025-12-08 13:11:13,024 - 127.0.0.1 - - [08/Dec/2025 13:11:13] "GET /static/vendor/js/luxon.min.js HTTP/1.1" 200 -
-2025-12-08 13:11:13,027 - 127.0.0.1 - - [08/Dec/2025 13:11:13] "GET /static/vendor/js/d3.v7.min.js HTTP/1.1" 200 -
-2025-12-08 13:11:13,245 - 127.0.0.1 - - [08/Dec/2025 13:11:13] "GET /static/vendor/js/jquery-3.6.0.min.js HTTP/1.1" 200 -
-2025-12-08 13:11:13,330 - 127.0.0.1 - - [08/Dec/2025 13:11:13] "GET /static/vendor/js/flatpickr.min.js HTTP/1.1" 200 -
-2025-12-08 13:11:13,331 - 127.0.0.1 - - [08/Dec/2025 13:11:13] "GET /static/vendor/js/dataTables.js HTTP/1.1" 200 -
-2025-12-08 13:11:13,336 - 127.0.0.1 - - [08/Dec/2025 13:11:13] "GET /static/vendor/js/dataTables.tailwindcss.min.js HTTP/1.1" 200 -
-2025-12-08 13:11:13,338 - 127.0.0.1 - - [08/Dec/2025 13:11:13] "GET /static/vendor/js/chart.umd.js HTTP/1.1" 200 -
-2025-12-08 13:11:13,338 - 127.0.0.1 - - [08/Dec/2025 13:11:13] "GET /static/vendor/js/chartjs-adapter-luxon.min.js HTTP/1.1" 200 -
-2025-12-08 13:11:13,565 - 127.0.0.1 - - [08/Dec/2025 13:11:13] "GET /static/vendor/js/chartjs-plugin-datalabels.min.js HTTP/1.1" 200 -
-2025-12-08 13:11:13,641 - 127.0.0.1 - - [08/Dec/2025 13:11:13] "GET /static/js/session_timer.js?v=1765134672.698304 HTTP/1.1" 200 -
-2025-12-08 13:11:13,646 - 127.0.0.1 - - [08/Dec/2025 13:11:13] "GET /static/js/router.js?v=1765134672.698304 HTTP/1.1" 200 -
-2025-12-08 13:11:13,648 - 127.0.0.1 - - [08/Dec/2025 13:11:13] "GET /static/js/utils/toast.js?v=1765134672.698304 HTTP/1.1" 200 -
-2025-12-08 13:11:13,650 - 127.0.0.1 - - [08/Dec/2025 13:11:13] "GET /static/js/pages/chart_analysis.js HTTP/1.1" 200 -
-2025-12-08 13:11:13,966 - 127.0.0.1 - - [08/Dec/2025 13:11:13] "GET /static/js/modules/common/api/client.js HTTP/1.1" 200 -
-2025-12-08 13:11:13,967 - 127.0.0.1 - - [08/Dec/2025 13:11:13] "GET /static/js/modules/common/utils.js HTTP/1.1" 200 -
-2025-12-08 13:11:13,968 - 127.0.0.1 - - [08/Dec/2025 13:11:13] "GET /static/js/modules/common/api/auth.js HTTP/1.1" 200 -
-2025-12-08 13:11:13,968 - 127.0.0.1 - - [08/Dec/2025 13:11:13] "GET /static/js/modules/chart_analysis/data.js HTTP/1.1" 200 -
-2025-12-08 13:11:13,973 - 127.0.0.1 - - [08/Dec/2025 13:11:13] "GET /static/js/modules/chart_analysis/ui.js HTTP/1.1" 200 -
-2025-12-08 13:11:13,974 - 127.0.0.1 - - [08/Dec/2025 13:11:13] "GET /static/js/modules/dashboard/ui.js HTTP/1.1" 200 -
-2025-12-08 13:11:14,280 - 127.0.0.1 - - [08/Dec/2025 13:11:14] "GET /static/js/modules/ui_components/collapsible.js HTTP/1.1" 200 -
-2025-12-08 13:11:14,280 - 127.0.0.1 - - [08/Dec/2025 13:11:14] "GET /static/js/modules/chart_analysis/events.js HTTP/1.1" 200 -
-2025-12-08 13:11:14,284 - 127.0.0.1 - - [08/Dec/2025 13:11:14] "GET /static/js/utils/toast.js HTTP/1.1" 200 -
-2025-12-08 13:11:14,290 - 127.0.0.1 - - [08/Dec/2025 13:11:14] "GET /static/js/modules/common/api/mst.js HTTP/1.1" 200 -
-2025-12-08 13:11:14,292 - 127.0.0.1 - - [08/Dec/2025 13:11:14] "GET /static/js/modules/common/api/dashboard.js HTTP/1.1" 200 -
-2025-12-08 13:11:14,294 - 127.0.0.1 - - [08/Dec/2025 13:11:14] "GET /static/js/modules/common/api/mngr_sett.js HTTP/1.1" 200 -
-2025-12-08 13:11:14,599 - 127.0.0.1 - - [08/Dec/2025 13:11:14] "GET /static/js/modules/common/api/analytics.js HTTP/1.1" 200 -
-2025-12-08 13:11:14,932 - 127.0.0.1 - - [08/Dec/2025 13:11:14] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:11:14,935 - 127.0.0.1 - - [08/Dec/2025 13:11:14] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:11:14,936 - 127.0.0.1 - - [08/Dec/2025 13:11:14] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
-2025-12-08 13:11:14,938 - 127.0.0.1 - - [08/Dec/2025 13:11:14] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:11:14,949 - 127.0.0.1 - - [08/Dec/2025 13:11:14] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:11:14,980 - 127.0.0.1 - - [08/Dec/2025 13:11:14] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:11:15,261 - 127.0.0.1 - - [08/Dec/2025 13:11:15] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:11:15,277 - 127.0.0.1 - - [08/Dec/2025 13:11:15] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:11:15,279 - 127.0.0.1 - - [08/Dec/2025 13:11:15] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:11:15,320 - 127.0.0.1 - - [08/Dec/2025 13:11:15] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:11:15,320 - 127.0.0.1 - - [08/Dec/2025 13:11:15] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:11:15,342 - 127.0.0.1 - - [08/Dec/2025 13:11:15] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:11:15,646 - 127.0.0.1 - - [08/Dec/2025 13:11:15] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:11:15,657 - 127.0.0.1 - - [08/Dec/2025 13:11:15] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:11:21,072 - 127.0.0.1 - - [08/Dec/2025 13:11:21] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:11:21,103 - 127.0.0.1 - - [08/Dec/2025 13:11:21] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:12:14,605 - 127.0.0.1 - - [08/Dec/2025 13:12:14] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:12:50,490 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on http://127.0.0.1:18080
- * Running on http://10.200.153.130:18080
-2025-12-08 13:12:50,490 - [33mPress CTRL+C to quit[0m
-2025-12-08 13:12:56,156 - 127.0.0.1 - - [08/Dec/2025 13:12:56] "GET /chart_analysis HTTP/1.1" 200 -
-2025-12-08 13:12:56,201 - 127.0.0.1 - - [08/Dec/2025 13:12:56] "GET /static/vendor/css/tailwindcss.css?v=1765134776.146382 HTTP/1.1" 200 -
-2025-12-08 13:12:56,387 - 127.0.0.1 - - [08/Dec/2025 13:12:56] "GET /static/vendor/css/inter.css?v=1765134776.146382 HTTP/1.1" 200 -
-2025-12-08 13:12:56,481 - 127.0.0.1 - - [08/Dec/2025 13:12:56] "GET /static/vendor/css/flatpickr.min.css?v=1765134776.146382 HTTP/1.1" 200 -
-2025-12-08 13:12:56,482 - 127.0.0.1 - - [08/Dec/2025 13:12:56] "GET /static/vendor/css/dataTables.tailwindcss.min.css?v=1765134776.146382 HTTP/1.1" 200 -
-2025-12-08 13:12:56,482 - 127.0.0.1 - - [08/Dec/2025 13:12:56] "GET /static/css/common.css?v=1765134776.146382 HTTP/1.1" 200 -
-2025-12-08 13:12:56,483 - 127.0.0.1 - - [08/Dec/2025 13:12:56] "GET /static/vendor/js/luxon.min.js HTTP/1.1" 200 -
-2025-12-08 13:12:56,517 - 127.0.0.1 - - [08/Dec/2025 13:12:56] "GET /static/vendor/js/d3.v7.min.js HTTP/1.1" 200 -
-2025-12-08 13:12:56,705 - 127.0.0.1 - - [08/Dec/2025 13:12:56] "GET /static/vendor/js/jquery-3.6.0.min.js HTTP/1.1" 200 -
-2025-12-08 13:12:56,790 - 127.0.0.1 - - [08/Dec/2025 13:12:56] "GET /static/vendor/js/flatpickr.min.js HTTP/1.1" 200 -
-2025-12-08 13:12:56,790 - 127.0.0.1 - - [08/Dec/2025 13:12:56] "GET /static/vendor/js/dataTables.js HTTP/1.1" 200 -
-2025-12-08 13:12:56,791 - 127.0.0.1 - - [08/Dec/2025 13:12:56] "GET /static/vendor/js/dataTables.tailwindcss.min.js HTTP/1.1" 200 -
-2025-12-08 13:12:56,792 - 127.0.0.1 - - [08/Dec/2025 13:12:56] "GET /static/vendor/js/chart.umd.js HTTP/1.1" 200 -
-2025-12-08 13:12:56,834 - 127.0.0.1 - - [08/Dec/2025 13:12:56] "GET /static/vendor/js/chartjs-adapter-luxon.min.js HTTP/1.1" 200 -
-2025-12-08 13:12:57,010 - 127.0.0.1 - - [08/Dec/2025 13:12:57] "GET /static/vendor/js/chartjs-plugin-datalabels.min.js HTTP/1.1" 200 -
-2025-12-08 13:12:57,103 - 127.0.0.1 - - [08/Dec/2025 13:12:57] "GET /static/js/session_timer.js?v=1765134776.146382 HTTP/1.1" 200 -
-2025-12-08 13:12:57,104 - 127.0.0.1 - - [08/Dec/2025 13:12:57] "GET /static/js/router.js?v=1765134776.146382 HTTP/1.1" 200 -
-2025-12-08 13:12:57,105 - 127.0.0.1 - - [08/Dec/2025 13:12:57] "GET /static/js/utils/toast.js?v=1765134776.146382 HTTP/1.1" 200 -
-2025-12-08 13:12:57,105 - 127.0.0.1 - - [08/Dec/2025 13:12:57] "GET /static/js/pages/chart_analysis.js HTTP/1.1" 200 -
-2025-12-08 13:12:57,417 - 127.0.0.1 - - [08/Dec/2025 13:12:57] "GET /static/js/modules/common/api/client.js HTTP/1.1" 200 -
-2025-12-08 13:12:57,419 - 127.0.0.1 - - [08/Dec/2025 13:12:57] "GET /static/js/modules/common/api/auth.js HTTP/1.1" 200 -
-2025-12-08 13:12:57,422 - 127.0.0.1 - - [08/Dec/2025 13:12:57] "GET /static/js/modules/chart_analysis/data.js HTTP/1.1" 200 -
-2025-12-08 13:12:57,424 - 127.0.0.1 - - [08/Dec/2025 13:12:57] "GET /static/js/modules/common/utils.js HTTP/1.1" 200 -
-2025-12-08 13:12:57,425 - 127.0.0.1 - - [08/Dec/2025 13:12:57] "GET /static/js/modules/chart_analysis/ui.js HTTP/1.1" 200 -
-2025-12-08 13:12:57,426 - 127.0.0.1 - - [08/Dec/2025 13:12:57] "GET /static/js/modules/dashboard/ui.js HTTP/1.1" 200 -
-2025-12-08 13:12:57,744 - 127.0.0.1 - - [08/Dec/2025 13:12:57] "GET /static/js/modules/chart_analysis/events.js HTTP/1.1" 200 -
-2025-12-08 13:12:57,746 - 127.0.0.1 - - [08/Dec/2025 13:12:57] "GET /static/js/modules/ui_components/collapsible.js HTTP/1.1" 200 -
-2025-12-08 13:12:57,749 - 127.0.0.1 - - [08/Dec/2025 13:12:57] "GET /static/js/utils/toast.js HTTP/1.1" 200 -
-2025-12-08 13:12:57,750 - 127.0.0.1 - - [08/Dec/2025 13:12:57] "GET /static/js/modules/common/api/mst.js HTTP/1.1" 200 -
-2025-12-08 13:12:57,751 - 127.0.0.1 - - [08/Dec/2025 13:12:57] "GET /static/js/modules/common/api/mngr_sett.js HTTP/1.1" 200 -
-2025-12-08 13:12:57,751 - 127.0.0.1 - - [08/Dec/2025 13:12:57] "GET /static/js/modules/common/api/dashboard.js HTTP/1.1" 200 -
-2025-12-08 13:12:58,059 - 127.0.0.1 - - [08/Dec/2025 13:12:58] "GET /static/js/modules/common/api/analytics.js HTTP/1.1" 200 -
-2025-12-08 13:12:58,391 - 127.0.0.1 - - [08/Dec/2025 13:12:58] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:12:58,393 - 127.0.0.1 - - [08/Dec/2025 13:12:58] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:12:58,393 - 127.0.0.1 - - [08/Dec/2025 13:12:58] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
-2025-12-08 13:12:58,397 - 127.0.0.1 - - [08/Dec/2025 13:12:58] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:12:58,416 - 127.0.0.1 - - [08/Dec/2025 13:12:58] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:12:58,621 - 127.0.0.1 - - [08/Dec/2025 13:12:58] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:12:58,706 - 127.0.0.1 - - [08/Dec/2025 13:12:58] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:12:58,706 - 127.0.0.1 - - [08/Dec/2025 13:12:58] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:12:58,738 - 127.0.0.1 - - [08/Dec/2025 13:12:58] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:12:58,975 - 127.0.0.1 - - [08/Dec/2025 13:12:58] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:12:58,975 - 127.0.0.1 - - [08/Dec/2025 13:12:58] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:12:58,986 - 127.0.0.1 - - [08/Dec/2025 13:12:58] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:12:59,300 - 127.0.0.1 - - [08/Dec/2025 13:12:59] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:12:59,301 - 127.0.0.1 - - [08/Dec/2025 13:12:59] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:13:00,972 - 127.0.0.1 - - [08/Dec/2025 13:13:00] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:13:00,972 - 127.0.0.1 - - [08/Dec/2025 13:13:00] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:13:02,477 - 127.0.0.1 - - [08/Dec/2025 13:13:02] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:13:02,777 - 127.0.0.1 - - [08/Dec/2025 13:13:02] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:13:58,388 - 127.0.0.1 - - [08/Dec/2025 13:13:58] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:14:24,180 - 127.0.0.1 - - [08/Dec/2025 13:14:24] "GET /collection_schedule HTTP/1.1" 200 -
-2025-12-08 13:14:24,497 - 127.0.0.1 - - [08/Dec/2025 13:14:24] "[36mGET /static/js/pages/collection_schedule.js HTTP/1.1[0m" 304 -
-2025-12-08 13:14:24,761 - 127.0.0.1 - - [08/Dec/2025 13:14:24] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:14:24,827 - 127.0.0.1 - - [08/Dec/2025 13:14:24] "GET /api/collection_schedule?view=weekly HTTP/1.1" 200 -
-2025-12-08 13:14:25,731 - 127.0.0.1 - - [08/Dec/2025 13:14:25] "GET /card_summary HTTP/1.1" 200 -
-2025-12-08 13:14:26,050 - 127.0.0.1 - - [08/Dec/2025 13:14:26] "[36mGET /static/css/card_summary.css HTTP/1.1[0m" 304 -
-2025-12-08 13:14:26,051 - 127.0.0.1 - - [08/Dec/2025 13:14:26] "[36mGET /static/js/pages/card_summary.js HTTP/1.1[0m" 304 -
-2025-12-08 13:14:26,295 - 127.0.0.1 - - [08/Dec/2025 13:14:26] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:14:26,379 - 127.0.0.1 - - [08/Dec/2025 13:14:26] "GET /api/card_summary HTTP/1.1" 200 -
-2025-12-08 13:14:27,397 - 127.0.0.1 - - [08/Dec/2025 13:14:27] "GET /dashboard HTTP/1.1" 200 -
-2025-12-08 13:14:27,715 - 127.0.0.1 - - [08/Dec/2025 13:14:27] "[36mGET /static/js/pages/dashboard.js HTTP/1.1[0m" 304 -
-2025-12-08 13:14:27,956 - 127.0.0.1 - - [08/Dec/2025 13:14:27] "[36mGET /static/js/modules/dashboard/events.js HTTP/1.1[0m" 304 -
-2025-12-08 13:14:28,022 - 127.0.0.1 - - [08/Dec/2025 13:14:28] "[36mGET /static/js/modules/ui_components/pagination.js HTTP/1.1[0m" 304 -
-2025-12-08 13:14:28,273 - 127.0.0.1 - - [08/Dec/2025 13:14:28] "[36mGET /static/js/modules/dashboard/data.js HTTP/1.1[0m" 304 -
-2025-12-08 13:14:28,273 - 127.0.0.1 - - [08/Dec/2025 13:14:28] "[36mGET /static/js/modules/dashboard/dashboardTable.js HTTP/1.1[0m" 304 -
-2025-12-08 13:14:28,273 - 127.0.0.1 - - [08/Dec/2025 13:14:28] "[36mGET /static/js/modules/dashboard/eventLog.js HTTP/1.1[0m" 304 -
-2025-12-08 13:14:28,273 - 127.0.0.1 - - [08/Dec/2025 13:14:28] "[36mGET /static/js/modules/common/dateUtils.js HTTP/1.1[0m" 304 -
-2025-12-08 13:14:28,593 - 127.0.0.1 - - [08/Dec/2025 13:14:28] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:14:28,772 - 127.0.0.1 - - [08/Dec/2025 13:14:28] "GET /jandi HTTP/1.1" 200 -
-2025-12-08 13:14:28,855 - 127.0.0.1 - - [08/Dec/2025 13:14:28] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:14:28,901 - 127.0.0.1 - - [08/Dec/2025 13:14:28] "[36mGET /static/js/pages/jandi.js HTTP/1.1[0m" 304 -
-2025-12-08 13:14:28,911 - 127.0.0.1 - - [08/Dec/2025 13:14:28] "GET /api/dashboard/summary?start_date=2025-01-01&end_date=2025-12-08&all_data=true HTTP/1.1" 200 -
-2025-12-08 13:14:28,917 - 127.0.0.1 - - [08/Dec/2025 13:14:28] "GET /api/dashboard/event-log?start_date=2025-12-08&end_date=2025-12-08 HTTP/1.1" 200 -
-2025-12-08 13:14:29,091 - 127.0.0.1 - - [08/Dec/2025 13:14:29] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:14:29,158 - 127.0.0.1 - - [08/Dec/2025 13:14:29] "[36mGET /static/js/modules/data_analysis/heatmap.js HTTP/1.1[0m" 304 -
-2025-12-08 13:14:29,206 - 127.0.0.1 - - [08/Dec/2025 13:14:29] "[36mGET /static/js/modules/dashboard/jobInfo.js HTTP/1.1[0m" 304 -
-2025-12-08 13:14:29,215 - 127.0.0.1 - - [08/Dec/2025 13:14:29] "GET /api/job-list?length=-1&start_date=2024-07-08&end_date=2025-12-08&allData=false HTTP/1.1" 200 -
-2025-12-08 13:14:29,544 - 127.0.0.1 - - [08/Dec/2025 13:14:29] "GET /api/jandi-data?job_id=CD101&start_date=2024-07-08&end_date=2025-12-08&allData=false HTTP/1.1" 200 -
-2025-12-08 13:14:29,772 - 127.0.0.1 - - [08/Dec/2025 13:14:29] "GET /api/jandi-data?job_id=CD102&start_date=2024-07-08&end_date=2025-12-08&allData=false HTTP/1.1" 200 -
-2025-12-08 13:14:29,866 - 127.0.0.1 - - [08/Dec/2025 13:14:29] "GET /api/jandi-data?job_id=CD103&start_date=2024-07-08&end_date=2025-12-08&allData=false HTTP/1.1" 200 -
-2025-12-08 13:14:30,111 - 127.0.0.1 - - [08/Dec/2025 13:14:30] "GET /api/jandi-data?job_id=CD104&start_date=2024-07-08&end_date=2025-12-08&allData=false HTTP/1.1" 200 -
-2025-12-08 13:14:30,185 - 127.0.0.1 - - [08/Dec/2025 13:14:30] "GET /api/jandi-data?job_id=CD301&start_date=2024-07-08&end_date=2025-12-08&allData=false HTTP/1.1" 200 -
-2025-12-08 13:14:30,429 - 127.0.0.1 - - [08/Dec/2025 13:14:30] "GET /api/jandi-data?job_id=CD302&start_date=2024-07-08&end_date=2025-12-08&allData=false HTTP/1.1" 200 -
-2025-12-08 13:14:30,500 - 127.0.0.1 - - [08/Dec/2025 13:14:30] "GET /api/jandi-data?job_id=CD303&start_date=2024-07-08&end_date=2025-12-08&allData=false HTTP/1.1" 200 -
-2025-12-08 13:14:31,473 - 127.0.0.1 - - [08/Dec/2025 13:14:31] "GET /data_analysis HTTP/1.1" 200 -
-2025-12-08 13:14:31,790 - 127.0.0.1 - - [08/Dec/2025 13:14:31] "[36mGET /static/js/pages/data_analysis.js HTTP/1.1[0m" 304 -
-2025-12-08 13:14:32,043 - 127.0.0.1 - - [08/Dec/2025 13:14:32] "[36mGET /static/js/modules/data_analysis/events.js HTTP/1.1[0m" 304 -
-2025-12-08 13:14:32,107 - 127.0.0.1 - - [08/Dec/2025 13:14:32] "GET /static/js/modules/data_analysis/data.js HTTP/1.1" 200 -
-2025-12-08 13:14:32,354 - 127.0.0.1 - - [08/Dec/2025 13:14:32] "GET /static/js/modules/data_analysis/ui.js HTTP/1.1" 200 -
-2025-12-08 13:14:32,354 - 127.0.0.1 - - [08/Dec/2025 13:14:32] "[36mGET /static/js/modules/data_analysis/utils.js HTTP/1.1[0m" 304 -
-2025-12-08 13:14:32,697 - 127.0.0.1 - - [08/Dec/2025 13:14:32] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:14:32,731 - 127.0.0.1 - - [08/Dec/2025 13:14:32] "GET /api/analysis/job_ids HTTP/1.1" 200 -
-2025-12-08 13:14:32,941 - 127.0.0.1 - - [08/Dec/2025 13:14:32] "GET /api/analysis/error_code_map HTTP/1.1" 200 -
-2025-12-08 13:14:33,034 - 127.0.0.1 - - [08/Dec/2025 13:14:33] "GET /api/analysis/error_codes HTTP/1.1" 200 -
-2025-12-08 13:14:33,270 - 127.0.0.1 - - [08/Dec/2025 13:14:33] "GET /api/analysis/summary?start_date=2025-01-01&end_date=2025-12-08 HTTP/1.1" 200 -
-2025-12-08 13:14:33,380 - 127.0.0.1 - - [08/Dec/2025 13:14:33] "GET /api/analysis/trend?start_date=2025-01-01&end_date=2025-12-08 HTTP/1.1" 200 -
-2025-12-08 13:14:33,396 - 127.0.0.1 - - [08/Dec/2025 13:14:33] "GET /api/analysis/raw_data?start_date=2025-01-01&end_date=2025-12-08 HTTP/1.1" 200 -
-2025-12-08 13:14:33,403 - 127.0.0.1 - - [08/Dec/2025 13:14:33] "GET /api/job_mst_info?job_ids=CD101,CD102,CD104,CD103,CD301,CD302,CD303 HTTP/1.1" 200 -
-2025-12-08 13:14:34,514 - 127.0.0.1 - - [08/Dec/2025 13:14:34] "GET /chart_analysis HTTP/1.1" 200 -
-2025-12-08 13:14:34,778 - 127.0.0.1 - - [08/Dec/2025 13:14:34] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:14:34,852 - 127.0.0.1 - - [08/Dec/2025 13:14:34] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:14:34,857 - 127.0.0.1 - - [08/Dec/2025 13:14:34] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:14:34,902 - 127.0.0.1 - - [08/Dec/2025 13:14:34] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:14:34,910 - 127.0.0.1 - - [08/Dec/2025 13:14:34] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:14:35,219 - 127.0.0.1 - - [08/Dec/2025 13:14:35] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:14:39,593 - 127.0.0.1 - - [08/Dec/2025 13:14:39] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:14:39,598 - 127.0.0.1 - - [08/Dec/2025 13:14:39] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:14:40,791 - 127.0.0.1 - - [08/Dec/2025 13:14:40] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:14:41,084 - 127.0.0.1 - - [08/Dec/2025 13:14:41] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:14:56,425 - 127.0.0.1 - - [08/Dec/2025 13:14:56] "[36mGET /static/vendor/css/tailwindcss.css?v=1765134776.146382 HTTP/1.1[0m" 304 -
-2025-12-08 13:14:56,427 - 127.0.0.1 - - [08/Dec/2025 13:14:56] "[36mGET /static/vendor/css/inter.css?v=1765134776.146382 HTTP/1.1[0m" 304 -
-2025-12-08 13:14:56,428 - 127.0.0.1 - - [08/Dec/2025 13:14:56] "[36mGET /static/vendor/css/flatpickr.min.css?v=1765134776.146382 HTTP/1.1[0m" 304 -
-2025-12-08 13:14:56,430 - 127.0.0.1 - - [08/Dec/2025 13:14:56] "[36mGET /static/vendor/css/dataTables.tailwindcss.min.css?v=1765134776.146382 HTTP/1.1[0m" 304 -
-2025-12-08 13:14:56,432 - 127.0.0.1 - - [08/Dec/2025 13:14:56] "[36mGET /static/css/common.css?v=1765134776.146382 HTTP/1.1[0m" 304 -
-2025-12-08 13:14:56,434 - 127.0.0.1 - - [08/Dec/2025 13:14:56] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
-2025-12-08 13:14:56,736 - 127.0.0.1 - - [08/Dec/2025 13:14:56] "[33mGET /static/vendor/js/chart.umd.js.map HTTP/1.1[0m" 404 -
-2025-12-08 13:14:58,068 - 127.0.0.1 - - [08/Dec/2025 13:14:58] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:15:58,374 - 127.0.0.1 - - [08/Dec/2025 13:15:58] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:16:32,351 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on http://127.0.0.1:18080
- * Running on http://10.200.153.130:18080
-2025-12-08 13:16:32,351 - [33mPress CTRL+C to quit[0m
-2025-12-08 13:16:36,544 - 127.0.0.1 - - [08/Dec/2025 13:16:36] "GET /chart_analysis HTTP/1.1" 200 -
-2025-12-08 13:16:36,591 - 127.0.0.1 - - [08/Dec/2025 13:16:36] "GET /static/vendor/css/tailwindcss.css?v=1765134996.535454 HTTP/1.1" 200 -
-2025-12-08 13:16:36,754 - 127.0.0.1 - - [08/Dec/2025 13:16:36] "GET /static/vendor/css/inter.css?v=1765134996.535454 HTTP/1.1" 200 -
-2025-12-08 13:16:36,877 - 127.0.0.1 - - [08/Dec/2025 13:16:36] "GET /static/vendor/css/flatpickr.min.css?v=1765134996.535454 HTTP/1.1" 200 -
-2025-12-08 13:16:36,878 - 127.0.0.1 - - [08/Dec/2025 13:16:36] "GET /static/vendor/css/dataTables.tailwindcss.min.css?v=1765134996.535454 HTTP/1.1" 200 -
-2025-12-08 13:16:36,879 - 127.0.0.1 - - [08/Dec/2025 13:16:36] "GET /static/css/common.css?v=1765134996.535454 HTTP/1.1" 200 -
-2025-12-08 13:16:36,881 - 127.0.0.1 - - [08/Dec/2025 13:16:36] "GET /static/vendor/js/luxon.min.js HTTP/1.1" 200 -
-2025-12-08 13:16:36,903 - 127.0.0.1 - - [08/Dec/2025 13:16:36] "GET /static/vendor/js/d3.v7.min.js HTTP/1.1" 200 -
-2025-12-08 13:16:37,062 - 127.0.0.1 - - [08/Dec/2025 13:16:37] "GET /static/vendor/js/jquery-3.6.0.min.js HTTP/1.1" 200 -
-2025-12-08 13:16:37,199 - 127.0.0.1 - - [08/Dec/2025 13:16:37] "GET /static/vendor/js/flatpickr.min.js HTTP/1.1" 200 -
-2025-12-08 13:16:37,199 - 127.0.0.1 - - [08/Dec/2025 13:16:37] "GET /static/vendor/js/dataTables.js HTTP/1.1" 200 -
-2025-12-08 13:16:37,200 - 127.0.0.1 - - [08/Dec/2025 13:16:37] "GET /static/vendor/js/dataTables.tailwindcss.min.js HTTP/1.1" 200 -
-2025-12-08 13:16:37,200 - 127.0.0.1 - - [08/Dec/2025 13:16:37] "GET /static/vendor/js/chart.umd.js HTTP/1.1" 200 -
-2025-12-08 13:16:37,211 - 127.0.0.1 - - [08/Dec/2025 13:16:37] "GET /static/vendor/js/chartjs-adapter-luxon.min.js HTTP/1.1" 200 -
-2025-12-08 13:16:37,374 - 127.0.0.1 - - [08/Dec/2025 13:16:37] "GET /static/vendor/js/chartjs-plugin-datalabels.min.js HTTP/1.1" 200 -
-2025-12-08 13:16:37,529 - 127.0.0.1 - - [08/Dec/2025 13:16:37] "GET /static/js/router.js?v=1765134996.535454 HTTP/1.1" 200 -
-2025-12-08 13:16:37,530 - 127.0.0.1 - - [08/Dec/2025 13:16:37] "GET /static/js/utils/toast.js?v=1765134996.535454 HTTP/1.1" 200 -
-2025-12-08 13:16:37,530 - 127.0.0.1 - - [08/Dec/2025 13:16:37] "GET /static/js/session_timer.js?v=1765134996.535454 HTTP/1.1" 200 -
-2025-12-08 13:16:37,531 - 127.0.0.1 - - [08/Dec/2025 13:16:37] "GET /static/js/pages/chart_analysis.js HTTP/1.1" 200 -
-2025-12-08 13:16:37,534 - 127.0.0.1 - - [08/Dec/2025 13:16:37] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
-2025-12-08 13:16:37,691 - 127.0.0.1 - - [08/Dec/2025 13:16:37] "GET /static/js/modules/common/api/client.js HTTP/1.1" 200 -
-2025-12-08 13:16:37,862 - 127.0.0.1 - - [08/Dec/2025 13:16:37] "GET /static/js/modules/common/utils.js HTTP/1.1" 200 -
-2025-12-08 13:16:37,862 - 127.0.0.1 - - [08/Dec/2025 13:16:37] "GET /static/js/modules/common/api/auth.js HTTP/1.1" 200 -
-2025-12-08 13:16:37,862 - 127.0.0.1 - - [08/Dec/2025 13:16:37] "GET /static/js/modules/chart_analysis/data.js HTTP/1.1" 200 -
-2025-12-08 13:16:37,863 - 127.0.0.1 - - [08/Dec/2025 13:16:37] "GET /static/js/modules/chart_analysis/ui.js HTTP/1.1" 200 -
-2025-12-08 13:16:37,868 - 127.0.0.1 - - [08/Dec/2025 13:16:37] "GET /static/js/modules/dashboard/ui.js HTTP/1.1" 200 -
-2025-12-08 13:16:38,007 - 127.0.0.1 - - [08/Dec/2025 13:16:38] "GET /static/js/modules/chart_analysis/events.js HTTP/1.1" 200 -
-2025-12-08 13:16:38,179 - 127.0.0.1 - - [08/Dec/2025 13:16:38] "GET /static/js/modules/ui_components/collapsible.js HTTP/1.1" 200 -
-2025-12-08 13:16:38,179 - 127.0.0.1 - - [08/Dec/2025 13:16:38] "GET /static/js/utils/toast.js HTTP/1.1" 200 -
-2025-12-08 13:16:38,180 - 127.0.0.1 - - [08/Dec/2025 13:16:38] "GET /static/js/modules/common/api/mst.js HTTP/1.1" 200 -
-2025-12-08 13:16:38,183 - 127.0.0.1 - - [08/Dec/2025 13:16:38] "GET /static/js/modules/common/api/dashboard.js HTTP/1.1" 200 -
-2025-12-08 13:16:38,184 - 127.0.0.1 - - [08/Dec/2025 13:16:38] "GET /static/js/modules/common/api/mngr_sett.js HTTP/1.1" 200 -
-2025-12-08 13:16:38,320 - 127.0.0.1 - - [08/Dec/2025 13:16:38] "GET /static/js/modules/common/api/analytics.js HTTP/1.1" 200 -
-2025-12-08 13:16:38,492 - 127.0.0.1 - - [08/Dec/2025 13:16:38] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:16:38,637 - 127.0.0.1 - - [08/Dec/2025 13:16:38] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:16:38,643 - 127.0.0.1 - - [08/Dec/2025 13:16:38] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
-2025-12-08 13:16:38,647 - 127.0.0.1 - - [08/Dec/2025 13:16:38] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:16:38,660 - 127.0.0.1 - - [08/Dec/2025 13:16:38] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:16:38,810 - 127.0.0.1 - - [08/Dec/2025 13:16:38] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:16:38,868 - 127.0.0.1 - - [08/Dec/2025 13:16:38] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:16:38,948 - 127.0.0.1 - - [08/Dec/2025 13:16:38] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:16:38,964 - 127.0.0.1 - - [08/Dec/2025 13:16:38] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:16:39,001 - 127.0.0.1 - - [08/Dec/2025 13:16:39] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:16:39,202 - 127.0.0.1 - - [08/Dec/2025 13:16:39] "[33mGET /static/vendor/js/chart.umd.js.map HTTP/1.1[0m" 404 -
-2025-12-08 13:16:39,202 - 127.0.0.1 - - [08/Dec/2025 13:16:39] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:16:39,233 - 127.0.0.1 - - [08/Dec/2025 13:16:39] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:16:39,539 - 127.0.0.1 - - [08/Dec/2025 13:16:39] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:16:39,544 - 127.0.0.1 - - [08/Dec/2025 13:16:39] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:16:41,446 - 127.0.0.1 - - [08/Dec/2025 13:16:41] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:16:41,474 - 127.0.0.1 - - [08/Dec/2025 13:16:41] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:16:42,551 - 127.0.0.1 - - [08/Dec/2025 13:16:42] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:16:42,865 - 127.0.0.1 - - [08/Dec/2025 13:16:42] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:17:30,162 - 127.0.0.1 - - [08/Dec/2025 13:17:30] "GET /collection_schedule HTTP/1.1" 200 -
-2025-12-08 13:17:30,424 - 127.0.0.1 - - [08/Dec/2025 13:17:30] "[36mGET /static/js/pages/collection_schedule.js HTTP/1.1[0m" 304 -
-2025-12-08 13:17:30,495 - 127.0.0.1 - - [08/Dec/2025 13:17:30] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:17:30,759 - 127.0.0.1 - - [08/Dec/2025 13:17:30] "GET /api/collection_schedule?view=weekly HTTP/1.1" 200 -
-2025-12-08 13:17:32,334 - 127.0.0.1 - - [08/Dec/2025 13:17:32] "GET /card_summary HTTP/1.1" 200 -
-2025-12-08 13:17:32,650 - 127.0.0.1 - - [08/Dec/2025 13:17:32] "[36mGET /static/css/card_summary.css HTTP/1.1[0m" 304 -
-2025-12-08 13:17:32,651 - 127.0.0.1 - - [08/Dec/2025 13:17:32] "[36mGET /static/js/pages/card_summary.js HTTP/1.1[0m" 304 -
-2025-12-08 13:17:32,904 - 127.0.0.1 - - [08/Dec/2025 13:17:32] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:17:32,968 - 127.0.0.1 - - [08/Dec/2025 13:17:32] "GET /api/card_summary HTTP/1.1" 200 -
-2025-12-08 13:17:33,818 - 127.0.0.1 - - [08/Dec/2025 13:17:33] "GET /dashboard HTTP/1.1" 200 -
-2025-12-08 13:17:34,148 - 127.0.0.1 - - [08/Dec/2025 13:17:34] "[36mGET /static/js/pages/dashboard.js HTTP/1.1[0m" 304 -
-2025-12-08 13:17:34,395 - 127.0.0.1 - - [08/Dec/2025 13:17:34] "[36mGET /static/js/modules/dashboard/events.js HTTP/1.1[0m" 304 -
-2025-12-08 13:17:34,453 - 127.0.0.1 - - [08/Dec/2025 13:17:34] "[36mGET /static/js/modules/ui_components/pagination.js HTTP/1.1[0m" 304 -
-2025-12-08 13:17:34,713 - 127.0.0.1 - - [08/Dec/2025 13:17:34] "[36mGET /static/js/modules/dashboard/dashboardTable.js HTTP/1.1[0m" 304 -
-2025-12-08 13:17:34,714 - 127.0.0.1 - - [08/Dec/2025 13:17:34] "[36mGET /static/js/modules/dashboard/data.js HTTP/1.1[0m" 304 -
-2025-12-08 13:17:34,716 - 127.0.0.1 - - [08/Dec/2025 13:17:34] "[36mGET /static/js/modules/dashboard/eventLog.js HTTP/1.1[0m" 304 -
-2025-12-08 13:17:34,719 - 127.0.0.1 - - [08/Dec/2025 13:17:34] "[36mGET /static/js/modules/common/dateUtils.js HTTP/1.1[0m" 304 -
-2025-12-08 13:17:35,030 - 127.0.0.1 - - [08/Dec/2025 13:17:35] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:17:35,290 - 127.0.0.1 - - [08/Dec/2025 13:17:35] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:17:35,359 - 127.0.0.1 - - [08/Dec/2025 13:17:35] "GET /api/dashboard/summary?start_date=2025-01-01&end_date=2025-12-08&all_data=true HTTP/1.1" 200 -
-2025-12-08 13:17:35,367 - 127.0.0.1 - - [08/Dec/2025 13:17:35] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:17:35,368 - 127.0.0.1 - - [08/Dec/2025 13:17:35] "GET /api/dashboard/event-log?start_date=2025-12-08&end_date=2025-12-08 HTTP/1.1" 200 -
-2025-12-08 13:17:37,914 - 127.0.0.1 - - [08/Dec/2025 13:17:37] "GET /jandi HTTP/1.1" 200 -
-2025-12-08 13:17:38,228 - 127.0.0.1 - - [08/Dec/2025 13:17:38] "[36mGET /static/js/pages/jandi.js HTTP/1.1[0m" 304 -
-2025-12-08 13:17:38,492 - 127.0.0.1 - - [08/Dec/2025 13:17:38] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:17:38,531 - 127.0.0.1 - - [08/Dec/2025 13:17:38] "[36mGET /static/js/modules/data_analysis/heatmap.js HTTP/1.1[0m" 304 -
-2025-12-08 13:17:38,541 - 127.0.0.1 - - [08/Dec/2025 13:17:38] "[36mGET /static/js/modules/dashboard/jobInfo.js HTTP/1.1[0m" 304 -
-2025-12-08 13:17:38,552 - 127.0.0.1 - - [08/Dec/2025 13:17:38] "GET /api/job-list?length=-1&start_date=2024-07-08&end_date=2025-12-08&allData=false HTTP/1.1" 200 -
-2025-12-08 13:17:38,865 - 127.0.0.1 - - [08/Dec/2025 13:17:38] "GET /api/jandi-data?job_id=CD101&start_date=2024-07-08&end_date=2025-12-08&allData=false HTTP/1.1" 200 -
-2025-12-08 13:17:39,109 - 127.0.0.1 - - [08/Dec/2025 13:17:39] "GET /api/jandi-data?job_id=CD102&start_date=2024-07-08&end_date=2025-12-08&allData=false HTTP/1.1" 200 -
-2025-12-08 13:17:39,176 - 127.0.0.1 - - [08/Dec/2025 13:17:39] "GET /api/jandi-data?job_id=CD103&start_date=2024-07-08&end_date=2025-12-08&allData=false HTTP/1.1" 200 -
-2025-12-08 13:17:39,426 - 127.0.0.1 - - [08/Dec/2025 13:17:39] "GET /api/jandi-data?job_id=CD104&start_date=2024-07-08&end_date=2025-12-08&allData=false HTTP/1.1" 200 -
-2025-12-08 13:17:39,494 - 127.0.0.1 - - [08/Dec/2025 13:17:39] "GET /api/jandi-data?job_id=CD301&start_date=2024-07-08&end_date=2025-12-08&allData=false HTTP/1.1" 200 -
-2025-12-08 13:17:39,744 - 127.0.0.1 - - [08/Dec/2025 13:17:39] "GET /api/jandi-data?job_id=CD302&start_date=2024-07-08&end_date=2025-12-08&allData=false HTTP/1.1" 200 -
-2025-12-08 13:17:39,809 - 127.0.0.1 - - [08/Dec/2025 13:17:39] "GET /api/jandi-data?job_id=CD303&start_date=2024-07-08&end_date=2025-12-08&allData=false HTTP/1.1" 200 -
-2025-12-08 13:17:40,701 - 127.0.0.1 - - [08/Dec/2025 13:17:40] "GET /data_analysis HTTP/1.1" 200 -
-2025-12-08 13:17:41,025 - 127.0.0.1 - - [08/Dec/2025 13:17:41] "[36mGET /static/js/pages/data_analysis.js HTTP/1.1[0m" 304 -
-2025-12-08 13:17:41,280 - 127.0.0.1 - - [08/Dec/2025 13:17:41] "[36mGET /static/js/modules/data_analysis/events.js HTTP/1.1[0m" 304 -
-2025-12-08 13:17:41,341 - 127.0.0.1 - - [08/Dec/2025 13:17:41] "[36mGET /static/js/modules/data_analysis/data.js HTTP/1.1[0m" 304 -
-2025-12-08 13:17:41,592 - 127.0.0.1 - - [08/Dec/2025 13:17:41] "[36mGET /static/js/modules/data_analysis/ui.js HTTP/1.1[0m" 304 -
-2025-12-08 13:17:41,592 - 127.0.0.1 - - [08/Dec/2025 13:17:41] "[36mGET /static/js/modules/data_analysis/utils.js HTTP/1.1[0m" 304 -
-2025-12-08 13:17:41,921 - 127.0.0.1 - - [08/Dec/2025 13:17:41] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:17:41,940 - 127.0.0.1 - - [08/Dec/2025 13:17:41] "GET /api/analysis/job_ids HTTP/1.1" 200 -
-2025-12-08 13:17:42,176 - 127.0.0.1 - - [08/Dec/2025 13:17:42] "GET /api/analysis/error_code_map HTTP/1.1" 200 -
-2025-12-08 13:17:42,258 - 127.0.0.1 - - [08/Dec/2025 13:17:42] "GET /api/analysis/error_codes HTTP/1.1" 200 -
-2025-12-08 13:17:42,565 - 127.0.0.1 - - [08/Dec/2025 13:17:42] "GET /api/analysis/summary?start_date=2025-01-01&end_date=2025-12-08 HTTP/1.1" 200 -
-2025-12-08 13:17:42,580 - 127.0.0.1 - - [08/Dec/2025 13:17:42] "GET /api/analysis/trend?start_date=2025-01-01&end_date=2025-12-08 HTTP/1.1" 200 -
-2025-12-08 13:17:42,604 - 127.0.0.1 - - [08/Dec/2025 13:17:42] "GET /api/analysis/raw_data?start_date=2025-01-01&end_date=2025-12-08 HTTP/1.1" 200 -
-2025-12-08 13:17:42,611 - 127.0.0.1 - - [08/Dec/2025 13:17:42] "GET /api/job_mst_info?job_ids=CD101,CD102,CD104,CD103,CD301,CD302,CD303 HTTP/1.1" 200 -
-2025-12-08 13:17:44,290 - 127.0.0.1 - - [08/Dec/2025 13:17:44] "GET /chart_analysis HTTP/1.1" 200 -
-2025-12-08 13:17:44,549 - 127.0.0.1 - - [08/Dec/2025 13:17:44] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:17:44,611 - 127.0.0.1 - - [08/Dec/2025 13:17:44] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:17:44,629 - 127.0.0.1 - - [08/Dec/2025 13:17:44] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:17:44,631 - 127.0.0.1 - - [08/Dec/2025 13:17:44] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:17:44,648 - 127.0.0.1 - - [08/Dec/2025 13:17:44] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:17:44,944 - 127.0.0.1 - - [08/Dec/2025 13:17:44] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:18:03,650 - 127.0.0.1 - - [08/Dec/2025 13:18:03] "GET /chart_analysis HTTP/1.1" 200 -
-2025-12-08 13:18:03,665 - 127.0.0.1 - - [08/Dec/2025 13:18:03] "GET /static/vendor/css/tailwindcss.css?v=1765135083.649964 HTTP/1.1" 200 -
-2025-12-08 13:18:03,909 - 127.0.0.1 - - [08/Dec/2025 13:18:03] "GET /static/vendor/css/inter.css?v=1765135083.649964 HTTP/1.1" 200 -
-2025-12-08 13:18:03,978 - 127.0.0.1 - - [08/Dec/2025 13:18:03] "GET /static/vendor/css/flatpickr.min.css?v=1765135083.649964 HTTP/1.1" 200 -
-2025-12-08 13:18:03,978 - 127.0.0.1 - - [08/Dec/2025 13:18:03] "GET /static/vendor/css/dataTables.tailwindcss.min.css?v=1765135083.649964 HTTP/1.1" 200 -
-2025-12-08 13:18:03,978 - 127.0.0.1 - - [08/Dec/2025 13:18:03] "GET /static/css/common.css?v=1765135083.649964 HTTP/1.1" 200 -
-2025-12-08 13:18:03,983 - 127.0.0.1 - - [08/Dec/2025 13:18:03] "GET /static/vendor/js/luxon.min.js HTTP/1.1" 200 -
-2025-12-08 13:18:03,983 - 127.0.0.1 - - [08/Dec/2025 13:18:03] "GET /static/vendor/js/d3.v7.min.js HTTP/1.1" 200 -
-2025-12-08 13:18:04,230 - 127.0.0.1 - - [08/Dec/2025 13:18:04] "GET /static/vendor/js/jquery-3.6.0.min.js HTTP/1.1" 200 -
-2025-12-08 13:18:04,301 - 127.0.0.1 - - [08/Dec/2025 13:18:04] "GET /static/vendor/js/dataTables.js HTTP/1.1" 200 -
-2025-12-08 13:18:04,302 - 127.0.0.1 - - [08/Dec/2025 13:18:04] "GET /static/vendor/js/dataTables.tailwindcss.min.js HTTP/1.1" 200 -
-2025-12-08 13:18:04,303 - 127.0.0.1 - - [08/Dec/2025 13:18:04] "GET /static/vendor/js/chart.umd.js HTTP/1.1" 200 -
-2025-12-08 13:18:04,303 - 127.0.0.1 - - [08/Dec/2025 13:18:04] "GET /static/vendor/js/flatpickr.min.js HTTP/1.1" 200 -
-2025-12-08 13:18:04,304 - 127.0.0.1 - - [08/Dec/2025 13:18:04] "GET /static/vendor/js/chartjs-adapter-luxon.min.js HTTP/1.1" 200 -
-2025-12-08 13:18:04,545 - 127.0.0.1 - - [08/Dec/2025 13:18:04] "GET /static/vendor/js/chartjs-plugin-datalabels.min.js HTTP/1.1" 200 -
-2025-12-08 13:18:04,619 - 127.0.0.1 - - [08/Dec/2025 13:18:04] "GET /static/js/session_timer.js?v=1765135083.649964 HTTP/1.1" 200 -
-2025-12-08 13:18:04,619 - 127.0.0.1 - - [08/Dec/2025 13:18:04] "GET /static/js/router.js?v=1765135083.649964 HTTP/1.1" 200 -
-2025-12-08 13:18:04,619 - 127.0.0.1 - - [08/Dec/2025 13:18:04] "GET /static/js/utils/toast.js?v=1765135083.649964 HTTP/1.1" 200 -
-2025-12-08 13:18:04,621 - 127.0.0.1 - - [08/Dec/2025 13:18:04] "GET /static/js/pages/chart_analysis.js HTTP/1.1" 200 -
-2025-12-08 13:18:04,945 - 127.0.0.1 - - [08/Dec/2025 13:18:04] "GET /static/js/modules/common/api/client.js HTTP/1.1" 200 -
-2025-12-08 13:18:04,947 - 127.0.0.1 - - [08/Dec/2025 13:18:04] "GET /static/js/modules/common/api/auth.js HTTP/1.1" 200 -
-2025-12-08 13:18:04,947 - 127.0.0.1 - - [08/Dec/2025 13:18:04] "GET /static/js/modules/common/utils.js HTTP/1.1" 200 -
-2025-12-08 13:18:04,948 - 127.0.0.1 - - [08/Dec/2025 13:18:04] "GET /static/js/modules/chart_analysis/data.js HTTP/1.1" 200 -
-2025-12-08 13:18:04,949 - 127.0.0.1 - - [08/Dec/2025 13:18:04] "GET /static/js/modules/chart_analysis/ui.js HTTP/1.1" 200 -
-2025-12-08 13:18:04,950 - 127.0.0.1 - - [08/Dec/2025 13:18:04] "GET /static/js/modules/dashboard/ui.js HTTP/1.1" 200 -
-2025-12-08 13:18:05,265 - 127.0.0.1 - - [08/Dec/2025 13:18:05] "GET /static/js/utils/toast.js HTTP/1.1" 200 -
-2025-12-08 13:18:05,265 - 127.0.0.1 - - [08/Dec/2025 13:18:05] "GET /static/js/modules/ui_components/collapsible.js HTTP/1.1" 200 -
-2025-12-08 13:18:05,267 - 127.0.0.1 - - [08/Dec/2025 13:18:05] "GET /static/js/modules/chart_analysis/events.js HTTP/1.1" 200 -
-2025-12-08 13:18:05,267 - 127.0.0.1 - - [08/Dec/2025 13:18:05] "GET /static/js/modules/common/api/mst.js HTTP/1.1" 200 -
-2025-12-08 13:18:05,269 - 127.0.0.1 - - [08/Dec/2025 13:18:05] "GET /static/js/modules/common/api/mngr_sett.js HTTP/1.1" 200 -
-2025-12-08 13:18:05,269 - 127.0.0.1 - - [08/Dec/2025 13:18:05] "GET /static/js/modules/common/api/dashboard.js HTTP/1.1" 200 -
-2025-12-08 13:18:05,579 - 127.0.0.1 - - [08/Dec/2025 13:18:05] "GET /static/js/modules/common/api/analytics.js HTTP/1.1" 200 -
-2025-12-08 13:18:05,847 - 127.0.0.1 - - [08/Dec/2025 13:18:05] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:18:05,896 - 127.0.0.1 - - [08/Dec/2025 13:18:05] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:18:05,898 - 127.0.0.1 - - [08/Dec/2025 13:18:05] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
-2025-12-08 13:18:05,902 - 127.0.0.1 - - [08/Dec/2025 13:18:05] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:18:05,938 - 127.0.0.1 - - [08/Dec/2025 13:18:05] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:18:06,000 - 127.0.0.1 - - [08/Dec/2025 13:18:06] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:18:06,206 - 127.0.0.1 - - [08/Dec/2025 13:18:06] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:18:06,214 - 127.0.0.1 - - [08/Dec/2025 13:18:06] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:18:06,250 - 127.0.0.1 - - [08/Dec/2025 13:18:06] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:18:06,333 - 127.0.0.1 - - [08/Dec/2025 13:18:06] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:18:06,349 - 127.0.0.1 - - [08/Dec/2025 13:18:06] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:18:06,368 - 127.0.0.1 - - [08/Dec/2025 13:18:06] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:18:06,747 - 127.0.0.1 - - [08/Dec/2025 13:18:06] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:18:06,765 - 127.0.0.1 - - [08/Dec/2025 13:18:06] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:18:22,798 - 127.0.0.1 - - [08/Dec/2025 13:18:22] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:18:23,096 - 127.0.0.1 - - [08/Dec/2025 13:18:23] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:18:25,015 - 127.0.0.1 - - [08/Dec/2025 13:18:25] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:18:25,031 - 127.0.0.1 - - [08/Dec/2025 13:18:25] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:18:37,364 - 127.0.0.1 - - [08/Dec/2025 13:18:37] "GET /collection_schedule HTTP/1.1" 200 -
-2025-12-08 13:18:37,688 - 127.0.0.1 - - [08/Dec/2025 13:18:37] "[36mGET /static/js/pages/collection_schedule.js HTTP/1.1[0m" 304 -
-2025-12-08 13:18:37,964 - 127.0.0.1 - - [08/Dec/2025 13:18:37] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:18:38,037 - 127.0.0.1 - - [08/Dec/2025 13:18:38] "GET /api/collection_schedule?view=weekly HTTP/1.1" 200 -
-2025-12-08 13:18:44,808 - 127.0.0.1 - - [08/Dec/2025 13:18:44] "GET /card_summary HTTP/1.1" 200 -
-2025-12-08 13:18:45,124 - 127.0.0.1 - - [08/Dec/2025 13:18:45] "[36mGET /static/css/card_summary.css HTTP/1.1[0m" 304 -
-2025-12-08 13:18:45,125 - 127.0.0.1 - - [08/Dec/2025 13:18:45] "[36mGET /static/js/pages/card_summary.js HTTP/1.1[0m" 304 -
-2025-12-08 13:18:45,377 - 127.0.0.1 - - [08/Dec/2025 13:18:45] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:18:45,440 - 127.0.0.1 - - [08/Dec/2025 13:18:45] "GET /api/card_summary HTTP/1.1" 200 -
-2025-12-08 13:18:48,831 - 127.0.0.1 - - [08/Dec/2025 13:18:48] "GET /dashboard HTTP/1.1" 200 -
-2025-12-08 13:18:49,162 - 127.0.0.1 - - [08/Dec/2025 13:18:49] "[36mGET /static/js/pages/dashboard.js HTTP/1.1[0m" 304 -
-2025-12-08 13:18:49,417 - 127.0.0.1 - - [08/Dec/2025 13:18:49] "[36mGET /static/js/modules/dashboard/events.js HTTP/1.1[0m" 304 -
-2025-12-08 13:18:49,476 - 127.0.0.1 - - [08/Dec/2025 13:18:49] "[36mGET /static/js/modules/ui_components/pagination.js HTTP/1.1[0m" 304 -
-2025-12-08 13:18:49,729 - 127.0.0.1 - - [08/Dec/2025 13:18:49] "[36mGET /static/js/modules/dashboard/dashboardTable.js HTTP/1.1[0m" 304 -
-2025-12-08 13:18:49,730 - 127.0.0.1 - - [08/Dec/2025 13:18:49] "[36mGET /static/js/modules/dashboard/eventLog.js HTTP/1.1[0m" 304 -
-2025-12-08 13:18:49,731 - 127.0.0.1 - - [08/Dec/2025 13:18:49] "[36mGET /static/js/modules/dashboard/data.js HTTP/1.1[0m" 304 -
-2025-12-08 13:18:49,734 - 127.0.0.1 - - [08/Dec/2025 13:18:49] "[36mGET /static/js/modules/common/dateUtils.js HTTP/1.1[0m" 304 -
-2025-12-08 13:18:50,047 - 127.0.0.1 - - [08/Dec/2025 13:18:50] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:18:50,310 - 127.0.0.1 - - [08/Dec/2025 13:18:50] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:18:50,358 - 127.0.0.1 - - [08/Dec/2025 13:18:50] "GET /api/dashboard/summary?start_date=2025-01-01&end_date=2025-12-08&all_data=true HTTP/1.1" 200 -
-2025-12-08 13:18:50,388 - 127.0.0.1 - - [08/Dec/2025 13:18:50] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:18:50,389 - 127.0.0.1 - - [08/Dec/2025 13:18:50] "GET /api/dashboard/event-log?start_date=2025-12-08&end_date=2025-12-08 HTTP/1.1" 200 -
-2025-12-08 13:18:52,453 - 127.0.0.1 - - [08/Dec/2025 13:18:52] "GET /collection_schedule HTTP/1.1" 200 -
-2025-12-08 13:18:52,770 - 127.0.0.1 - - [08/Dec/2025 13:18:52] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:18:53,062 - 127.0.0.1 - - [08/Dec/2025 13:18:53] "GET /api/collection_schedule?view=weekly HTTP/1.1" 200 -
-2025-12-08 13:19:03,662 - 127.0.0.1 - - [08/Dec/2025 13:19:03] "GET /chart_analysis HTTP/1.1" 200 -
-2025-12-08 13:19:04,001 - 127.0.0.1 - - [08/Dec/2025 13:19:04] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:19:04,002 - 127.0.0.1 - - [08/Dec/2025 13:19:04] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:19:04,030 - 127.0.0.1 - - [08/Dec/2025 13:19:04] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:19:04,073 - 127.0.0.1 - - [08/Dec/2025 13:19:04] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:19:04,253 - 127.0.0.1 - - [08/Dec/2025 13:19:04] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:19:04,385 - 127.0.0.1 - - [08/Dec/2025 13:19:04] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:19:05,585 - 127.0.0.1 - - [08/Dec/2025 13:19:05] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:19:08,047 - 127.0.0.1 - - [08/Dec/2025 13:19:08] "GET /chart_analysis HTTP/1.1" 200 -
-2025-12-08 13:19:08,062 - 127.0.0.1 - - [08/Dec/2025 13:19:08] "GET /static/vendor/css/tailwindcss.css?v=1765135148.047105 HTTP/1.1" 200 -
-2025-12-08 13:19:08,297 - 127.0.0.1 - - [08/Dec/2025 13:19:08] "GET /static/vendor/css/inter.css?v=1765135148.047105 HTTP/1.1" 200 -
-2025-12-08 13:19:08,373 - 127.0.0.1 - - [08/Dec/2025 13:19:08] "GET /static/vendor/css/flatpickr.min.css?v=1765135148.047105 HTTP/1.1" 200 -
-2025-12-08 13:19:08,375 - 127.0.0.1 - - [08/Dec/2025 13:19:08] "GET /static/vendor/css/dataTables.tailwindcss.min.css?v=1765135148.047105 HTTP/1.1" 200 -
-2025-12-08 13:19:08,375 - 127.0.0.1 - - [08/Dec/2025 13:19:08] "GET /static/css/common.css?v=1765135148.047105 HTTP/1.1" 200 -
-2025-12-08 13:19:08,375 - 127.0.0.1 - - [08/Dec/2025 13:19:08] "GET /static/vendor/js/luxon.min.js HTTP/1.1" 200 -
-2025-12-08 13:19:08,375 - 127.0.0.1 - - [08/Dec/2025 13:19:08] "GET /static/vendor/js/d3.v7.min.js HTTP/1.1" 200 -
-2025-12-08 13:19:08,613 - 127.0.0.1 - - [08/Dec/2025 13:19:08] "GET /static/vendor/js/jquery-3.6.0.min.js HTTP/1.1" 200 -
-2025-12-08 13:19:08,688 - 127.0.0.1 - - [08/Dec/2025 13:19:08] "GET /static/vendor/js/flatpickr.min.js HTTP/1.1" 200 -
-2025-12-08 13:19:08,689 - 127.0.0.1 - - [08/Dec/2025 13:19:08] "GET /static/vendor/js/dataTables.js HTTP/1.1" 200 -
-2025-12-08 13:19:08,690 - 127.0.0.1 - - [08/Dec/2025 13:19:08] "GET /static/vendor/js/dataTables.tailwindcss.min.js HTTP/1.1" 200 -
-2025-12-08 13:19:08,691 - 127.0.0.1 - - [08/Dec/2025 13:19:08] "GET /static/vendor/js/chart.umd.js HTTP/1.1" 200 -
-2025-12-08 13:19:08,694 - 127.0.0.1 - - [08/Dec/2025 13:19:08] "GET /static/vendor/js/chartjs-adapter-luxon.min.js HTTP/1.1" 200 -
-2025-12-08 13:19:08,926 - 127.0.0.1 - - [08/Dec/2025 13:19:08] "GET /static/vendor/js/chartjs-plugin-datalabels.min.js HTTP/1.1" 200 -
-2025-12-08 13:19:09,015 - 127.0.0.1 - - [08/Dec/2025 13:19:09] "GET /static/js/session_timer.js?v=1765135148.047105 HTTP/1.1" 200 -
-2025-12-08 13:19:09,017 - 127.0.0.1 - - [08/Dec/2025 13:19:09] "GET /static/js/utils/toast.js?v=1765135148.047105 HTTP/1.1" 200 -
-2025-12-08 13:19:09,019 - 127.0.0.1 - - [08/Dec/2025 13:19:09] "GET /static/js/router.js?v=1765135148.047105 HTTP/1.1" 200 -
-2025-12-08 13:19:09,019 - 127.0.0.1 - - [08/Dec/2025 13:19:09] "GET /static/js/pages/chart_analysis.js HTTP/1.1" 200 -
-2025-12-08 13:19:09,337 - 127.0.0.1 - - [08/Dec/2025 13:19:09] "GET /static/js/modules/common/api/client.js HTTP/1.1" 200 -
-2025-12-08 13:19:09,338 - 127.0.0.1 - - [08/Dec/2025 13:19:09] "GET /static/js/modules/common/api/auth.js HTTP/1.1" 200 -
-2025-12-08 13:19:09,339 - 127.0.0.1 - - [08/Dec/2025 13:19:09] "GET /static/js/modules/common/utils.js HTTP/1.1" 200 -
-2025-12-08 13:19:09,341 - 127.0.0.1 - - [08/Dec/2025 13:19:09] "GET /static/js/modules/chart_analysis/data.js HTTP/1.1" 200 -
-2025-12-08 13:19:09,344 - 127.0.0.1 - - [08/Dec/2025 13:19:09] "GET /static/js/modules/chart_analysis/ui.js HTTP/1.1" 200 -
-2025-12-08 13:19:09,345 - 127.0.0.1 - - [08/Dec/2025 13:19:09] "GET /static/js/modules/dashboard/ui.js HTTP/1.1" 200 -
-2025-12-08 13:19:09,652 - 127.0.0.1 - - [08/Dec/2025 13:19:09] "GET /static/js/modules/chart_analysis/events.js HTTP/1.1" 200 -
-2025-12-08 13:19:09,654 - 127.0.0.1 - - [08/Dec/2025 13:19:09] "GET /static/js/modules/ui_components/collapsible.js HTTP/1.1" 200 -
-2025-12-08 13:19:09,657 - 127.0.0.1 - - [08/Dec/2025 13:19:09] "GET /static/js/utils/toast.js HTTP/1.1" 200 -
-2025-12-08 13:19:09,657 - 127.0.0.1 - - [08/Dec/2025 13:19:09] "GET /static/js/modules/common/api/mst.js HTTP/1.1" 200 -
-2025-12-08 13:19:09,661 - 127.0.0.1 - - [08/Dec/2025 13:19:09] "GET /static/js/modules/common/api/dashboard.js HTTP/1.1" 200 -
-2025-12-08 13:19:09,661 - 127.0.0.1 - - [08/Dec/2025 13:19:09] "GET /static/js/modules/common/api/mngr_sett.js HTTP/1.1" 200 -
-2025-12-08 13:19:09,959 - 127.0.0.1 - - [08/Dec/2025 13:19:09] "GET /static/js/modules/common/api/analytics.js HTTP/1.1" 200 -
-2025-12-08 13:19:10,277 - 127.0.0.1 - - [08/Dec/2025 13:19:10] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:19:10,280 - 127.0.0.1 - - [08/Dec/2025 13:19:10] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:19:10,281 - 127.0.0.1 - - [08/Dec/2025 13:19:10] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
-2025-12-08 13:19:10,286 - 127.0.0.1 - - [08/Dec/2025 13:19:10] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:19:10,308 - 127.0.0.1 - - [08/Dec/2025 13:19:10] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:19:10,348 - 127.0.0.1 - - [08/Dec/2025 13:19:10] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:19:10,591 - 127.0.0.1 - - [08/Dec/2025 13:19:10] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:19:10,591 - 127.0.0.1 - - [08/Dec/2025 13:19:10] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:19:10,621 - 127.0.0.1 - - [08/Dec/2025 13:19:10] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:19:10,689 - 127.0.0.1 - - [08/Dec/2025 13:19:10] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:19:10,704 - 127.0.0.1 - - [08/Dec/2025 13:19:10] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:19:10,707 - 127.0.0.1 - - [08/Dec/2025 13:19:10] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:19:11,014 - 127.0.0.1 - - [08/Dec/2025 13:19:11] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:19:11,044 - 127.0.0.1 - - [08/Dec/2025 13:19:11] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:19:18,737 - 127.0.0.1 - - [08/Dec/2025 13:19:18] "GET /chart_analysis HTTP/1.1" 200 -
-2025-12-08 13:19:18,758 - 127.0.0.1 - - [08/Dec/2025 13:19:18] "GET /static/vendor/css/tailwindcss.css?v=1765135158.736494 HTTP/1.1" 200 -
-2025-12-08 13:19:18,990 - 127.0.0.1 - - [08/Dec/2025 13:19:18] "GET /static/vendor/css/inter.css?v=1765135158.736494 HTTP/1.1" 200 -
-2025-12-08 13:19:19,058 - 127.0.0.1 - - [08/Dec/2025 13:19:19] "GET /static/vendor/css/flatpickr.min.css?v=1765135158.736494 HTTP/1.1" 200 -
-2025-12-08 13:19:19,058 - 127.0.0.1 - - [08/Dec/2025 13:19:19] "GET /static/vendor/css/dataTables.tailwindcss.min.css?v=1765135158.736494 HTTP/1.1" 200 -
-2025-12-08 13:19:19,058 - 127.0.0.1 - - [08/Dec/2025 13:19:19] "[36mGET /static/vendor/js/luxon.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:19:19,058 - 127.0.0.1 - - [08/Dec/2025 13:19:19] "GET /static/css/common.css?v=1765135158.736494 HTTP/1.1" 200 -
-2025-12-08 13:19:19,058 - 127.0.0.1 - - [08/Dec/2025 13:19:19] "[36mGET /static/vendor/js/d3.v7.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:19:19,295 - 127.0.0.1 - - [08/Dec/2025 13:19:19] "[36mGET /static/vendor/js/jquery-3.6.0.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:19:19,378 - 127.0.0.1 - - [08/Dec/2025 13:19:19] "[36mGET /static/vendor/js/flatpickr.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:19:19,378 - 127.0.0.1 - - [08/Dec/2025 13:19:19] "GET /static/js/session_timer.js?v=1765135158.736494 HTTP/1.1" 200 -
-2025-12-08 13:19:19,384 - 127.0.0.1 - - [08/Dec/2025 13:19:19] "[36mGET /static/vendor/js/dataTables.js HTTP/1.1[0m" 304 -
-2025-12-08 13:19:19,387 - 127.0.0.1 - - [08/Dec/2025 13:19:19] "GET /static/js/router.js?v=1765135158.736494 HTTP/1.1" 200 -
-2025-12-08 13:19:19,392 - 127.0.0.1 - - [08/Dec/2025 13:19:19] "[36mGET /static/vendor/js/dataTables.tailwindcss.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:19:19,599 - 127.0.0.1 - - [08/Dec/2025 13:19:19] "GET /static/js/utils/toast.js?v=1765135158.736494 HTTP/1.1" 200 -
-2025-12-08 13:19:19,693 - 127.0.0.1 - - [08/Dec/2025 13:19:19] "[36mGET /static/vendor/js/chart.umd.js HTTP/1.1[0m" 304 -
-2025-12-08 13:19:19,694 - 127.0.0.1 - - [08/Dec/2025 13:19:19] "[36mGET /static/vendor/js/chartjs-adapter-luxon.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:19:19,695 - 127.0.0.1 - - [08/Dec/2025 13:19:19] "[36mGET /static/js/pages/chart_analysis.js HTTP/1.1[0m" 304 -
-2025-12-08 13:19:19,695 - 127.0.0.1 - - [08/Dec/2025 13:19:19] "[36mGET /static/vendor/js/chartjs-plugin-datalabels.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:19:20,020 - 127.0.0.1 - - [08/Dec/2025 13:19:20] "[36mGET /static/js/modules/common/api/client.js HTTP/1.1[0m" 304 -
-2025-12-08 13:19:20,022 - 127.0.0.1 - - [08/Dec/2025 13:19:20] "[36mGET /static/js/modules/common/api/auth.js HTTP/1.1[0m" 304 -
-2025-12-08 13:19:20,025 - 127.0.0.1 - - [08/Dec/2025 13:19:20] "[36mGET /static/js/modules/common/utils.js HTTP/1.1[0m" 304 -
-2025-12-08 13:19:20,027 - 127.0.0.1 - - [08/Dec/2025 13:19:20] "[36mGET /static/js/modules/chart_analysis/data.js HTTP/1.1[0m" 304 -
-2025-12-08 13:19:20,028 - 127.0.0.1 - - [08/Dec/2025 13:19:20] "GET /static/js/modules/chart_analysis/ui.js HTTP/1.1" 200 -
-2025-12-08 13:19:20,029 - 127.0.0.1 - - [08/Dec/2025 13:19:20] "[36mGET /static/js/modules/dashboard/ui.js HTTP/1.1[0m" 304 -
-2025-12-08 13:19:20,339 - 127.0.0.1 - - [08/Dec/2025 13:19:20] "[36mGET /static/js/modules/chart_analysis/events.js HTTP/1.1[0m" 304 -
-2025-12-08 13:19:20,340 - 127.0.0.1 - - [08/Dec/2025 13:19:20] "[36mGET /static/js/modules/ui_components/collapsible.js HTTP/1.1[0m" 304 -
-2025-12-08 13:19:20,342 - 127.0.0.1 - - [08/Dec/2025 13:19:20] "[36mGET /static/js/utils/toast.js HTTP/1.1[0m" 304 -
-2025-12-08 13:19:20,345 - 127.0.0.1 - - [08/Dec/2025 13:19:20] "[36mGET /static/js/modules/common/api/mst.js HTTP/1.1[0m" 304 -
-2025-12-08 13:19:20,366 - 127.0.0.1 - - [08/Dec/2025 13:19:20] "[36mGET /static/js/modules/common/api/mngr_sett.js HTTP/1.1[0m" 304 -
-2025-12-08 13:19:20,368 - 127.0.0.1 - - [08/Dec/2025 13:19:20] "[36mGET /static/js/modules/common/api/dashboard.js HTTP/1.1[0m" 304 -
-2025-12-08 13:19:20,660 - 127.0.0.1 - - [08/Dec/2025 13:19:20] "[36mGET /static/js/modules/common/api/analytics.js HTTP/1.1[0m" 304 -
-2025-12-08 13:19:20,974 - 127.0.0.1 - - [08/Dec/2025 13:19:20] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:19:20,980 - 127.0.0.1 - - [08/Dec/2025 13:19:20] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:19:20,987 - 127.0.0.1 - - [08/Dec/2025 13:19:20] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:19:21,058 - 127.0.0.1 - - [08/Dec/2025 13:19:21] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:19:21,225 - 127.0.0.1 - - [08/Dec/2025 13:19:21] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:19:21,292 - 127.0.0.1 - - [08/Dec/2025 13:19:21] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:19:21,327 - 127.0.0.1 - - [08/Dec/2025 13:19:21] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:19:21,342 - 127.0.0.1 - - [08/Dec/2025 13:19:21] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:19:21,363 - 127.0.0.1 - - [08/Dec/2025 13:19:21] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:19:21,541 - 127.0.0.1 - - [08/Dec/2025 13:19:21] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:19:21,558 - 127.0.0.1 - - [08/Dec/2025 13:19:21] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:19:21,865 - 127.0.0.1 - - [08/Dec/2025 13:19:21] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:19:21,878 - 127.0.0.1 - - [08/Dec/2025 13:19:21] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:19:37,351 - 127.0.0.1 - - [08/Dec/2025 13:19:37] "GET /chart_analysis HTTP/1.1" 200 -
-2025-12-08 13:19:37,370 - 127.0.0.1 - - [08/Dec/2025 13:19:37] "GET /static/vendor/css/tailwindcss.css?v=1765135177.351122 HTTP/1.1" 200 -
-2025-12-08 13:19:37,609 - 127.0.0.1 - - [08/Dec/2025 13:19:37] "GET /static/vendor/css/inter.css?v=1765135177.351122 HTTP/1.1" 200 -
-2025-12-08 13:19:37,679 - 127.0.0.1 - - [08/Dec/2025 13:19:37] "GET /static/vendor/css/flatpickr.min.css?v=1765135177.351122 HTTP/1.1" 200 -
-2025-12-08 13:19:37,679 - 127.0.0.1 - - [08/Dec/2025 13:19:37] "GET /static/vendor/css/dataTables.tailwindcss.min.css?v=1765135177.351122 HTTP/1.1" 200 -
-2025-12-08 13:19:37,680 - 127.0.0.1 - - [08/Dec/2025 13:19:37] "GET /static/css/common.css?v=1765135177.351122 HTTP/1.1" 200 -
-2025-12-08 13:19:37,680 - 127.0.0.1 - - [08/Dec/2025 13:19:37] "GET /static/vendor/js/luxon.min.js HTTP/1.1" 200 -
-2025-12-08 13:19:37,683 - 127.0.0.1 - - [08/Dec/2025 13:19:37] "GET /static/vendor/js/d3.v7.min.js HTTP/1.1" 200 -
-2025-12-08 13:19:37,926 - 127.0.0.1 - - [08/Dec/2025 13:19:37] "GET /static/vendor/js/jquery-3.6.0.min.js HTTP/1.1" 200 -
-2025-12-08 13:19:37,988 - 127.0.0.1 - - [08/Dec/2025 13:19:37] "GET /static/vendor/js/flatpickr.min.js HTTP/1.1" 200 -
-2025-12-08 13:19:37,988 - 127.0.0.1 - - [08/Dec/2025 13:19:37] "GET /static/vendor/js/dataTables.js HTTP/1.1" 200 -
-2025-12-08 13:19:37,990 - 127.0.0.1 - - [08/Dec/2025 13:19:37] "GET /static/vendor/js/dataTables.tailwindcss.min.js HTTP/1.1" 200 -
-2025-12-08 13:19:37,994 - 127.0.0.1 - - [08/Dec/2025 13:19:37] "GET /static/vendor/js/chart.umd.js HTTP/1.1" 200 -
-2025-12-08 13:19:37,995 - 127.0.0.1 - - [08/Dec/2025 13:19:37] "GET /static/vendor/js/chartjs-adapter-luxon.min.js HTTP/1.1" 200 -
-2025-12-08 13:19:38,242 - 127.0.0.1 - - [08/Dec/2025 13:19:38] "GET /static/vendor/js/chartjs-plugin-datalabels.min.js HTTP/1.1" 200 -
-2025-12-08 13:19:38,309 - 127.0.0.1 - - [08/Dec/2025 13:19:38] "GET /static/js/session_timer.js?v=1765135177.351122 HTTP/1.1" 200 -
-2025-12-08 13:19:38,309 - 127.0.0.1 - - [08/Dec/2025 13:19:38] "GET /static/js/router.js?v=1765135177.351122 HTTP/1.1" 200 -
-2025-12-08 13:19:38,310 - 127.0.0.1 - - [08/Dec/2025 13:19:38] "GET /static/js/utils/toast.js?v=1765135177.351122 HTTP/1.1" 200 -
-2025-12-08 13:19:38,311 - 127.0.0.1 - - [08/Dec/2025 13:19:38] "GET /static/js/pages/chart_analysis.js HTTP/1.1" 200 -
-2025-12-08 13:19:38,624 - 127.0.0.1 - - [08/Dec/2025 13:19:38] "GET /static/js/modules/common/api/client.js HTTP/1.1" 200 -
-2025-12-08 13:19:38,625 - 127.0.0.1 - - [08/Dec/2025 13:19:38] "GET /static/js/modules/common/api/auth.js HTTP/1.1" 200 -
-2025-12-08 13:19:38,626 - 127.0.0.1 - - [08/Dec/2025 13:19:38] "GET /static/js/modules/common/utils.js HTTP/1.1" 200 -
-2025-12-08 13:19:38,629 - 127.0.0.1 - - [08/Dec/2025 13:19:38] "GET /static/js/modules/chart_analysis/data.js HTTP/1.1" 200 -
-2025-12-08 13:19:38,630 - 127.0.0.1 - - [08/Dec/2025 13:19:38] "GET /static/js/modules/chart_analysis/ui.js HTTP/1.1" 200 -
-2025-12-08 13:19:38,633 - 127.0.0.1 - - [08/Dec/2025 13:19:38] "GET /static/js/modules/dashboard/ui.js HTTP/1.1" 200 -
-2025-12-08 13:19:38,941 - 127.0.0.1 - - [08/Dec/2025 13:19:38] "GET /static/js/modules/chart_analysis/events.js HTTP/1.1" 200 -
-2025-12-08 13:19:38,942 - 127.0.0.1 - - [08/Dec/2025 13:19:38] "GET /static/js/modules/ui_components/collapsible.js HTTP/1.1" 200 -
-2025-12-08 13:19:38,945 - 127.0.0.1 - - [08/Dec/2025 13:19:38] "GET /static/js/utils/toast.js HTTP/1.1" 200 -
-2025-12-08 13:19:38,946 - 127.0.0.1 - - [08/Dec/2025 13:19:38] "GET /static/js/modules/common/api/mst.js HTTP/1.1" 200 -
-2025-12-08 13:19:38,947 - 127.0.0.1 - - [08/Dec/2025 13:19:38] "GET /static/js/modules/common/api/dashboard.js HTTP/1.1" 200 -
-2025-12-08 13:19:38,949 - 127.0.0.1 - - [08/Dec/2025 13:19:38] "GET /static/js/modules/common/api/mngr_sett.js HTTP/1.1" 200 -
-2025-12-08 13:19:39,255 - 127.0.0.1 - - [08/Dec/2025 13:19:39] "GET /static/js/modules/common/api/analytics.js HTTP/1.1" 200 -
-2025-12-08 13:19:39,581 - 127.0.0.1 - - [08/Dec/2025 13:19:39] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:19:39,582 - 127.0.0.1 - - [08/Dec/2025 13:19:39] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:19:39,584 - 127.0.0.1 - - [08/Dec/2025 13:19:39] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
-2025-12-08 13:19:39,585 - 127.0.0.1 - - [08/Dec/2025 13:19:39] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:19:39,607 - 127.0.0.1 - - [08/Dec/2025 13:19:39] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:19:39,613 - 127.0.0.1 - - [08/Dec/2025 13:19:39] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:19:39,895 - 127.0.0.1 - - [08/Dec/2025 13:19:39] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:19:39,895 - 127.0.0.1 - - [08/Dec/2025 13:19:39] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:19:39,952 - 127.0.0.1 - - [08/Dec/2025 13:19:39] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:19:39,955 - 127.0.0.1 - - [08/Dec/2025 13:19:39] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:19:39,955 - 127.0.0.1 - - [08/Dec/2025 13:19:39] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:19:39,999 - 127.0.0.1 - - [08/Dec/2025 13:19:39] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:19:40,351 - 127.0.0.1 - - [08/Dec/2025 13:19:40] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:19:40,370 - 127.0.0.1 - - [08/Dec/2025 13:19:40] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:20:39,330 - 127.0.0.1 - - [08/Dec/2025 13:20:39] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:21:39,635 - 127.0.0.1 - - [08/Dec/2025 13:21:39] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:22:39,332 - 127.0.0.1 - - [08/Dec/2025 13:22:39] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:23:39,643 - 127.0.0.1 - - [08/Dec/2025 13:23:39] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:23:41,030 - 127.0.0.1 - - [08/Dec/2025 13:23:41] "GET /chart_analysis HTTP/1.1" 200 -
-2025-12-08 13:23:41,337 - 127.0.0.1 - - [08/Dec/2025 13:23:41] "GET /static/vendor/css/tailwindcss.css?v=1765135421.029162 HTTP/1.1" 200 -
-2025-12-08 13:23:41,347 - 127.0.0.1 - - [08/Dec/2025 13:23:41] "GET /static/vendor/css/inter.css?v=1765135421.029162 HTTP/1.1" 200 -
-2025-12-08 13:23:41,348 - 127.0.0.1 - - [08/Dec/2025 13:23:41] "GET /static/vendor/css/flatpickr.min.css?v=1765135421.029162 HTTP/1.1" 200 -
-2025-12-08 13:23:41,349 - 127.0.0.1 - - [08/Dec/2025 13:23:41] "GET /static/vendor/css/dataTables.tailwindcss.min.css?v=1765135421.029162 HTTP/1.1" 200 -
-2025-12-08 13:23:41,350 - 127.0.0.1 - - [08/Dec/2025 13:23:41] "GET /static/css/common.css?v=1765135421.029162 HTTP/1.1" 200 -
-2025-12-08 13:23:41,353 - 127.0.0.1 - - [08/Dec/2025 13:23:41] "GET /static/js/session_timer.js?v=1765135421.029162 HTTP/1.1" 200 -
-2025-12-08 13:23:41,664 - 127.0.0.1 - - [08/Dec/2025 13:23:41] "[36mGET /static/vendor/js/luxon.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:41,665 - 127.0.0.1 - - [08/Dec/2025 13:23:41] "GET /static/js/utils/toast.js?v=1765135421.029162 HTTP/1.1" 200 -
-2025-12-08 13:23:41,666 - 127.0.0.1 - - [08/Dec/2025 13:23:41] "GET /static/js/router.js?v=1765135421.029162 HTTP/1.1" 200 -
-2025-12-08 13:23:41,667 - 127.0.0.1 - - [08/Dec/2025 13:23:41] "[36mGET /static/vendor/js/d3.v7.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:41,669 - 127.0.0.1 - - [08/Dec/2025 13:23:41] "[36mGET /static/vendor/js/jquery-3.6.0.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:41,671 - 127.0.0.1 - - [08/Dec/2025 13:23:41] "[36mGET /static/vendor/js/flatpickr.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:41,979 - 127.0.0.1 - - [08/Dec/2025 13:23:41] "[36mGET /static/vendor/js/chart.umd.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:41,979 - 127.0.0.1 - - [08/Dec/2025 13:23:41] "[36mGET /static/vendor/js/dataTables.tailwindcss.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:41,979 - 127.0.0.1 - - [08/Dec/2025 13:23:41] "[36mGET /static/vendor/js/dataTables.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:41,981 - 127.0.0.1 - - [08/Dec/2025 13:23:41] "[36mGET /static/vendor/js/chartjs-adapter-luxon.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:41,984 - 127.0.0.1 - - [08/Dec/2025 13:23:41] "[36mGET /static/vendor/js/chartjs-plugin-datalabels.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:41,985 - 127.0.0.1 - - [08/Dec/2025 13:23:41] "GET /static/js/pages/chart_analysis.js HTTP/1.1" 200 -
-2025-12-08 13:23:42,307 - 127.0.0.1 - - [08/Dec/2025 13:23:42] "[36mGET /static/js/modules/common/api/client.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:42,310 - 127.0.0.1 - - [08/Dec/2025 13:23:42] "[36mGET /static/js/modules/common/api/auth.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:42,312 - 127.0.0.1 - - [08/Dec/2025 13:23:42] "[36mGET /static/js/modules/chart_analysis/data.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:42,312 - 127.0.0.1 - - [08/Dec/2025 13:23:42] "[36mGET /static/js/modules/common/utils.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:42,313 - 127.0.0.1 - - [08/Dec/2025 13:23:42] "GET /static/js/modules/chart_analysis/ui.js HTTP/1.1" 200 -
-2025-12-08 13:23:42,316 - 127.0.0.1 - - [08/Dec/2025 13:23:42] "[36mGET /static/js/modules/dashboard/ui.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:42,630 - 127.0.0.1 - - [08/Dec/2025 13:23:42] "[36mGET /static/js/utils/toast.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:42,631 - 127.0.0.1 - - [08/Dec/2025 13:23:42] "[36mGET /static/js/modules/ui_components/collapsible.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:42,633 - 127.0.0.1 - - [08/Dec/2025 13:23:42] "[36mGET /static/js/modules/chart_analysis/events.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:42,633 - 127.0.0.1 - - [08/Dec/2025 13:23:42] "[36mGET /static/js/modules/common/api/mst.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:42,634 - 127.0.0.1 - - [08/Dec/2025 13:23:42] "[36mGET /static/js/modules/common/api/dashboard.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:42,637 - 127.0.0.1 - - [08/Dec/2025 13:23:42] "[36mGET /static/js/modules/common/api/mngr_sett.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:42,944 - 127.0.0.1 - - [08/Dec/2025 13:23:42] "[36mGET /static/js/modules/common/api/analytics.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:43,262 - 127.0.0.1 - - [08/Dec/2025 13:23:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:23:43,269 - 127.0.0.1 - - [08/Dec/2025 13:23:43] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:23:43,294 - 127.0.0.1 - - [08/Dec/2025 13:23:43] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:23:43,298 - 127.0.0.1 - - [08/Dec/2025 13:23:43] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:23:43,509 - 127.0.0.1 - - [08/Dec/2025 13:23:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:23:43,584 - 127.0.0.1 - - [08/Dec/2025 13:23:43] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:23:43,601 - 127.0.0.1 - - [08/Dec/2025 13:23:43] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:23:43,606 - 127.0.0.1 - - [08/Dec/2025 13:23:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:23:43,667 - 127.0.0.1 - - [08/Dec/2025 13:23:43] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:23:43,836 - 127.0.0.1 - - [08/Dec/2025 13:23:43] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:23:43,846 - 127.0.0.1 - - [08/Dec/2025 13:23:43] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:23:44,147 - 127.0.0.1 - - [08/Dec/2025 13:23:44] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:23:44,152 - 127.0.0.1 - - [08/Dec/2025 13:23:44] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:23:50,748 - 127.0.0.1 - - [08/Dec/2025 13:23:50] "GET /chart_analysis HTTP/1.1" 200 -
-2025-12-08 13:23:50,765 - 127.0.0.1 - - [08/Dec/2025 13:23:50] "GET /static/vendor/css/tailwindcss.css?v=1765135430.74675 HTTP/1.1" 200 -
-2025-12-08 13:23:50,999 - 127.0.0.1 - - [08/Dec/2025 13:23:50] "GET /static/vendor/css/inter.css?v=1765135430.74675 HTTP/1.1" 200 -
-2025-12-08 13:23:51,079 - 127.0.0.1 - - [08/Dec/2025 13:23:51] "GET /static/vendor/css/flatpickr.min.css?v=1765135430.74675 HTTP/1.1" 200 -
-2025-12-08 13:23:51,080 - 127.0.0.1 - - [08/Dec/2025 13:23:51] "GET /static/vendor/css/dataTables.tailwindcss.min.css?v=1765135430.74675 HTTP/1.1" 200 -
-2025-12-08 13:23:51,081 - 127.0.0.1 - - [08/Dec/2025 13:23:51] "GET /static/css/common.css?v=1765135430.74675 HTTP/1.1" 200 -
-2025-12-08 13:23:51,082 - 127.0.0.1 - - [08/Dec/2025 13:23:51] "[36mGET /static/vendor/js/luxon.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:51,085 - 127.0.0.1 - - [08/Dec/2025 13:23:51] "[36mGET /static/vendor/js/d3.v7.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:51,310 - 127.0.0.1 - - [08/Dec/2025 13:23:51] "[36mGET /static/vendor/js/jquery-3.6.0.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:51,408 - 127.0.0.1 - - [08/Dec/2025 13:23:51] "[36mGET /static/vendor/js/dataTables.tailwindcss.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:51,408 - 127.0.0.1 - - [08/Dec/2025 13:23:51] "[36mGET /static/vendor/js/flatpickr.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:51,409 - 127.0.0.1 - - [08/Dec/2025 13:23:51] "[36mGET /static/vendor/js/dataTables.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:51,412 - 127.0.0.1 - - [08/Dec/2025 13:23:51] "GET /static/js/session_timer.js?v=1765135430.74675 HTTP/1.1" 200 -
-2025-12-08 13:23:51,413 - 127.0.0.1 - - [08/Dec/2025 13:23:51] "GET /static/js/router.js?v=1765135430.74675 HTTP/1.1" 200 -
-2025-12-08 13:23:51,626 - 127.0.0.1 - - [08/Dec/2025 13:23:51] "GET /static/js/utils/toast.js?v=1765135430.74675 HTTP/1.1" 200 -
-2025-12-08 13:23:51,727 - 127.0.0.1 - - [08/Dec/2025 13:23:51] "[36mGET /static/vendor/js/chart.umd.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:51,730 - 127.0.0.1 - - [08/Dec/2025 13:23:51] "[36mGET /static/vendor/js/chartjs-adapter-luxon.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:51,730 - 127.0.0.1 - - [08/Dec/2025 13:23:51] "[36mGET /static/vendor/js/chartjs-plugin-datalabels.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:51,732 - 127.0.0.1 - - [08/Dec/2025 13:23:51] "[36mGET /static/js/pages/chart_analysis.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:52,063 - 127.0.0.1 - - [08/Dec/2025 13:23:52] "[36mGET /static/js/modules/common/api/client.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:52,065 - 127.0.0.1 - - [08/Dec/2025 13:23:52] "[36mGET /static/js/modules/common/api/auth.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:52,070 - 127.0.0.1 - - [08/Dec/2025 13:23:52] "[36mGET /static/js/modules/chart_analysis/data.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:52,070 - 127.0.0.1 - - [08/Dec/2025 13:23:52] "[36mGET /static/js/modules/common/utils.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:52,071 - 127.0.0.1 - - [08/Dec/2025 13:23:52] "[36mGET /static/js/modules/chart_analysis/ui.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:52,072 - 127.0.0.1 - - [08/Dec/2025 13:23:52] "[36mGET /static/js/modules/dashboard/ui.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:52,366 - 127.0.0.1 - - [08/Dec/2025 13:23:52] "[36mGET /static/js/modules/chart_analysis/events.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:52,370 - 127.0.0.1 - - [08/Dec/2025 13:23:52] "[36mGET /static/js/modules/ui_components/collapsible.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:52,383 - 127.0.0.1 - - [08/Dec/2025 13:23:52] "[36mGET /static/js/utils/toast.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:52,383 - 127.0.0.1 - - [08/Dec/2025 13:23:52] "[36mGET /static/js/modules/common/api/mst.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:52,384 - 127.0.0.1 - - [08/Dec/2025 13:23:52] "[36mGET /static/js/modules/common/api/dashboard.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:52,385 - 127.0.0.1 - - [08/Dec/2025 13:23:52] "[36mGET /static/js/modules/common/api/mngr_sett.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:52,685 - 127.0.0.1 - - [08/Dec/2025 13:23:52] "[36mGET /static/js/modules/common/api/analytics.js HTTP/1.1[0m" 304 -
-2025-12-08 13:23:53,006 - 127.0.0.1 - - [08/Dec/2025 13:23:53] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:23:53,015 - 127.0.0.1 - - [08/Dec/2025 13:23:53] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:23:53,033 - 127.0.0.1 - - [08/Dec/2025 13:23:53] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:23:53,044 - 127.0.0.1 - - [08/Dec/2025 13:23:53] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:23:53,241 - 127.0.0.1 - - [08/Dec/2025 13:23:53] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:23:53,318 - 127.0.0.1 - - [08/Dec/2025 13:23:53] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:23:53,349 - 127.0.0.1 - - [08/Dec/2025 13:23:53] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:23:53,350 - 127.0.0.1 - - [08/Dec/2025 13:23:53] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:23:53,369 - 127.0.0.1 - - [08/Dec/2025 13:23:53] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:23:53,576 - 127.0.0.1 - - [08/Dec/2025 13:23:53] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:23:53,576 - 127.0.0.1 - - [08/Dec/2025 13:23:53] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:23:53,900 - 127.0.0.1 - - [08/Dec/2025 13:23:53] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:23:53,921 - 127.0.0.1 - - [08/Dec/2025 13:23:53] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:24:11,581 - 127.0.0.1 - - [08/Dec/2025 13:24:11] "GET /chart_analysis HTTP/1.1" 200 -
-2025-12-08 13:24:11,605 - 127.0.0.1 - - [08/Dec/2025 13:24:11] "GET /static/vendor/css/tailwindcss.css?v=1765135451.580895 HTTP/1.1" 200 -
-2025-12-08 13:24:11,832 - 127.0.0.1 - - [08/Dec/2025 13:24:11] "GET /static/vendor/css/inter.css?v=1765135451.580895 HTTP/1.1" 200 -
-2025-12-08 13:24:11,921 - 127.0.0.1 - - [08/Dec/2025 13:24:11] "GET /static/vendor/css/flatpickr.min.css?v=1765135451.580895 HTTP/1.1" 200 -
-2025-12-08 13:24:11,921 - 127.0.0.1 - - [08/Dec/2025 13:24:11] "GET /static/vendor/css/dataTables.tailwindcss.min.css?v=1765135451.580895 HTTP/1.1" 200 -
-2025-12-08 13:24:11,921 - 127.0.0.1 - - [08/Dec/2025 13:24:11] "GET /static/css/common.css?v=1765135451.580895 HTTP/1.1" 200 -
-2025-12-08 13:24:11,930 - 127.0.0.1 - - [08/Dec/2025 13:24:11] "GET /static/vendor/js/d3.v7.min.js HTTP/1.1" 200 -
-2025-12-08 13:24:11,930 - 127.0.0.1 - - [08/Dec/2025 13:24:11] "GET /static/vendor/js/luxon.min.js HTTP/1.1" 200 -
-2025-12-08 13:24:12,144 - 127.0.0.1 - - [08/Dec/2025 13:24:12] "GET /static/vendor/js/jquery-3.6.0.min.js HTTP/1.1" 200 -
-2025-12-08 13:24:12,244 - 127.0.0.1 - - [08/Dec/2025 13:24:12] "GET /static/vendor/js/dataTables.js HTTP/1.1" 200 -
-2025-12-08 13:24:12,245 - 127.0.0.1 - - [08/Dec/2025 13:24:12] "GET /static/vendor/js/flatpickr.min.js HTTP/1.1" 200 -
-2025-12-08 13:24:12,248 - 127.0.0.1 - - [08/Dec/2025 13:24:12] "GET /static/vendor/js/chart.umd.js HTTP/1.1" 200 -
-2025-12-08 13:24:12,249 - 127.0.0.1 - - [08/Dec/2025 13:24:12] "GET /static/vendor/js/dataTables.tailwindcss.min.js HTTP/1.1" 200 -
-2025-12-08 13:24:12,250 - 127.0.0.1 - - [08/Dec/2025 13:24:12] "GET /static/vendor/js/chartjs-adapter-luxon.min.js HTTP/1.1" 200 -
-2025-12-08 13:24:12,449 - 127.0.0.1 - - [08/Dec/2025 13:24:12] "GET /static/vendor/js/chartjs-plugin-datalabels.min.js HTTP/1.1" 200 -
-2025-12-08 13:24:12,562 - 127.0.0.1 - - [08/Dec/2025 13:24:12] "GET /static/js/session_timer.js?v=1765135451.580895 HTTP/1.1" 200 -
-2025-12-08 13:24:12,562 - 127.0.0.1 - - [08/Dec/2025 13:24:12] "GET /static/js/router.js?v=1765135451.580895 HTTP/1.1" 200 -
-2025-12-08 13:24:12,562 - 127.0.0.1 - - [08/Dec/2025 13:24:12] "GET /static/js/utils/toast.js?v=1765135451.580895 HTTP/1.1" 200 -
-2025-12-08 13:24:12,566 - 127.0.0.1 - - [08/Dec/2025 13:24:12] "GET /static/js/pages/chart_analysis.js HTTP/1.1" 200 -
-2025-12-08 13:24:12,891 - 127.0.0.1 - - [08/Dec/2025 13:24:12] "GET /static/js/modules/common/api/client.js HTTP/1.1" 200 -
-2025-12-08 13:24:12,892 - 127.0.0.1 - - [08/Dec/2025 13:24:12] "GET /static/js/modules/common/utils.js HTTP/1.1" 200 -
-2025-12-08 13:24:12,892 - 127.0.0.1 - - [08/Dec/2025 13:24:12] "GET /static/js/modules/chart_analysis/data.js HTTP/1.1" 200 -
-2025-12-08 13:24:12,892 - 127.0.0.1 - - [08/Dec/2025 13:24:12] "GET /static/js/modules/common/api/auth.js HTTP/1.1" 200 -
-2025-12-08 13:24:12,894 - 127.0.0.1 - - [08/Dec/2025 13:24:12] "GET /static/js/modules/chart_analysis/ui.js HTTP/1.1" 200 -
-2025-12-08 13:24:12,897 - 127.0.0.1 - - [08/Dec/2025 13:24:12] "GET /static/js/modules/dashboard/ui.js HTTP/1.1" 200 -
-2025-12-08 13:24:13,212 - 127.0.0.1 - - [08/Dec/2025 13:24:13] "GET /static/js/modules/chart_analysis/events.js HTTP/1.1" 200 -
-2025-12-08 13:24:13,214 - 127.0.0.1 - - [08/Dec/2025 13:24:13] "GET /static/js/modules/ui_components/collapsible.js HTTP/1.1" 200 -
-2025-12-08 13:24:13,214 - 127.0.0.1 - - [08/Dec/2025 13:24:13] "GET /static/js/utils/toast.js HTTP/1.1" 200 -
-2025-12-08 13:24:13,218 - 127.0.0.1 - - [08/Dec/2025 13:24:13] "GET /static/js/modules/common/api/mst.js HTTP/1.1" 200 -
-2025-12-08 13:24:13,221 - 127.0.0.1 - - [08/Dec/2025 13:24:13] "GET /static/js/modules/common/api/dashboard.js HTTP/1.1" 200 -
-2025-12-08 13:24:13,222 - 127.0.0.1 - - [08/Dec/2025 13:24:13] "GET /static/js/modules/common/api/mngr_sett.js HTTP/1.1" 200 -
-2025-12-08 13:24:13,534 - 127.0.0.1 - - [08/Dec/2025 13:24:13] "GET /static/js/modules/common/api/analytics.js HTTP/1.1" 200 -
-2025-12-08 13:24:13,860 - 127.0.0.1 - - [08/Dec/2025 13:24:13] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:24:13,864 - 127.0.0.1 - - [08/Dec/2025 13:24:13] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:24:13,866 - 127.0.0.1 - - [08/Dec/2025 13:24:13] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
-2025-12-08 13:24:13,868 - 127.0.0.1 - - [08/Dec/2025 13:24:13] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:24:13,879 - 127.0.0.1 - - [08/Dec/2025 13:24:13] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:24:13,904 - 127.0.0.1 - - [08/Dec/2025 13:24:13] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:24:14,173 - 127.0.0.1 - - [08/Dec/2025 13:24:14] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:24:14,183 - 127.0.0.1 - - [08/Dec/2025 13:24:14] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:24:14,189 - 127.0.0.1 - - [08/Dec/2025 13:24:14] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:24:14,255 - 127.0.0.1 - - [08/Dec/2025 13:24:14] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:24:14,256 - 127.0.0.1 - - [08/Dec/2025 13:24:14] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:24:14,256 - 127.0.0.1 - - [08/Dec/2025 13:24:14] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:24:14,578 - 127.0.0.1 - - [08/Dec/2025 13:24:14] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:24:14,591 - 127.0.0.1 - - [08/Dec/2025 13:24:14] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:25:14,332 - 127.0.0.1 - - [08/Dec/2025 13:25:14] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:26:14,629 - 127.0.0.1 - - [08/Dec/2025 13:26:14] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:27:14,321 - 127.0.0.1 - - [08/Dec/2025 13:27:14] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:28:14,636 - 127.0.0.1 - - [08/Dec/2025 13:28:14] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:29:14,332 - 127.0.0.1 - - [08/Dec/2025 13:29:14] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:30:13,868 - 127.0.0.1 - - [08/Dec/2025 13:30:13] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:30:14,813 - 127.0.0.1 - - [08/Dec/2025 13:30:14] "GET /chart_analysis HTTP/1.1" 200 -
-2025-12-08 13:30:15,109 - 127.0.0.1 - - [08/Dec/2025 13:30:15] "GET /static/vendor/css/tailwindcss.css?v=1765135814.812469 HTTP/1.1" 200 -
-2025-12-08 13:30:15,142 - 127.0.0.1 - - [08/Dec/2025 13:30:15] "GET /static/vendor/css/inter.css?v=1765135814.812469 HTTP/1.1" 200 -
-2025-12-08 13:30:15,143 - 127.0.0.1 - - [08/Dec/2025 13:30:15] "GET /static/vendor/css/dataTables.tailwindcss.min.css?v=1765135814.812469 HTTP/1.1" 200 -
-2025-12-08 13:30:15,143 - 127.0.0.1 - - [08/Dec/2025 13:30:15] "GET /static/vendor/css/flatpickr.min.css?v=1765135814.812469 HTTP/1.1" 200 -
-2025-12-08 13:30:15,145 - 127.0.0.1 - - [08/Dec/2025 13:30:15] "GET /static/css/common.css?v=1765135814.812469 HTTP/1.1" 200 -
-2025-12-08 13:30:15,147 - 127.0.0.1 - - [08/Dec/2025 13:30:15] "GET /static/js/session_timer.js?v=1765135814.812469 HTTP/1.1" 200 -
-2025-12-08 13:30:15,440 - 127.0.0.1 - - [08/Dec/2025 13:30:15] "GET /static/js/router.js?v=1765135814.812469 HTTP/1.1" 200 -
-2025-12-08 13:30:15,457 - 127.0.0.1 - - [08/Dec/2025 13:30:15] "[36mGET /static/vendor/js/luxon.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:30:15,458 - 127.0.0.1 - - [08/Dec/2025 13:30:15] "[36mGET /static/vendor/js/d3.v7.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:30:15,460 - 127.0.0.1 - - [08/Dec/2025 13:30:15] "[36mGET /static/vendor/js/jquery-3.6.0.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:30:15,461 - 127.0.0.1 - - [08/Dec/2025 13:30:15] "[36mGET /static/vendor/js/flatpickr.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:30:15,463 - 127.0.0.1 - - [08/Dec/2025 13:30:15] "[36mGET /static/vendor/js/dataTables.js HTTP/1.1[0m" 304 -
-2025-12-08 13:30:15,756 - 127.0.0.1 - - [08/Dec/2025 13:30:15] "GET /static/js/utils/toast.js?v=1765135814.812469 HTTP/1.1" 200 -
-2025-12-08 13:30:15,770 - 127.0.0.1 - - [08/Dec/2025 13:30:15] "[36mGET /static/vendor/js/dataTables.tailwindcss.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:30:15,772 - 127.0.0.1 - - [08/Dec/2025 13:30:15] "[36mGET /static/vendor/js/chart.umd.js HTTP/1.1[0m" 304 -
-2025-12-08 13:30:15,775 - 127.0.0.1 - - [08/Dec/2025 13:30:15] "[36mGET /static/vendor/js/chartjs-plugin-datalabels.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:30:15,776 - 127.0.0.1 - - [08/Dec/2025 13:30:15] "[36mGET /static/vendor/js/chartjs-adapter-luxon.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:30:15,780 - 127.0.0.1 - - [08/Dec/2025 13:30:15] "GET /static/js/pages/chart_analysis.js HTTP/1.1" 200 -
-2025-12-08 13:30:16,107 - 127.0.0.1 - - [08/Dec/2025 13:30:16] "[36mGET /static/js/modules/common/api/client.js HTTP/1.1[0m" 304 -
-2025-12-08 13:30:16,108 - 127.0.0.1 - - [08/Dec/2025 13:30:16] "[36mGET /static/js/modules/common/api/auth.js HTTP/1.1[0m" 304 -
-2025-12-08 13:30:16,112 - 127.0.0.1 - - [08/Dec/2025 13:30:16] "[36mGET /static/js/modules/common/utils.js HTTP/1.1[0m" 304 -
-2025-12-08 13:30:16,113 - 127.0.0.1 - - [08/Dec/2025 13:30:16] "[36mGET /static/js/modules/chart_analysis/data.js HTTP/1.1[0m" 304 -
-2025-12-08 13:30:16,115 - 127.0.0.1 - - [08/Dec/2025 13:30:16] "GET /static/js/modules/chart_analysis/ui.js HTTP/1.1" 200 -
-2025-12-08 13:30:16,118 - 127.0.0.1 - - [08/Dec/2025 13:30:16] "[36mGET /static/js/modules/dashboard/ui.js HTTP/1.1[0m" 304 -
-2025-12-08 13:30:16,430 - 127.0.0.1 - - [08/Dec/2025 13:30:16] "[36mGET /static/js/modules/chart_analysis/events.js HTTP/1.1[0m" 304 -
-2025-12-08 13:30:16,432 - 127.0.0.1 - - [08/Dec/2025 13:30:16] "[36mGET /static/js/modules/ui_components/collapsible.js HTTP/1.1[0m" 304 -
-2025-12-08 13:30:16,434 - 127.0.0.1 - - [08/Dec/2025 13:30:16] "[36mGET /static/js/modules/common/api/mst.js HTTP/1.1[0m" 304 -
-2025-12-08 13:30:16,436 - 127.0.0.1 - - [08/Dec/2025 13:30:16] "[36mGET /static/js/utils/toast.js HTTP/1.1[0m" 304 -
-2025-12-08 13:30:16,436 - 127.0.0.1 - - [08/Dec/2025 13:30:16] "[36mGET /static/js/modules/common/api/dashboard.js HTTP/1.1[0m" 304 -
-2025-12-08 13:30:16,437 - 127.0.0.1 - - [08/Dec/2025 13:30:16] "[36mGET /static/js/modules/common/api/mngr_sett.js HTTP/1.1[0m" 304 -
-2025-12-08 13:30:16,740 - 127.0.0.1 - - [08/Dec/2025 13:30:16] "[36mGET /static/js/modules/common/api/analytics.js HTTP/1.1[0m" 304 -
-2025-12-08 13:30:17,057 - 127.0.0.1 - - [08/Dec/2025 13:30:17] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:30:17,061 - 127.0.0.1 - - [08/Dec/2025 13:30:17] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:30:17,071 - 127.0.0.1 - - [08/Dec/2025 13:30:17] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:30:17,133 - 127.0.0.1 - - [08/Dec/2025 13:30:17] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:30:17,309 - 127.0.0.1 - - [08/Dec/2025 13:30:17] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:30:17,380 - 127.0.0.1 - - [08/Dec/2025 13:30:17] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:30:17,403 - 127.0.0.1 - - [08/Dec/2025 13:30:17] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:30:17,413 - 127.0.0.1 - - [08/Dec/2025 13:30:17] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:30:17,447 - 127.0.0.1 - - [08/Dec/2025 13:30:17] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:30:17,639 - 127.0.0.1 - - [08/Dec/2025 13:30:17] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:30:17,639 - 127.0.0.1 - - [08/Dec/2025 13:30:17] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:30:17,957 - 127.0.0.1 - - [08/Dec/2025 13:30:17] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:30:17,978 - 127.0.0.1 - - [08/Dec/2025 13:30:17] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:31:17,646 - 127.0.0.1 - - [08/Dec/2025 13:31:17] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:32:17,330 - 127.0.0.1 - - [08/Dec/2025 13:32:17] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:33:17,638 - 127.0.0.1 - - [08/Dec/2025 13:33:17] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:34:17,331 - 127.0.0.1 - - [08/Dec/2025 13:34:17] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:35:17,629 - 127.0.0.1 - - [08/Dec/2025 13:35:17] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:36:17,334 - 127.0.0.1 - - [08/Dec/2025 13:36:17] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:37:43,638 - 127.0.0.1 - - [08/Dec/2025 13:37:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:38:43,332 - 127.0.0.1 - - [08/Dec/2025 13:38:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:39:43,639 - 127.0.0.1 - - [08/Dec/2025 13:39:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:40:43,319 - 127.0.0.1 - - [08/Dec/2025 13:40:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:41:43,647 - 127.0.0.1 - - [08/Dec/2025 13:41:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:42:43,319 - 127.0.0.1 - - [08/Dec/2025 13:42:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:43:43,645 - 127.0.0.1 - - [08/Dec/2025 13:43:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:44:43,322 - 127.0.0.1 - - [08/Dec/2025 13:44:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:45:43,643 - 127.0.0.1 - - [08/Dec/2025 13:45:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:46:43,323 - 127.0.0.1 - - [08/Dec/2025 13:46:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:47:41,951 - 127.0.0.1 - - [08/Dec/2025 13:47:41] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:48:41,629 - 127.0.0.1 - - [08/Dec/2025 13:48:41] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:49:41,954 - 127.0.0.1 - - [08/Dec/2025 13:49:41] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:50:41,634 - 127.0.0.1 - - [08/Dec/2025 13:50:41] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:51:41,938 - 127.0.0.1 - - [08/Dec/2025 13:51:41] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:52:41,632 - 127.0.0.1 - - [08/Dec/2025 13:52:41] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:53:41,939 - 127.0.0.1 - - [08/Dec/2025 13:53:41] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:54:12,675 - 127.0.0.1 - - [08/Dec/2025 13:54:12] "GET /chart_analysis HTTP/1.1" 200 -
-2025-12-08 13:54:12,975 - 127.0.0.1 - - [08/Dec/2025 13:54:12] "GET /static/vendor/css/tailwindcss.css?v=1765137252.674713 HTTP/1.1" 200 -
-2025-12-08 13:54:12,990 - 127.0.0.1 - - [08/Dec/2025 13:54:12] "GET /static/vendor/css/dataTables.tailwindcss.min.css?v=1765137252.674713 HTTP/1.1" 200 -
-2025-12-08 13:54:12,990 - 127.0.0.1 - - [08/Dec/2025 13:54:12] "GET /static/vendor/css/inter.css?v=1765137252.674713 HTTP/1.1" 200 -
-2025-12-08 13:54:12,991 - 127.0.0.1 - - [08/Dec/2025 13:54:12] "GET /static/vendor/css/flatpickr.min.css?v=1765137252.674713 HTTP/1.1" 200 -
-2025-12-08 13:54:12,994 - 127.0.0.1 - - [08/Dec/2025 13:54:12] "GET /static/css/common.css?v=1765137252.674713 HTTP/1.1" 200 -
-2025-12-08 13:54:12,996 - 127.0.0.1 - - [08/Dec/2025 13:54:12] "GET /static/js/session_timer.js?v=1765137252.674713 HTTP/1.1" 200 -
-2025-12-08 13:54:13,301 - 127.0.0.1 - - [08/Dec/2025 13:54:13] "GET /static/js/utils/toast.js?v=1765137252.674713 HTTP/1.1" 200 -
-2025-12-08 13:54:13,301 - 127.0.0.1 - - [08/Dec/2025 13:54:13] "GET /static/js/router.js?v=1765137252.674713 HTTP/1.1" 200 -
-2025-12-08 13:54:13,302 - 127.0.0.1 - - [08/Dec/2025 13:54:13] "[36mGET /static/vendor/js/luxon.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:54:13,306 - 127.0.0.1 - - [08/Dec/2025 13:54:13] "[36mGET /static/vendor/js/d3.v7.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:54:13,306 - 127.0.0.1 - - [08/Dec/2025 13:54:13] "[36mGET /static/vendor/js/jquery-3.6.0.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:54:13,307 - 127.0.0.1 - - [08/Dec/2025 13:54:13] "[36mGET /static/vendor/js/flatpickr.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:54:13,618 - 127.0.0.1 - - [08/Dec/2025 13:54:13] "[36mGET /static/vendor/js/dataTables.js HTTP/1.1[0m" 304 -
-2025-12-08 13:54:13,619 - 127.0.0.1 - - [08/Dec/2025 13:54:13] "[36mGET /static/vendor/js/dataTables.tailwindcss.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:54:13,621 - 127.0.0.1 - - [08/Dec/2025 13:54:13] "[36mGET /static/vendor/js/chart.umd.js HTTP/1.1[0m" 304 -
-2025-12-08 13:54:13,621 - 127.0.0.1 - - [08/Dec/2025 13:54:13] "[36mGET /static/vendor/js/chartjs-adapter-luxon.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:54:13,628 - 127.0.0.1 - - [08/Dec/2025 13:54:13] "[36mGET /static/vendor/js/chartjs-plugin-datalabels.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:54:13,629 - 127.0.0.1 - - [08/Dec/2025 13:54:13] "[36mGET /static/js/pages/chart_analysis.js HTTP/1.1[0m" 304 -
-2025-12-08 13:54:13,962 - 127.0.0.1 - - [08/Dec/2025 13:54:13] "[36mGET /static/js/modules/common/api/auth.js HTTP/1.1[0m" 304 -
-2025-12-08 13:54:13,963 - 127.0.0.1 - - [08/Dec/2025 13:54:13] "[36mGET /static/js/modules/common/api/client.js HTTP/1.1[0m" 304 -
-2025-12-08 13:54:13,964 - 127.0.0.1 - - [08/Dec/2025 13:54:13] "[36mGET /static/js/modules/chart_analysis/data.js HTTP/1.1[0m" 304 -
-2025-12-08 13:54:13,965 - 127.0.0.1 - - [08/Dec/2025 13:54:13] "GET /static/js/modules/chart_analysis/ui.js HTTP/1.1" 200 -
-2025-12-08 13:54:13,966 - 127.0.0.1 - - [08/Dec/2025 13:54:13] "[36mGET /static/js/modules/common/utils.js HTTP/1.1[0m" 304 -
-2025-12-08 13:54:13,968 - 127.0.0.1 - - [08/Dec/2025 13:54:13] "[36mGET /static/js/modules/dashboard/ui.js HTTP/1.1[0m" 304 -
-2025-12-08 13:54:14,267 - 127.0.0.1 - - [08/Dec/2025 13:54:14] "[36mGET /static/js/modules/chart_analysis/events.js HTTP/1.1[0m" 304 -
-2025-12-08 13:54:14,268 - 127.0.0.1 - - [08/Dec/2025 13:54:14] "[36mGET /static/js/modules/ui_components/collapsible.js HTTP/1.1[0m" 304 -
-2025-12-08 13:54:14,274 - 127.0.0.1 - - [08/Dec/2025 13:54:14] "[36mGET /static/js/utils/toast.js HTTP/1.1[0m" 304 -
-2025-12-08 13:54:14,276 - 127.0.0.1 - - [08/Dec/2025 13:54:14] "[36mGET /static/js/modules/common/api/mst.js HTTP/1.1[0m" 304 -
-2025-12-08 13:54:14,277 - 127.0.0.1 - - [08/Dec/2025 13:54:14] "[36mGET /static/js/modules/common/api/dashboard.js HTTP/1.1[0m" 304 -
-2025-12-08 13:54:14,278 - 127.0.0.1 - - [08/Dec/2025 13:54:14] "[36mGET /static/js/modules/common/api/mngr_sett.js HTTP/1.1[0m" 304 -
-2025-12-08 13:54:14,583 - 127.0.0.1 - - [08/Dec/2025 13:54:14] "[36mGET /static/js/modules/common/api/analytics.js HTTP/1.1[0m" 304 -
-2025-12-08 13:54:14,889 - 127.0.0.1 - - [08/Dec/2025 13:54:14] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:54:14,899 - 127.0.0.1 - - [08/Dec/2025 13:54:14] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:54:14,910 - 127.0.0.1 - - [08/Dec/2025 13:54:14] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:54:14,928 - 127.0.0.1 - - [08/Dec/2025 13:54:14] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:54:15,143 - 127.0.0.1 - - [08/Dec/2025 13:54:15] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:54:15,191 - 127.0.0.1 - - [08/Dec/2025 13:54:15] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:54:15,222 - 127.0.0.1 - - [08/Dec/2025 13:54:15] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:54:15,232 - 127.0.0.1 - - [08/Dec/2025 13:54:15] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:54:15,315 - 127.0.0.1 - - [08/Dec/2025 13:54:15] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:54:15,459 - 127.0.0.1 - - [08/Dec/2025 13:54:15] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:54:15,473 - 127.0.0.1 - - [08/Dec/2025 13:54:15] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:54:15,783 - 127.0.0.1 - - [08/Dec/2025 13:54:15] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:54:15,791 - 127.0.0.1 - - [08/Dec/2025 13:54:15] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:55:14,943 - 127.0.0.1 - - [08/Dec/2025 13:55:14] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:56:14,636 - 127.0.0.1 - - [08/Dec/2025 13:56:14] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:56:47,756 - 127.0.0.1 - - [08/Dec/2025 13:56:47] "GET /chart_analysis HTTP/1.1" 200 -
-2025-12-08 13:56:47,777 - 127.0.0.1 - - [08/Dec/2025 13:56:47] "GET /static/vendor/css/tailwindcss.css?v=1765137407.753119 HTTP/1.1" 200 -
-2025-12-08 13:56:48,007 - 127.0.0.1 - - [08/Dec/2025 13:56:48] "GET /static/vendor/css/inter.css?v=1765137407.753119 HTTP/1.1" 200 -
-2025-12-08 13:56:48,085 - 127.0.0.1 - - [08/Dec/2025 13:56:48] "GET /static/vendor/css/flatpickr.min.css?v=1765137407.753119 HTTP/1.1" 200 -
-2025-12-08 13:56:48,087 - 127.0.0.1 - - [08/Dec/2025 13:56:48] "GET /static/vendor/css/dataTables.tailwindcss.min.css?v=1765137407.753119 HTTP/1.1" 200 -
-2025-12-08 13:56:48,087 - 127.0.0.1 - - [08/Dec/2025 13:56:48] "GET /static/css/common.css?v=1765137407.753119 HTTP/1.1" 200 -
-2025-12-08 13:56:48,087 - 127.0.0.1 - - [08/Dec/2025 13:56:48] "GET /static/js/session_timer.js?v=1765137407.753119 HTTP/1.1" 200 -
-2025-12-08 13:56:48,087 - 127.0.0.1 - - [08/Dec/2025 13:56:48] "GET /static/js/router.js?v=1765137407.753119 HTTP/1.1" 200 -
-2025-12-08 13:56:48,314 - 127.0.0.1 - - [08/Dec/2025 13:56:48] "GET /static/js/utils/toast.js?v=1765137407.753119 HTTP/1.1" 200 -
-2025-12-08 13:56:48,405 - 127.0.0.1 - - [08/Dec/2025 13:56:48] "[36mGET /static/vendor/js/luxon.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:56:48,407 - 127.0.0.1 - - [08/Dec/2025 13:56:48] "[36mGET /static/vendor/js/d3.v7.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:56:48,409 - 127.0.0.1 - - [08/Dec/2025 13:56:48] "[36mGET /static/vendor/js/flatpickr.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:56:48,409 - 127.0.0.1 - - [08/Dec/2025 13:56:48] "[36mGET /static/vendor/js/jquery-3.6.0.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:56:48,411 - 127.0.0.1 - - [08/Dec/2025 13:56:48] "[36mGET /static/vendor/js/dataTables.js HTTP/1.1[0m" 304 -
-2025-12-08 13:56:48,627 - 127.0.0.1 - - [08/Dec/2025 13:56:48] "[36mGET /static/vendor/js/dataTables.tailwindcss.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:56:48,728 - 127.0.0.1 - - [08/Dec/2025 13:56:48] "[36mGET /static/vendor/js/chartjs-adapter-luxon.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:56:48,729 - 127.0.0.1 - - [08/Dec/2025 13:56:48] "[36mGET /static/vendor/js/chart.umd.js HTTP/1.1[0m" 304 -
-2025-12-08 13:56:48,732 - 127.0.0.1 - - [08/Dec/2025 13:56:48] "[36mGET /static/vendor/js/chartjs-plugin-datalabels.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:56:48,732 - 127.0.0.1 - - [08/Dec/2025 13:56:48] "[36mGET /static/js/pages/chart_analysis.js HTTP/1.1[0m" 304 -
-2025-12-08 13:56:49,070 - 127.0.0.1 - - [08/Dec/2025 13:56:49] "[36mGET /static/js/modules/chart_analysis/data.js HTTP/1.1[0m" 304 -
-2025-12-08 13:56:49,071 - 127.0.0.1 - - [08/Dec/2025 13:56:49] "[36mGET /static/js/modules/common/api/client.js HTTP/1.1[0m" 304 -
-2025-12-08 13:56:49,071 - 127.0.0.1 - - [08/Dec/2025 13:56:49] "[36mGET /static/js/modules/common/api/auth.js HTTP/1.1[0m" 304 -
-2025-12-08 13:56:49,072 - 127.0.0.1 - - [08/Dec/2025 13:56:49] "[36mGET /static/js/modules/common/utils.js HTTP/1.1[0m" 304 -
-2025-12-08 13:56:49,072 - 127.0.0.1 - - [08/Dec/2025 13:56:49] "GET /static/js/modules/chart_analysis/ui.js HTTP/1.1" 200 -
-2025-12-08 13:56:49,075 - 127.0.0.1 - - [08/Dec/2025 13:56:49] "[36mGET /static/js/modules/dashboard/ui.js HTTP/1.1[0m" 304 -
-2025-12-08 13:56:49,379 - 127.0.0.1 - - [08/Dec/2025 13:56:49] "[36mGET /static/js/modules/chart_analysis/events.js HTTP/1.1[0m" 304 -
-2025-12-08 13:56:49,381 - 127.0.0.1 - - [08/Dec/2025 13:56:49] "[36mGET /static/js/modules/ui_components/collapsible.js HTTP/1.1[0m" 304 -
-2025-12-08 13:56:49,384 - 127.0.0.1 - - [08/Dec/2025 13:56:49] "[36mGET /static/js/modules/common/api/mst.js HTTP/1.1[0m" 304 -
-2025-12-08 13:56:49,387 - 127.0.0.1 - - [08/Dec/2025 13:56:49] "[36mGET /static/js/modules/common/api/dashboard.js HTTP/1.1[0m" 304 -
-2025-12-08 13:56:49,389 - 127.0.0.1 - - [08/Dec/2025 13:56:49] "[36mGET /static/js/modules/common/api/mngr_sett.js HTTP/1.1[0m" 304 -
-2025-12-08 13:56:49,391 - 127.0.0.1 - - [08/Dec/2025 13:56:49] "[36mGET /static/js/utils/toast.js HTTP/1.1[0m" 304 -
-2025-12-08 13:56:49,694 - 127.0.0.1 - - [08/Dec/2025 13:56:49] "[36mGET /static/js/modules/common/api/analytics.js HTTP/1.1[0m" 304 -
-2025-12-08 13:56:50,007 - 127.0.0.1 - - [08/Dec/2025 13:56:50] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:56:50,014 - 127.0.0.1 - - [08/Dec/2025 13:56:50] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:56:50,031 - 127.0.0.1 - - [08/Dec/2025 13:56:50] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:56:50,042 - 127.0.0.1 - - [08/Dec/2025 13:56:50] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:56:50,271 - 127.0.0.1 - - [08/Dec/2025 13:56:50] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:56:50,328 - 127.0.0.1 - - [08/Dec/2025 13:56:50] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:56:50,344 - 127.0.0.1 - - [08/Dec/2025 13:56:50] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:56:50,348 - 127.0.0.1 - - [08/Dec/2025 13:56:50] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:56:50,350 - 127.0.0.1 - - [08/Dec/2025 13:56:50] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:56:50,597 - 127.0.0.1 - - [08/Dec/2025 13:56:50] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:56:50,607 - 127.0.0.1 - - [08/Dec/2025 13:56:50] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:56:50,924 - 127.0.0.1 - - [08/Dec/2025 13:56:50] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:56:50,940 - 127.0.0.1 - - [08/Dec/2025 13:56:50] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:57:50,937 - 127.0.0.1 - - [08/Dec/2025 13:57:50] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:58:50,636 - 127.0.0.1 - - [08/Dec/2025 13:58:50] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:59:32,863 - 127.0.0.1 - - [08/Dec/2025 13:59:32] "GET /chart_analysis HTTP/1.1" 200 -
-2025-12-08 13:59:32,883 - 127.0.0.1 - - [08/Dec/2025 13:59:32] "GET /static/vendor/css/tailwindcss.css?v=1765137572.860986 HTTP/1.1" 200 -
-2025-12-08 13:59:33,117 - 127.0.0.1 - - [08/Dec/2025 13:59:33] "GET /static/vendor/css/inter.css?v=1765137572.860986 HTTP/1.1" 200 -
-2025-12-08 13:59:33,188 - 127.0.0.1 - - [08/Dec/2025 13:59:33] "GET /static/vendor/css/flatpickr.min.css?v=1765137572.860986 HTTP/1.1" 200 -
-2025-12-08 13:59:33,189 - 127.0.0.1 - - [08/Dec/2025 13:59:33] "GET /static/vendor/css/dataTables.tailwindcss.min.css?v=1765137572.860986 HTTP/1.1" 200 -
-2025-12-08 13:59:33,189 - 127.0.0.1 - - [08/Dec/2025 13:59:33] "GET /static/css/common.css?v=1765137572.860986 HTTP/1.1" 200 -
-2025-12-08 13:59:33,190 - 127.0.0.1 - - [08/Dec/2025 13:59:33] "GET /static/js/session_timer.js?v=1765137572.860986 HTTP/1.1" 200 -
-2025-12-08 13:59:33,205 - 127.0.0.1 - - [08/Dec/2025 13:59:33] "GET /static/js/router.js?v=1765137572.860986 HTTP/1.1" 200 -
-2025-12-08 13:59:33,427 - 127.0.0.1 - - [08/Dec/2025 13:59:33] "GET /static/js/utils/toast.js?v=1765137572.860986 HTTP/1.1" 200 -
-2025-12-08 13:59:33,501 - 127.0.0.1 - - [08/Dec/2025 13:59:33] "[36mGET /static/vendor/js/d3.v7.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:59:33,501 - 127.0.0.1 - - [08/Dec/2025 13:59:33] "[36mGET /static/vendor/js/luxon.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:59:33,504 - 127.0.0.1 - - [08/Dec/2025 13:59:33] "[36mGET /static/vendor/js/jquery-3.6.0.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:59:33,506 - 127.0.0.1 - - [08/Dec/2025 13:59:33] "[36mGET /static/vendor/js/flatpickr.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:59:33,513 - 127.0.0.1 - - [08/Dec/2025 13:59:33] "[36mGET /static/vendor/js/dataTables.js HTTP/1.1[0m" 304 -
-2025-12-08 13:59:33,744 - 127.0.0.1 - - [08/Dec/2025 13:59:33] "[36mGET /static/vendor/js/dataTables.tailwindcss.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:59:33,827 - 127.0.0.1 - - [08/Dec/2025 13:59:33] "[36mGET /static/vendor/js/chart.umd.js HTTP/1.1[0m" 304 -
-2025-12-08 13:59:33,828 - 127.0.0.1 - - [08/Dec/2025 13:59:33] "[36mGET /static/vendor/js/chartjs-adapter-luxon.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:59:33,829 - 127.0.0.1 - - [08/Dec/2025 13:59:33] "[36mGET /static/vendor/js/chartjs-plugin-datalabels.min.js HTTP/1.1[0m" 304 -
-2025-12-08 13:59:33,830 - 127.0.0.1 - - [08/Dec/2025 13:59:33] "GET /static/js/pages/chart_analysis.js HTTP/1.1" 200 -
-2025-12-08 13:59:34,154 - 127.0.0.1 - - [08/Dec/2025 13:59:34] "[36mGET /static/js/modules/common/api/client.js HTTP/1.1[0m" 304 -
-2025-12-08 13:59:34,155 - 127.0.0.1 - - [08/Dec/2025 13:59:34] "[36mGET /static/js/modules/common/api/auth.js HTTP/1.1[0m" 304 -
-2025-12-08 13:59:34,156 - 127.0.0.1 - - [08/Dec/2025 13:59:34] "[36mGET /static/js/modules/common/utils.js HTTP/1.1[0m" 304 -
-2025-12-08 13:59:34,158 - 127.0.0.1 - - [08/Dec/2025 13:59:34] "[36mGET /static/js/modules/chart_analysis/data.js HTTP/1.1[0m" 304 -
-2025-12-08 13:59:34,160 - 127.0.0.1 - - [08/Dec/2025 13:59:34] "[36mGET /static/js/modules/dashboard/ui.js HTTP/1.1[0m" 304 -
-2025-12-08 13:59:34,160 - 127.0.0.1 - - [08/Dec/2025 13:59:34] "GET /static/js/modules/chart_analysis/ui.js HTTP/1.1" 200 -
-2025-12-08 13:59:34,473 - 127.0.0.1 - - [08/Dec/2025 13:59:34] "[36mGET /static/js/modules/chart_analysis/events.js HTTP/1.1[0m" 304 -
-2025-12-08 13:59:34,475 - 127.0.0.1 - - [08/Dec/2025 13:59:34] "[36mGET /static/js/modules/ui_components/collapsible.js HTTP/1.1[0m" 304 -
-2025-12-08 13:59:34,478 - 127.0.0.1 - - [08/Dec/2025 13:59:34] "[36mGET /static/js/modules/common/api/mst.js HTTP/1.1[0m" 304 -
-2025-12-08 13:59:34,479 - 127.0.0.1 - - [08/Dec/2025 13:59:34] "[36mGET /static/js/utils/toast.js HTTP/1.1[0m" 304 -
-2025-12-08 13:59:34,481 - 127.0.0.1 - - [08/Dec/2025 13:59:34] "[36mGET /static/js/modules/common/api/dashboard.js HTTP/1.1[0m" 304 -
-2025-12-08 13:59:34,483 - 127.0.0.1 - - [08/Dec/2025 13:59:34] "[36mGET /static/js/modules/common/api/mngr_sett.js HTTP/1.1[0m" 304 -
-2025-12-08 13:59:34,789 - 127.0.0.1 - - [08/Dec/2025 13:59:34] "[36mGET /static/js/modules/common/api/analytics.js HTTP/1.1[0m" 304 -
-2025-12-08 13:59:35,121 - 127.0.0.1 - - [08/Dec/2025 13:59:35] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:59:35,128 - 127.0.0.1 - - [08/Dec/2025 13:59:35] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:59:35,143 - 127.0.0.1 - - [08/Dec/2025 13:59:35] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:59:35,153 - 127.0.0.1 - - [08/Dec/2025 13:59:35] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:59:35,362 - 127.0.0.1 - - [08/Dec/2025 13:59:35] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:59:35,447 - 127.0.0.1 - - [08/Dec/2025 13:59:35] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 13:59:35,461 - 127.0.0.1 - - [08/Dec/2025 13:59:35] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 13:59:35,464 - 127.0.0.1 - - [08/Dec/2025 13:59:35] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 13:59:35,514 - 127.0.0.1 - - [08/Dec/2025 13:59:35] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 13:59:35,691 - 127.0.0.1 - - [08/Dec/2025 13:59:35] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:59:35,702 - 127.0.0.1 - - [08/Dec/2025 13:59:35] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:59:36,012 - 127.0.0.1 - - [08/Dec/2025 13:59:36] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 13:59:36,018 - 127.0.0.1 - - [08/Dec/2025 13:59:36] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 14:00:18,539 - 127.0.0.1 - - [08/Dec/2025 14:00:18] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 14:00:18,554 - 127.0.0.1 - - [08/Dec/2025 14:00:18] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 14:00:20,081 - 127.0.0.1 - - [08/Dec/2025 14:00:20] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 14:00:20,387 - 127.0.0.1 - - [08/Dec/2025 14:00:20] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 14:00:35,947 - 127.0.0.1 - - [08/Dec/2025 14:00:35] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:01:35,636 - 127.0.0.1 - - [08/Dec/2025 14:01:35] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:02:12,116 - 127.0.0.1 - - [08/Dec/2025 14:02:12] "GET /chart_analysis HTTP/1.1" 200 -
-2025-12-08 14:02:12,130 - 127.0.0.1 - - [08/Dec/2025 14:02:12] "GET /static/vendor/css/tailwindcss.css?v=1765137732.11565 HTTP/1.1" 200 -
-2025-12-08 14:02:12,356 - 127.0.0.1 - - [08/Dec/2025 14:02:12] "GET /static/vendor/css/inter.css?v=1765137732.11565 HTTP/1.1" 200 -
-2025-12-08 14:02:12,447 - 127.0.0.1 - - [08/Dec/2025 14:02:12] "GET /static/vendor/css/dataTables.tailwindcss.min.css?v=1765137732.11565 HTTP/1.1" 200 -
-2025-12-08 14:02:12,447 - 127.0.0.1 - - [08/Dec/2025 14:02:12] "GET /static/vendor/css/flatpickr.min.css?v=1765137732.11565 HTTP/1.1" 200 -
-2025-12-08 14:02:12,447 - 127.0.0.1 - - [08/Dec/2025 14:02:12] "GET /static/css/common.css?v=1765137732.11565 HTTP/1.1" 200 -
-2025-12-08 14:02:12,448 - 127.0.0.1 - - [08/Dec/2025 14:02:12] "GET /static/js/session_timer.js?v=1765137732.11565 HTTP/1.1" 200 -
-2025-12-08 14:02:12,449 - 127.0.0.1 - - [08/Dec/2025 14:02:12] "GET /static/js/router.js?v=1765137732.11565 HTTP/1.1" 200 -
-2025-12-08 14:02:12,673 - 127.0.0.1 - - [08/Dec/2025 14:02:12] "GET /static/js/utils/toast.js?v=1765137732.11565 HTTP/1.1" 200 -
-2025-12-08 14:02:12,769 - 127.0.0.1 - - [08/Dec/2025 14:02:12] "[36mGET /static/vendor/js/d3.v7.min.js HTTP/1.1[0m" 304 -
-2025-12-08 14:02:12,770 - 127.0.0.1 - - [08/Dec/2025 14:02:12] "[36mGET /static/vendor/js/luxon.min.js HTTP/1.1[0m" 304 -
-2025-12-08 14:02:12,771 - 127.0.0.1 - - [08/Dec/2025 14:02:12] "[36mGET /static/vendor/js/jquery-3.6.0.min.js HTTP/1.1[0m" 304 -
-2025-12-08 14:02:12,771 - 127.0.0.1 - - [08/Dec/2025 14:02:12] "[36mGET /static/vendor/js/flatpickr.min.js HTTP/1.1[0m" 304 -
-2025-12-08 14:02:12,773 - 127.0.0.1 - - [08/Dec/2025 14:02:12] "[36mGET /static/vendor/js/dataTables.js HTTP/1.1[0m" 304 -
-2025-12-08 14:02:12,985 - 127.0.0.1 - - [08/Dec/2025 14:02:12] "[36mGET /static/vendor/js/dataTables.tailwindcss.min.js HTTP/1.1[0m" 304 -
-2025-12-08 14:02:13,095 - 127.0.0.1 - - [08/Dec/2025 14:02:13] "[36mGET /static/vendor/js/chart.umd.js HTTP/1.1[0m" 304 -
-2025-12-08 14:02:13,095 - 127.0.0.1 - - [08/Dec/2025 14:02:13] "[36mGET /static/vendor/js/chartjs-adapter-luxon.min.js HTTP/1.1[0m" 304 -
-2025-12-08 14:02:13,096 - 127.0.0.1 - - [08/Dec/2025 14:02:13] "[36mGET /static/vendor/js/chartjs-plugin-datalabels.min.js HTTP/1.1[0m" 304 -
-2025-12-08 14:02:13,098 - 127.0.0.1 - - [08/Dec/2025 14:02:13] "GET /static/js/pages/chart_analysis.js HTTP/1.1" 200 -
-2025-12-08 14:02:13,425 - 127.0.0.1 - - [08/Dec/2025 14:02:13] "[36mGET /static/js/modules/common/api/client.js HTTP/1.1[0m" 304 -
-2025-12-08 14:02:13,426 - 127.0.0.1 - - [08/Dec/2025 14:02:13] "[36mGET /static/js/modules/common/api/auth.js HTTP/1.1[0m" 304 -
-2025-12-08 14:02:13,428 - 127.0.0.1 - - [08/Dec/2025 14:02:13] "[36mGET /static/js/modules/common/utils.js HTTP/1.1[0m" 304 -
-2025-12-08 14:02:13,431 - 127.0.0.1 - - [08/Dec/2025 14:02:13] "[36mGET /static/js/modules/chart_analysis/data.js HTTP/1.1[0m" 304 -
-2025-12-08 14:02:13,431 - 127.0.0.1 - - [08/Dec/2025 14:02:13] "GET /static/js/modules/chart_analysis/ui.js HTTP/1.1" 200 -
-2025-12-08 14:02:13,432 - 127.0.0.1 - - [08/Dec/2025 14:02:13] "[36mGET /static/js/modules/dashboard/ui.js HTTP/1.1[0m" 304 -
-2025-12-08 14:02:13,743 - 127.0.0.1 - - [08/Dec/2025 14:02:13] "[36mGET /static/js/utils/toast.js HTTP/1.1[0m" 304 -
-2025-12-08 14:02:13,743 - 127.0.0.1 - - [08/Dec/2025 14:02:13] "[36mGET /static/js/modules/chart_analysis/events.js HTTP/1.1[0m" 304 -
-2025-12-08 14:02:13,744 - 127.0.0.1 - - [08/Dec/2025 14:02:13] "[36mGET /static/js/modules/ui_components/collapsible.js HTTP/1.1[0m" 304 -
-2025-12-08 14:02:13,746 - 127.0.0.1 - - [08/Dec/2025 14:02:13] "[36mGET /static/js/modules/common/api/mst.js HTTP/1.1[0m" 304 -
-2025-12-08 14:02:13,750 - 127.0.0.1 - - [08/Dec/2025 14:02:13] "[36mGET /static/js/modules/common/api/dashboard.js HTTP/1.1[0m" 304 -
-2025-12-08 14:02:13,751 - 127.0.0.1 - - [08/Dec/2025 14:02:13] "[36mGET /static/js/modules/common/api/mngr_sett.js HTTP/1.1[0m" 304 -
-2025-12-08 14:02:14,058 - 127.0.0.1 - - [08/Dec/2025 14:02:14] "[36mGET /static/js/modules/common/api/analytics.js HTTP/1.1[0m" 304 -
-2025-12-08 14:02:14,372 - 127.0.0.1 - - [08/Dec/2025 14:02:14] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:02:14,381 - 127.0.0.1 - - [08/Dec/2025 14:02:14] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 14:02:14,400 - 127.0.0.1 - - [08/Dec/2025 14:02:14] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 14:02:14,425 - 127.0.0.1 - - [08/Dec/2025 14:02:14] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 14:02:14,618 - 127.0.0.1 - - [08/Dec/2025 14:02:14] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:02:14,682 - 127.0.0.1 - - [08/Dec/2025 14:02:14] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 14:02:14,697 - 127.0.0.1 - - [08/Dec/2025 14:02:14] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 14:02:14,731 - 127.0.0.1 - - [08/Dec/2025 14:02:14] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:02:14,740 - 127.0.0.1 - - [08/Dec/2025 14:02:14] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 14:02:14,925 - 127.0.0.1 - - [08/Dec/2025 14:02:14] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 14:02:14,956 - 127.0.0.1 - - [08/Dec/2025 14:02:14] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 14:02:15,254 - 127.0.0.1 - - [08/Dec/2025 14:02:15] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 14:02:15,269 - 127.0.0.1 - - [08/Dec/2025 14:02:15] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 14:03:14,948 - 127.0.0.1 - - [08/Dec/2025 14:03:14] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:04:14,628 - 127.0.0.1 - - [08/Dec/2025 14:04:14] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:05:14,951 - 127.0.0.1 - - [08/Dec/2025 14:05:14] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:06:14,635 - 127.0.0.1 - - [08/Dec/2025 14:06:14] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:07:14,953 - 127.0.0.1 - - [08/Dec/2025 14:07:14] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:08:06,096 - 127.0.0.1 - - [08/Dec/2025 14:08:06] "GET /chart_analysis HTTP/1.1" 200 -
-2025-12-08 14:08:06,396 - 127.0.0.1 - - [08/Dec/2025 14:08:06] "GET /static/vendor/css/tailwindcss.css?v=1765138086.095438 HTTP/1.1" 200 -
-2025-12-08 14:08:06,419 - 127.0.0.1 - - [08/Dec/2025 14:08:06] "GET /static/vendor/css/flatpickr.min.css?v=1765138086.095438 HTTP/1.1" 200 -
-2025-12-08 14:08:06,419 - 127.0.0.1 - - [08/Dec/2025 14:08:06] "GET /static/vendor/css/dataTables.tailwindcss.min.css?v=1765138086.095438 HTTP/1.1" 200 -
-2025-12-08 14:08:06,420 - 127.0.0.1 - - [08/Dec/2025 14:08:06] "GET /static/vendor/css/inter.css?v=1765138086.095438 HTTP/1.1" 200 -
-2025-12-08 14:08:06,420 - 127.0.0.1 - - [08/Dec/2025 14:08:06] "GET /static/css/common.css?v=1765138086.095438 HTTP/1.1" 200 -
-2025-12-08 14:08:06,420 - 127.0.0.1 - - [08/Dec/2025 14:08:06] "[36mGET /static/vendor/js/luxon.min.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:06,724 - 127.0.0.1 - - [08/Dec/2025 14:08:06] "[36mGET /static/vendor/js/d3.v7.min.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:06,732 - 127.0.0.1 - - [08/Dec/2025 14:08:06] "[36mGET /static/vendor/js/jquery-3.6.0.min.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:06,733 - 127.0.0.1 - - [08/Dec/2025 14:08:06] "[36mGET /static/vendor/js/flatpickr.min.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:06,736 - 127.0.0.1 - - [08/Dec/2025 14:08:06] "[36mGET /static/vendor/js/dataTables.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:06,740 - 127.0.0.1 - - [08/Dec/2025 14:08:06] "[36mGET /static/vendor/js/dataTables.tailwindcss.min.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:06,741 - 127.0.0.1 - - [08/Dec/2025 14:08:06] "[36mGET /static/vendor/js/chart.umd.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:07,042 - 127.0.0.1 - - [08/Dec/2025 14:08:07] "[36mGET /static/vendor/js/chartjs-adapter-luxon.min.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:07,047 - 127.0.0.1 - - [08/Dec/2025 14:08:07] "GET /static/js/utils/toast.js?v=1765138086.095438 HTTP/1.1" 200 -
-2025-12-08 14:08:07,047 - 127.0.0.1 - - [08/Dec/2025 14:08:07] "GET /static/js/session_timer.js?v=1765138086.095438 HTTP/1.1" 200 -
-2025-12-08 14:08:07,048 - 127.0.0.1 - - [08/Dec/2025 14:08:07] "GET /static/js/router.js?v=1765138086.095438 HTTP/1.1" 200 -
-2025-12-08 14:08:07,051 - 127.0.0.1 - - [08/Dec/2025 14:08:07] "[36mGET /static/vendor/js/chartjs-plugin-datalabels.min.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:07,053 - 127.0.0.1 - - [08/Dec/2025 14:08:07] "GET /static/js/pages/chart_analysis.js HTTP/1.1" 200 -
-2025-12-08 14:08:07,375 - 127.0.0.1 - - [08/Dec/2025 14:08:07] "[36mGET /static/js/modules/common/utils.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:07,375 - 127.0.0.1 - - [08/Dec/2025 14:08:07] "[36mGET /static/js/modules/common/api/client.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:07,376 - 127.0.0.1 - - [08/Dec/2025 14:08:07] "[36mGET /static/js/modules/common/api/auth.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:07,376 - 127.0.0.1 - - [08/Dec/2025 14:08:07] "[36mGET /static/js/modules/chart_analysis/data.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:07,377 - 127.0.0.1 - - [08/Dec/2025 14:08:07] "GET /static/js/modules/chart_analysis/ui.js HTTP/1.1" 200 -
-2025-12-08 14:08:07,380 - 127.0.0.1 - - [08/Dec/2025 14:08:07] "[36mGET /static/js/modules/dashboard/ui.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:07,689 - 127.0.0.1 - - [08/Dec/2025 14:08:07] "[36mGET /static/js/modules/ui_components/collapsible.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:07,690 - 127.0.0.1 - - [08/Dec/2025 14:08:07] "[36mGET /static/js/modules/chart_analysis/events.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:07,696 - 127.0.0.1 - - [08/Dec/2025 14:08:07] "[36mGET /static/js/utils/toast.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:07,698 - 127.0.0.1 - - [08/Dec/2025 14:08:07] "[36mGET /static/js/modules/common/api/mst.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:07,699 - 127.0.0.1 - - [08/Dec/2025 14:08:07] "[36mGET /static/js/modules/common/api/dashboard.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:07,701 - 127.0.0.1 - - [08/Dec/2025 14:08:07] "[36mGET /static/js/modules/common/api/mngr_sett.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:08,018 - 127.0.0.1 - - [08/Dec/2025 14:08:08] "[36mGET /static/js/modules/common/api/analytics.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:08,329 - 127.0.0.1 - - [08/Dec/2025 14:08:08] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:08:08,334 - 127.0.0.1 - - [08/Dec/2025 14:08:08] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 14:08:08,340 - 127.0.0.1 - - [08/Dec/2025 14:08:08] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 14:08:08,358 - 127.0.0.1 - - [08/Dec/2025 14:08:08] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 14:08:08,584 - 127.0.0.1 - - [08/Dec/2025 14:08:08] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:08:08,660 - 127.0.0.1 - - [08/Dec/2025 14:08:08] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:08:08,676 - 127.0.0.1 - - [08/Dec/2025 14:08:08] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 14:08:08,676 - 127.0.0.1 - - [08/Dec/2025 14:08:08] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 14:08:08,676 - 127.0.0.1 - - [08/Dec/2025 14:08:08] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 14:08:08,902 - 127.0.0.1 - - [08/Dec/2025 14:08:08] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 14:08:08,918 - 127.0.0.1 - - [08/Dec/2025 14:08:08] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 14:08:09,240 - 127.0.0.1 - - [08/Dec/2025 14:08:09] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 14:08:09,259 - 127.0.0.1 - - [08/Dec/2025 14:08:09] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 14:08:11,100 - 127.0.0.1 - - [08/Dec/2025 14:08:11] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 14:08:11,109 - 127.0.0.1 - - [08/Dec/2025 14:08:11] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 14:08:11,605 - 127.0.0.1 - - [08/Dec/2025 14:08:11] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 14:08:11,912 - 127.0.0.1 - - [08/Dec/2025 14:08:11] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 14:08:13,708 - 127.0.0.1 - - [08/Dec/2025 14:08:13] "GET /chart_analysis HTTP/1.1" 200 -
-2025-12-08 14:08:13,724 - 127.0.0.1 - - [08/Dec/2025 14:08:13] "GET /static/vendor/css/tailwindcss.css?v=1765138093.707388 HTTP/1.1" 200 -
-2025-12-08 14:08:13,964 - 127.0.0.1 - - [08/Dec/2025 14:08:13] "GET /static/vendor/css/inter.css?v=1765138093.707388 HTTP/1.1" 200 -
-2025-12-08 14:08:14,031 - 127.0.0.1 - - [08/Dec/2025 14:08:14] "GET /static/vendor/css/flatpickr.min.css?v=1765138093.707388 HTTP/1.1" 200 -
-2025-12-08 14:08:14,033 - 127.0.0.1 - - [08/Dec/2025 14:08:14] "GET /static/vendor/css/dataTables.tailwindcss.min.css?v=1765138093.707388 HTTP/1.1" 200 -
-2025-12-08 14:08:14,035 - 127.0.0.1 - - [08/Dec/2025 14:08:14] "GET /static/css/common.css?v=1765138093.707388 HTTP/1.1" 200 -
-2025-12-08 14:08:14,037 - 127.0.0.1 - - [08/Dec/2025 14:08:14] "GET /static/js/session_timer.js?v=1765138093.707388 HTTP/1.1" 200 -
-2025-12-08 14:08:14,037 - 127.0.0.1 - - [08/Dec/2025 14:08:14] "[36mGET /static/vendor/js/luxon.min.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:14,285 - 127.0.0.1 - - [08/Dec/2025 14:08:14] "[36mGET /static/vendor/js/d3.v7.min.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:14,347 - 127.0.0.1 - - [08/Dec/2025 14:08:14] "[36mGET /static/vendor/js/flatpickr.min.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:14,347 - 127.0.0.1 - - [08/Dec/2025 14:08:14] "[36mGET /static/vendor/js/jquery-3.6.0.min.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:14,348 - 127.0.0.1 - - [08/Dec/2025 14:08:14] "[36mGET /static/vendor/js/dataTables.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:14,350 - 127.0.0.1 - - [08/Dec/2025 14:08:14] "[36mGET /static/vendor/js/dataTables.tailwindcss.min.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:14,353 - 127.0.0.1 - - [08/Dec/2025 14:08:14] "[36mGET /static/vendor/js/chart.umd.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:14,603 - 127.0.0.1 - - [08/Dec/2025 14:08:14] "[36mGET /static/vendor/js/chartjs-adapter-luxon.min.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:14,657 - 127.0.0.1 - - [08/Dec/2025 14:08:14] "[36mGET /static/vendor/js/chartjs-plugin-datalabels.min.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:14,661 - 127.0.0.1 - - [08/Dec/2025 14:08:14] "GET /static/js/router.js?v=1765138093.707388 HTTP/1.1" 200 -
-2025-12-08 14:08:14,664 - 127.0.0.1 - - [08/Dec/2025 14:08:14] "GET /static/js/utils/toast.js?v=1765138093.707388 HTTP/1.1" 200 -
-2025-12-08 14:08:14,665 - 127.0.0.1 - - [08/Dec/2025 14:08:14] "[36mGET /static/js/pages/chart_analysis.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:14,989 - 127.0.0.1 - - [08/Dec/2025 14:08:14] "[36mGET /static/js/modules/common/api/client.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:14,990 - 127.0.0.1 - - [08/Dec/2025 14:08:14] "[36mGET /static/js/modules/common/api/auth.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:14,991 - 127.0.0.1 - - [08/Dec/2025 14:08:14] "[36mGET /static/js/modules/common/utils.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:14,991 - 127.0.0.1 - - [08/Dec/2025 14:08:14] "[36mGET /static/js/modules/chart_analysis/data.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:14,992 - 127.0.0.1 - - [08/Dec/2025 14:08:14] "[36mGET /static/js/modules/chart_analysis/ui.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:14,998 - 127.0.0.1 - - [08/Dec/2025 14:08:14] "[36mGET /static/js/modules/dashboard/ui.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:15,307 - 127.0.0.1 - - [08/Dec/2025 14:08:15] "[36mGET /static/js/modules/chart_analysis/events.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:15,309 - 127.0.0.1 - - [08/Dec/2025 14:08:15] "[36mGET /static/js/utils/toast.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:15,311 - 127.0.0.1 - - [08/Dec/2025 14:08:15] "[36mGET /static/js/modules/ui_components/collapsible.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:15,313 - 127.0.0.1 - - [08/Dec/2025 14:08:15] "[36mGET /static/js/modules/common/api/mst.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:15,314 - 127.0.0.1 - - [08/Dec/2025 14:08:15] "[36mGET /static/js/modules/common/api/dashboard.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:15,318 - 127.0.0.1 - - [08/Dec/2025 14:08:15] "[36mGET /static/js/modules/common/api/mngr_sett.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:15,614 - 127.0.0.1 - - [08/Dec/2025 14:08:15] "[36mGET /static/js/modules/common/api/analytics.js HTTP/1.1[0m" 304 -
-2025-12-08 14:08:15,932 - 127.0.0.1 - - [08/Dec/2025 14:08:15] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:08:15,938 - 127.0.0.1 - - [08/Dec/2025 14:08:15] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 14:08:15,963 - 127.0.0.1 - - [08/Dec/2025 14:08:15] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 14:08:16,027 - 127.0.0.1 - - [08/Dec/2025 14:08:16] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 14:08:16,183 - 127.0.0.1 - - [08/Dec/2025 14:08:16] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:08:16,245 - 127.0.0.1 - - [08/Dec/2025 14:08:16] "GET /api/dashboard/min-max-dates HTTP/1.1" 200 -
-2025-12-08 14:08:16,268 - 127.0.0.1 - - [08/Dec/2025 14:08:16] "GET /api/mst_list HTTP/1.1" 200 -
-2025-12-08 14:08:16,328 - 127.0.0.1 - - [08/Dec/2025 14:08:16] "GET /api/mngr_sett/settings/all HTTP/1.1" 200 -
-2025-12-08 14:08:16,328 - 127.0.0.1 - - [08/Dec/2025 14:08:16] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:08:16,504 - 127.0.0.1 - - [08/Dec/2025 14:08:16] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 14:08:16,520 - 127.0.0.1 - - [08/Dec/2025 14:08:16] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 14:08:16,825 - 127.0.0.1 - - [08/Dec/2025 14:08:16] "GET /api/analytics/success_rate_trend?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 14:08:16,838 - 127.0.0.1 - - [08/Dec/2025 14:08:16] "GET /api/analytics/trouble_by_code?start_date=2025-01-01&end_date=2025-12-08&job_ids=CD101&job_ids=CD102&job_ids=CD103&job_ids=CD104&job_ids=CD201&job_ids=CD301&job_ids=CD302&job_ids=CD303 HTTP/1.1" 200 -
-2025-12-08 14:09:15,936 - 127.0.0.1 - - [08/Dec/2025 14:09:15] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:10:15,637 - 127.0.0.1 - - [08/Dec/2025 14:10:15] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:11:15,943 - 127.0.0.1 - - [08/Dec/2025 14:11:15] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:12:15,639 - 127.0.0.1 - - [08/Dec/2025 14:12:15] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:13:15,944 - 127.0.0.1 - - [08/Dec/2025 14:13:15] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:14:15,639 - 127.0.0.1 - - [08/Dec/2025 14:14:15] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:15:41,945 - 127.0.0.1 - - [08/Dec/2025 14:15:41] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:16:41,630 - 127.0.0.1 - - [08/Dec/2025 14:16:41] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:17:43,643 - 127.0.0.1 - - [08/Dec/2025 14:17:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:18:43,327 - 127.0.0.1 - - [08/Dec/2025 14:18:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:19:43,646 - 127.0.0.1 - - [08/Dec/2025 14:19:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:20:43,329 - 127.0.0.1 - - [08/Dec/2025 14:20:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:21:43,634 - 127.0.0.1 - - [08/Dec/2025 14:21:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:22:43,339 - 127.0.0.1 - - [08/Dec/2025 14:22:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:23:43,648 - 127.0.0.1 - - [08/Dec/2025 14:23:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:24:43,332 - 127.0.0.1 - - [08/Dec/2025 14:24:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:25:43,632 - 127.0.0.1 - - [08/Dec/2025 14:25:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:26:43,332 - 127.0.0.1 - - [08/Dec/2025 14:26:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:27:43,640 - 127.0.0.1 - - [08/Dec/2025 14:27:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:28:43,324 - 127.0.0.1 - - [08/Dec/2025 14:28:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:29:43,641 - 127.0.0.1 - - [08/Dec/2025 14:29:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:30:43,319 - 127.0.0.1 - - [08/Dec/2025 14:30:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:31:43,646 - 127.0.0.1 - - [08/Dec/2025 14:31:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:32:43,325 - 127.0.0.1 - - [08/Dec/2025 14:32:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:33:43,645 - 127.0.0.1 - - [08/Dec/2025 14:33:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:34:43,323 - 127.0.0.1 - - [08/Dec/2025 14:34:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:35:43,645 - 127.0.0.1 - - [08/Dec/2025 14:35:43] "GET /api/auth/status HTTP/1.1" 200 -
-2025-12-08 14:36:43,322 - 127.0.0.1 - - [08/Dec/2025 14:36:43] "GET /api/auth/status HTTP/1.1" 200 -
+2025-12-18 17:05:19,976 - [33mPress CTRL+C to quit[0m
+2025-12-18 17:05:19,983 -  * Restarting with stat
+2025-12-18 17:05:20,508 -  * Debugger is active!
+2025-12-18 17:05:20,511 -  * Debugger PIN: 528-349-624

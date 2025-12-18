@@ -3,6 +3,7 @@ from typing import Dict, List, Tuple, Optional
 import psycopg2.extras
 from dao.sql_loader import load_sql
 from msys.column_mapper import convert_to_legacy_columns
+from utils.logging_config import log_operation
 
 class AnalyticsDAO:
     def __init__(self, conn):
@@ -17,10 +18,10 @@ class AnalyticsDAO:
             with self.conn.cursor() as cur:
                 cur.execute(query, (user_id, menu_name))
             self.conn.commit()
-            logging.info(f"DAO: Successfully inserted access log for user '{user_id}' at menu '{menu_name}'.")
+            log_operation("분석", "접속 로그", "데이터 삽입", "성공")
         except Exception as e:
             self.conn.rollback()
-            logging.error(f"DAO: Failed to insert access log. Error: {e}", exc_info=True)
+            log_operation("분석", "접속 로그", "데이터 삽입", f"실패: {type(e).__name__}", "ERROR")
             raise
 
     def get_menu_name_by_menu_id(self, menu_id: str) -> Optional[str]:
@@ -65,7 +66,7 @@ class AnalyticsDAO:
             cur.execute(query, params)
             columns = [desc[0] for desc in cur.description]
             results = [dict(zip(columns, row)) for row in cur.fetchall()]
-            logging.info(f"DAO: Fetched {len(results)} records for user access stats.")
+            log_operation("분석", "접속 통계", "데이터 조회", f"{len(results)}건 반환")
             return convert_to_legacy_columns('TB_USER_ACS_LOG', results)
 
     def get_menu_access_stats(self, view_type: str = 'daily', start_date: Optional[str] = None, end_date: Optional[str] = None, year: Optional[str] = None, month: Optional[str] = None) -> List[Dict]:
@@ -97,7 +98,7 @@ class AnalyticsDAO:
             cur.execute(query, params)
             columns = [desc[0] for desc in cur.description]
             results = [dict(zip(columns, row)) for row in cur.fetchall()]
-            logging.info(f"DAO: Fetched {len(results)} records for menu access stats.")
+            log_operation("분석", "메뉴 통계", "데이터 조회", f"{len(results)}건 반환")
             return convert_to_legacy_columns('TB_USER_ACS_LOG', results)
 
     def get_most_recent_data_date(self) -> Optional[str]:

@@ -75,22 +75,38 @@ def get_kst_now() -> datetime:
     kst = pytz.timezone('Asia/Seoul')
     return datetime.now(kst)
 
-def convert_datetime_fields_to_kst_str(data: List[Dict[str, Any]]) -> None:
+def convert_datetime_fields_to_kst_str(data: Any) -> Any:
     """
-    데이터 리스트의 datetime 필드들을 KST 문자열로 변환합니다.
+    데이터의 datetime 필드들을 재귀적으로 KST 문자열로 변환합니다.
+    decimal 객체는 문자열로 변환하여 정확도 보장합니다.
     변환은 in-place로 수행됩니다.
 
     Args:
-        data: 변환할 데이터 리스트 (각 항목은 dict)
+        data: 변환할 데이터 (dict, list, 또는 기타)
+
+    Returns:
+        변환된 데이터
     """
+    import decimal
     kst = pytz.timezone('Asia/Seoul')
     utc = pytz.utc
 
-    for item in data:
-        for key, value in item.items():
+    if isinstance(data, dict):
+        for key, value in data.items():
             if isinstance(value, datetime):
                 if value.tzinfo is None:
                     value = utc.localize(value)
-                item[key] = value.astimezone(kst).strftime('%Y-%m-%d %H:%M:%S')
+                data[key] = value.astimezone(kst).strftime('%Y-%m-%d %H:%M:%S')
+            elif isinstance(value, decimal.Decimal):
+                data[key] = str(value)  # 정확도 보장을 위해 문자열로 변환
             elif value is None:
-                continue
+                data[key] = ''  # None을 빈 문자열로 변환
+            else:
+                # 재귀적으로 처리
+                convert_datetime_fields_to_kst_str(value)
+    elif isinstance(data, list):
+        for item in data:
+            convert_datetime_fields_to_kst_str(item)
+    # 기타 타입은 그대로 반환
+
+    return data

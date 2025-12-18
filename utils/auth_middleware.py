@@ -1,6 +1,7 @@
 from flask import g, session, redirect, url_for, flash, request, jsonify, render_template
 from datetime import datetime
 import os
+from utils.logging_config import log_operation
 
 # 메뉴 권한 매핑: 엔드포인트 -> 필요한 권한
 MENU_PERMISSION_MAPPING = {
@@ -47,53 +48,55 @@ def setup_auth_middleware(app, auth_enabled=True):
         if request.path.startswith('/static'):
             return
 
-        app.logger.info(f"--- [AUTH] Checking auth for request: {request.method} {request.path} (Endpoint: {request.endpoint})")
+        log_operation("인증", "요청 검증", "권한 체크", f"{request.method} {request.path}")
 
         # 세션을 영구 세션으로 설정. PERMANENT_SESSION_LIFETIME에 설정된 시간 후에 만료됩니다.
         session.permanent = True
 
         if not auth_enabled:
             g.user = None
-            app.logger.info("--- [AUTH] Auth is disabled. Skipping checks.")
+            log_operation("인증", "시스템 설정", "인증 비활성화", "체크 생략")
             return
 
         g.user = session.get('user', None)
-        app.logger.info(f"--- [AUTH] User in session: {g.user}")
+        user_status = "로그인됨" if g.user else "미로그인"
+        log_operation("인증", "세션 확인", "사용자 상태", user_status)
 
         # Sliding Session: Update expiry time on each request if user is logged in
         if g.user:
             expiry_time_str = session.get('expiry_time')
-            app.logger.info(f"--- [AUTH] Found expiry_time in session: {expiry_time_str}")
+            log_operation("인증", "세션 검증", "만료 시간 확인", "존재함" if expiry_time_str else "없음")
 
             # expiry_time이 없는 구형 세션은 강제 로그아웃
             if not expiry_time_str:
                 session.clear()
                 g.user = None
                 flash("비정상적인 세션이 감지되어 로그아웃되었습니다. 다시 로그인해주세요.", "warning")
-                app.logger.warning("--- [AUTH] Session exists without expiry_time. Forcing re-login.")
+                log_operation("인증", "세션 검증", "만료 시간 누락", "강제 로그아웃", "WARNING")
                 return redirect(url_for('auth.login'))
 
             try:
                 expiry_time = datetime.fromisoformat(expiry_time_str)
                 now = datetime.utcnow()
                 is_expired = now > expiry_time
-                app.logger.info(f"--- [AUTH] Checking session expiry: Now='{now.isoformat()}', Expiry='{expiry_time.isoformat()}', IsExpired={is_expired}")
+                expiry_status = "만료됨" if is_expired else "유효함"
+                log_operation("인증", "세션 검증", "만료 상태 체크", expiry_status)
 
                 if is_expired:
                     session.clear()
                     g.user = None
-                    app.logger.info("--- [AUTH] Session expired. Clearing session.")
+                    log_operation("인증", "세션 관리", "만료 처리", "세션 정리")
 
                     # API 요청에 대해서는 JSON 응답, 그 외에는 로그인 페이지로 리디렉션
                     if request.path.startswith('/api/'):
-                        app.logger.warning("--- [AUTH] Unauthorized API access due to session expiration. Returning 401.")
+                        log_operation("인증", "API 접근", "세션 만료", "401 반환", "WARNING")
                         return jsonify({"error": "Session expired"}), 401
 
                     flash("세션이 만료되었습니다. 다시 로그인해주세요.", "warning")
-                    app.logger.info("--- [AUTH] Redirecting to login page due to session expiration.")
+                    log_operation("인증", "페이지 리다이렉트", "로그인 페이지", "세션 만료")
                     return redirect(url_for('auth.login'))
             except ValueError:
-                app.logger.warning(f"--- [AUTH] Invalid expiry_time format: {expiry_time_str}. Forcing re-login.")
+                log_operation("인증", "세션 검증", "시간 형식 오류", "강제 로그아웃", "WARNING")
                 session.clear()
                 g.user = None
                 flash("비정상적인 세션이 감지되어 로그아웃되었습니다. 다시 로그인해주세요.", "warning")
@@ -108,39 +111,42 @@ def setup_auth_middleware(app, auth_enabled=True):
             session.clear()
             g.user = None
             flash("비정상적인 세션이 감지되어 로그아웃되었습니다. 다시 로그인해주세요.", "warning")
-            app.logger.warning("--- [AUTH] Invalid session detected. Clearing session and redirecting to login.")
+            log_operation("인증", "세션 검증", "사용자 ID 누락", "강제 로그아웃", "WARNING")
             return redirect(url_for('auth.login'))
 
         excluded_endpoints = ['auth.login', 'auth.logout', 'auth.register', 'auth.request_reset_password', 'static', 'index']
 
         if g.user:
-            app.logger.info(f"--- [AUTH] User is logged in. Checking permissions for path: {request.path}")
+            log_operation("인증", "권한 체크", "메뉴 접근", f"경로: {request.path}")
 
             # 메뉴 권한 체크
             endpoint = request.endpoint
             if endpoint in MENU_PERMISSION_MAPPING:
                 required_permission = MENU_PERMISSION_MAPPING[endpoint]
                 user_permissions = g.user.get('permissions', [])
+                user_id = g.user.get('user_id', 'Unknown')
 
                 if required_permission not in user_permissions:
-                    app.logger.warning(f"--- [AUTH] User '{g.user.get('user_id')}' lacks permission '{required_permission}' for endpoint '{endpoint}'")
+                    log_operation("인증", "권한 체크", "접근 거부", f"사용자: {user_id}, 필요 권한: {required_permission}", "WARNING")
                     if request.path.startswith('/api/'):
                         return jsonify({"error": f"권한이 없습니다: {required_permission}"}), 403
                     else:
                         return render_template("unauthorized.html")
 
-            app.logger.info("--- [AUTH] Auth check passed for logged-in user.")
+            log_operation("인증", "권한 체크", "접근 승인", "통과")
             return
 
-        app.logger.info(f"--- [AUTH] User is not logged in. Endpoint is '{request.endpoint}'.")
+        endpoint_status = "제외 엔드포인트" if request.endpoint in excluded_endpoints else "인증 필요"
+        log_operation("인증", "접근 제어", "엔드포인트 검증", endpoint_status)
+
         if request.endpoint in excluded_endpoints:
-            app.logger.info("--- [AUTH] Endpoint is in exclusion list. Allowing access.")
+            log_operation("인증", "접근 허용", "제외 엔드포인트", "통과")
             return
 
         if request.path.startswith('/api/'):
-            app.logger.warning("--- [AUTH] Unauthorized API access attempt. Returning 401.")
+            log_operation("인증", "API 접근", "미인증 요청", "401 반환", "WARNING")
             return jsonify({"error": "Authentication required"}), 401
 
         flash("로그인이 필요합니다.")
-        app.logger.info("--- [AUTH] No user and not an excluded endpoint. Redirecting to login.")
+        log_operation("인증", "페이지 리다이렉트", "로그인 페이지", "인증 필요")
         return redirect(url_for('auth.login'))

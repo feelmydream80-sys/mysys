@@ -1,6 +1,7 @@
 # dao/schedule_settings_dao.py
 import logging
 from typing import Dict, Optional
+from utils.logging_config import log_operation
 
 class ScheduleSettingsDAO:
     def __init__(self, db_connection):
@@ -65,47 +66,37 @@ class ScheduleSettingsDAO:
 
             from dao.sql_loader import load_sql
             query = load_sql('mngr_sett/get_schedule_settings.sql')
-            self.logger.info(f"DAO: SQL 파일 읽기 성공. 쿼리 길이: {len(query)}자")
-            self.logger.debug(f"DAO: 실행할 SQL 쿼리:\n{query}")
+            log_operation("관리자설정", "스케줄설정", "SQL 파일 로드", f"성공: {len(query)}자")
 
             # 쿼리 실행
-            self.logger.info("DAO: SQL 쿼리 실행 시작")
+            log_operation("관리자설정", "스케줄설정", "데이터 조회", "실행 시작")
             settings = self._execute_query(query, fetch_one=True)
-            self.logger.info(f"DAO: SQL 쿼리 실행 완료. 결과 타입: {type(settings)}")
+            result_type = "데이터 있음" if settings else "데이터 없음"
+            log_operation("관리자설정", "스케줄설정", "데이터 조회", f"완료: {result_type}")
 
             if settings is None:
-                self.logger.warning("DAO: 쿼리 결과가 None입니다. 데이터가 없는 것 같습니다.")
+                log_operation("관리자설정", "스케줄설정", "데이터 확인", "데이터 없음", "WARNING")
                 return None
             elif isinstance(settings, dict):
-                self.logger.info(f"DAO: 딕셔너리 결과 반환. 키 개수: {len(settings)}")
-                # 민감한 정보 제외하고 주요 키들 로깅
+                log_operation("관리자설정", "스케줄설정", "데이터 반환", f"{len(settings)}개 필드")
+                # 민감한 정보 제외하고 주요 키들 로깅 (디버그 모드에서만)
                 safe_keys = ['sett_id', 'grp_min_cnt', 'use_yn', 'grp_brdr_styl', 'grp_colr_crtr']
                 log_info = {k: v for k, v in settings.items() if k in safe_keys}
-                self.logger.info(f"DAO: 주요 설정 값들: {log_info}")
-
-                # 모든 키와 타입 로깅 (디버그 레벨)
-                key_types = {k: type(v).__name__ for k, v in settings.items()}
-                self.logger.debug(f"DAO: 모든 필드 타입들: {key_types}")
+                log_operation("관리자설정", "스케줄설정", "주요 설정", f"sett_id: {settings.get('sett_id')}", "DEBUG", log_info)
             else:
-                self.logger.warning(f"DAO: 예상치 못한 결과 타입: {type(settings)}")
+                log_operation("관리자설정", "스케줄설정", "데이터 타입", f"예상치 못함: {type(settings)}", "WARNING")
 
-            self.logger.info("=== DAO: get_schedule_settings() 성공 완료 ===")
+            log_operation("관리자설정", "스케줄설정", "조회 완료", "성공")
             return settings
 
         except FileNotFoundError as e:
-            self.logger.error(f"DAO: SQL 파일을 찾을 수 없음: {sql_file_path}. 오류: {e}", exc_info=True)
+            log_operation("관리자설정", "스케줄설정", "SQL 파일 로드", "파일 없음", "ERROR")
             raise
         except UnicodeDecodeError as e:
-            self.logger.error(f"DAO: SQL 파일 인코딩 오류: {e}", exc_info=True)
+            log_operation("관리자설정", "스케줄설정", "SQL 파일 로드", "인코딩 오류", "ERROR")
             raise
         except Exception as e:
-            self.logger.error(f"DAO: 스케줄 설정 조회 중 예외 발생: {e}", exc_info=True)
-            # 추가 디버깅 정보
-            try:
-                import traceback
-                self.logger.error(f"DAO: 스택 트레이스:\n{traceback.format_exc()}")
-            except Exception:
-                pass
+            log_operation("관리자설정", "스케줄설정", "데이터 조회", f"실패: {type(e).__name__}", "ERROR")
             raise
 
     def update_schedule_settings(self, settings_data: Dict):
@@ -115,7 +106,10 @@ class ScheduleSettingsDAO:
         try:
             from dao.sql_loader import load_sql
             query = load_sql('mngr_sett/update_schedule_settings.sql')
-            
+            sett_id = settings_data.get('sett_id')
+
+            log_operation("관리자설정", "스케줄설정", "업데이트 시작", f"sett_id: {sett_id}")
+
             # Ensure all keys are present, providing defaults if necessary
             params = {
                 'grp_min_cnt': settings_data.get('grp_min_cnt'),
@@ -146,12 +140,15 @@ class ScheduleSettingsDAO:
                 'grp_sucs_icon_id': settings_data.get('grp_sucs_icon_id'),
                 'sett_id': settings_data.get('sett_id')
             }
-            
+
             with self.conn.cursor() as cursor:
                 cursor.execute(query, params)
 
+            log_operation("관리자설정", "스케줄설정", "업데이트 완료", f"sett_id: {sett_id}")
+
         except Exception as e:
-            self.logger.error(f"DAO: Failed to update schedule settings for sett_id {settings_data.get('sett_id')}: {e}", exc_info=True)
+            sett_id = settings_data.get('sett_id', 'Unknown')
+            log_operation("관리자설정", "스케줄설정", "업데이트 실패", f"sett_id: {sett_id}, 오류: {type(e).__name__}", "ERROR")
             raise
 
     def create_schedule_settings(self, settings_data: Dict) -> int:
@@ -161,6 +158,8 @@ class ScheduleSettingsDAO:
         try:
             from dao.sql_loader import load_sql
             query = load_sql('mngr_sett/create_schedule_settings.sql')
+
+            log_operation("관리자설정", "스케줄설정", "생성 시작", "새 레코드")
 
             params = {
                 'grp_min_cnt': settings_data.get('grp_min_cnt'),
@@ -195,8 +194,9 @@ class ScheduleSettingsDAO:
             with self.conn.cursor() as cursor:
                 cursor.execute(query, params)
                 new_id = cursor.lastrowid
-            
+
+            log_operation("관리자설정", "스케줄설정", "생성 완료", f"sett_id: {new_id}")
             return new_id
         except Exception as e:
-            self.logger.error(f"DAO: Failed to create schedule settings: {e}", exc_info=True)
+            log_operation("관리자설정", "스케줄설정", "생성 실패", f"오류: {type(e).__name__}", "ERROR")
             raise

@@ -1,5 +1,6 @@
 import logging
 from mapper.analysis_mapper import AnalysisMapper
+from utils.logging_config import log_operation
 
 from typing import Optional, Dict, List
 
@@ -15,23 +16,24 @@ class AnalysisService:
         사용자 권한에 따라 조회 가능한 job_id를 필터링합니다.
         """
         try:
-            self.logger.info(f"▶ Service: 동적 차트 데이터 요청: {params} for user: {user.get('user_id') if user else 'None'}")
-            
+            user_id = user.get('user_id') if user else 'None'
+            log_operation("분석", "차트 데이터", "요청 처리", f"사용자: {user_id}")
+
             allowed_job_ids = self._get_allowed_job_ids(user, params.get('job_ids'))
             if allowed_job_ids is not None and not allowed_job_ids:
-                self.logger.warning(f"User {user.get('user_id')} has no data permissions for requested jobs. Returning empty chart data.")
+                log_operation("분석", "차트 데이터", "권한 필터링", f"{len(allowed_job_ids)}개 Job ID 허용", "WARNING")
                 return []
-            
+
             params['job_ids'] = allowed_job_ids
-            
+
             data = self.mapper.get_dynamic_chart_data(params)
-            self.logger.info(f"✅ Service: 동적 차트 데이터 {len(data)}건 조회 성공")
+            log_operation("분석", "차트 데이터", "데이터 조회", f"{len(data)}건 반환")
             return data
         except ValueError as ve:
-            self.logger.error(f"❌ Service: 유효하지 않은 파라미터: {ve}", exc_info=True)
+            log_operation("분석", "차트 데이터", "파라미터 검증", f"유효하지 않음: {str(ve)}", "ERROR")
             raise
         except Exception as e:
-            self.logger.error(f"❌ Service: 동적 차트 데이터 조회 실패: {e}", exc_info=True)
+            log_operation("분석", "차트 데이터", "데이터 조회", f"실패: {type(e).__name__}", "ERROR")
             raise
 
     def _get_allowed_job_ids(self, user: Optional[Dict], requested_job_ids: Optional[List[str]] = None) -> Optional[List[str]]:

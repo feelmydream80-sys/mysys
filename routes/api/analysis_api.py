@@ -6,6 +6,7 @@ import pytz
 
 from msys.database import get_db_connection
 from utils.datetime_utils import convert_datetime_fields_to_kst_str
+from utils.logging_config import log_operation
 from dao.analytics_dao import AnalyticsDAO
 from service.dashboard_service import DashboardService
 from service.mst_service import ConMstService
@@ -21,7 +22,7 @@ def get_analytics_success_rate_trend_api():
     """
     [분석 차트용] 기간별 Job ID별 수집 성공률 추이 데이터를 제공하는 API.
     """
-    logging.info("▶ API: /api/analytics/success_rate_trend 요청 수신")
+    log_operation("분석", "성공률 추이", "API 요청", "수신됨")
     try:
         with get_db_connection() as conn:
             dashboard_service = DashboardService(conn)
@@ -31,19 +32,23 @@ def get_analytics_success_rate_trend_api():
             user = session.get('user')
 
             if not start_date_str or not end_date_str:
+                log_operation("분석", "성공률 추이", "파라미터 검증", "날짜 누락", "WARNING")
                 return jsonify({"message": "시작 및 종료 날짜가 필요합니다."}), 400
             try:
                 start_date_obj = datetime.strptime(start_date_str, '%Y-%m-%d').date()
                 end_date_obj = datetime.strptime(end_date_str, '%Y-%m-%d').date()
                 if start_date_obj > end_date_obj:
+                    log_operation("분석", "성공률 추이", "파라미터 검증", "날짜 범위 오류", "WARNING")
                     return jsonify({"message": "시작 날짜는 종료 날짜보다 빠를 수 없습니다."}), 400
             except ValueError:
+                log_operation("분석", "성공률 추이", "파라미터 검증", "날짜 형식 오류", "WARNING")
                 return jsonify({"message": "날짜 형식이 유효하지 않습니다.YYYY-MM-DD 형식을 사용해주세요."}), 400
 
             trend_data = dashboard_service.get_analytics_success_rate_trend(start_date_str, end_date_str, job_ids, user=user)
+            log_operation("분석", "성공률 추이", "응답 생성", f"{len(trend_data)}건 전송")
             return jsonify(trend_data), 200
     except Exception as e:
-        logging.error(f"❌ API: 분석 성공률 추이 데이터 조회 실패: {e}", exc_info=True)
+        log_operation("분석", "성공률 추이", "데이터 조회", f"실패: {type(e).__name__}", "ERROR")
         return jsonify({"message": "분석 성공률 추이 데이터 조회 중 오류가 발생했습니다."}), 500
 
 @analysis_api_bp.route('/trouble_by_code', methods=['GET'])
@@ -187,14 +192,17 @@ def api_analysis_job_ids():
     """
     tb_con_hist에 실제로 존재하는 job_id만 중복 없이 반환하는 API.
     """
+    log_operation("분석", "Job ID 목록", "API 요청", "수신됨")
     try:
         with get_db_connection() as conn:
             dashboard_service = DashboardService(conn)
             user = session.get('user')
             job_ids = dashboard_service.get_distinct_job_ids(user=user)
             result = [{"job_id": job_id} for job_id in job_ids if job_id]
+            log_operation("분석", "Job ID 목록", "응답 생성", f"{len(result)}건 전송")
             return jsonify(result), 200
     except Exception as e:
+        log_operation("분석", "Job ID 목록", "데이터 조회", f"실패: {type(e).__name__}", "ERROR")
         return jsonify({'message': f'Job ID 목록 조회 실패: {e}'}), 500
 
 @analysis_api_bp.route('/error_codes', methods=['GET'])
