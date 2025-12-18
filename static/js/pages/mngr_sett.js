@@ -311,14 +311,6 @@ function renderDailyStats(data, allMenus = []) {
     debugLog('메뉴 접근 통계:', menu_access_stats);
     debugLog('전체 통계:', total_access_stats);
 
-    // 데이터 검증
-    if (!menu_access_stats || !Array.isArray(menu_access_stats)) {
-        console.warn('메뉴 접근 통계 데이터가 없거나 잘못된 형식입니다:', menu_access_stats);
-    }
-    if (!total_access_stats || typeof total_access_stats !== 'object') {
-        console.warn('전체 통계 데이터가 없거나 잘못된 형식입니다:', total_access_stats);
-    }
-
     // Render summary
     statsElements.summaryContainer.innerHTML = `
         <div class="bg-blue-100 p-4 rounded-lg text-center">

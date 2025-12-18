@@ -16,18 +16,19 @@ class DashboardMapper:
         self.conn = conn
 
     def get_summary(self, start_date: Optional[str] = None, end_date: Optional[str] = None, all_data: bool = False, job_ids: Optional[List[str]] = None) -> List[Dict]:
-        try:
-            query, params = DashboardSQL.get_dashboard_summary(start_date, end_date, all_data, job_ids)
-            with self.conn.cursor() as cur:
-                cur.execute(query, params)
-                columns = [desc[0] for desc in cur.description]
-                results = [dict(zip(columns, row)) for row in cur.fetchall()]
-                converted_results = convert_to_new_columns('TB_CON_HIST', results)
-                log_operation("대시보드", "요약 데이터", "조회", f"{len(converted_results)}건 반환")
-                return converted_results
-        except Exception as e:
-            log_operation("대시보드", "요약 데이터", "조회", f"실패: {type(e).__name__}", "ERROR")
-            raise
+        logging.debug(f"--- [DEBUG] DashboardMapper.get_summary called with job_ids: {job_ids}")
+        query, params = DashboardSQL.get_dashboard_summary(start_date, end_date, all_data, job_ids)
+        logging.debug(f"--- [DEBUG] Generated SQL Query:\n{query}")
+        logging.debug(f"--- [DEBUG] Query Parameters: {params}")
+        with self.conn.cursor() as cur:
+            cur.execute(query, params)
+            columns = [desc[0] for desc in cur.description]
+            results = [dict(zip(columns, row)) for row in cur.fetchall()]
+            # logging.info(f"Mapper: Fetched {len(results)} records for summary.")
+            # logging.info(f"Original data: {results}")
+            converted_results = convert_to_new_columns('TB_CON_HIST', results)
+            # logging.info(f"Converted data: {converted_results}")
+            return converted_results
 
     def get_min_max_dates(self) -> Optional[Dict]:
         query = load_sql('dashboard/get_min_max_dates.sql')
