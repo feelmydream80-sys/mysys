@@ -144,12 +144,56 @@ export async function init() {
     const downloadRawDataBtn = document.getElementById('downloadRawDataBtn');
     if (downloadRawDataBtn) {
         downloadRawDataBtn.addEventListener('click', () => {
-            // 기존 엑셀 다운로드 로직 사용
-            const excelBtn = document.getElementById('excel-download-btn');
-            if (excelBtn) {
-                excelBtn.click();
-            } else {
-                showMessage('엑셀 다운로드 기능을 사용할 수 없습니다.', 'error');
+            try {
+                // 테이블 데이터 가져오기
+                const table = document.getElementById('detail-table-body');
+                if (!table || !window.XLSX) {
+                    showMessage('엑셀 다운로드 기능을 사용할 수 없습니다.', 'error');
+                    return;
+                }
+
+                // 테이블 데이터를 배열로 변환
+                const rows = table.querySelectorAll('tr');
+                const data = [];
+
+                // 헤더 추가
+                data.push(['수집일자', '코드명', '성공/총수량 (%)', '성공여부']);
+
+                // 데이터 행 추가
+                rows.forEach(row => {
+                    const cells = row.querySelectorAll('td');
+                    if (cells.length >= 4) {
+                        const rowData = [
+                            cells[0].textContent.trim(),
+                            cells[1].textContent.trim(),
+                            cells[2].textContent.trim(),
+                            cells[3].textContent.trim()
+                        ];
+                        data.push(rowData);
+                    }
+                });
+
+                if (data.length <= 1) {
+                    showMessage('다운로드할 데이터가 없습니다.', 'warning');
+                    return;
+                }
+
+                // 워크시트 생성
+                const ws = window.XLSX.utils.aoa_to_sheet(data);
+
+                // 워크북 생성
+                const wb = window.XLSX.utils.book_new();
+                window.XLSX.utils.book_append_sheet(wb, ws, '원천데이터');
+
+                // 파일 다운로드
+                const fileName = `원천데이터_${new Date().toISOString().split('T')[0]}.xlsx`;
+                window.XLSX.writeFile(wb, fileName);
+
+                showMessage('원천 데이터 엑셀 다운로드가 시작되었습니다.', 'success');
+
+            } catch (error) {
+                console.error('엑셀 다운로드 중 오류:', error);
+                showMessage('엑셀 다운로드 중 오류가 발생했습니다.', 'error');
             }
         });
     }
