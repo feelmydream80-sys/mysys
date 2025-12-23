@@ -178,6 +178,14 @@ export async function initializeDashboard() {
             });
         }
 
+        // 원천 데이터 엑셀 다운로드 버튼 이벤트 리스너
+        const downloadRawDataBtn = document.getElementById('downloadRawDataBtn');
+        if (downloadRawDataBtn) {
+            downloadRawDataBtn.addEventListener('click', () => {
+                showMessage('대시보드 페이지에서는 원천 데이터 다운로드가 지원되지 않습니다.', 'info');
+            });
+        }
+
         dataFlowStatus.overallStatus = "success";
         showMessage('대시보드 페이지 로드 완료.', 'success');
 
