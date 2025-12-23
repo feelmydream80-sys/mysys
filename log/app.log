@@ -1250,3 +1250,33 @@
 2025-12-23 14:50:33,387 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
 2025-12-23 14:50:33,387 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
 2025-12-23 14:50:33,387 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:51:33,386 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:51:33,386 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:51:33,386 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:51:33,386 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:51:33,386 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:51:33,386 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:52:26,122 - INFO - N/A - logging_config.py:107 - 로깅 시스템이 [파일 + 콘솔 로깅]으로 초기화되었습니다. (디버그 모드)
+2025-12-23 14:52:26,122 - DEBUG - N/A - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:52:26,135 - INFO - N/A - mngr_sett_service.py:285 - Service: Fetching all menu settings.
+2025-12-23 14:52:26,137 - INFO - N/A - mngr_sett_service.py:287 - Service: Fetched 12 menu items successfully.
+2025-12-23 14:52:26,137 - INFO - N/A - msys_app.py:90 - 메뉴 데이터가 성공적으로 캐싱되었습니다.
+2025-12-23 14:52:26,287 - INFO - N/A - msys_app.py:127 -  * Running on http://0.0.0.0:18080
+2025-12-23 14:52:33,385 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:52:33,386 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:52:33,386 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:52:33,386 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:52:33,386 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:52:33,387 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 15:00:25,473 - INFO - N/A - logging_config.py:107 - 로깅 시스템이 [파일 + 콘솔 로깅]으로 초기화되었습니다. (디버그 모드)
+2025-12-23 15:00:25,473 - DEBUG - N/A - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 15:00:25,473 - INFO - N/A - mngr_sett_service.py:285 - Service: Fetching all menu settings.
+2025-12-23 15:00:25,473 - INFO - N/A - mngr_sett_service.py:287 - Service: Fetched 12 menu items successfully.
+2025-12-23 15:00:25,473 - INFO - N/A - msys_app.py:90 - 메뉴 데이터가 성공적으로 캐싱되었습니다.
+2025-12-23 15:00:25,808 - INFO - N/A - msys_app.py:127 -  * Running on http://0.0.0.0:18080
+2025-12-23 15:00:26,360 - INFO - N/A - logging_config.py:107 - 로깅 시스템이 [파일 + 콘솔 로깅]으로 초기화되었습니다. (디버그 모드)
+2025-12-23 15:00:26,360 - DEBUG - N/A - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 15:00:26,375 - INFO - N/A - mngr_sett_service.py:285 - Service: Fetching all menu settings.
+2025-12-23 15:00:26,377 - INFO - N/A - mngr_sett_service.py:287 - Service: Fetched 12 menu items successfully.
+2025-12-23 15:00:26,377 - INFO - N/A - msys_app.py:90 - 메뉴 데이터가 성공적으로 캐싱되었습니다.
+2025-12-23 15:00:26,543 - INFO - N/A - msys_app.py:127 -  * Running on http://0.0.0.0:18080

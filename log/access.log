@@ -184,3 +184,19 @@
 2025-12-23 14:48:33,399 - 127.0.0.1 - - [23/Dec/2025 14:48:33] "GET /api/auth/status HTTP/1.1" 200 -
 2025-12-23 14:49:33,386 - 127.0.0.1 - - [23/Dec/2025 14:49:33] "GET /api/auth/status HTTP/1.1" 200 -
 2025-12-23 14:50:33,387 - 127.0.0.1 - - [23/Dec/2025 14:50:33] "GET /api/auth/status HTTP/1.1" 200 -
+2025-12-23 14:51:33,386 - 127.0.0.1 - - [23/Dec/2025 14:51:33] "GET /api/auth/status HTTP/1.1" 200 -
+2025-12-23 14:52:25,518 -  * Detected change in 'd:\\dev\\msys\\routes\\admin_routes.py', reloading
+2025-12-23 14:52:25,586 -  * Restarting with stat
+2025-12-23 14:52:26,308 -  * Debugger is active!
+2025-12-23 14:52:26,308 -  * Debugger PIN: 528-349-624
+2025-12-23 14:52:33,388 - 127.0.0.1 - - [23/Dec/2025 14:52:33] "GET /api/auth/status HTTP/1.1" 200 -
+2025-12-23 14:52:40,592 -  * Detected change in 'd:\\dev\\msys\\routes\\admin_routes.py', reloading
+2025-12-23 14:52:40,676 -  * Restarting with stat
+2025-12-23 15:00:25,842 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:18080
+ * Running on http://10.200.153.130:18080
+2025-12-23 15:00:25,842 - [33mPress CTRL+C to quit[0m
+2025-12-23 15:00:25,858 -  * Restarting with stat
+2025-12-23 15:00:26,559 -  * Debugger is active!
+2025-12-23 15:00:26,559 -  * Debugger PIN: 298-168-793
