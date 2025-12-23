@@ -1,0 +1,1252 @@
+2025-12-23 14:02:10,493 - INFO - N/A - logging_config.py:107 - 로깅 시스템이 [파일 + 콘솔 로깅]으로 초기화되었습니다. (디버그 모드)
+2025-12-23 14:02:10,497 - DEBUG - N/A - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:10,505 - INFO - N/A - mngr_sett_service.py:285 - Service: Fetching all menu settings.
+2025-12-23 14:02:10,508 - INFO - N/A - mngr_sett_service.py:287 - Service: Fetched 12 menu items successfully.
+2025-12-23 14:02:10,508 - INFO - N/A - msys_app.py:90 - 메뉴 데이터가 성공적으로 캐싱되었습니다.
+2025-12-23 14:02:10,764 - INFO - N/A - msys_app.py:127 -  * Running on http://0.0.0.0:18080
+2025-12-23 14:02:11,337 - INFO - N/A - logging_config.py:107 - 로깅 시스템이 [파일 + 콘솔 로깅]으로 초기화되었습니다. (디버그 모드)
+2025-12-23 14:02:11,340 - DEBUG - N/A - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:11,340 - INFO - N/A - mngr_sett_service.py:285 - Service: Fetching all menu settings.
+2025-12-23 14:02:11,350 - INFO - N/A - mngr_sett_service.py:287 - Service: Fetched 12 menu items successfully.
+2025-12-23 14:02:11,350 - INFO - N/A - msys_app.py:90 - 메뉴 데이터가 성공적으로 캐싱되었습니다.
+2025-12-23 14:02:11,488 - INFO - N/A - msys_app.py:127 -  * Running on http://0.0.0.0:18080
+2025-12-23 14:02:14,791 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /]
+2025-12-23 14:02:14,792 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[미로그인]
+2025-12-23 14:02:14,792 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[접근 제어]-[엔드포인트 검증]-[제외 엔드포인트]
+2025-12-23 14:02:14,792 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[접근 허용]-[제외 엔드포인트]-[통과]
+2025-12-23 14:02:14,796 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /dashboard]
+2025-12-23 14:02:14,796 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[미로그인]
+2025-12-23 14:02:14,796 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[접근 제어]-[엔드포인트 검증]-[인증 필요]
+2025-12-23 14:02:14,797 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[페이지 리다이렉트]-[로그인 페이지]-[인증 필요]
+2025-12-23 14:02:14,800 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /login]
+2025-12-23 14:02:14,800 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[미로그인]
+2025-12-23 14:02:14,801 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[접근 제어]-[엔드포인트 검증]-[제외 엔드포인트]
+2025-12-23 14:02:14,801 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[접근 허용]-[제외 엔드포인트]-[통과]
+2025-12-23 14:02:14,879 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /favicon.ico]
+2025-12-23 14:02:14,879 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[미로그인]
+2025-12-23 14:02:14,880 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[접근 제어]-[엔드포인트 검증]-[인증 필요]
+2025-12-23 14:02:14,880 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[페이지 리다이렉트]-[로그인 페이지]-[인증 필요]
+2025-12-23 14:02:14,883 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /login]
+2025-12-23 14:02:14,883 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[미로그인]
+2025-12-23 14:02:14,884 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[접근 제어]-[엔드포인트 검증]-[제외 엔드포인트]
+2025-12-23 14:02:14,884 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[접근 허용]-[제외 엔드포인트]-[통과]
+2025-12-23 14:02:32,050 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[POST /login]
+2025-12-23 14:02:32,051 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[미로그인]
+2025-12-23 14:02:32,051 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[접근 제어]-[엔드포인트 검증]-[제외 엔드포인트]
+2025-12-23 14:02:32,051 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[접근 허용]-[제외 엔드포인트]-[통과]
+2025-12-23 14:02:32,076 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:32,210 - INFO - 127.0.0.1 - auth_routes.py:152 - Login event saved for user 'admin': AUTH_LOGIN_SUCCESS
+2025-12-23 14:02:32,213 - INFO - 127.0.0.1 - user_mapper.py:116 - DATA_PERMISSIONS_MAPPER_DEBUG: Raw data from fetchall(): []
+2025-12-23 14:02:32,213 - INFO - 127.0.0.1 - user_mapper.py:120 - DATA_PERMISSIONS_MAPPER_DEBUG: Processed data after [row[0]]: []
+2025-12-23 14:02:32,213 - INFO - 127.0.0.1 - auth_routes.py:181 - DATA_PERMISSIONS_DIAGNOSIS: Fetched from DB: [] (Type: <class 'list'>)
+2025-12-23 14:02:32,213 - INFO - 127.0.0.1 - auth_routes.py:185 - DATA_PERMISSIONS_DIAGNOSIS: About to be saved to session: []
+2025-12-23 14:02:32,213 - INFO - 127.0.0.1 - auth_routes.py:222 - --- [DEBUG] Login successful. Session user_info: {'user_id': 'admin', 'permissions': ['collection_schedule', 'card_summary', 'dashboard', 'jandi', 'data_analysis', 'chart_analysis', 'raw_data', 'data_spec', 'mngr_sett'], 'data_permissions': []}
+2025-12-23 14:02:32,218 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:32,221 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /collection_schedule]
+2025-12-23 14:02:32,222 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:32,222 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:32,222 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:32,223 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /collection_schedule]
+2025-12-23 14:02:32,223 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:32,223 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:32,230 - INFO - 127.0.0.1 - logging_config.py:40 - [분석]-[접속 로그]-[데이터 삽입]-[성공]
+2025-12-23 14:02:32,254 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:32,625 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:02:32,626 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:32,626 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:32,626 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/mst_list]
+2025-12-23 14:02:32,627 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:32,627 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:32,628 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /favicon.ico]
+2025-12-23 14:02:32,628 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:02:32,628 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:32,628 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:32,629 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:32,629 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:32,629 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:32,630 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/mst_list]
+2025-12-23 14:02:32,631 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:32,631 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:32,631 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /favicon.ico]
+2025-12-23 14:02:32,631 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:32,632 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:32,640 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:32,643 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/mst_list]
+2025-12-23 14:02:32,643 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:32,644 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:32,644 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:32,644 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/collection_schedule]
+2025-12-23 14:02:32,645 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/mst_list]
+2025-12-23 14:02:32,645 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:32,645 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:32,645 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:32,645 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:32,645 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:32,646 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/collection_schedule]
+2025-12-23 14:02:32,646 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:32,652 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:32,663 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:32,979 - INFO - 127.0.0.1 - mngr_sett_service.py:298 - === SERVICE: get_schedule_settings_service() 시작 ===
+2025-12-23 14:02:32,979 - INFO - 127.0.0.1 - mngr_sett_service.py:302 - SERVICE: DAO 호출 준비
+2025-12-23 14:02:32,980 - INFO - 127.0.0.1 - mngr_sett_service.py:308 - SERVICE: DAO.get_schedule_settings() 호출
+2025-12-23 14:02:32,980 - INFO - 127.0.0.1 - schedule_settings_dao.py:57 - === DAO: get_schedule_settings() 시작 ===
+2025-12-23 14:02:32,981 - INFO - 127.0.0.1 - logging_config.py:40 - [관리자설정]-[스케줄설정]-[SQL 파일 로드]-[성공: 1444자]
+2025-12-23 14:02:32,981 - INFO - 127.0.0.1 - logging_config.py:40 - [관리자설정]-[스케줄설정]-[데이터 조회]-[실행 시작]
+2025-12-23 14:02:32,981 - DEBUG - 127.0.0.1 - schedule_settings_dao.py:12 - DAO: _execute_query 호출. fetch_one=True, params 개수=0
+2025-12-23 14:02:32,982 - DEBUG - 127.0.0.1 - schedule_settings_dao.py:16 - DAO: 커서 생성 성공
+2025-12-23 14:02:33,007 - DEBUG - 127.0.0.1 - schedule_settings_dao.py:20 - DAO: 쿼리 실행 성공
+2025-12-23 14:02:33,007 - DEBUG - 127.0.0.1 - schedule_settings_dao.py:23 - DAO: fetch_one 모드로 단일 행 조회
+2025-12-23 14:02:33,007 - DEBUG - 127.0.0.1 - schedule_settings_dao.py:29 - DAO: 단일 행 조회 성공. 컬럼 수: 33
+2025-12-23 14:02:33,007 - INFO - 127.0.0.1 - logging_config.py:40 - [관리자설정]-[스케줄설정]-[데이터 조회]-[완료: 데이터 있음]
+2025-12-23 14:02:33,008 - INFO - 127.0.0.1 - logging_config.py:40 - [관리자설정]-[스케줄설정]-[데이터 반환]-[33개 필드]
+2025-12-23 14:02:33,008 - DEBUG - 127.0.0.1 - logging_config.py:38 - [관리자설정]-[스케줄설정]-[주요 설정]-[sett_id: 9] | sett_id=9, grp_min_cnt=4, use_yn=Y, grp_brdr_styl=none, grp_colr_crtr=prgr
+2025-12-23 14:02:33,008 - INFO - 127.0.0.1 - logging_config.py:40 - [관리자설정]-[스케줄설정]-[조회 완료]-[성공]
+2025-12-23 14:02:33,008 - INFO - 127.0.0.1 - mngr_sett_service.py:310 - SERVICE: DAO 호출 완료. 반환 타입: <class 'dict'>
+2025-12-23 14:02:33,008 - INFO - 127.0.0.1 - mngr_sett_service.py:320 - SERVICE: DAO에서 33개의 필드 데이터 수신
+2025-12-23 14:02:33,008 - DEBUG - 127.0.0.1 - mngr_sett_service.py:321 - SERVICE: 수신된 데이터 키들: ['sett_id', 'grp_min_cnt', 'prgs_rt_red_thrsval', 'prgs_rt_org_thrsval', 'use_yn', 'grp_brdr_styl', 'grp_colr_crtr', 'succ_rt_red_thrsval', 'succ_rt_org_thrsval', 'grp_prgs_icon_id', 'grp_prgs_icon_cd', 'grp_sucs_icon_id', 'grp_sucs_icon_cd', 'sucs_icon_id', 'sucs_icon_cd', 'sucs_bg_colr', 'sucs_txt_colr', 'fail_icon_id', 'fail_icon_cd', 'fail_bg_colr', 'fail_txt_colr', 'prgs_icon_id', 'prgs_icon_cd', 'prgs_bg_colr', 'prgs_txt_colr', 'nodt_icon_id', 'nodt_icon_cd', 'nodt_bg_colr', 'nodt_txt_colr', 'schd_icon_id', 'schd_icon_cd', 'schd_bg_colr', 'schd_txt_colr']
+2025-12-23 14:02:33,009 - INFO - 127.0.0.1 - mngr_sett_service.py:324 - SERVICE: 데이터 변환 시작 (snake_case -> camelCase)
+2025-12-23 14:02:33,009 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 sett_id -> settId: 9 (int)
+2025-12-23 14:02:33,009 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 grp_min_cnt -> grpMinCnt: 4 (int)
+2025-12-23 14:02:33,009 - DEBUG - 127.0.0.1 - mngr_sett_service.py:373 - SERVICE: Decimal 변환 - prgs_rt_red_thrsval: 30.0
+2025-12-23 14:02:33,009 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 prgs_rt_red_thrsval -> prgsRtRedThrsval: 30.0 (float)
+2025-12-23 14:02:33,009 - DEBUG - 127.0.0.1 - mngr_sett_service.py:373 - SERVICE: Decimal 변환 - prgs_rt_org_thrsval: 60.0
+2025-12-23 14:02:33,010 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 prgs_rt_org_thrsval -> prgsRtOrgThrsval: 60.0 (float)
+2025-12-23 14:02:33,010 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 succ_rt_red_thrsval -> succRtRedThrsval: 30 (int)
+2025-12-23 14:02:33,010 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 succ_rt_org_thrsval -> succRtOrgThrsval: 60 (int)
+2025-12-23 14:02:33,010 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 use_yn -> useYn: 'Y'
+2025-12-23 14:02:33,010 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 grp_brdr_styl -> grpBrdrStyl: 'none'
+2025-12-23 14:02:33,010 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 grp_colr_crtr -> grpColrCrtr: 'prgr'
+2025-12-23 14:02:33,010 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 sucs_icon_id -> sucsIconId: 1 (int)
+2025-12-23 14:02:33,011 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 sucs_icon_cd -> sucsIconCd: '🟢'
+2025-12-23 14:02:33,011 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 sucs_bg_colr -> sucsBgColr: '#dcfce7'
+2025-12-23 14:02:33,011 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 sucs_txt_colr -> sucsTxtColr: '#166534'
+2025-12-23 14:02:33,011 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 fail_icon_id -> failIconId: 2 (int)
+2025-12-23 14:02:33,011 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 fail_icon_cd -> failIconCd: '🔴'
+2025-12-23 14:02:33,011 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 fail_bg_colr -> failBgColr: '#fee2e2'
+2025-12-23 14:02:33,011 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 fail_txt_colr -> failTxtColr: '#991b1b'
+2025-12-23 14:02:33,012 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 prgs_icon_id -> prgsIconId: 4 (int)
+2025-12-23 14:02:33,012 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 prgs_icon_cd -> prgsIconCd: '🔵'
+2025-12-23 14:02:33,012 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 prgs_bg_colr -> prgsBgColr: '#fef9c3'
+2025-12-23 14:02:33,013 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 prgs_txt_colr -> prgsTxtColr: '#854d0e'
+2025-12-23 14:02:33,013 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 nodt_icon_id -> nodtIconId: 28 (int)
+2025-12-23 14:02:33,013 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 nodt_icon_cd -> nodtIconCd: '⚠️'
+2025-12-23 14:02:33,014 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 nodt_bg_colr -> nodtBgColr: '#ffedd5'
+2025-12-23 14:02:33,014 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 nodt_txt_colr -> nodtTxtColr: '#9a3412'
+2025-12-23 14:02:33,014 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 schd_icon_id -> schdIconId: 10 (int)
+2025-12-23 14:02:33,015 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 schd_icon_cd -> schdIconCd: '⏱️'
+2025-12-23 14:02:33,015 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 schd_bg_colr -> schdBgColr: '#e5e7eb'
+2025-12-23 14:02:33,015 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 schd_txt_colr -> schdTxtColr: '#4b5563'
+2025-12-23 14:02:33,015 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 grp_prgs_icon_id -> grpPrgsIconId: 23 (int)
+2025-12-23 14:02:33,016 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 grp_prgs_icon_cd -> grpPrgsIconCd: '🐛'
+2025-12-23 14:02:33,016 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 grp_sucs_icon_id -> grpSucsIconId: 12 (int)
+2025-12-23 14:02:33,016 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 grp_sucs_icon_cd -> grpSucsIconCd: '🌡️'
+2025-12-23 14:02:33,016 - INFO - 127.0.0.1 - mngr_sett_service.py:391 - SERVICE: 데이터 변환 완료. 33개 필드 변환됨
+2025-12-23 14:02:33,016 - INFO - 127.0.0.1 - mngr_sett_service.py:392 - === SERVICE: get_schedule_settings_service() 성공 완료 ===
+2025-12-23 14:02:33,017 - INFO - 127.0.0.1 - collection_schedule_routes.py:44 - DEBUG_ICON_CHECK: Fetched display_settings from service: {'settId': 9, 'grpMinCnt': 4, 'prgsRtRedThrsval': 30.0, 'prgsRtOrgThrsval': 60.0, 'succRtRedThrsval': 30, 'succRtOrgThrsval': 60, 'useYn': 'Y', 'grpBrdrStyl': 'none', 'grpColrCrtr': 'prgr', 'sucsIconId': 1, 'sucsIconCd': '🟢', 'sucsBgColr': '#dcfce7', 'sucsTxtColr': '#166534', 'failIconId': 2, 'failIconCd': '🔴', 'failBgColr': '#fee2e2', 'failTxtColr': '#991b1b', 'prgsIconId': 4, 'prgsIconCd': '🔵', 'prgsBgColr': '#fef9c3', 'prgsTxtColr': '#854d0e', 'nodtIconId': 28, 'nodtIconCd': '⚠️', 'nodtBgColr': '#ffedd5', 'nodtTxtColr': '#9a3412', 'schdIconId': 10, 'schdIconCd': '⏱️', 'schdBgColr': '#e5e7eb', 'schdTxtColr': '#4b5563', 'grpPrgsIconId': 23, 'grpPrgsIconCd': '🐛', 'grpSucsIconId': 12, 'grpSucsIconCd': '🌡️'}
+2025-12-23 14:02:33,032 - INFO - 127.0.0.1 - collection_schedule_routes.py:53 - DEBUG_ICON_CHECK: Final response_data to be sent: {'schedule_data': [{'date': '2025-12-22 10:00:00', 'job_id': 'CD301', 'cron': '0 10 * * *', 'status': '미수집'}, {'date': '2025-12-22 06:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '미수집'}, {'date': '2025-12-22 10:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '미수집'}, {'date': '2025-12-22 08:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '미수집'}, {'date': '2025-12-22 15:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '미수집'}, {'date': '2025-12-22 10:00:00', 'job_id': 'CD302', 'cron': '0 10 * * *', 'status': '미수집'}, {'date': '2025-12-22 10:00:00', 'job_id': 'CD303', 'cron': '0 10 * * *', 'status': '미수집'}, {'date': '2025-12-23 10:00:00', 'job_id': 'CD301', 'cron': '0 10 * * *', 'status': '미수집'}, {'date': '2025-12-23 06:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '미수집'}, {'date': '2025-12-23 10:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '미수집'}, {'date': '2025-12-23 08:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '미수집'}, {'date': '2025-12-23 15:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '예정'}, {'date': '2025-12-23 10:00:00', 'job_id': 'CD302', 'cron': '0 10 * * *', 'status': '미수집'}, {'date': '2025-12-23 10:00:00', 'job_id': 'CD303', 'cron': '0 10 * * *', 'status': '미수집'}, {'date': '2025-12-24 10:00:00', 'job_id': 'CD301', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-24 06:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '예정'}, {'date': '2025-12-24 10:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '예정'}, {'date': '2025-12-24 08:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '예정'}, {'date': '2025-12-24 15:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '예정'}, {'date': '2025-12-24 10:00:00', 'job_id': 'CD302', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-24 10:00:00', 'job_id': 'CD303', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-25 16:00:00', 'job_id': 'CD103', 'cron': '0 16 */6 * * ', 'status': '예정'}, {'date': '2025-12-25 10:00:00', 'job_id': 'CD301', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-25 06:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '예정'}, {'date': '2025-12-25 10:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '예정'}, {'date': '2025-12-25 08:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '예정'}, {'date': '2025-12-25 15:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '예정'}, {'date': '2025-12-25 10:00:00', 'job_id': 'CD302', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-25 15:00:00', 'job_id': 'CD104', 'cron': '0 15 */6 * *', 'status': '예정'}, {'date': '2025-12-25 10:00:00', 'job_id': 'CD303', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-26 10:00:00', 'job_id': 'CD301', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-26 06:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '예정'}, {'date': '2025-12-26 10:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '예정'}, {'date': '2025-12-26 08:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '예정'}, {'date': '2025-12-26 15:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '예정'}, {'date': '2025-12-26 10:00:00', 'job_id': 'CD302', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-26 10:00:00', 'job_id': 'CD303', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-27 10:00:00', 'job_id': 'CD301', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-27 06:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '예정'}, {'date': '2025-12-27 10:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '예정'}, {'date': '2025-12-27 08:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '예정'}, {'date': '2025-12-27 15:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '예정'}, {'date': '2025-12-27 10:00:00', 'job_id': 'CD302', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-27 10:00:00', 'job_id': 'CD303', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-28 10:00:00', 'job_id': 'CD301', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-28 06:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '예정'}, {'date': '2025-12-28 10:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '예정'}, {'date': '2025-12-28 08:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '예정'}, {'date': '2025-12-28 15:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '예정'}, {'date': '2025-12-28 10:00:00', 'job_id': 'CD302', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-28 10:00:00', 'job_id': 'CD303', 'cron': '0 10 * * *', 'status': '예정'}], 'display_settings': {'settId': 9, 'grpMinCnt': 4, 'prgsRtRedThrsval': 30.0, 'prgsRtOrgThrsval': 60.0, 'succRtRedThrsval': 30, 'succRtOrgThrsval': 60, 'useYn': 'Y', 'grpBrdrStyl': 'none', 'grpColrCrtr': 'prgr', 'sucsIconId': 1, 'sucsIconCd': '🟢', 'sucsBgColr': '#dcfce7', 'sucsTxtColr': '#166534', 'failIconId': 2, 'failIconCd': '🔴', 'failBgColr': '#fee2e2', 'failTxtColr': '#991b1b', 'prgsIconId': 4, 'prgsIconCd': '🔵', 'prgsBgColr': '#fef9c3', 'prgsTxtColr': '#854d0e', 'nodtIconId': 28, 'nodtIconCd': '⚠️', 'nodtBgColr': '#ffedd5', 'nodtTxtColr': '#9a3412', 'schdIconId': 10, 'schdIconCd': '⏱️', 'schdBgColr': '#e5e7eb', 'schdTxtColr': '#4b5563', 'grpPrgsIconId': 23, 'grpPrgsIconCd': '🐛', 'grpSucsIconId': 12, 'grpSucsIconCd': '🌡️'}}
+2025-12-23 14:02:33,037 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:33,041 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/collection_schedule]
+2025-12-23 14:02:33,041 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:33,041 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:33,042 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:33,043 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/collection_schedule]
+2025-12-23 14:02:33,043 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:33,043 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:33,046 - INFO - 127.0.0.1 - mngr_sett_service.py:298 - === SERVICE: get_schedule_settings_service() 시작 ===
+2025-12-23 14:02:33,046 - INFO - 127.0.0.1 - mngr_sett_service.py:302 - SERVICE: DAO 호출 준비
+2025-12-23 14:02:33,046 - INFO - 127.0.0.1 - mngr_sett_service.py:308 - SERVICE: DAO.get_schedule_settings() 호출
+2025-12-23 14:02:33,046 - INFO - 127.0.0.1 - schedule_settings_dao.py:57 - === DAO: get_schedule_settings() 시작 ===
+2025-12-23 14:02:33,046 - INFO - 127.0.0.1 - logging_config.py:40 - [관리자설정]-[스케줄설정]-[SQL 파일 로드]-[성공: 1444자]
+2025-12-23 14:02:33,046 - INFO - 127.0.0.1 - logging_config.py:40 - [관리자설정]-[스케줄설정]-[데이터 조회]-[실행 시작]
+2025-12-23 14:02:33,047 - DEBUG - 127.0.0.1 - schedule_settings_dao.py:12 - DAO: _execute_query 호출. fetch_one=True, params 개수=0
+2025-12-23 14:02:33,047 - DEBUG - 127.0.0.1 - schedule_settings_dao.py:16 - DAO: 커서 생성 성공
+2025-12-23 14:02:33,059 - DEBUG - 127.0.0.1 - schedule_settings_dao.py:20 - DAO: 쿼리 실행 성공
+2025-12-23 14:02:33,059 - DEBUG - 127.0.0.1 - schedule_settings_dao.py:23 - DAO: fetch_one 모드로 단일 행 조회
+2025-12-23 14:02:33,060 - DEBUG - 127.0.0.1 - schedule_settings_dao.py:29 - DAO: 단일 행 조회 성공. 컬럼 수: 33
+2025-12-23 14:02:33,060 - INFO - 127.0.0.1 - logging_config.py:40 - [관리자설정]-[스케줄설정]-[데이터 조회]-[완료: 데이터 있음]
+2025-12-23 14:02:33,060 - INFO - 127.0.0.1 - logging_config.py:40 - [관리자설정]-[스케줄설정]-[데이터 반환]-[33개 필드]
+2025-12-23 14:02:33,061 - DEBUG - 127.0.0.1 - logging_config.py:38 - [관리자설정]-[스케줄설정]-[주요 설정]-[sett_id: 9] | sett_id=9, grp_min_cnt=4, use_yn=Y, grp_brdr_styl=none, grp_colr_crtr=prgr
+2025-12-23 14:02:33,061 - INFO - 127.0.0.1 - logging_config.py:40 - [관리자설정]-[스케줄설정]-[조회 완료]-[성공]
+2025-12-23 14:02:33,062 - INFO - 127.0.0.1 - mngr_sett_service.py:310 - SERVICE: DAO 호출 완료. 반환 타입: <class 'dict'>
+2025-12-23 14:02:33,062 - INFO - 127.0.0.1 - mngr_sett_service.py:320 - SERVICE: DAO에서 33개의 필드 데이터 수신
+2025-12-23 14:02:33,063 - DEBUG - 127.0.0.1 - mngr_sett_service.py:321 - SERVICE: 수신된 데이터 키들: ['sett_id', 'grp_min_cnt', 'prgs_rt_red_thrsval', 'prgs_rt_org_thrsval', 'use_yn', 'grp_brdr_styl', 'grp_colr_crtr', 'succ_rt_red_thrsval', 'succ_rt_org_thrsval', 'grp_prgs_icon_id', 'grp_prgs_icon_cd', 'grp_sucs_icon_id', 'grp_sucs_icon_cd', 'sucs_icon_id', 'sucs_icon_cd', 'sucs_bg_colr', 'sucs_txt_colr', 'fail_icon_id', 'fail_icon_cd', 'fail_bg_colr', 'fail_txt_colr', 'prgs_icon_id', 'prgs_icon_cd', 'prgs_bg_colr', 'prgs_txt_colr', 'nodt_icon_id', 'nodt_icon_cd', 'nodt_bg_colr', 'nodt_txt_colr', 'schd_icon_id', 'schd_icon_cd', 'schd_bg_colr', 'schd_txt_colr']
+2025-12-23 14:02:33,064 - INFO - 127.0.0.1 - mngr_sett_service.py:324 - SERVICE: 데이터 변환 시작 (snake_case -> camelCase)
+2025-12-23 14:02:33,064 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 sett_id -> settId: 9 (int)
+2025-12-23 14:02:33,064 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 grp_min_cnt -> grpMinCnt: 4 (int)
+2025-12-23 14:02:33,065 - DEBUG - 127.0.0.1 - mngr_sett_service.py:373 - SERVICE: Decimal 변환 - prgs_rt_red_thrsval: 30.0
+2025-12-23 14:02:33,065 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 prgs_rt_red_thrsval -> prgsRtRedThrsval: 30.0 (float)
+2025-12-23 14:02:33,065 - DEBUG - 127.0.0.1 - mngr_sett_service.py:373 - SERVICE: Decimal 변환 - prgs_rt_org_thrsval: 60.0
+2025-12-23 14:02:33,065 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 prgs_rt_org_thrsval -> prgsRtOrgThrsval: 60.0 (float)
+2025-12-23 14:02:33,065 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 succ_rt_red_thrsval -> succRtRedThrsval: 30 (int)
+2025-12-23 14:02:33,066 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 succ_rt_org_thrsval -> succRtOrgThrsval: 60 (int)
+2025-12-23 14:02:33,066 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 use_yn -> useYn: 'Y'
+2025-12-23 14:02:33,066 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 grp_brdr_styl -> grpBrdrStyl: 'none'
+2025-12-23 14:02:33,066 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 grp_colr_crtr -> grpColrCrtr: 'prgr'
+2025-12-23 14:02:33,067 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 sucs_icon_id -> sucsIconId: 1 (int)
+2025-12-23 14:02:33,067 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 sucs_icon_cd -> sucsIconCd: '🟢'
+2025-12-23 14:02:33,067 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 sucs_bg_colr -> sucsBgColr: '#dcfce7'
+2025-12-23 14:02:33,067 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 sucs_txt_colr -> sucsTxtColr: '#166534'
+2025-12-23 14:02:33,067 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 fail_icon_id -> failIconId: 2 (int)
+2025-12-23 14:02:33,068 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 fail_icon_cd -> failIconCd: '🔴'
+2025-12-23 14:02:33,068 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 fail_bg_colr -> failBgColr: '#fee2e2'
+2025-12-23 14:02:33,068 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 fail_txt_colr -> failTxtColr: '#991b1b'
+2025-12-23 14:02:33,068 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 prgs_icon_id -> prgsIconId: 4 (int)
+2025-12-23 14:02:33,068 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 prgs_icon_cd -> prgsIconCd: '🔵'
+2025-12-23 14:02:33,068 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 prgs_bg_colr -> prgsBgColr: '#fef9c3'
+2025-12-23 14:02:33,069 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 prgs_txt_colr -> prgsTxtColr: '#854d0e'
+2025-12-23 14:02:33,069 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 nodt_icon_id -> nodtIconId: 28 (int)
+2025-12-23 14:02:33,069 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 nodt_icon_cd -> nodtIconCd: '⚠️'
+2025-12-23 14:02:33,069 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 nodt_bg_colr -> nodtBgColr: '#ffedd5'
+2025-12-23 14:02:33,069 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 nodt_txt_colr -> nodtTxtColr: '#9a3412'
+2025-12-23 14:02:33,070 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 schd_icon_id -> schdIconId: 10 (int)
+2025-12-23 14:02:33,070 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 schd_icon_cd -> schdIconCd: '⏱️'
+2025-12-23 14:02:33,071 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 schd_bg_colr -> schdBgColr: '#e5e7eb'
+2025-12-23 14:02:33,071 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 schd_txt_colr -> schdTxtColr: '#4b5563'
+2025-12-23 14:02:33,071 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 grp_prgs_icon_id -> grpPrgsIconId: 23 (int)
+2025-12-23 14:02:33,071 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 grp_prgs_icon_cd -> grpPrgsIconCd: '🐛'
+2025-12-23 14:02:33,072 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 grp_sucs_icon_id -> grpSucsIconId: 12 (int)
+2025-12-23 14:02:33,072 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 grp_sucs_icon_cd -> grpSucsIconCd: '🌡️'
+2025-12-23 14:02:33,072 - INFO - 127.0.0.1 - mngr_sett_service.py:391 - SERVICE: 데이터 변환 완료. 33개 필드 변환됨
+2025-12-23 14:02:33,073 - INFO - 127.0.0.1 - mngr_sett_service.py:392 - === SERVICE: get_schedule_settings_service() 성공 완료 ===
+2025-12-23 14:02:33,073 - INFO - 127.0.0.1 - collection_schedule_routes.py:44 - DEBUG_ICON_CHECK: Fetched display_settings from service: {'settId': 9, 'grpMinCnt': 4, 'prgsRtRedThrsval': 30.0, 'prgsRtOrgThrsval': 60.0, 'succRtRedThrsval': 30, 'succRtOrgThrsval': 60, 'useYn': 'Y', 'grpBrdrStyl': 'none', 'grpColrCrtr': 'prgr', 'sucsIconId': 1, 'sucsIconCd': '🟢', 'sucsBgColr': '#dcfce7', 'sucsTxtColr': '#166534', 'failIconId': 2, 'failIconCd': '🔴', 'failBgColr': '#fee2e2', 'failTxtColr': '#991b1b', 'prgsIconId': 4, 'prgsIconCd': '🔵', 'prgsBgColr': '#fef9c3', 'prgsTxtColr': '#854d0e', 'nodtIconId': 28, 'nodtIconCd': '⚠️', 'nodtBgColr': '#ffedd5', 'nodtTxtColr': '#9a3412', 'schdIconId': 10, 'schdIconCd': '⏱️', 'schdBgColr': '#e5e7eb', 'schdTxtColr': '#4b5563', 'grpPrgsIconId': 23, 'grpPrgsIconCd': '🐛', 'grpSucsIconId': 12, 'grpSucsIconCd': '🌡️'}
+2025-12-23 14:02:33,085 - INFO - 127.0.0.1 - collection_schedule_routes.py:53 - DEBUG_ICON_CHECK: Final response_data to be sent: {'schedule_data': [{'date': '2025-12-22 10:00:00', 'job_id': 'CD301', 'cron': '0 10 * * *', 'status': '미수집'}, {'date': '2025-12-22 06:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '미수집'}, {'date': '2025-12-22 10:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '미수집'}, {'date': '2025-12-22 08:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '미수집'}, {'date': '2025-12-22 15:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '미수집'}, {'date': '2025-12-22 10:00:00', 'job_id': 'CD302', 'cron': '0 10 * * *', 'status': '미수집'}, {'date': '2025-12-22 10:00:00', 'job_id': 'CD303', 'cron': '0 10 * * *', 'status': '미수집'}, {'date': '2025-12-23 10:00:00', 'job_id': 'CD301', 'cron': '0 10 * * *', 'status': '미수집'}, {'date': '2025-12-23 06:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '미수집'}, {'date': '2025-12-23 10:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '미수집'}, {'date': '2025-12-23 08:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '미수집'}, {'date': '2025-12-23 15:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '예정'}, {'date': '2025-12-23 10:00:00', 'job_id': 'CD302', 'cron': '0 10 * * *', 'status': '미수집'}, {'date': '2025-12-23 10:00:00', 'job_id': 'CD303', 'cron': '0 10 * * *', 'status': '미수집'}, {'date': '2025-12-24 10:00:00', 'job_id': 'CD301', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-24 06:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '예정'}, {'date': '2025-12-24 10:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '예정'}, {'date': '2025-12-24 08:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '예정'}, {'date': '2025-12-24 15:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '예정'}, {'date': '2025-12-24 10:00:00', 'job_id': 'CD302', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-24 10:00:00', 'job_id': 'CD303', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-25 16:00:00', 'job_id': 'CD103', 'cron': '0 16 */6 * * ', 'status': '예정'}, {'date': '2025-12-25 10:00:00', 'job_id': 'CD301', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-25 06:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '예정'}, {'date': '2025-12-25 10:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '예정'}, {'date': '2025-12-25 08:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '예정'}, {'date': '2025-12-25 15:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '예정'}, {'date': '2025-12-25 10:00:00', 'job_id': 'CD302', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-25 15:00:00', 'job_id': 'CD104', 'cron': '0 15 */6 * *', 'status': '예정'}, {'date': '2025-12-25 10:00:00', 'job_id': 'CD303', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-26 10:00:00', 'job_id': 'CD301', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-26 06:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '예정'}, {'date': '2025-12-26 10:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '예정'}, {'date': '2025-12-26 08:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '예정'}, {'date': '2025-12-26 15:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '예정'}, {'date': '2025-12-26 10:00:00', 'job_id': 'CD302', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-26 10:00:00', 'job_id': 'CD303', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-27 10:00:00', 'job_id': 'CD301', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-27 06:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '예정'}, {'date': '2025-12-27 10:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '예정'}, {'date': '2025-12-27 08:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '예정'}, {'date': '2025-12-27 15:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '예정'}, {'date': '2025-12-27 10:00:00', 'job_id': 'CD302', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-27 10:00:00', 'job_id': 'CD303', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-28 10:00:00', 'job_id': 'CD301', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-28 06:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '예정'}, {'date': '2025-12-28 10:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '예정'}, {'date': '2025-12-28 08:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '예정'}, {'date': '2025-12-28 15:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '예정'}, {'date': '2025-12-28 10:00:00', 'job_id': 'CD302', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-28 10:00:00', 'job_id': 'CD303', 'cron': '0 10 * * *', 'status': '예정'}], 'display_settings': {'settId': 9, 'grpMinCnt': 4, 'prgsRtRedThrsval': 30.0, 'prgsRtOrgThrsval': 60.0, 'succRtRedThrsval': 30, 'succRtOrgThrsval': 60, 'useYn': 'Y', 'grpBrdrStyl': 'none', 'grpColrCrtr': 'prgr', 'sucsIconId': 1, 'sucsIconCd': '🟢', 'sucsBgColr': '#dcfce7', 'sucsTxtColr': '#166534', 'failIconId': 2, 'failIconCd': '🔴', 'failBgColr': '#fee2e2', 'failTxtColr': '#991b1b', 'prgsIconId': 4, 'prgsIconCd': '🔵', 'prgsBgColr': '#fef9c3', 'prgsTxtColr': '#854d0e', 'nodtIconId': 28, 'nodtIconCd': '⚠️', 'nodtBgColr': '#ffedd5', 'nodtTxtColr': '#9a3412', 'schdIconId': 10, 'schdIconCd': '⏱️', 'schdBgColr': '#e5e7eb', 'schdTxtColr': '#4b5563', 'grpPrgsIconId': 23, 'grpPrgsIconCd': '🐛', 'grpSucsIconId': 12, 'grpSucsIconCd': '🌡️'}}
+2025-12-23 14:02:33,089 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:37,295 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /card_summary]
+2025-12-23 14:02:37,295 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:37,295 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:37,296 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:37,296 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /card_summary]
+2025-12-23 14:02:37,296 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:37,297 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:37,308 - INFO - 127.0.0.1 - logging_config.py:40 - [분석]-[접속 로그]-[데이터 삽입]-[성공]
+2025-12-23 14:02:37,314 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:37,340 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/mst_list]
+2025-12-23 14:02:37,340 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:37,341 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:37,341 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:37,341 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/mst_list]
+2025-12-23 14:02:37,341 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:37,341 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:37,344 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:37,347 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/card_summary]
+2025-12-23 14:02:37,347 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:37,347 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:37,348 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:37,348 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/card_summary]
+2025-12-23 14:02:37,348 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:37,348 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:37,354 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:38,640 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /dashboard]
+2025-12-23 14:02:38,640 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:38,641 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:38,641 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:38,642 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /dashboard]
+2025-12-23 14:02:38,642 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:38,642 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:38,650 - INFO - 127.0.0.1 - logging_config.py:40 - [분석]-[접속 로그]-[데이터 삽입]-[성공]
+2025-12-23 14:02:38,650 - INFO - 127.0.0.1 - dashboard_routes.py:56 - --- [LOG] Initial access to root or dashboard route: /dashboard
+2025-12-23 14:02:38,675 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:38,743 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/mst_list]
+2025-12-23 14:02:38,743 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:38,745 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:38,745 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:38,745 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/mst_list]
+2025-12-23 14:02:38,745 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:38,745 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:38,748 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:38,751 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/dashboard/min-max-dates]
+2025-12-23 14:02:38,751 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:38,752 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:38,752 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:38,752 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/dashboard/min-max-dates]
+2025-12-23 14:02:38,752 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:38,752 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:38,754 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/dashboard/summary]
+2025-12-23 14:02:38,754 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:38,755 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:38,755 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/dashboard/event-log]
+2025-12-23 14:02:38,755 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:38,755 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:38,756 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/dashboard/summary]
+2025-12-23 14:02:38,756 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:38,756 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:38,756 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:38,757 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/dashboard/event-log]
+2025-12-23 14:02:38,757 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:38,759 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:38,761 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/dashboard/min-max-dates]
+2025-12-23 14:02:38,762 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:38,762 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:38,762 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:38,762 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/dashboard/min-max-dates]
+2025-12-23 14:02:38,762 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:38,763 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:38,766 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:38,766 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:38,766 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:38,768 - INFO - 127.0.0.1 - dashboard_service.py:34 - DashboardService.get_summary called for user: admin
+2025-12-23 14:02:38,768 - INFO - 127.0.0.1 - dashboard_service.py:267 - --- [DEBUG] get_event_log called. User: {'data_permissions': [], 'permissions': ['collection_schedule', 'card_summary', 'dashboard', 'jandi', 'data_analysis', 'chart_analysis', 'raw_data', 'data_spec', 'mngr_sett'], 'user_id': 'admin'}
+2025-12-23 14:02:38,771 - INFO - 127.0.0.1 - dashboard_service.py:279 - --- [DEBUG] Is admin? True
+2025-12-23 14:02:38,771 - INFO - 127.0.0.1 - dashboard_service.py:283 - --- [DEBUG] Returning all 0 event logs for admin or no user.
+2025-12-23 14:02:38,773 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:38,775 - INFO - 127.0.0.1 - dashboard_service.py:85 - Successfully fetched and mapped 8 manager settings with icon codes.
+2025-12-23 14:02:38,776 - DEBUG - 127.0.0.1 - dashboard_mapper.py:18 - --- [DEBUG] DashboardMapper.get_summary called with job_ids: None
+2025-12-23 14:02:38,776 - DEBUG - 127.0.0.1 - dashboard_mapper.py:20 - --- [DEBUG] Generated SQL Query:
+
+            SELECT
+                h.job_id,
+                m.cd_nm,
+                m.item6 as frequency,
+                MIN(h.start_dt) AS min_con_dt,
+                MAX(h.start_dt) AS max_con_dt,
+                COUNT(*) as total_count,
+                -- Overall counts
+                COUNT(CASE WHEN h.status = 'CD901' THEN 1 END) as overall_success_count,
+                COUNT(CASE WHEN h.status = 'CD902' THEN 1 END) as overall_ing_count,
+                COUNT(CASE WHEN h.status = 'CD903' THEN 1 END) as overall_fail_count,
+                COUNT(CASE WHEN h.status = 'CD904' THEN 1 END) as overall_cd904_count,
+                COUNT(CASE WHEN h.status = 'CD905' THEN 1 END) as overall_no_data_count,
+
+                -- Daily counts (today in KST)
+                COUNT(CASE WHEN h.status = 'CD901' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date = CURRENT_DATE THEN 1 END) as day_success,
+                COUNT(CASE WHEN h.status = 'CD902' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date = CURRENT_DATE THEN 1 END) as day_ing_count,
+                COUNT(CASE WHEN h.status = 'CD903' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date = CURRENT_DATE THEN 1 END) as day_fail_count,
+                COUNT(CASE WHEN h.status = 'CD905' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date = CURRENT_DATE THEN 1 END) as day_no_data_count,
+
+                -- Weekly counts (this week in KST)
+                COUNT(CASE WHEN h.status = 'CD901' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('week', CURRENT_DATE) THEN 1 END) as week_success,
+                COUNT(CASE WHEN h.status = 'CD902' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('week', CURRENT_DATE) THEN 1 END) as week_ing_count,
+                COUNT(CASE WHEN h.status = 'CD903' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('week', CURRENT_DATE) THEN 1 END) as week_fail_count,
+                COUNT(CASE WHEN h.status = 'CD905' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('week', CURRENT_DATE) THEN 1 END) as week_no_data_count,
+
+                -- Monthly counts (this month in KST)
+                COUNT(CASE WHEN h.status = 'CD901' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('month', CURRENT_DATE) THEN 1 END) as month_success,
+                COUNT(CASE WHEN h.status = 'CD902' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('month', CURRENT_DATE) THEN 1 END) as month_ing_count,
+                COUNT(CASE WHEN h.status = 'CD903' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('month', CURRENT_DATE) THEN 1 END) as month_fail_count,
+                COUNT(CASE WHEN h.status = 'CD905' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('month', CURRENT_DATE) THEN 1 END) as month_no_data_count,
+
+                -- Half-year counts (last 6 months in KST)
+                COUNT(CASE WHEN h.status = 'CD901' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('month', CURRENT_DATE) - INTERVAL '5 months' THEN 1 END) as half_success,
+                COUNT(CASE WHEN h.status = 'CD902' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('month', CURRENT_DATE) - INTERVAL '5 months' THEN 1 END) as half_ing_count,
+                COUNT(CASE WHEN h.status = 'CD903' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('month', CURRENT_DATE) - INTERVAL '5 months' THEN 1 END) as half_fail_count,
+                COUNT(CASE WHEN h.status = 'CD905' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('month', CURRENT_DATE) - INTERVAL '5 months' THEN 1 END) as half_no_data_count,
+
+                -- Yearly counts (this year in KST)
+                COUNT(CASE WHEN h.status = 'CD901' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('year', CURRENT_DATE) THEN 1 END) as year_success,
+                COUNT(CASE WHEN h.status = 'CD902' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('year', CURRENT_DATE) THEN 1 END) as year_ing_count,
+                COUNT(CASE WHEN h.status = 'CD903' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('year', CURRENT_DATE) THEN 1 END) as year_fail_count,
+                COUNT(CASE WHEN h.status = 'CD905' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('year', CURRENT_DATE) THEN 1 END) as year_no_data_count,
+
+                -- 연속 실패 계산 (최근 10번 실행 중 실패 횟수)
+                COALESCE((
+                    SELECT COUNT(*)
+                    FROM (
+                        SELECT status
+                        FROM TB_CON_HIST h2
+                        WHERE h2.job_id = h.job_id
+                        ORDER BY h2.start_dt DESC
+                        LIMIT 10
+                    ) recent_runs
+                    WHERE recent_runs.status IN ('CD902', 'CD903') -- 실패 상태들
+                ), 0) as fail_streak
+            FROM
+                TB_CON_HIST h
+            LEFT JOIN
+                TB_CON_MST m ON h.job_id = m.cd
+         GROUP BY h.job_id, m.cd_nm, m.item6 ORDER BY h.job_id ASC
+2025-12-23 14:02:38,779 - DEBUG - 127.0.0.1 - dashboard_mapper.py:21 - --- [DEBUG] Query Parameters: []
+2025-12-23 14:02:38,787 - INFO - 127.0.0.1 - dashboard_service.py:215 - --- [DATA LOG] Dashboard - Final Data Count: Total=7, CD101=1, CD102=1
+2025-12-23 14:02:38,790 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:39,469 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /jandi]
+2025-12-23 14:02:39,469 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:39,469 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:39,469 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:39,470 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /jandi]
+2025-12-23 14:02:39,470 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:39,476 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:39,485 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:39,515 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/job-list]
+2025-12-23 14:02:39,515 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:39,515 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:39,515 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:39,516 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/job-list]
+2025-12-23 14:02:39,516 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:39,516 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:39,516 - INFO - 127.0.0.1 - mst_service.py:38 - Checking data permissions for user: admin, is_admin: True
+2025-12-23 14:02:39,517 - INFO - 127.0.0.1 - mst_service.py:46 - Admin user admin. No data permission filtering applied.
+2025-12-23 14:02:39,523 - INFO - 127.0.0.1 - jandi_routes.py:40 - get_job_list Service Result (jobs): [{'job_id': 'CD101', 'cd_nm': 'forecasts', 'cron': '0 6,10 * * *', 'description': '위성(4시간 전), 날씨모델 정보'}, {'job_id': 'CD102', 'cd_nm': 'forecasts_o', 'cron': '0 8,15 * * * ', 'description': '위성(4시간 전), 날씨모델 정보'}, {'job_id': 'CD103', 'cd_nm': 'live', 'cron': '0 16 */6 * * ', 'description': '위성, 날씨모델 지난 7일간 데이터'}, {'job_id': 'CD104', 'cd_nm': 'live_o', 'cron': '0 15 */6 * *', 'description': '위성, 날씨모델 지난 7일간 데이터'}, {'job_id': 'CD301', 'cd_nm': '01_PC_DER_INFO', 'cron': '0 10 * * *', 'description': '01_민간 발전기 정보_K0002.csv'}, {'job_id': 'CD302', 'cd_nm': '02_PC_DER_MTRNG', 'cron': '0 10 * * *', 'description': '02_민간 계량 정보_K0002.csv'}, {'job_id': 'CD303', 'cd_nm': '03_PC_DER_PDCT', 'cron': '0 10 * * *', 'description': '03_민간 예측 정보_K0002.csv'}]
+2025-12-23 14:02:39,524 - INFO - 127.0.0.1 - jandi_routes.py:41 - Data being sent to frontend (jobs): [{'job_id': 'CD101', 'cd_nm': 'forecasts', 'cron': '0 6,10 * * *', 'description': '위성(4시간 전), 날씨모델 정보'}, {'job_id': 'CD102', 'cd_nm': 'forecasts_o', 'cron': '0 8,15 * * * ', 'description': '위성(4시간 전), 날씨모델 정보'}, {'job_id': 'CD103', 'cd_nm': 'live', 'cron': '0 16 */6 * * ', 'description': '위성, 날씨모델 지난 7일간 데이터'}, {'job_id': 'CD104', 'cd_nm': 'live_o', 'cron': '0 15 */6 * *', 'description': '위성, 날씨모델 지난 7일간 데이터'}, {'job_id': 'CD301', 'cd_nm': '01_PC_DER_INFO', 'cron': '0 10 * * *', 'description': '01_민간 발전기 정보_K0002.csv'}, {'job_id': 'CD302', 'cd_nm': '02_PC_DER_MTRNG', 'cron': '0 10 * * *', 'description': '02_민간 계량 정보_K0002.csv'}, {'job_id': 'CD303', 'cd_nm': '03_PC_DER_PDCT', 'cron': '0 10 * * *', 'description': '03_민간 예측 정보_K0002.csv'}]
+2025-12-23 14:02:39,525 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:39,528 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/jandi-data]
+2025-12-23 14:02:39,529 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:39,529 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:39,529 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:39,529 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/jandi-data]
+2025-12-23 14:02:39,529 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:39,529 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:39,530 - INFO - 127.0.0.1 - jandi_service.py:17 - Checking data permissions for user: admin, is_admin: True in jandi get_daily_job_counts
+2025-12-23 14:02:39,530 - INFO - 127.0.0.1 - jandi_service.py:25 - Admin user admin in jandi get_daily_job_counts. No data permission filtering applied.
+2025-12-23 14:02:39,533 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:39,536 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/jandi-data]
+2025-12-23 14:02:39,536 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:39,536 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:39,536 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:39,537 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/jandi-data]
+2025-12-23 14:02:39,537 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:39,538 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:39,538 - INFO - 127.0.0.1 - jandi_service.py:17 - Checking data permissions for user: admin, is_admin: True in jandi get_daily_job_counts
+2025-12-23 14:02:39,539 - INFO - 127.0.0.1 - jandi_service.py:25 - Admin user admin in jandi get_daily_job_counts. No data permission filtering applied.
+2025-12-23 14:02:39,543 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:39,546 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/jandi-data]
+2025-12-23 14:02:39,546 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:39,546 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:39,546 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:39,546 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/jandi-data]
+2025-12-23 14:02:39,547 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:39,547 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:39,547 - INFO - 127.0.0.1 - jandi_service.py:17 - Checking data permissions for user: admin, is_admin: True in jandi get_daily_job_counts
+2025-12-23 14:02:39,547 - INFO - 127.0.0.1 - jandi_service.py:25 - Admin user admin in jandi get_daily_job_counts. No data permission filtering applied.
+2025-12-23 14:02:39,549 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:39,551 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/jandi-data]
+2025-12-23 14:02:39,552 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:39,552 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:39,552 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:39,552 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/jandi-data]
+2025-12-23 14:02:39,552 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:39,553 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:39,553 - INFO - 127.0.0.1 - jandi_service.py:17 - Checking data permissions for user: admin, is_admin: True in jandi get_daily_job_counts
+2025-12-23 14:02:39,553 - INFO - 127.0.0.1 - jandi_service.py:25 - Admin user admin in jandi get_daily_job_counts. No data permission filtering applied.
+2025-12-23 14:02:39,557 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:39,559 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/jandi-data]
+2025-12-23 14:02:39,559 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:39,560 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:39,560 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:39,560 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/jandi-data]
+2025-12-23 14:02:39,560 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:39,560 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:39,561 - INFO - 127.0.0.1 - jandi_service.py:17 - Checking data permissions for user: admin, is_admin: True in jandi get_daily_job_counts
+2025-12-23 14:02:39,561 - INFO - 127.0.0.1 - jandi_service.py:25 - Admin user admin in jandi get_daily_job_counts. No data permission filtering applied.
+2025-12-23 14:02:39,564 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:39,567 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/jandi-data]
+2025-12-23 14:02:39,567 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:39,567 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:39,567 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:39,567 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/jandi-data]
+2025-12-23 14:02:39,567 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:39,567 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:39,568 - INFO - 127.0.0.1 - jandi_service.py:17 - Checking data permissions for user: admin, is_admin: True in jandi get_daily_job_counts
+2025-12-23 14:02:39,568 - INFO - 127.0.0.1 - jandi_service.py:25 - Admin user admin in jandi get_daily_job_counts. No data permission filtering applied.
+2025-12-23 14:02:39,571 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:39,575 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/jandi-data]
+2025-12-23 14:02:39,575 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:39,575 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:39,576 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:39,576 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/jandi-data]
+2025-12-23 14:02:39,576 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:39,576 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:39,576 - INFO - 127.0.0.1 - jandi_service.py:17 - Checking data permissions for user: admin, is_admin: True in jandi get_daily_job_counts
+2025-12-23 14:02:39,577 - INFO - 127.0.0.1 - jandi_service.py:25 - Admin user admin in jandi get_daily_job_counts. No data permission filtering applied.
+2025-12-23 14:02:39,582 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:40,159 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /data_analysis]
+2025-12-23 14:02:40,160 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:40,160 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:40,160 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:40,161 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /data_analysis]
+2025-12-23 14:02:40,161 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:40,161 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:40,174 - INFO - 127.0.0.1 - logging_config.py:40 - [분석]-[접속 로그]-[데이터 삽입]-[성공]
+2025-12-23 14:02:40,175 - INFO - 127.0.0.1 - analysis_routes.py:41 - Serving data_analysis.html
+2025-12-23 14:02:40,187 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:40,242 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/dashboard/min-max-dates]
+2025-12-23 14:02:40,242 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:40,243 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:40,243 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/analytics/job_ids]
+2025-12-23 14:02:40,243 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:40,243 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:40,243 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/dashboard/min-max-dates]
+2025-12-23 14:02:40,244 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:40,244 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:40,244 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:40,244 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:40,244 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/analytics/job_ids]
+2025-12-23 14:02:40,244 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:40,248 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:40,264 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:40,267 - INFO - 127.0.0.1 - logging_config.py:40 - [분석]-[Job ID 목록]-[API 요청]-[수신됨]
+2025-12-23 14:02:40,268 - INFO - 127.0.0.1 - logging_config.py:40 - [분석]-[Job ID 목록]-[응답 생성]-[7건 전송]
+2025-12-23 14:02:40,269 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:40,273 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/analytics/error_code_map]
+2025-12-23 14:02:40,274 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:40,274 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:40,274 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:40,274 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/analytics/error_code_map]
+2025-12-23 14:02:40,275 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:40,275 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:40,279 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:40,282 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/analytics/error_codes]
+2025-12-23 14:02:40,283 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:40,283 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:40,283 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:40,283 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/analytics/error_codes]
+2025-12-23 14:02:40,283 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:40,283 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:40,285 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:40,290 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/analytics/summary]
+2025-12-23 14:02:40,291 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/analytics/trend]
+2025-12-23 14:02:40,291 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:40,292 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:40,292 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/analytics/raw_data]
+2025-12-23 14:02:40,292 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:40,293 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:40,293 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:40,293 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:40,293 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:40,293 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:40,293 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/analytics/summary]
+2025-12-23 14:02:40,293 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/analytics/trend]
+2025-12-23 14:02:40,294 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:40,294 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:40,294 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:40,294 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/analytics/raw_data]
+2025-12-23 14:02:40,294 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:40,295 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:40,297 - INFO - 127.0.0.1 - dashboard_service.py:34 - DashboardService.get_summary called for user: admin
+2025-12-23 14:02:40,300 - INFO - 127.0.0.1 - dashboard_service.py:85 - Successfully fetched and mapped 8 manager settings with icon codes.
+2025-12-23 14:02:40,300 - DEBUG - 127.0.0.1 - dashboard_mapper.py:18 - --- [DEBUG] DashboardMapper.get_summary called with job_ids: None
+2025-12-23 14:02:40,300 - DEBUG - 127.0.0.1 - dashboard_mapper.py:20 - --- [DEBUG] Generated SQL Query:
+
+            SELECT
+                h.job_id,
+                m.cd_nm,
+                m.item6 as frequency,
+                MIN(h.start_dt) AS min_con_dt,
+                MAX(h.start_dt) AS max_con_dt,
+                COUNT(*) as total_count,
+                -- Overall counts
+                COUNT(CASE WHEN h.status = 'CD901' THEN 1 END) as overall_success_count,
+                COUNT(CASE WHEN h.status = 'CD902' THEN 1 END) as overall_ing_count,
+                COUNT(CASE WHEN h.status = 'CD903' THEN 1 END) as overall_fail_count,
+                COUNT(CASE WHEN h.status = 'CD904' THEN 1 END) as overall_cd904_count,
+                COUNT(CASE WHEN h.status = 'CD905' THEN 1 END) as overall_no_data_count,
+
+                -- Daily counts (today in KST)
+                COUNT(CASE WHEN h.status = 'CD901' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date = CURRENT_DATE THEN 1 END) as day_success,
+                COUNT(CASE WHEN h.status = 'CD902' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date = CURRENT_DATE THEN 1 END) as day_ing_count,
+                COUNT(CASE WHEN h.status = 'CD903' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date = CURRENT_DATE THEN 1 END) as day_fail_count,
+                COUNT(CASE WHEN h.status = 'CD905' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date = CURRENT_DATE THEN 1 END) as day_no_data_count,
+
+                -- Weekly counts (this week in KST)
+                COUNT(CASE WHEN h.status = 'CD901' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('week', CURRENT_DATE) THEN 1 END) as week_success,
+                COUNT(CASE WHEN h.status = 'CD902' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('week', CURRENT_DATE) THEN 1 END) as week_ing_count,
+                COUNT(CASE WHEN h.status = 'CD903' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('week', CURRENT_DATE) THEN 1 END) as week_fail_count,
+                COUNT(CASE WHEN h.status = 'CD905' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('week', CURRENT_DATE) THEN 1 END) as week_no_data_count,
+
+                -- Monthly counts (this month in KST)
+                COUNT(CASE WHEN h.status = 'CD901' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('month', CURRENT_DATE) THEN 1 END) as month_success,
+                COUNT(CASE WHEN h.status = 'CD902' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('month', CURRENT_DATE) THEN 1 END) as month_ing_count,
+                COUNT(CASE WHEN h.status = 'CD903' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('month', CURRENT_DATE) THEN 1 END) as month_fail_count,
+                COUNT(CASE WHEN h.status = 'CD905' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('month', CURRENT_DATE) THEN 1 END) as month_no_data_count,
+
+                -- Half-year counts (last 6 months in KST)
+                COUNT(CASE WHEN h.status = 'CD901' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('month', CURRENT_DATE) - INTERVAL '5 months' THEN 1 END) as half_success,
+                COUNT(CASE WHEN h.status = 'CD902' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('month', CURRENT_DATE) - INTERVAL '5 months' THEN 1 END) as half_ing_count,
+                COUNT(CASE WHEN h.status = 'CD903' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('month', CURRENT_DATE) - INTERVAL '5 months' THEN 1 END) as half_fail_count,
+                COUNT(CASE WHEN h.status = 'CD905' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('month', CURRENT_DATE) - INTERVAL '5 months' THEN 1 END) as half_no_data_count,
+
+                -- Yearly counts (this year in KST)
+                COUNT(CASE WHEN h.status = 'CD901' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('year', CURRENT_DATE) THEN 1 END) as year_success,
+                COUNT(CASE WHEN h.status = 'CD902' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('year', CURRENT_DATE) THEN 1 END) as year_ing_count,
+                COUNT(CASE WHEN h.status = 'CD903' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('year', CURRENT_DATE) THEN 1 END) as year_fail_count,
+                COUNT(CASE WHEN h.status = 'CD905' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('year', CURRENT_DATE) THEN 1 END) as year_no_data_count,
+
+                -- 연속 실패 계산 (최근 10번 실행 중 실패 횟수)
+                COALESCE((
+                    SELECT COUNT(*)
+                    FROM (
+                        SELECT status
+                        FROM TB_CON_HIST h2
+                        WHERE h2.job_id = h.job_id
+                        ORDER BY h2.start_dt DESC
+                        LIMIT 10
+                    ) recent_runs
+                    WHERE recent_runs.status IN ('CD902', 'CD903') -- 실패 상태들
+                ), 0) as fail_streak
+            FROM
+                TB_CON_HIST h
+            LEFT JOIN
+                TB_CON_MST m ON h.job_id = m.cd
+         WHERE (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= %s AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date <= %s GROUP BY h.job_id, m.cd_nm, m.item6 ORDER BY h.job_id ASC
+2025-12-23 14:02:40,303 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:40,304 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:40,306 - DEBUG - 127.0.0.1 - dashboard_mapper.py:21 - --- [DEBUG] Query Parameters: ['2025-01-01', '2025-12-23']
+2025-12-23 14:02:40,309 - WARNING - 127.0.0.1 - analysis_api.py:172 - [ANALYSIS_RAW_DATA] User: admin, Admin: True, Requested: None, DataPerms: []
+2025-12-23 14:02:40,323 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:40,323 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:40,329 - INFO - 127.0.0.1 - dashboard_service.py:215 - --- [DATA LOG] Dashboard - Final Data Count: Total=7, CD101=1, CD102=1
+2025-12-23 14:02:40,331 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:40,335 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/job_mst_info]
+2025-12-23 14:02:40,335 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:40,335 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:40,335 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:40,336 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/job_mst_info]
+2025-12-23 14:02:40,336 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:40,336 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:40,339 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:40,743 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /chart_analysis]
+2025-12-23 14:02:40,744 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:40,744 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:40,745 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:40,745 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /chart_analysis]
+2025-12-23 14:02:40,745 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:40,746 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:40,754 - INFO - 127.0.0.1 - logging_config.py:40 - [분석]-[접속 로그]-[데이터 삽입]-[성공]
+2025-12-23 14:02:40,755 - INFO - 127.0.0.1 - analysis_routes.py:33 - Serving chart_analysis.html
+2025-12-23 14:02:40,768 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:40,823 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/dashboard/min-max-dates]
+2025-12-23 14:02:40,823 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:40,824 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:02:40,824 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:40,824 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/mst_list]
+2025-12-23 14:02:40,825 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:40,825 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/mngr_sett/settings/all]
+2025-12-23 14:02:40,825 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:40,825 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:40,825 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:40,826 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:40,826 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/dashboard/min-max-dates]
+2025-12-23 14:02:40,826 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:40,826 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:40,826 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:40,826 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:40,826 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:40,826 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:02:40,827 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:40,827 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:40,827 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/mst_list]
+2025-12-23 14:02:40,827 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:40,827 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/mngr_sett/settings/all]
+2025-12-23 14:02:40,827 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:40,828 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:40,834 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:40,862 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:40,862 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:40,864 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:40,864 - INFO - 127.0.0.1 - dashboard_service.py:34 - DashboardService.get_summary called for user: None
+2025-12-23 14:02:40,869 - INFO - 127.0.0.1 - dashboard_service.py:85 - Successfully fetched and mapped 8 manager settings with icon codes.
+2025-12-23 14:02:40,869 - DEBUG - 127.0.0.1 - dashboard_mapper.py:18 - --- [DEBUG] DashboardMapper.get_summary called with job_ids: None
+2025-12-23 14:02:40,870 - DEBUG - 127.0.0.1 - dashboard_mapper.py:20 - --- [DEBUG] Generated SQL Query:
+
+            SELECT
+                h.job_id,
+                m.cd_nm,
+                m.item6 as frequency,
+                MIN(h.start_dt) AS min_con_dt,
+                MAX(h.start_dt) AS max_con_dt,
+                COUNT(*) as total_count,
+                -- Overall counts
+                COUNT(CASE WHEN h.status = 'CD901' THEN 1 END) as overall_success_count,
+                COUNT(CASE WHEN h.status = 'CD902' THEN 1 END) as overall_ing_count,
+                COUNT(CASE WHEN h.status = 'CD903' THEN 1 END) as overall_fail_count,
+                COUNT(CASE WHEN h.status = 'CD904' THEN 1 END) as overall_cd904_count,
+                COUNT(CASE WHEN h.status = 'CD905' THEN 1 END) as overall_no_data_count,
+
+                -- Daily counts (today in KST)
+                COUNT(CASE WHEN h.status = 'CD901' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date = CURRENT_DATE THEN 1 END) as day_success,
+                COUNT(CASE WHEN h.status = 'CD902' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date = CURRENT_DATE THEN 1 END) as day_ing_count,
+                COUNT(CASE WHEN h.status = 'CD903' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date = CURRENT_DATE THEN 1 END) as day_fail_count,
+                COUNT(CASE WHEN h.status = 'CD905' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date = CURRENT_DATE THEN 1 END) as day_no_data_count,
+
+                -- Weekly counts (this week in KST)
+                COUNT(CASE WHEN h.status = 'CD901' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('week', CURRENT_DATE) THEN 1 END) as week_success,
+                COUNT(CASE WHEN h.status = 'CD902' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('week', CURRENT_DATE) THEN 1 END) as week_ing_count,
+                COUNT(CASE WHEN h.status = 'CD903' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('week', CURRENT_DATE) THEN 1 END) as week_fail_count,
+                COUNT(CASE WHEN h.status = 'CD905' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('week', CURRENT_DATE) THEN 1 END) as week_no_data_count,
+
+                -- Monthly counts (this month in KST)
+                COUNT(CASE WHEN h.status = 'CD901' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('month', CURRENT_DATE) THEN 1 END) as month_success,
+                COUNT(CASE WHEN h.status = 'CD902' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('month', CURRENT_DATE) THEN 1 END) as month_ing_count,
+                COUNT(CASE WHEN h.status = 'CD903' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('month', CURRENT_DATE) THEN 1 END) as month_fail_count,
+                COUNT(CASE WHEN h.status = 'CD905' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('month', CURRENT_DATE) THEN 1 END) as month_no_data_count,
+
+                -- Half-year counts (last 6 months in KST)
+                COUNT(CASE WHEN h.status = 'CD901' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('month', CURRENT_DATE) - INTERVAL '5 months' THEN 1 END) as half_success,
+                COUNT(CASE WHEN h.status = 'CD902' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('month', CURRENT_DATE) - INTERVAL '5 months' THEN 1 END) as half_ing_count,
+                COUNT(CASE WHEN h.status = 'CD903' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('month', CURRENT_DATE) - INTERVAL '5 months' THEN 1 END) as half_fail_count,
+                COUNT(CASE WHEN h.status = 'CD905' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('month', CURRENT_DATE) - INTERVAL '5 months' THEN 1 END) as half_no_data_count,
+
+                -- Yearly counts (this year in KST)
+                COUNT(CASE WHEN h.status = 'CD901' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('year', CURRENT_DATE) THEN 1 END) as year_success,
+                COUNT(CASE WHEN h.status = 'CD902' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('year', CURRENT_DATE) THEN 1 END) as year_ing_count,
+                COUNT(CASE WHEN h.status = 'CD903' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('year', CURRENT_DATE) THEN 1 END) as year_fail_count,
+                COUNT(CASE WHEN h.status = 'CD905' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('year', CURRENT_DATE) THEN 1 END) as year_no_data_count,
+
+                -- 연속 실패 계산 (최근 10번 실행 중 실패 횟수)
+                COALESCE((
+                    SELECT COUNT(*)
+                    FROM (
+                        SELECT status
+                        FROM TB_CON_HIST h2
+                        WHERE h2.job_id = h.job_id
+                        ORDER BY h2.start_dt DESC
+                        LIMIT 10
+                    ) recent_runs
+                    WHERE recent_runs.status IN ('CD902', 'CD903') -- 실패 상태들
+                ), 0) as fail_streak
+            FROM
+                TB_CON_HIST h
+            LEFT JOIN
+                TB_CON_MST m ON h.job_id = m.cd
+         GROUP BY h.job_id, m.cd_nm, m.item6 ORDER BY h.job_id ASC
+2025-12-23 14:02:40,873 - DEBUG - 127.0.0.1 - dashboard_mapper.py:21 - --- [DEBUG] Query Parameters: []
+2025-12-23 14:02:40,882 - INFO - 127.0.0.1 - dashboard_service.py:215 - --- [DATA LOG] Dashboard - Final Data Count: Total=7, CD101=1, CD102=1
+2025-12-23 14:02:40,887 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:40,892 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/analytics/success_rate_trend]
+2025-12-23 14:02:40,893 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:40,893 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/analytics/trouble_by_code]
+2025-12-23 14:02:40,893 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:40,893 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:40,893 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:40,894 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:40,894 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/analytics/success_rate_trend]
+2025-12-23 14:02:40,894 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:40,894 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:40,894 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/analytics/trouble_by_code]
+2025-12-23 14:02:40,894 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:40,894 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:40,896 - INFO - 127.0.0.1 - logging_config.py:40 - [분석]-[성공률 추이]-[API 요청]-[수신됨]
+2025-12-23 14:02:40,898 - INFO - 127.0.0.1 - logging_config.py:40 - [분석]-[성공률 추이]-[응답 생성]-[177건 전송]
+2025-12-23 14:02:40,900 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:40,923 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:40,926 - INFO - 127.0.0.1 - analysis_api.py:61 - ▶ API: /api/analytics/trouble_by_code 요청 수신
+2025-12-23 14:02:40,930 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:41,256 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /raw_data]
+2025-12-23 14:02:41,256 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:41,256 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:41,256 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:41,256 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /raw_data]
+2025-12-23 14:02:41,256 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:41,256 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:41,275 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:41,323 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/dashboard/min-max-dates]
+2025-12-23 14:02:41,324 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:41,324 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:41,324 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:41,324 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/dashboard/min-max-dates]
+2025-12-23 14:02:41,324 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:41,325 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:41,333 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:41,338 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/analytics/job_ids]
+2025-12-23 14:02:41,339 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/analytics/error_code_map]
+2025-12-23 14:02:41,339 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:41,339 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:41,339 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:41,339 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:41,340 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:41,340 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:41,340 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/analytics/job_ids]
+2025-12-23 14:02:41,340 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/analytics/error_code_map]
+2025-12-23 14:02:41,340 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:41,340 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:41,341 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:41,345 - INFO - 127.0.0.1 - logging_config.py:40 - [분석]-[Job ID 목록]-[API 요청]-[수신됨]
+2025-12-23 14:02:41,346 - INFO - 127.0.0.1 - logging_config.py:40 - [분석]-[Job ID 목록]-[응답 생성]-[7건 전송]
+2025-12-23 14:02:41,347 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:41,357 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:41,363 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:41,366 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/raw_data]
+2025-12-23 14:02:41,367 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:41,367 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:41,367 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:41,367 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/raw_data]
+2025-12-23 14:02:41,367 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:41,368 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:41,368 - WARNING - 127.0.0.1 - __init__.py:166 - [RAW_DATA_API] User: admin, Admin: True, Requested: ['CD101', 'CD102', 'CD103', 'CD104', 'CD301', 'CD302', 'CD303'], DataPerms: [], Allowed: ['CD101', 'CD102', 'CD103', 'CD104', 'CD301', 'CD302', 'CD303']
+2025-12-23 14:02:41,378 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:42,121 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /data_spec]
+2025-12-23 14:02:42,121 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:42,122 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:42,122 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:42,122 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /data_spec]
+2025-12-23 14:02:42,122 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:42,123 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:42,130 - INFO - 127.0.0.1 - logging_config.py:40 - [분석]-[접속 로그]-[데이터 삽입]-[성공]
+2025-12-23 14:02:42,145 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:42,197 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/data-spec]
+2025-12-23 14:02:42,197 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:42,198 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:42,198 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:42,198 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/data-spec]
+2025-12-23 14:02:42,198 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:42,198 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:42,202 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:42,760 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /mngr_sett]
+2025-12-23 14:02:42,760 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:42,761 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:42,761 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:42,761 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /mngr_sett]
+2025-12-23 14:02:42,762 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:42,762 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:42,794 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:42,898 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/mngr_sett/users]
+2025-12-23 14:02:42,898 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:42,899 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/mngr_sett/settings/all]
+2025-12-23 14:02:42,899 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:42,899 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/mngr_sett/icons/all]
+2025-12-23 14:02:42,899 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:42,900 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:42,900 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:42,900 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:42,900 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/mngr_sett/users]
+2025-12-23 14:02:42,900 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:42,900 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:42,900 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:42,901 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:42,901 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/mngr_sett/settings/all]
+2025-12-23 14:02:42,901 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:42,901 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/mngr_sett/icons/all]
+2025-12-23 14:02:42,901 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:42,902 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:42,918 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:42,918 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:42,921 - INFO - 127.0.0.1 - dashboard_service.py:34 - DashboardService.get_summary called for user: None
+2025-12-23 14:02:42,927 - INFO - 127.0.0.1 - dashboard_service.py:85 - Successfully fetched and mapped 8 manager settings with icon codes.
+2025-12-23 14:02:42,927 - DEBUG - 127.0.0.1 - dashboard_mapper.py:18 - --- [DEBUG] DashboardMapper.get_summary called with job_ids: None
+2025-12-23 14:02:42,927 - DEBUG - 127.0.0.1 - dashboard_mapper.py:20 - --- [DEBUG] Generated SQL Query:
+
+            SELECT
+                h.job_id,
+                m.cd_nm,
+                m.item6 as frequency,
+                MIN(h.start_dt) AS min_con_dt,
+                MAX(h.start_dt) AS max_con_dt,
+                COUNT(*) as total_count,
+                -- Overall counts
+                COUNT(CASE WHEN h.status = 'CD901' THEN 1 END) as overall_success_count,
+                COUNT(CASE WHEN h.status = 'CD902' THEN 1 END) as overall_ing_count,
+                COUNT(CASE WHEN h.status = 'CD903' THEN 1 END) as overall_fail_count,
+                COUNT(CASE WHEN h.status = 'CD904' THEN 1 END) as overall_cd904_count,
+                COUNT(CASE WHEN h.status = 'CD905' THEN 1 END) as overall_no_data_count,
+
+                -- Daily counts (today in KST)
+                COUNT(CASE WHEN h.status = 'CD901' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date = CURRENT_DATE THEN 1 END) as day_success,
+                COUNT(CASE WHEN h.status = 'CD902' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date = CURRENT_DATE THEN 1 END) as day_ing_count,
+                COUNT(CASE WHEN h.status = 'CD903' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date = CURRENT_DATE THEN 1 END) as day_fail_count,
+                COUNT(CASE WHEN h.status = 'CD905' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date = CURRENT_DATE THEN 1 END) as day_no_data_count,
+
+                -- Weekly counts (this week in KST)
+                COUNT(CASE WHEN h.status = 'CD901' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('week', CURRENT_DATE) THEN 1 END) as week_success,
+                COUNT(CASE WHEN h.status = 'CD902' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('week', CURRENT_DATE) THEN 1 END) as week_ing_count,
+                COUNT(CASE WHEN h.status = 'CD903' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('week', CURRENT_DATE) THEN 1 END) as week_fail_count,
+                COUNT(CASE WHEN h.status = 'CD905' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('week', CURRENT_DATE) THEN 1 END) as week_no_data_count,
+
+                -- Monthly counts (this month in KST)
+                COUNT(CASE WHEN h.status = 'CD901' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('month', CURRENT_DATE) THEN 1 END) as month_success,
+                COUNT(CASE WHEN h.status = 'CD902' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('month', CURRENT_DATE) THEN 1 END) as month_ing_count,
+                COUNT(CASE WHEN h.status = 'CD903' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('month', CURRENT_DATE) THEN 1 END) as month_fail_count,
+                COUNT(CASE WHEN h.status = 'CD905' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('month', CURRENT_DATE) THEN 1 END) as month_no_data_count,
+
+                -- Half-year counts (last 6 months in KST)
+                COUNT(CASE WHEN h.status = 'CD901' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('month', CURRENT_DATE) - INTERVAL '5 months' THEN 1 END) as half_success,
+                COUNT(CASE WHEN h.status = 'CD902' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('month', CURRENT_DATE) - INTERVAL '5 months' THEN 1 END) as half_ing_count,
+                COUNT(CASE WHEN h.status = 'CD903' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('month', CURRENT_DATE) - INTERVAL '5 months' THEN 1 END) as half_fail_count,
+                COUNT(CASE WHEN h.status = 'CD905' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('month', CURRENT_DATE) - INTERVAL '5 months' THEN 1 END) as half_no_data_count,
+
+                -- Yearly counts (this year in KST)
+                COUNT(CASE WHEN h.status = 'CD901' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('year', CURRENT_DATE) THEN 1 END) as year_success,
+                COUNT(CASE WHEN h.status = 'CD902' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('year', CURRENT_DATE) THEN 1 END) as year_ing_count,
+                COUNT(CASE WHEN h.status = 'CD903' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('year', CURRENT_DATE) THEN 1 END) as year_fail_count,
+                COUNT(CASE WHEN h.status = 'CD905' AND (h.start_dt::timestamp AT TIME ZONE 'Asia/Seoul')::date >= date_trunc('year', CURRENT_DATE) THEN 1 END) as year_no_data_count,
+
+                -- 연속 실패 계산 (최근 10번 실행 중 실패 횟수)
+                COALESCE((
+                    SELECT COUNT(*)
+                    FROM (
+                        SELECT status
+                        FROM TB_CON_HIST h2
+                        WHERE h2.job_id = h.job_id
+                        ORDER BY h2.start_dt DESC
+                        LIMIT 10
+                    ) recent_runs
+                    WHERE recent_runs.status IN ('CD902', 'CD903') -- 실패 상태들
+                ), 0) as fail_streak
+            FROM
+                TB_CON_HIST h
+            LEFT JOIN
+                TB_CON_MST m ON h.job_id = m.cd
+         GROUP BY h.job_id, m.cd_nm, m.item6 ORDER BY h.job_id ASC
+2025-12-23 14:02:42,929 - DEBUG - 127.0.0.1 - dashboard_mapper.py:21 - --- [DEBUG] Query Parameters: []
+2025-12-23 14:02:42,930 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:42,934 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:42,942 - INFO - 127.0.0.1 - dashboard_service.py:215 - --- [DATA LOG] Dashboard - Final Data Count: Total=7, CD101=1, CD102=1
+2025-12-23 14:02:42,948 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:43,692 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /collection_schedule]
+2025-12-23 14:02:43,692 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:43,692 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:43,693 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:43,693 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /collection_schedule]
+2025-12-23 14:02:43,693 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:43,693 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:43,707 - INFO - 127.0.0.1 - logging_config.py:40 - [분석]-[접속 로그]-[데이터 삽입]-[성공]
+2025-12-23 14:02:43,708 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:43,719 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/mst_list]
+2025-12-23 14:02:43,720 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:43,720 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:43,720 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:43,721 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/mst_list]
+2025-12-23 14:02:43,721 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:43,722 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:43,725 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:02:43,728 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/collection_schedule]
+2025-12-23 14:02:43,728 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:02:43,729 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:02:43,729 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:02:43,729 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/collection_schedule]
+2025-12-23 14:02:43,729 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:02:43,729 - DEBUG - 127.0.0.1 - database.py:41 - DB 커넥션을 풀에서 가져왔습니다.
+2025-12-23 14:02:43,732 - INFO - 127.0.0.1 - mngr_sett_service.py:298 - === SERVICE: get_schedule_settings_service() 시작 ===
+2025-12-23 14:02:43,732 - INFO - 127.0.0.1 - mngr_sett_service.py:302 - SERVICE: DAO 호출 준비
+2025-12-23 14:02:43,732 - INFO - 127.0.0.1 - mngr_sett_service.py:308 - SERVICE: DAO.get_schedule_settings() 호출
+2025-12-23 14:02:43,732 - INFO - 127.0.0.1 - schedule_settings_dao.py:57 - === DAO: get_schedule_settings() 시작 ===
+2025-12-23 14:02:43,732 - INFO - 127.0.0.1 - logging_config.py:40 - [관리자설정]-[스케줄설정]-[SQL 파일 로드]-[성공: 1444자]
+2025-12-23 14:02:43,732 - INFO - 127.0.0.1 - logging_config.py:40 - [관리자설정]-[스케줄설정]-[데이터 조회]-[실행 시작]
+2025-12-23 14:02:43,733 - DEBUG - 127.0.0.1 - schedule_settings_dao.py:12 - DAO: _execute_query 호출. fetch_one=True, params 개수=0
+2025-12-23 14:02:43,733 - DEBUG - 127.0.0.1 - schedule_settings_dao.py:16 - DAO: 커서 생성 성공
+2025-12-23 14:02:43,746 - DEBUG - 127.0.0.1 - schedule_settings_dao.py:20 - DAO: 쿼리 실행 성공
+2025-12-23 14:02:43,746 - DEBUG - 127.0.0.1 - schedule_settings_dao.py:23 - DAO: fetch_one 모드로 단일 행 조회
+2025-12-23 14:02:43,746 - DEBUG - 127.0.0.1 - schedule_settings_dao.py:29 - DAO: 단일 행 조회 성공. 컬럼 수: 33
+2025-12-23 14:02:43,746 - INFO - 127.0.0.1 - logging_config.py:40 - [관리자설정]-[스케줄설정]-[데이터 조회]-[완료: 데이터 있음]
+2025-12-23 14:02:43,747 - INFO - 127.0.0.1 - logging_config.py:40 - [관리자설정]-[스케줄설정]-[데이터 반환]-[33개 필드]
+2025-12-23 14:02:43,747 - DEBUG - 127.0.0.1 - logging_config.py:38 - [관리자설정]-[스케줄설정]-[주요 설정]-[sett_id: 9] | sett_id=9, grp_min_cnt=4, use_yn=Y, grp_brdr_styl=none, grp_colr_crtr=prgr
+2025-12-23 14:02:43,747 - INFO - 127.0.0.1 - logging_config.py:40 - [관리자설정]-[스케줄설정]-[조회 완료]-[성공]
+2025-12-23 14:02:43,747 - INFO - 127.0.0.1 - mngr_sett_service.py:310 - SERVICE: DAO 호출 완료. 반환 타입: <class 'dict'>
+2025-12-23 14:02:43,747 - INFO - 127.0.0.1 - mngr_sett_service.py:320 - SERVICE: DAO에서 33개의 필드 데이터 수신
+2025-12-23 14:02:43,747 - DEBUG - 127.0.0.1 - mngr_sett_service.py:321 - SERVICE: 수신된 데이터 키들: ['sett_id', 'grp_min_cnt', 'prgs_rt_red_thrsval', 'prgs_rt_org_thrsval', 'use_yn', 'grp_brdr_styl', 'grp_colr_crtr', 'succ_rt_red_thrsval', 'succ_rt_org_thrsval', 'grp_prgs_icon_id', 'grp_prgs_icon_cd', 'grp_sucs_icon_id', 'grp_sucs_icon_cd', 'sucs_icon_id', 'sucs_icon_cd', 'sucs_bg_colr', 'sucs_txt_colr', 'fail_icon_id', 'fail_icon_cd', 'fail_bg_colr', 'fail_txt_colr', 'prgs_icon_id', 'prgs_icon_cd', 'prgs_bg_colr', 'prgs_txt_colr', 'nodt_icon_id', 'nodt_icon_cd', 'nodt_bg_colr', 'nodt_txt_colr', 'schd_icon_id', 'schd_icon_cd', 'schd_bg_colr', 'schd_txt_colr']
+2025-12-23 14:02:43,748 - INFO - 127.0.0.1 - mngr_sett_service.py:324 - SERVICE: 데이터 변환 시작 (snake_case -> camelCase)
+2025-12-23 14:02:43,748 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 sett_id -> settId: 9 (int)
+2025-12-23 14:02:43,748 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 grp_min_cnt -> grpMinCnt: 4 (int)
+2025-12-23 14:02:43,748 - DEBUG - 127.0.0.1 - mngr_sett_service.py:373 - SERVICE: Decimal 변환 - prgs_rt_red_thrsval: 30.0
+2025-12-23 14:02:43,748 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 prgs_rt_red_thrsval -> prgsRtRedThrsval: 30.0 (float)
+2025-12-23 14:02:43,748 - DEBUG - 127.0.0.1 - mngr_sett_service.py:373 - SERVICE: Decimal 변환 - prgs_rt_org_thrsval: 60.0
+2025-12-23 14:02:43,748 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 prgs_rt_org_thrsval -> prgsRtOrgThrsval: 60.0 (float)
+2025-12-23 14:02:43,749 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 succ_rt_red_thrsval -> succRtRedThrsval: 30 (int)
+2025-12-23 14:02:43,749 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 succ_rt_org_thrsval -> succRtOrgThrsval: 60 (int)
+2025-12-23 14:02:43,749 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 use_yn -> useYn: 'Y'
+2025-12-23 14:02:43,749 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 grp_brdr_styl -> grpBrdrStyl: 'none'
+2025-12-23 14:02:43,749 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 grp_colr_crtr -> grpColrCrtr: 'prgr'
+2025-12-23 14:02:43,750 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 sucs_icon_id -> sucsIconId: 1 (int)
+2025-12-23 14:02:43,750 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 sucs_icon_cd -> sucsIconCd: '🟢'
+2025-12-23 14:02:43,750 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 sucs_bg_colr -> sucsBgColr: '#dcfce7'
+2025-12-23 14:02:43,750 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 sucs_txt_colr -> sucsTxtColr: '#166534'
+2025-12-23 14:02:43,750 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 fail_icon_id -> failIconId: 2 (int)
+2025-12-23 14:02:43,751 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 fail_icon_cd -> failIconCd: '🔴'
+2025-12-23 14:02:43,751 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 fail_bg_colr -> failBgColr: '#fee2e2'
+2025-12-23 14:02:43,751 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 fail_txt_colr -> failTxtColr: '#991b1b'
+2025-12-23 14:02:43,751 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 prgs_icon_id -> prgsIconId: 4 (int)
+2025-12-23 14:02:43,751 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 prgs_icon_cd -> prgsIconCd: '🔵'
+2025-12-23 14:02:43,751 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 prgs_bg_colr -> prgsBgColr: '#fef9c3'
+2025-12-23 14:02:43,751 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 prgs_txt_colr -> prgsTxtColr: '#854d0e'
+2025-12-23 14:02:43,751 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 nodt_icon_id -> nodtIconId: 28 (int)
+2025-12-23 14:02:43,751 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 nodt_icon_cd -> nodtIconCd: '⚠️'
+2025-12-23 14:02:43,751 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 nodt_bg_colr -> nodtBgColr: '#ffedd5'
+2025-12-23 14:02:43,752 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 nodt_txt_colr -> nodtTxtColr: '#9a3412'
+2025-12-23 14:02:43,752 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 schd_icon_id -> schdIconId: 10 (int)
+2025-12-23 14:02:43,752 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 schd_icon_cd -> schdIconCd: '⏱️'
+2025-12-23 14:02:43,752 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 schd_bg_colr -> schdBgColr: '#e5e7eb'
+2025-12-23 14:02:43,752 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 schd_txt_colr -> schdTxtColr: '#4b5563'
+2025-12-23 14:02:43,752 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 grp_prgs_icon_id -> grpPrgsIconId: 23 (int)
+2025-12-23 14:02:43,753 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 grp_prgs_icon_cd -> grpPrgsIconCd: '🐛'
+2025-12-23 14:02:43,753 - DEBUG - 127.0.0.1 - mngr_sett_service.py:381 - SERVICE: 필드 grp_sucs_icon_id -> grpSucsIconId: 12 (int)
+2025-12-23 14:02:43,753 - DEBUG - 127.0.0.1 - mngr_sett_service.py:387 - SERVICE: 필드 grp_sucs_icon_cd -> grpSucsIconCd: '🌡️'
+2025-12-23 14:02:43,753 - INFO - 127.0.0.1 - mngr_sett_service.py:391 - SERVICE: 데이터 변환 완료. 33개 필드 변환됨
+2025-12-23 14:02:43,755 - INFO - 127.0.0.1 - mngr_sett_service.py:392 - === SERVICE: get_schedule_settings_service() 성공 완료 ===
+2025-12-23 14:02:43,755 - INFO - 127.0.0.1 - collection_schedule_routes.py:44 - DEBUG_ICON_CHECK: Fetched display_settings from service: {'settId': 9, 'grpMinCnt': 4, 'prgsRtRedThrsval': 30.0, 'prgsRtOrgThrsval': 60.0, 'succRtRedThrsval': 30, 'succRtOrgThrsval': 60, 'useYn': 'Y', 'grpBrdrStyl': 'none', 'grpColrCrtr': 'prgr', 'sucsIconId': 1, 'sucsIconCd': '🟢', 'sucsBgColr': '#dcfce7', 'sucsTxtColr': '#166534', 'failIconId': 2, 'failIconCd': '🔴', 'failBgColr': '#fee2e2', 'failTxtColr': '#991b1b', 'prgsIconId': 4, 'prgsIconCd': '🔵', 'prgsBgColr': '#fef9c3', 'prgsTxtColr': '#854d0e', 'nodtIconId': 28, 'nodtIconCd': '⚠️', 'nodtBgColr': '#ffedd5', 'nodtTxtColr': '#9a3412', 'schdIconId': 10, 'schdIconCd': '⏱️', 'schdBgColr': '#e5e7eb', 'schdTxtColr': '#4b5563', 'grpPrgsIconId': 23, 'grpPrgsIconCd': '🐛', 'grpSucsIconId': 12, 'grpSucsIconCd': '🌡️'}
+2025-12-23 14:02:43,766 - INFO - 127.0.0.1 - collection_schedule_routes.py:53 - DEBUG_ICON_CHECK: Final response_data to be sent: {'schedule_data': [{'date': '2025-12-22 10:00:00', 'job_id': 'CD301', 'cron': '0 10 * * *', 'status': '미수집'}, {'date': '2025-12-22 06:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '미수집'}, {'date': '2025-12-22 10:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '미수집'}, {'date': '2025-12-22 08:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '미수집'}, {'date': '2025-12-22 15:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '미수집'}, {'date': '2025-12-22 10:00:00', 'job_id': 'CD302', 'cron': '0 10 * * *', 'status': '미수집'}, {'date': '2025-12-22 10:00:00', 'job_id': 'CD303', 'cron': '0 10 * * *', 'status': '미수집'}, {'date': '2025-12-23 10:00:00', 'job_id': 'CD301', 'cron': '0 10 * * *', 'status': '미수집'}, {'date': '2025-12-23 06:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '미수집'}, {'date': '2025-12-23 10:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '미수집'}, {'date': '2025-12-23 08:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '미수집'}, {'date': '2025-12-23 15:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '예정'}, {'date': '2025-12-23 10:00:00', 'job_id': 'CD302', 'cron': '0 10 * * *', 'status': '미수집'}, {'date': '2025-12-23 10:00:00', 'job_id': 'CD303', 'cron': '0 10 * * *', 'status': '미수집'}, {'date': '2025-12-24 10:00:00', 'job_id': 'CD301', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-24 06:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '예정'}, {'date': '2025-12-24 10:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '예정'}, {'date': '2025-12-24 08:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '예정'}, {'date': '2025-12-24 15:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '예정'}, {'date': '2025-12-24 10:00:00', 'job_id': 'CD302', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-24 10:00:00', 'job_id': 'CD303', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-25 16:00:00', 'job_id': 'CD103', 'cron': '0 16 */6 * * ', 'status': '예정'}, {'date': '2025-12-25 10:00:00', 'job_id': 'CD301', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-25 06:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '예정'}, {'date': '2025-12-25 10:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '예정'}, {'date': '2025-12-25 08:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '예정'}, {'date': '2025-12-25 15:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '예정'}, {'date': '2025-12-25 10:00:00', 'job_id': 'CD302', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-25 15:00:00', 'job_id': 'CD104', 'cron': '0 15 */6 * *', 'status': '예정'}, {'date': '2025-12-25 10:00:00', 'job_id': 'CD303', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-26 10:00:00', 'job_id': 'CD301', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-26 06:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '예정'}, {'date': '2025-12-26 10:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '예정'}, {'date': '2025-12-26 08:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '예정'}, {'date': '2025-12-26 15:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '예정'}, {'date': '2025-12-26 10:00:00', 'job_id': 'CD302', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-26 10:00:00', 'job_id': 'CD303', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-27 10:00:00', 'job_id': 'CD301', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-27 06:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '예정'}, {'date': '2025-12-27 10:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '예정'}, {'date': '2025-12-27 08:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '예정'}, {'date': '2025-12-27 15:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '예정'}, {'date': '2025-12-27 10:00:00', 'job_id': 'CD302', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-27 10:00:00', 'job_id': 'CD303', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-28 10:00:00', 'job_id': 'CD301', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-28 06:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '예정'}, {'date': '2025-12-28 10:00:00', 'job_id': 'CD101', 'cron': '0 6,10 * * *', 'status': '예정'}, {'date': '2025-12-28 08:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '예정'}, {'date': '2025-12-28 15:00:00', 'job_id': 'CD102', 'cron': '0 8,15 * * * ', 'status': '예정'}, {'date': '2025-12-28 10:00:00', 'job_id': 'CD302', 'cron': '0 10 * * *', 'status': '예정'}, {'date': '2025-12-28 10:00:00', 'job_id': 'CD303', 'cron': '0 10 * * *', 'status': '예정'}], 'display_settings': {'settId': 9, 'grpMinCnt': 4, 'prgsRtRedThrsval': 30.0, 'prgsRtOrgThrsval': 60.0, 'succRtRedThrsval': 30, 'succRtOrgThrsval': 60, 'useYn': 'Y', 'grpBrdrStyl': 'none', 'grpColrCrtr': 'prgr', 'sucsIconId': 1, 'sucsIconCd': '🟢', 'sucsBgColr': '#dcfce7', 'sucsTxtColr': '#166534', 'failIconId': 2, 'failIconCd': '🔴', 'failBgColr': '#fee2e2', 'failTxtColr': '#991b1b', 'prgsIconId': 4, 'prgsIconCd': '🔵', 'prgsBgColr': '#fef9c3', 'prgsTxtColr': '#854d0e', 'nodtIconId': 28, 'nodtIconCd': '⚠️', 'nodtBgColr': '#ffedd5', 'nodtTxtColr': '#9a3412', 'schdIconId': 10, 'schdIconCd': '⏱️', 'schdBgColr': '#e5e7eb', 'schdTxtColr': '#4b5563', 'grpPrgsIconId': 23, 'grpPrgsIconCd': '🐛', 'grpSucsIconId': 12, 'grpSucsIconCd': '🌡️'}}
+2025-12-23 14:02:43,768 - DEBUG - N/A - database.py:54 - DB 커넥션을 풀에 반환했습니다.
+2025-12-23 14:03:32,620 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:03:32,620 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:03:32,620 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:03:32,620 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:03:32,620 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:03:32,620 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:04:32,625 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:04:32,625 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:04:32,625 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:04:32,625 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:04:32,625 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:04:32,625 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:05:32,624 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:05:32,624 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:05:32,624 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:05:32,640 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:05:32,641 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:05:32,641 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:06:32,627 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:06:32,627 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:06:32,627 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:06:32,627 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:06:32,627 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:06:32,627 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:07:32,626 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:07:32,626 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:07:32,626 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:07:32,626 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:07:32,626 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:07:32,626 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:08:32,625 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:08:32,625 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:08:32,625 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:08:32,625 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:08:32,625 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:08:32,625 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:09:32,622 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:09:32,622 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:09:32,622 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:09:32,622 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:09:32,622 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:09:32,622 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:10:32,621 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:10:32,621 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:10:32,621 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:10:32,621 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:10:32,621 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:10:32,621 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:11:32,619 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:11:32,619 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:11:32,619 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:11:32,619 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:11:32,619 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:11:32,619 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:12:32,637 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:12:32,638 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:12:32,638 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:12:32,639 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:12:32,639 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:12:32,639 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:13:32,620 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:13:32,620 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:13:32,620 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:13:32,620 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:13:32,620 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:13:32,620 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:14:32,624 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:14:32,624 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:14:32,624 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:14:32,624 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:14:32,624 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:14:32,624 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:15:32,623 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:15:32,623 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:15:32,623 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:15:32,623 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:15:32,623 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:15:32,623 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:16:32,639 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:16:32,640 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:16:32,640 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:16:32,640 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:16:32,641 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:16:32,641 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:17:32,617 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:17:32,617 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:17:32,617 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:17:32,617 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:17:32,617 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:17:32,617 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:18:32,635 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:18:32,636 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:18:32,636 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:18:32,637 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:18:32,637 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:18:32,637 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:19:32,633 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:19:32,633 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:19:32,633 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:19:32,633 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:19:32,633 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:19:32,633 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:20:32,618 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:20:32,618 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:20:32,618 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:20:32,618 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:20:32,618 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:20:32,618 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:21:32,618 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:21:32,618 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:21:32,618 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:21:32,618 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:21:32,618 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:21:32,618 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:22:32,637 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:22:32,637 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:22:32,638 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:22:32,638 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:22:32,638 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:22:32,638 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:23:32,629 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:23:32,629 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:23:32,629 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:23:32,629 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:23:32,629 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:23:32,629 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:24:32,628 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:24:32,628 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:24:32,628 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:24:32,628 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:24:32,628 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:24:32,628 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:25:32,628 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:25:32,628 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:25:32,628 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:25:32,628 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:25:32,628 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:25:32,628 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:26:32,628 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:26:32,628 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:26:32,628 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:26:32,628 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:26:32,628 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:26:32,628 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:27:32,627 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:27:32,627 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:27:32,627 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:27:32,627 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:27:32,627 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:27:32,627 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:28:32,619 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:28:32,619 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:28:32,619 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:28:32,619 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:28:32,619 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:28:32,619 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:29:33,387 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:29:33,387 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:29:33,387 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:29:33,387 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:29:33,387 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:29:33,387 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:30:33,381 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:30:33,381 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:30:33,381 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:30:33,381 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:30:33,381 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:30:33,381 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:31:33,385 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:31:33,385 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:31:33,385 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:31:33,385 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:31:33,385 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:31:33,385 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:32:33,385 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:32:33,385 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:32:33,385 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:32:33,385 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:32:33,385 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:32:33,385 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:33:33,385 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:33:33,385 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:33:33,385 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:33:33,385 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:33:33,385 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:33:33,385 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:34:33,387 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:34:33,387 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:34:33,387 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:34:33,387 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:34:33,387 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:34:33,387 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:35:33,384 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:35:33,384 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:35:33,384 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:35:33,384 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:35:33,384 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:35:33,384 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:36:33,386 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:36:33,386 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:36:33,386 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:36:33,386 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:36:33,386 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:36:33,386 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:37:33,382 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:37:33,382 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:37:33,382 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:37:33,382 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:37:33,382 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:37:33,382 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:38:33,392 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:38:33,392 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:38:33,392 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:38:33,392 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:38:33,392 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:38:33,392 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:39:33,386 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:39:33,386 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:39:33,386 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:39:33,386 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:39:33,386 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:39:33,386 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:40:33,382 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:40:33,382 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:40:33,382 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:40:33,382 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:40:33,382 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:40:33,382 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:41:33,379 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:41:33,379 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:41:33,379 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:41:33,379 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:41:33,379 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:41:33,379 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:42:33,397 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:42:33,397 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:42:33,397 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:42:33,397 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:42:33,397 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:42:33,398 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:43:33,387 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:43:33,387 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:43:33,387 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:43:33,387 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:43:33,387 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:43:33,387 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:44:33,391 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:44:33,391 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:44:33,391 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:44:33,391 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:44:33,391 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:44:33,391 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:45:33,391 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:45:33,391 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:45:33,391 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:45:33,391 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:45:33,391 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:45:33,391 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:46:33,388 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:46:33,388 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:46:33,388 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:46:33,388 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:46:33,388 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:46:33,388 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:47:33,382 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:47:33,382 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:47:33,382 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:47:33,382 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:47:33,382 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:47:33,382 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:48:33,396 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:48:33,397 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:48:33,397 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:48:33,398 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:48:33,398 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:48:33,398 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:49:33,386 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:49:33,386 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:49:33,386 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:49:33,386 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:49:33,386 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:49:33,386 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]
+2025-12-23 14:50:33,387 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[요청 검증]-[권한 체크]-[GET /api/auth/status]
+2025-12-23 14:50:33,387 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 확인]-[사용자 상태]-[로그인됨]
+2025-12-23 14:50:33,387 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 시간 확인]-[존재함]
+2025-12-23 14:50:33,387 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[세션 검증]-[만료 상태 체크]-[유효함]
+2025-12-23 14:50:33,387 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[메뉴 접근]-[경로: /api/auth/status]
+2025-12-23 14:50:33,387 - INFO - 127.0.0.1 - logging_config.py:40 - [인증]-[권한 체크]-[접근 승인]-[통과]

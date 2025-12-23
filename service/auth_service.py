@@ -44,3 +44,23 @@ class AuthService:
         }
         
         return user_info, "로그인 성공"
+
+    def change_password(self, user_id, current_password, new_password):
+        """
+        사용자의 비밀번호를 변경합니다.
+        현재 비밀번호를 확인한 후 새 비밀번호로 변경합니다.
+        """
+        user = self.user_mapper.find_by_id(user_id)
+
+        if not user:
+            return False, "존재하지 않는 사용자입니다."
+
+        # 현재 비밀번호 확인
+        if not PasswordService.check_password(current_password, user.get('user_pwd')):
+            return False, "현재 비밀번호가 일치하지 않습니다."
+
+        # 새 비밀번호 해시화 및 업데이트
+        hashed_new_password = PasswordService.hash_password(new_password)
+        self.user_mapper.update_password(user_id, hashed_new_password)
+
+        return True, "비밀번호가 성공적으로 변경되었습니다."

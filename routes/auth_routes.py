@@ -343,17 +343,13 @@ def register():
 @auth_bp.route('/change_password', methods=['GET', 'POST'])
 @login_required
 def change_password():
-    # 로그인한 사용자가 직접 URL로 접근하는 것을 방지
-    # 강제 비밀번호 변경이 필요한 경우에만 접근 허용
-    if not session.get('force_password_change'):
-        return redirect(url_for('dashboard.dashboard'))
-
     if request.method == 'POST':
+        current_password = request.form.get('current_password')
         new_password = request.form.get('new_password')
         confirm_password = request.form.get('confirm_password')
         user_id = session['user']['user_id']
 
-        if not all([new_password, confirm_password]):
+        if not all([current_password, new_password, confirm_password]):
             flash("모든 필드를 입력해주세요.")
             return redirect(url_for('auth.change_password'))
 
@@ -363,12 +359,12 @@ def change_password():
 
         try:
             conn = get_db_connection()
-            user_mapper = UserMapper(conn)
+            auth_service = AuthService(conn)
             dashboard_service = DashboardService(conn)
 
             # 관리자인지 확인
             is_admin = 'mngr_sett' in session.get('user', {}).get('permissions', [])
-            
+
             # 관리자가 아닌 경우에만 비밀번호 정책 검사
             if not is_admin:
                 is_valid, message = PasswordService.validate_password_policy(new_password)
@@ -376,9 +372,12 @@ def change_password():
                     flash(message)
                     return redirect(url_for('auth.change_password'))
 
-            hashed_password = PasswordService.hash_password(new_password)
-            user_mapper.update_password(user_id, hashed_password)
-            
+            # 비밀번호 변경 서비스 호출
+            success, message = auth_service.change_password(user_id, current_password, new_password)
+            if not success:
+                flash(message)
+                return redirect(url_for('auth.change_password'))
+
             # --- 비밀번호 변경 이벤트 로그 기록 ---
             try:
                 rqs_info = f"User '{user_id}' changed their password"
@@ -388,10 +387,10 @@ def change_password():
                 current_app.logger.error(f"Failed to save password change event log for user {user_id}: {log_e}")
             # ------------------------------------
             conn.commit()
-                
+
             # Clear the force_password_change flag from the session
             session.pop('force_password_change', None)
-            
+
             flash("비밀번호가 성공적으로 변경되었습니다.", "success")
             return redirect(url_for('dashboard.dashboard')) # Redirect to dashboard after successful change
 
