@@ -140,6 +140,20 @@ export async function init() {
         });
     }
 
+    // 원천 데이터 엑셀 다운로드 버튼 이벤트 리스너
+    const downloadRawDataBtn = document.getElementById('downloadRawDataBtn');
+    if (downloadRawDataBtn) {
+        downloadRawDataBtn.addEventListener('click', () => {
+            // 기존 엑셀 다운로드 로직 사용
+            const excelBtn = document.getElementById('excel-download-btn');
+            if (excelBtn) {
+                excelBtn.click();
+            } else {
+                showMessage('엑셀 다운로드 기능을 사용할 수 없습니다.', 'error');
+            }
+        });
+    }
+
 }
 
 /**
