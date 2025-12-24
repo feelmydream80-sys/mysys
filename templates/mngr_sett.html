@@ -325,7 +325,7 @@
             border-radius: 8px;
             margin-bottom: 20px;
             border: 1px solid #eee;
-            align-items: flex-end; /* 버튼을 하단에 정렬 */
+            align-items: center; /* 모든 요소를 중앙에 정렬 */
         }
 
         #mngr_sett_page .icon-form .form-group {
@@ -350,22 +350,37 @@
             border-radius: 5px;
             font-size: 1em;
             box-sizing: border-box;
+            height: 42px; /* 명시적 높이 설정 */
         }
 
         #mngr_sett_page .icon-form textarea {
             resize: vertical;
-            min-height: 60px;
+            min-height: 42px;
+            height: 42px;
         }
 
-        #mngr_sett_page .icon-form button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1em;
-            transition: background-color 0.3s ease;
-            margin-top: 20px; /* 입력 필드와 버튼 사이 간격 */
+        #mngr_sett_page .icon-form-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
         }
+
+        #mngr_sett_page .icon-form-actions button {
+            padding: 15px 25px !important;
+            border: none !important;
+            border-radius: 8px !important;
+            cursor: pointer !important;
+            font-size: 1.2em !important;
+            font-weight: 700 !important;
+            transition: background-color 0.3s ease, transform 0.2s ease !important;
+            height: 50px !important; /* 더 큰 크기로 설정 */
+            box-sizing: border-box !important;
+            min-height: 50px !important;
+        }
+
+
 
         #mngr_sett_page .icon-form .add-icon { background-color: #007bff; color: white; }
         #mngr_sett_page .icon-form .add-icon:hover { background-color: #0056b3; }
@@ -866,7 +881,7 @@
                         <label for="iconName">아이콘 이름</label>
                         <input type="text" id="iconName" placeholder="예: 성공" required>
                     </div>
-                    <div class="form-group" style="flex: 2;">
+                    <div class="form-group" style="flex: 1;">
                         <label for="iconDescription">설명 (선택 사항)</label>
                         <textarea id="iconDescription" placeholder="아이콘에 대한 설명"></textarea>
                     </div>
@@ -877,8 +892,14 @@
                             <option value="N">N</option>
                         </select>
                     </div>
-                    <button class="add-icon" id="saveIconBtn">아이콘 추가</button>
-                    <button class="cancel-edit" id="cancelIconEditBtn" style="display:none;">취소</button>
+                    <div class="form-group" style="flex: 0 0 auto; margin-left: auto;">
+                        <label>&nbsp;</label>
+                        <button class="btn btn-primary" id="saveIconBtn" style="height: 42px;">
+                            <span class="btn-icon">📁</span>
+                            아이콘 추가
+                        </button>
+                        <button class="btn btn-secondary cancel-edit" id="cancelIconEditBtn" style="display:none; height: 42px;">취소</button>
+                    </div>
                 </div>
 
                 <table class="icon-management-table">
