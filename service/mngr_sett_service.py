@@ -235,7 +235,7 @@ class MngrSettService:
                     self.logger.warning(f"Service: Skipping settings creation for invalid job_id: {job_id}")
                     continue
 
-                new_setting_data = {'sett_id': job_id, **DEFAULT_ADMIN_SETTINGS}
+                new_setting_data = {'job_id': job_id, **DEFAULT_ADMIN_SETTINGS}
 
                 # Assign a unique random color for the chart.
                 new_color = get_random_hex_color()
@@ -247,7 +247,7 @@ class MngrSettService:
 
                 self.logger.info(f"Service: Creating settings for job_id: {job_id}")
                 self.logger.info(f"Service: new_setting_data keys: {list(new_setting_data.keys())}")
-                self.logger.info(f"Service: new_setting_data['sett_id']: {new_setting_data.get('sett_id')}")
+                self.logger.info(f"Service: new_setting_data['job_id']: {new_setting_data.get('job_id')}")
                 try:
                     mapper.insert_or_update_settings(new_setting_data)
                 except Exception as e:

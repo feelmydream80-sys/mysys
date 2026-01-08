@@ -20,7 +20,7 @@ class CardSummaryService:
         today = datetime.now(kst).date()
 
         # 1. Get today's scheduled tasks
-        job_statuses_today = self.collection_schedule_service.get_schedule_and_history(today, today, user)
+        job_statuses_today = self.collection_schedule_service.get_schedule_only(today, today, user)
         
         # 2. 권한 체크를 위한 허용된 Job IDs 준비
         allowed_job_ids = None

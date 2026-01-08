@@ -125,6 +125,9 @@ class DashboardSQL:
         params = []
         conditions = []
 
+        # Ensure job_id is not NULL to prevent invalid groups
+        conditions.append("h.job_id IS NOT NULL")
+
         if not all_data:
             if start_date:
                 conditions.append(f"{kst_date_expr} >= %s")
@@ -132,7 +135,7 @@ class DashboardSQL:
             if end_date:
                 conditions.append(f"{kst_date_expr} <= %s")
                 params.append(end_date)
-        
+
         if job_ids:
             conditions.append("h.job_id = ANY(%s)")
             params.append(job_ids)

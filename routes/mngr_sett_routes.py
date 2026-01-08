@@ -41,10 +41,17 @@ def get_all_mngr_sett():
     """
     모든 관리자 설정 데이터를 제공하는 API.
     """
+    logging.info("=== API: get_all_mngr_sett() 시작 ===")
+    current_user = session.get('user', {})
+    logging.info(f"Current user: {current_user.get('user_id', 'None')}")
+    logging.info(f"User permissions: {current_user.get('permissions', [])}")
+
     try:
         conn = get_db_connection()
         mngr_sett_service = MngrSettService(conn)
         settings = mngr_sett_service.get_all_settings()
+        conn.commit()
+        logging.info(f"=== API: get_all_mngr_sett() 완료. 반환 설정 개수: {len(settings)} ===")
         return jsonify(settings), 200
     except Exception as e:
         logging.error(f"❌ API: 모든 관리자 설정 조회 실패: {e}", exc_info=True)

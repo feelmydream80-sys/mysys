@@ -1,6 +1,30 @@
 {
     "TB_MNGR_SETT": {
-        "sett_id": "cd"
+        "sett_id": "cd",
+        "CNN_FAILR_THRS_VAL": "cnn_failr_thrs_val",
+        "CNN_WARN_THRS_VAL": "cnn_warn_thrs_val",
+        "CNN_FAILR_ICON_ID": "cnn_failr_icon_id",
+        "CNN_FAILR_WRD_COLR": "cnn_failr_wrd_colr",
+        "CNN_WARN_ICON_ID": "cnn_warn_icon_id",
+        "CNN_WARN_WRD_COLR": "cnn_warn_wrd_colr",
+        "CNN_SUCS_ICON_ID": "cnn_sucs_icon_id",
+        "CNN_SUCS_WRD_COLR": "cnn_sucs_wrd_colr",
+        "DLY_SUCS_RT_THRS_VAL": "dly_sucs_rt_thrs_val",
+        "DD7_SUCS_RT_THRS_VAL": "dd7_sucs_rt_thrs_val",
+        "MTHL_SUCS_RT_THRS_VAL": "mthl_sucs_rt_thrs_val",
+        "MC6_SUCS_RT_THRS_VAL": "mc6_sucs_rt_thrs_val",
+        "YY1_SUCS_RT_THRS_VAL": "yy1_sucs_rt_thrs_val",
+        "SUCS_RT_SUCS_ICON_ID": "sucs_rt_sucs_icon_id",
+        "SUCS_RT_SUCS_WRD_COLR": "sucs_rt_sucs_wrd_colr",
+        "SUCS_RT_WARN_ICON_ID": "sucs_rt_warn_icon_id",
+        "SUCS_RT_WARN_WRD_COLR": "sucs_rt_warn_wrd_colr",
+        "CHRT_PRD_VALUE": "chrt_prd_value",
+        "CHRT_TP": "chrt_tp",
+        "CHRT_DSP_JOB_ID": "chrt_dsp_job_id",
+        "CHRT_DSP_YN": "chrt_dsp_yn",
+        "CHRT_COLR": "chrt_colr",
+        "GRASS_CHRT_MIN_COLR": "grass_chrt_min_colr",
+        "GRASS_CHRT_MAX_COLR": "grass_chrt_max_colr"
     },
     "TB_USER": {
         "USER_ID": "user_id",

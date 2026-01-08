@@ -2,6 +2,7 @@ from msys.database import get_db_connection
 from mapper.mst_mapper import MstMapper
 from mapper.user_mapper import UserMapper
 from mapper.dashboard_mapper import DashboardMapper
+
 from datetime import datetime, timedelta
 import croniter
 import pytz
@@ -14,11 +15,12 @@ class CollectionScheduleService:
     def __init__(self, conn):
         self.conn = conn
 
-    def get_schedule_and_history(self, start_date, end_date, user: Optional[Dict] = None) -> List[Dict]:
+    def get_schedule_only(self, start_date, end_date, user: Optional[Dict] = None) -> List[Dict]:
         """
-        주어진 기간 동안의 데이터 수집 스케줄과 히스토리를 결합하여 반환합니다.
+        주어진 기간 동안의 데이터 수집 스케줄을 반환합니다.
         사용자 권한에 따라 표시되는 Job이 필터링됩니다.
-        예정 스케줄 + 실제 실행 기록을 매칭하여 정확한 상태를 표시합니다.
+        cron 기반 스케줄을 생성하고 히스토리와 매칭하여 실제 상태를 표시합니다.
+        스케줄 외 실행은 표시하지 않습니다.
         """
         # 권한 확인 및 MST 데이터 가져오기
         allowed_job_ids = self._get_allowed_job_ids_for_schedule(user)
@@ -34,8 +36,7 @@ class CollectionScheduleService:
         # 스케줄과 히스토리 매칭하여 상태 업데이트
         self._match_schedule_with_history(scheduled_tasks, history_by_date_job)
 
-        # 매칭되지 않은 히스토리 처리
-        self._process_unmatched_history(scheduled_tasks, history_by_date_job, allowed_job_ids)
+        # 스케줄 외 실행은 표시하지 않음 (매칭되지 않은 히스토리 추가하지 않음)
 
         return scheduled_tasks
 
@@ -76,66 +77,63 @@ class CollectionScheduleService:
         return history_by_date_job
 
     def _match_schedule_with_history(self, scheduled_tasks: List[Dict], history_by_date_job: Dict[str, List[Dict]]) -> None:
-        """스케줄과 히스토리를 매칭하여 상태를 업데이트합니다."""
-        kst = pytz.timezone('Asia/Seoul')
-
+        """스케줄과 히스토리를 날짜별로 순차 매칭하여 상태를 업데이트합니다."""
+        # 날짜별로 스케줄 그룹화
+        date_schedules = {}
         for task in scheduled_tasks:
-            try:
-                task_time = datetime.strptime(task['date'], '%Y-%m-%d %H:%M:%S')
-                task_time_kst = kst.localize(task_time)
+            date_str = task['date'][:10]  # YYYY-MM-DD
+            if date_str not in date_schedules:
+                date_schedules[date_str] = []
+            date_schedules[date_str].append(task)
 
-                date_key = task_time.strftime('%Y-%m-%d')
-                job_key = task['job_id']
-                key = f"{date_key}_{job_key}"
+        # 각 날짜별로 매칭
+        for date_str, day_schedules in date_schedules.items():
+            # 해당 날짜의 히스토리 가져오기
+            date_job_key = f"{date_str}_"
+            day_histories = []
+            for key, histories in history_by_date_job.items():
+                if key.startswith(date_job_key):
+                    day_histories.extend(histories)
 
-                if key in history_by_date_job:
-                    matching_histories = history_by_date_job[key]
-
-                    # 시간 차이 5분 이내로 매칭 (절대 시간 차이 비교)
-                    for hist in matching_histories:
-                        time_diff = abs((task_time_kst - hist['start_dt_kst']).total_seconds())
-                        if time_diff <= 300:  # 5분 = 300초
-                            # 상태 매핑
-                            status_mapping = {
-                                'CD901': '성공',
-                                'CD902': '실패',
-                                'CD903': '데이터 존재안함',
-                                'CD904': '진행중',
-                                'CD905': '진행중'
-                            }
-                            task['status'] = status_mapping.get(hist['status'], '미수집')
-                            break
-
-                    # 매칭된 히스토리는 제거 (중복 방지)
-                    history_by_date_job[key] = [h for h in matching_histories if abs((task_time_kst - h['start_dt_kst']).total_seconds()) > 300]
-
-            except Exception as e:
-                current_app.logger.warning(f"Error matching schedule with history for task {task}: {e}")
+            if not day_histories:
                 continue
 
-    def _process_unmatched_history(self, scheduled_tasks: List[Dict], history_by_date_job: Dict[str, List[Dict]], allowed_job_ids: Optional[List[str]]) -> None:
-        """매칭되지 않은 히스토리를 별도 항목으로 추가합니다."""
-        status_mapping = {
-            'CD901': '성공',
-            'CD902': '실패',
-            'CD903': '데이터 존재안함',
-            'CD904': '진행중',
-            'CD905': '진행중'
-        }
+            # job별로 그룹화
+            job_schedules = {}
+            job_histories = {}
 
-        for key, histories in history_by_date_job.items():
-            for hist in histories:
-                try:
-                    # 매칭되지 않은 히스토리를 별도 항목으로 추가
-                    scheduled_tasks.append({
-                        "date": hist['start_dt_kst'].strftime('%Y-%m-%d %H:%M:%S'),
-                        "job_id": hist['job_id'],
-                        "cron": "Unscheduled",  # 스케줄 외 실행
-                        "status": status_mapping.get(hist['status'], '미수집'),
-                    })
-                except Exception as e:
-                    current_app.logger.warning(f"Error processing unmatched history {hist}: {e}")
-                    continue
+            for task in day_schedules:
+                job = task['job_id']
+                if job not in job_schedules:
+                    job_schedules[job] = []
+                job_schedules[job].append(task)
+
+            for hist in day_histories:
+                job = hist['job_id']
+                if job not in job_histories:
+                    job_histories[job] = []
+                job_histories[job].append(hist)
+
+            # 각 job별로 순차 매칭
+            for job, schedules in job_schedules.items():
+                if job in job_histories:
+                    # 스케줄과 히스토리를 시간순으로 정렬
+                    schedules.sort(key=lambda x: x['date'])
+                    histories = sorted(job_histories[job], key=lambda x: x['start_dt_kst'])
+
+                    # 상태 매핑
+                    status_mapping = {
+                        'CD901': '성공',
+                        'CD902': '실패',
+                        'CD903': '데이터 존재안함',
+                        'CD904': '진행중',
+                        'CD905': '진행중'
+                    }
+
+                    # 순차적으로 매칭 (실행 기록 수만큼 스케줄에 성공 처리)
+                    for i, hist in enumerate(histories):
+                        if i < len(schedules):
+                            schedules[i]['status'] = status_mapping.get(hist['status'], '미수집')
 
     def _get_allowed_job_ids_for_schedule(self, user: Optional[Dict]) -> Optional[List[str]]:
         """사용자 권한에 따라 허용된 Job ID 목록을 반환합니다."""
@@ -192,4 +190,3 @@ class CollectionScheduleService:
             current_date += timedelta(days=1)
 
         return scheduled_tasks
-

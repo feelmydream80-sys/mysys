@@ -100,7 +100,7 @@ class DashboardService:
         kst = pytz.timezone('Asia/Seoul')
         today = datetime.now(kst).date()
         collection_schedule_service = CollectionScheduleService(self.connection)
-        job_statuses_today = collection_schedule_service.get_schedule_and_history(today, today, user)
+        job_statuses_today = collection_schedule_service.get_schedule_only(today, today, user)
 
         # Process today's data to get counts
         today_counts = self._process_today_schedule_data(job_statuses_today)

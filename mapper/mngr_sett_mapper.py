@@ -40,10 +40,12 @@ class MngrSettMapper:
         self.logger.info(f"Mapper: Original settings_data keys: {list(settings_data.keys())}")
         self.logger.info(f"Mapper: Original settings_data['sett_id']: {settings_data.get('sett_id')}")
         converted_settings = convert_to_new_columns('TB_MNGR_SETT', settings_data)
+        # 표준화: 모든 키를 소문자로 변환하여 DB 컬럼명과 일치시키기
+        converted_settings = {k.lower(): v for k, v in converted_settings.items()}
         self.logger.info(f"Mapper: Converted settings keys: {list(converted_settings.keys())}")
         self.logger.info(f"Mapper: Converted settings['cd']: {converted_settings.get('cd')}")
         self.logger.info(f"Mapper: Converted settings['sett_id']: {converted_settings.get('sett_id')}")
-        cd = converted_settings.get('cd')
+        cd = converted_settings.get('cd') or converted_settings.get('CD')
 
         # 2. 기존 설정 확인 (변환된 데이터 기준)
         existing_settings = self.dao.get_settings_by_cd(cd)

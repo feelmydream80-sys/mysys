@@ -43,7 +43,7 @@ def api_collection_schedule():
             display_settings = mngr_sett_service.get_schedule_settings_service()
             current_app.logger.info(f"DEBUG_ICON_CHECK: Fetched display_settings from service: {display_settings}")
             
-            report_data = collection_schedule_service.get_schedule_and_history(start_date, end_date, user)
+            report_data = collection_schedule_service.get_schedule_only(start_date, end_date, user)
         
         response_data = {
             "schedule_data": report_data,

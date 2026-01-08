@@ -63,6 +63,7 @@ class MngrSettDAO:
             settings_data.get('grass_chrt_min_colr'),
             settings_data.get('grass_chrt_max_colr')
         )
+        self.logger.info(f"DAO: Insert values: {values}")
         try:
             with self.conn.cursor() as cur:
                 cur.execute(query, values)
