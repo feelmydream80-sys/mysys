@@ -246,6 +246,8 @@ class MngrSettService:
                 existing_colors.add(new_color)
 
                 self.logger.info(f"Service: Creating settings for job_id: {job_id}")
+                self.logger.info(f"Service: new_setting_data keys: {list(new_setting_data.keys())}")
+                self.logger.info(f"Service: new_setting_data['sett_id']: {new_setting_data.get('sett_id')}")
                 try:
                     mapper.insert_or_update_settings(new_setting_data)
                 except Exception as e:
