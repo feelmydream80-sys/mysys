@@ -28,7 +28,7 @@ DEFAULT_ADMIN_SETTINGS = {
     'YY1_SUCS_RT_THRS_VAL': 75.0,
     'SUCS_RT_SUCS_ICON_ID': 1,
     'SUCS_RT_SUCS_WRD_COLR': '#28a745',
-    'SUCS_RT_WARN_ICON_ID': 2,
+    'SUCS_RT_WARN_ICON_ID': 5,
     'SUCS_RT_WARN_WRD_COLR': '#ffc107',
     'CHRT_COLR': '#007bff',
     'CHRT_DSP_YN': 'Y',
@@ -163,16 +163,28 @@ class MngrSettService:
         Fetches all admin settings, ensuring consistency by creating default settings
         for jobs that have history but no settings record.
         """
+        self.logger.info("=== Service: get_all_settings() 시작 ===")
         try:
             # Use existing connection instead of creating new ones
             mapper = self.mngr_sett_mapper
+            self.logger.info("Service: dashboard_service.get_summary(all_data=True) 호출")
             con_hist_summary = self.dashboard_service.get_summary(all_data=True)
+            self.logger.info(f"Service: con_hist_summary length: {len(con_hist_summary)}")
+            if con_hist_summary:
+                job_ids = [item['job_id'] for item in con_hist_summary if item['job_id']]
+                self.logger.info(f"Service: Job IDs in con_hist_summary: {job_ids}")
+
+            self.logger.info("Service: _ensure_settings_for_all_jobs_with_history() 호출")
             self._ensure_settings_for_all_jobs_with_history(self.conn, con_hist_summary)
 
             all_settings_raw = mapper.get_all_settings()
+            self.logger.info(f"Service: all_settings_raw length: {len(all_settings_raw)}")
             all_icons = self.icon_service.get_all_icons_data()
+            self.logger.info(f"Service: all_icons length: {len(all_icons)}")
 
-            return self._combine_settings_details(all_settings_raw, con_hist_summary, all_icons)
+            result = self._combine_settings_details(all_settings_raw, con_hist_summary, all_icons)
+            self.logger.info(f"=== Service: get_all_settings() 완료. 반환 개수: {len(result)} ===")
+            return result
         except Exception as e:
             self.logger.error(f"Service: Failed to get all settings: {e}", exc_info=True)
             return []
@@ -181,44 +193,70 @@ class MngrSettService:
         """
         Ensures that any job with a history record that also exists in the master job list (TB_CON_MST)
         has a corresponding admin setting. If not, a default setting is created.
+        Filters out any jobs with NULL job_id to prevent invalid settings creation.
         """
+        self.logger.info("=== Service: _ensure_settings_for_all_jobs_with_history() 시작 ===")
         mapper = MngrSettMapper(conn)
-        
-        # 1. Get all unique job IDs from the execution history (TB_CON_HIST).
-        all_hist_job_ids = {item['job_id'] for item in con_hist_summary}
-        
+
+        # 1. Get all unique job IDs from the execution history (TB_CON_HIST), excluding NULL/empty values.
+        all_hist_job_ids = {item['job_id'] for item in con_hist_summary
+                           if item.get('job_id') is not None and str(item.get('job_id', '')).strip()}
+        null_job_count = len([item for item in con_hist_summary
+                             if not item.get('job_id') or not str(item.get('job_id', '')).strip()])
+        self.logger.info(f"Service: all_hist_job_ids: {all_hist_job_ids}")
+        if null_job_count > 0:
+            self.logger.warning(f"Service: Filtered out {null_job_count} items with NULL/empty job_id from history summary.")
+
         # 2. Get all existing job IDs from the admin settings (TB_MNGR_SETT).
         existing_admin_settings = mapper.get_all_settings()
         existing_admin_job_ids = {setting['cd'] for setting in existing_admin_settings}
-        
+        self.logger.info(f"Service: existing_admin_job_ids: {existing_admin_job_ids}")
+
         # 3. Get all valid job IDs from the master job list (TB_CON_MST).
         all_mst_job_ids = {job['cd'] for job in self.mst_mapper.get_all_job_ids()}
-        
+        self.logger.info(f"Service: all_mst_job_ids: {all_mst_job_ids}")
+
         # Determine which jobs from history are missing settings.
         hist_jobs_missing_settings = all_hist_job_ids - existing_admin_job_ids
-        
+        self.logger.info(f"Service: hist_jobs_missing_settings: {hist_jobs_missing_settings}")
+
         # Filter this list to include only jobs that are also in the master list.
         jobs_to_create_settings_for = hist_jobs_missing_settings.intersection(all_mst_job_ids)
-        
+        self.logger.info(f"Service: jobs_to_create_settings_for: {jobs_to_create_settings_for}")
+
         if jobs_to_create_settings_for:
             self.logger.info(f"Service: Found {len(jobs_to_create_settings_for)} jobs that need default settings created.")
-            
+
             existing_colors = {setting['chrt_colr'] for setting in existing_admin_settings if setting.get('chrt_colr')}
-            
+
             for job_id in jobs_to_create_settings_for:
-                new_setting_data = {'CD': job_id, **DEFAULT_ADMIN_SETTINGS}
-                
+                # Final validation: ensure job_id is not null/empty before creating settings
+                if not job_id or not str(job_id).strip():
+                    self.logger.warning(f"Service: Skipping settings creation for invalid job_id: {job_id}")
+                    continue
+
+                new_setting_data = {'sett_id': job_id, **DEFAULT_ADMIN_SETTINGS}
+
                 # Assign a unique random color for the chart.
                 new_color = get_random_hex_color()
                 while new_color in existing_colors:
                     new_color = get_random_hex_color()
-                
+
                 new_setting_data['CHRT_COLR'] = new_color
                 existing_colors.add(new_color)
-                
-                mapper.insert_or_update_settings(new_setting_data)
-                
+
+                self.logger.info(f"Service: Creating settings for job_id: {job_id}")
+                try:
+                    mapper.insert_or_update_settings(new_setting_data)
+                except Exception as e:
+                    self.logger.error(f"Service: Failed to create settings for job_id {job_id}: {e}")
+                    continue
+
             self.logger.info(f"Service: Default settings created for: {jobs_to_create_settings_for}")
+        else:
+            self.logger.info("Service: No jobs need default settings created.")
+
+        self.logger.info("=== Service: _ensure_settings_for_all_jobs_with_history() 완료 ===")
 
     def _combine_settings_details(self, all_settings_raw: List[Dict], con_hist_summary: List[Dict], all_icons: List[Dict]) -> List[Dict]:
         hist_count_map = {item['job_id']: item['total_count'] for item in con_hist_summary}
