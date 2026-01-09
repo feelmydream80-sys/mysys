@@ -39,22 +39,26 @@ export function formatNumberAbbreviated(n) {
 /**
  * 상태 코드에 따라 CSS 클래스를 반환합니다.
  * @param {string} status - 상태 코드 (e.g., 'CD901')
+ * @param {object} errorCodeMap - 장애 코드 매핑 객체 (선택적)
  * @returns {string} Tailwind CSS 클래스 문자열
- * 
+ *
  * @example
  * // 사용 예시
  * import { getStatusClass } from './utils.js';
- * 
+ *
  * const successClass = getStatusClass('CD901'); // "text-green-600 font-semibold"
  * const failClass = getStatusClass('CD902');    // "text-red-600 font-semibold"
  */
-export function getStatusClass(status) {
-    // CD901: 성공, CD902: 실패, CD903: 미수집, CD904: 수집중 등으로 가정
-    if (status === 'CD901') return 'text-green-600 font-semibold';
-    if (status === 'CD902') return 'text-red-600 font-semibold';
-    if (status === 'CD903') return 'text-gray-500 font-semibold';
-    if (status === 'CD904') return 'text-blue-600 font-semibold';
-    return 'text-gray-700 font-semibold';
+export function getStatusClass(status, errorCodeMap = {}) {
+    // 기본 색상 매핑 (CD900번대 코드용)
+    const defaultColorMap = {
+        'CD901': 'text-green-600 font-semibold',
+        'CD902': 'text-red-600 font-semibold',
+        'CD903': 'text-gray-500 font-semibold',
+        'CD904': 'text-blue-600 font-semibold'
+    };
+
+    return defaultColorMap[status] || 'text-gray-700 font-semibold';
 }
 
 /**
@@ -120,8 +124,9 @@ export function filterData(state) {
 /**
  * 엑셀 다운로드 기능을 수행합니다.
  * @param {Array<Object>} filteredData - 필터링된 데이터
+ * @param {object} errorCodeMap - 장애 코드 매핑 객체 (선택적)
  */
-export function downloadExcel(filteredData) {
+export function downloadExcel(filteredData, errorCodeMap = {}) {
     // SheetJS 라이브러리가 로드되었는지 확인
     if (typeof XLSX === 'undefined') {
         alert('엑셀 라이브러리를 로드하는 중입니다. 잠시 후 다시 시도해주세요.');
@@ -129,12 +134,6 @@ export function downloadExcel(filteredData) {
     }
 
     // 성공/실패/미수집/수집중 요약 계산
-    const statusLabels = {
-        'CD901': '성공',
-        'CD902': '실패',
-        'CD903': '미수집',
-        'CD904': '수집중'
-    };
     const statusCount = {};
     let totalSuccess = 0, totalCount = 0;
     filteredData.forEach(row => {
@@ -151,22 +150,17 @@ export function downloadExcel(filteredData) {
         statusCount[row.status] = (statusCount[row.status] || 0) + 1;
     });
     const totalPercent = totalCount > 0 ? Math.round((totalSuccess / totalCount) * 100) : 0;
-    
+
     // 상태별 요약 텍스트
     const totalRows = filteredData.length;
     let statusSummary = `전체 성공률: ${totalSuccess}/${totalCount} (${totalPercent}%) | `;
-    Object.keys(statusLabels).forEach(code => {
+
+    // 모든 상태 코드에 대해 처리
+    Object.keys(statusCount).forEach(code => {
         const count = statusCount[code] || 0;
         const percent = totalRows > 0 ? ((count / totalRows) * 100).toFixed(1) : '0.0';
-        statusSummary += `${statusLabels[code]} ${count}건(${percent}%)  `;
-    });
-    // 기타 코드
-    Object.keys(statusCount).forEach(code => {
-        if (!statusLabels[code]) {
-            const count = statusCount[code];
-            const percent = totalRows > 0 ? ((count / totalRows) * 100).toFixed(1) : '0.0';
-            statusSummary += `${code} ${count}건(${percent}%)  `;
-        }
+        const label = errorCodeMap[code] || code;
+        statusSummary += `${label} ${count}건(${percent}%)  `;
     });
 
     // 워크시트 데이터 생성

@@ -135,28 +135,35 @@ export class RawDataUI {
             return acc;
         }, {});
 
-        const statusLabels = {
-            'CD901': { label: '성공', color: 'bg-green-100 text-green-700' },
-            'CD902': { label: '실패', color: 'bg-red-100 text-red-700' },
-            'CD903': { label: '미수집', color: 'bg-gray-100 text-gray-700' },
-            'CD904': { label: '수집중', color: 'bg-blue-200 text-blue-800 border border-blue-200' }
+        const { errorCodeMap } = state;
+
+        // 기본 색상 매핑 (CD900번대 코드용)
+        const defaultColorMap = {
+            'CD901': 'bg-green-100 text-green-700',
+            'CD902': 'bg-red-100 text-red-700',
+            'CD903': 'bg-gray-100 text-gray-700',
+            'CD904': 'bg-blue-200 text-blue-800 border border-blue-200'
         };
 
         let summaryHtml = '<div class="flex flex-wrap gap-2">';
         const totalRows = this.filteredData.length;
 
-        for (const code in statusLabels) {
+        // 모든 상태 코드에 대해 처리
+        Object.keys(statusCount).forEach(code => {
             const count = statusCount[code] || 0;
             if (count > 0) {
                 const percent = totalRows > 0 ? ((count / totalRows) * 100).toFixed(1) : '0.0';
-                summaryHtml += `<div class="${statusLabels[code].color} rounded px-3 py-1 flex items-center shadow-sm">
-                    <span class="font-semibold mr-1">${statusLabels[code].label}</span>
+                const label = errorCodeMap[code] || code;
+                const colorClass = defaultColorMap[code] || 'bg-gray-100 text-gray-700';
+
+                summaryHtml += `<div class="${colorClass} rounded px-3 py-1 flex items-center shadow-sm">
+                    <span class="font-semibold mr-1">${label}</span>
                     <span class="font-bold">${formatNumberAbbreviated(count)}건</span>
                     <span class="ml-1 text-xs">(${percent}%)</span>
                 </div>`;
             }
-        }
-        
+        });
+
         summaryHtml += '</div>';
         this.elements.statusSummary.innerHTML = summaryHtml;
     }

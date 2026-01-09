@@ -23,23 +23,28 @@ function formatDurationHr(start, end) {
     return `수집시간: ${hours.toFixed(1)}hr`;
 }
 
-function filterEventLogData(data, searchTerm) {
+function filterEventLogData(data, searchTerm, errorCodeMap = {}) {
     if (!searchTerm) return data;
-    
+
     const searchLower = searchTerm.toLowerCase();
     return data.filter(item => {
         const row = item || {};
         if (row.job_id && row.job_id.toLowerCase().includes(searchLower)) return true;
         if (row.status && row.status.toLowerCase().includes(searchLower)) return true;
         if (row.rqs_info && row.rqs_info.toLowerCase().includes(searchLower)) return true;
-        
-        const statusMap = {
+
+        // 동적 상태 매핑 (기본값 제공)
+        const defaultStatusMap = {
             'CD901': { msg: '정상 수집', desc: '수집완료' },
             'CD902': { msg: '장애 발생', desc: '실패' },
             'CD903': { msg: '미수집', desc: '미수집' },
             'CD904': { msg: '수집중', desc: '진행중' }
         };
-        const statusInfo = statusMap[row.status] || { msg: '', desc: '' };
+
+        const statusLabel = errorCodeMap[row.status] || row.status || '';
+        if (statusLabel.toLowerCase().includes(searchLower)) return true;
+
+        const statusInfo = defaultStatusMap[row.status] || { msg: '', desc: '' };
         if (statusInfo.msg.toLowerCase().includes(searchLower)) return true;
         if (statusInfo.desc.toLowerCase().includes(searchLower)) return true;
 
@@ -47,7 +52,7 @@ function filterEventLogData(data, searchTerm) {
     });
 }
 
-function renderEventLogToasts(logs) {
+function renderEventLogToasts(logs, errorCodeMap = {}) {
     const container = document.getElementById('event-log-ul');
     if (!container) return;
 
@@ -136,10 +141,14 @@ function renderEventLogToasts(logs) {
                 ? (allAdminSettings.find(s => s.cd === jobId) || {})
                 : {};
             
-            if (status === 'CD901') icon = adminSetting.sr_success_icon_code || '🟢';
-            else if (status === 'CD902') icon = adminSetting.cf_fail_icon_code || '🔴';
-            else if (status === 'CD903') icon = adminSetting.cf_warning_icon_code || '🟠';
-            else if (status === 'CD904') icon = adminSetting.sr_success_icon_code || '🔵';
+            // 기본 아이콘 매핑 (CD900번대 코드용)
+            const defaultIconMap = {
+                'CD901': adminSetting.sr_success_icon_code || '🟢',
+                'CD902': adminSetting.cf_fail_icon_code || '🔴',
+                'CD903': adminSetting.cf_warning_icon_code || '🟠',
+                'CD904': adminSetting.sr_success_icon_code || '🔵'
+            };
+            icon = defaultIconMap[status] || '🔔';
 
             let success = 0, total = 0, percent = 0;
             if (rqsInfo) {
@@ -151,14 +160,15 @@ function renderEventLogToasts(logs) {
                     percent = total > 0 ? Math.round((success / total) * 100) : 0;
                 }
             }
-            
-            const statusMap = {
+
+            // 동적 상태 매핑 (기본값 제공)
+            const defaultStatusMap = {
                 'CD901': { msg: '정상 수집', desc: '수집완료' },
                 'CD902': { msg: '장애 발생', desc: '실패' },
                 'CD903': { msg: '미수집', desc: '미수집' },
                 'CD904': { msg: '수집중', desc: '진행중' }
             };
-            const statusInfo = statusMap[status] || { msg: status, desc: status };
+            const statusInfo = defaultStatusMap[status] || { msg: errorCodeMap[status] || status, desc: errorCodeMap[status] || status };
             statusText = statusInfo.msg;
             descriptionText = statusInfo.desc;
             
