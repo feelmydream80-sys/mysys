@@ -166,10 +166,12 @@
             </div>
         </div>
         <div class="controls">
-            {% if not session.get('user', {}).get('is_guest') %}
-            <button class="btn" id="weekly-btn">주간</button>
-            {% endif %}
+            {% if session.get('user', {}).get('is_guest') %}
             <button class="btn active" id="monthly-btn">월간</button>
+            {% else %}
+            <button class="btn active" id="weekly-btn">주간</button>
+            <button class="btn" id="monthly-btn">월간</button>
+            {% endif %}
         </div>
         
 

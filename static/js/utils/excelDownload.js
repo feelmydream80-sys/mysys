@@ -26,9 +26,27 @@ export async function downloadExcelTemplate() {
         // Content-Disposition에서 filename 추출
         let filename = 'excel_template.xlsx'; // 기본값
         if (contentDisposition) {
-            const filenameMatch = contentDisposition.match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/);
-            if (filenameMatch && filenameMatch[1]) {
-                filename = filenameMatch[1].replace(/['"]/g, '');
+            // filename* 파라미터 우선 처리 (한글 지원)
+            const filenameStarMatch = contentDisposition.match(/filename\*=([^;]+)/);
+            if (filenameStarMatch) {
+                const filenameStar = filenameStarMatch[1].trim();
+                // filename*=UTF-8''encoded-string
+                const parts = filenameStar.split("''");
+                if (parts.length === 2) {
+                    const encodedFilename = parts[1];
+                    try {
+                        filename = decodeURIComponent(encodedFilename);
+                    } catch (e) {
+                        console.warn('Failed to decode filename*:', e);
+                        filename = encodedFilename; // fallback
+                    }
+                }
+            } else {
+                // 기존 filename 파라미터 처리
+                const filenameMatch = contentDisposition.match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/);
+                if (filenameMatch && filenameMatch[1]) {
+                    filename = filenameMatch[1].replace(/['"]/g, '');
+                }
             }
         }
         // console.log('Excel template download - Extracted filename:', filename);

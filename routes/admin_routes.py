@@ -8,6 +8,7 @@ from msys.database import get_db_connection
 import logging
 import os
 from datetime import datetime
+from urllib.parse import quote
 # import openpyxl
 # from io import BytesIO
 # from openpyxl.styles import Font, Alignment, Border, Side, PatternFill
@@ -482,23 +483,30 @@ def get_excel_template_info():
         return jsonify({'error': '권한이 없습니다.'}), 403
 
     try:
-        excel_template_path = get_excel_template_path()
-        if os.path.exists(excel_template_path):
-            stat = os.stat(excel_template_path)
-            file_size = stat.st_size
-            modified_time = datetime.fromtimestamp(stat.st_mtime).strftime('%Y-%m-%d %H:%M:%S')
+        excel_template_dir = get_excel_template_dir()
 
-            return jsonify({
-                'exists': True,
-                'filename': 'excel_template.xlsx',
-                'size': file_size,
-                'modified': modified_time
-            })
-        else:
+        # 폴더에서 엑셀 파일 찾기
+        excel_files = [f for f in os.listdir(excel_template_dir) if f.endswith(('.xlsx', '.xls')) and f != 'legacy']
+        if not excel_files:
             return jsonify({
                 'exists': False,
                 'message': '업로드된 엑셀 템플릿이 없습니다.'
             })
+
+        # 가장 최근 파일 선택
+        filename = excel_files[0]
+        excel_template_path = os.path.join(excel_template_dir, filename)
+
+        stat = os.stat(excel_template_path)
+        file_size = stat.st_size
+        modified_time = datetime.fromtimestamp(stat.st_mtime).strftime('%Y-%m-%d %H:%M:%S')
+
+        return jsonify({
+            'exists': True,
+            'filename': filename,
+            'size': file_size,
+            'modified': modified_time
+        })
 
     except Exception as e:
         logging.error(f"Error getting Excel template info: {e}", exc_info=True)
@@ -529,13 +537,17 @@ def download_excel_template():
         response = send_file(
             excel_template_path,
             as_attachment=True,
-            download_name=filename,
             mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
         )
 
-        # Content-Disposition 헤더 확인
-        content_disposition = response.headers.get('Content-Disposition', '')
-        current_app.logger.info(f"Excel template download - Content-Disposition: {content_disposition}")
+        # 한글 파일명 지원을 위한 Content-Disposition 헤더 설정
+        quoted_filename = quote(filename)
+        ascii_filename = filename.encode('ascii', 'ignore').decode('ascii')
+        response.headers["Content-Disposition"] = f"attachment; filename*=UTF-8''{quoted_filename}; filename=\"{ascii_filename}\""
+        current_app.logger.info(f"Excel template download - Original filename: {filename}")
+        current_app.logger.info(f"Excel template download - Quoted filename: {quoted_filename}")
+        current_app.logger.info(f"Excel template download - ASCII filename: {ascii_filename}")
+        current_app.logger.info(f"Excel template download - Content-Disposition set to: {response.headers['Content-Disposition']}")
 
         return response
 
@@ -568,9 +580,16 @@ def delete_excel_template():
         return jsonify({'error': '권한이 없습니다.'}), 403
 
     try:
-        excel_template_path = get_excel_template_path()
-        if not os.path.exists(excel_template_path):
+        excel_template_dir = get_excel_template_dir()
+
+        # 폴더에서 엑셀 파일 찾기
+        excel_files = [f for f in os.listdir(excel_template_dir) if f.endswith(('.xlsx', '.xls')) and f != 'legacy']
+        if not excel_files:
             return jsonify({'error': '삭제할 파일이 없습니다.'}), 404
+
+        # 가장 최근 파일 선택
+        filename = excel_files[0]
+        excel_template_path = os.path.join(excel_template_dir, filename)
 
         os.remove(excel_template_path)
 
