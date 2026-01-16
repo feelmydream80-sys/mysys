@@ -386,42 +386,46 @@ export function init() {
                            // 팝업 위치 계산 및 설정 (그룹 컨테이너 기준)
                            const containerRect = groupContainer.getBoundingClientRect();
                            const pillRect = groupPill.getBoundingClientRect();
-                           const viewportWidth = window.innerWidth;
-                           const viewportHeight = window.innerHeight;
 
                            // 팝업을 임시로 표시해서 크기를 측정
                            popup.style.display = 'block';
                            popup.style.visibility = 'hidden'; // 화면에 보이지 않게
-                           popup.style.position = 'fixed'; // 화면 기준 고정 위치
+                           popup.style.position = 'absolute'; // 컨테이너 기준 상대 위치
                            const popupRect = popup.getBoundingClientRect();
                            popup.style.visibility = 'visible';
 
-                           // 팝업 위치 우선순위: 아래쪽 → 위쪽 → 중앙
+                           // 팝업 위치 우선순위: 아래쪽 → 위쪽 → 중앙 (컨테이너 내 상대 위치)
                            let top, left;
 
+                           // 그룹 컨테이너 내에서의 상대 위치 계산
+                           const containerHeight = groupContainer.offsetHeight;
+                           const containerWidth = groupContainer.offsetWidth;
+                           const pillBottom = groupPill.offsetTop + groupPill.offsetHeight;
+                           const pillLeft = groupPill.offsetLeft;
+
                            // 1. 아래쪽 공간 확인 (기본 우선순위)
-                           const belowSpace = viewportHeight - (containerRect.bottom + 5);
+                           const belowSpace = containerHeight - pillBottom - 5;
                            if (belowSpace >= popupRect.height) {
                                // 아래쪽에 충분한 공간이 있음
-                               top = containerRect.bottom + 5;
-                               left = Math.max(10, Math.min(containerRect.left, viewportWidth - popupRect.width - 10));
+                               top = pillBottom + 5;
+                               left = Math.max(0, Math.min(pillLeft, containerWidth - popupRect.width));
                            } else {
                                // 2. 위쪽 공간 확인
-                               const aboveSpace = containerRect.top - 5;
+                               const aboveSpace = groupPill.offsetTop - 5;
                                if (aboveSpace >= popupRect.height) {
                                    // 위쪽에 충분한 공간이 있음
-                                   top = containerRect.top - popupRect.height - 5;
-                                   left = Math.max(10, Math.min(containerRect.left, viewportWidth - popupRect.width - 10));
+                                   top = groupPill.offsetTop - popupRect.height - 5;
+                                   left = Math.max(0, Math.min(pillLeft, containerWidth - popupRect.width));
                                } else {
-                                   // 3. 양쪽 모두 공간 부족 - 화면 중앙에 표시
-                                   top = Math.max(10, (viewportHeight - popupRect.height) / 2);
-                                   left = Math.max(10, (viewportWidth - popupRect.width) / 2);
+                                   // 3. 양쪽 모두 공간 부족 - 컨테이너 중앙에 표시
+                                   top = Math.max(0, (containerHeight - popupRect.height) / 2);
+                                   left = Math.max(0, (containerWidth - popupRect.width) / 2);
                                }
                            }
 
-                           // 최종 위치 설정 (화면 경계 보장)
-                           top = Math.max(10, Math.min(top, viewportHeight - popupRect.height - 10));
-                           left = Math.max(10, Math.min(left, viewportWidth - popupRect.width - 10));
+                           // 최종 위치 설정 (컨테이너 경계 보장)
+                           top = Math.max(0, Math.min(top, containerHeight - popupRect.height));
+                           left = Math.max(0, Math.min(left, containerWidth - popupRect.width));
 
                            popup.style.top = `${top}px`;
                            popup.style.left = `${left}px`;
