@@ -111,6 +111,12 @@ class DataDefinitionService:
             if not existing_data:
                 raise ValueError(f"Data with CD {cd} does not exist.")
             
+            # use_yn 값이 전달되지 않거나 공백인 경우 기본값 'Y'로 설정
+            if 'use_yn' in data and data['use_yn']:
+                data['use_yn'] = data['use_yn'].strip()
+            else:
+                data['use_yn'] = 'Y'
+            
             # 데이터 업데이트
             self.con_mst_dao.update_mst_data(cd_cl, cd, data)
             self.logger.info(f"Data updated successfully: {cd}")

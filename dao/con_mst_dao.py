@@ -163,7 +163,7 @@ class ConMstDAO:
                     data.get('item8'),
                     data.get('item9'),
                     data.get('item10'),
-                    data.get('use_yn', 'Y'),
+                    data.get('use_yn', 'Y').strip(),
                     cd_cl,
                     cd
                 ))

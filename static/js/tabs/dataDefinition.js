@@ -253,7 +253,7 @@ export async function init() {
                         if (groupedData[cd_cl]) {
                             groupedData[cd_cl].details.push(item);
                             groupedData[cd_cl].count++;
-                            if (item.use_yn && item.use_yn.trim() === 'Y') {
+                            if (item.use_yn && (item.use_yn.trim() === 'T' || item.use_yn.trim() === 'Y')) {
                                 groupedData[cd_cl].activeCount++;
                             } else {
                                 groupedData[cd_cl].inactiveCount++;
@@ -344,10 +344,11 @@ export async function init() {
         // 테이블 내용 초기화
         detailTableBody.innerHTML = '';
 
-        // 그룹에 속한 개별 데이터만 필터링
-        const groupDetails = selectedGroup.details || [];
+        // API에서 최신 데이터 직접 가져오기 (추가한 데이터 불러오기 문제 해결)
+        const allData = await callAPI('data_definition/groups');
+        const groupDetails = allData.filter(item => item.cd_cl === groupCd && item.CD !== groupCd) || [];
 
-        // 테이블 헤더는 기본 열만 표시
+        // 테이블 헤더는 기본 열만 표시 (체크박스 열 추가)
         updateDetailTableHeader();
 
         if (groupDetails.length > 0) {
@@ -361,7 +362,7 @@ export async function init() {
         } else {
             // 상세 데이터가 없을 경우
             const emptyRow = document.createElement('tr');
-            emptyRow.innerHTML = '<td colspan="4" style="text-align: center; color: #94a3b8;">데이터가 없습니다.</td>';
+            emptyRow.innerHTML = '<td colspan="5" style="text-align: center; color: #94a3b8;">데이터가 없습니다.</td>';
             detailTableBody.appendChild(emptyRow);
         }
 
@@ -373,6 +374,15 @@ export async function init() {
         if (buttonContainer) {
             // 기존 버튼들 초기화
             buttonContainer.innerHTML = '';
+            
+            // 활성화 버튼 (멀티선택시 활성화)
+            const activateBtn = document.createElement('button');
+            activateBtn.id = 'activateBtn';
+            activateBtn.textContent = '활성화';
+            activateBtn.className = 'btn btn-success';
+            activateBtn.style.cssText = 'padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; margin-right: 10px;';
+            activateBtn.disabled = true;
+            activateBtn.addEventListener('click', () => activateSelectedItems());
             
             // 추가 버튼
             const addDetailBtn = document.createElement('button');
@@ -411,6 +421,7 @@ export async function init() {
                 }
             });
 
+            buttonContainer.appendChild(activateBtn);
             buttonContainer.appendChild(addDetailBtn);
             buttonContainer.appendChild(editBtn);
             buttonContainer.appendChild(deleteBtn);
@@ -422,7 +433,7 @@ export async function init() {
         console.log(`그룹 상세 정보 로드 완료: ${groupCd}`);
     }
 
-    // 상세 테이블 헤더 업데이트 함수 (기본 열만 표시)
+    // 상세 테이블 헤더 업데이트 함수 (체크박스 열 추가)
     function updateDetailTableHeader() {
         const detailTable = document.querySelector('#detailPanel table');
         const thead = detailTable.querySelector('thead');
@@ -433,10 +444,20 @@ export async function init() {
         // 새로운 헤더 생성
         const headerRow = document.createElement('tr');
         
+        // 체크박스 열 추가
+        const checkboxTh = document.createElement('th');
+        const headerCheckbox = document.createElement('input');
+        headerCheckbox.type = 'checkbox';
+        headerCheckbox.id = 'headerCheckbox';
+        headerCheckbox.addEventListener('change', toggleAllCheckboxes);
+        checkboxTh.appendChild(headerCheckbox);
+        headerRow.appendChild(checkboxTh);
+        
         // 기본 열
         const defaultColumns = [
             { key: 'CD', label: '코드' },
             { key: 'cd_nm', label: '명칭' },
+            { key: 'cd_desc', label: '활용목적' },
             { key: 'use_yn', label: '사용여부' },
             { key: 'update_dt', label: '수정일시' }
         ];
@@ -449,6 +470,47 @@ export async function init() {
         });
         
         thead.appendChild(headerRow);
+    }
+
+    // 전체 체크박스 토글 함수
+    function toggleAllCheckboxes() {
+        const headerCheckbox = document.getElementById('headerCheckbox');
+        const rowCheckboxes = document.querySelectorAll('#detailTableBody input[type="checkbox"]');
+        
+        rowCheckboxes.forEach(checkbox => {
+            checkbox.checked = headerCheckbox.checked;
+        });
+        
+        updateActionButtons();
+    }
+
+    // 선택된 행 활성화 함수
+    async function activateSelectedItems() {
+        const selectedCheckboxes = document.querySelectorAll('#detailTableBody input[type="checkbox"]:checked');
+        const selectedItems = [];
+        
+        selectedCheckboxes.forEach(checkbox => {
+            const row = checkbox.closest('tr');
+            const cd = row.querySelector('td:nth-child(2)').textContent;
+            selectedItems.push(cd);
+        });
+        
+        if (selectedItems.length < 2) {
+            showToast('활성화할 항목을 2개 이상 선택해주세요.', 'warning');
+            return;
+        }
+        
+        try {
+            for (const cd of selectedItems) {
+                await callAPI(`data_definition/detail/${cd}`, 'PUT', { use_yn: 'Y' });
+            }
+            
+            showToast(`선택된 ${selectedItems.length}개의 항목이 활성화되었습니다.`, 'success');
+            await loadGroupDetails(selectedGroup.cd);
+        } catch (error) {
+            console.error('활성화 실패:', error);
+            showToast('항목 활성화에 실패했습니다.', 'error');
+        }
     }
 
     // Mock 데이터 렌더링 함수
@@ -488,18 +550,33 @@ export async function init() {
     function renderDetailRow(item) {
         const row = document.createElement('tr');
         
-        // use_yn이 'N'인 경우 시각적 구분 적용
-        if (item.use_yn && item.use_yn.trim() === 'N') {
+    // use_yn이 'T'나 'Y'가 아닌 경우(사용안함) 시각적 구분 적용
+        if (!item.use_yn || item.use_yn.trim() === 'N') {
             row.className = 'inactive-row';
         }
         
-        // 행 클릭 이벤트 추가
-        row.addEventListener('click', () => selectDetailRow(row, item));
+        // 행 클릭 이벤트 추가 - 체크박스 토글 기능
+        row.addEventListener('click', (e) => {
+            // 체크박스 자체를 클릭한 경우 이벤트 전파 방지
+            if (e.target.tagName === 'INPUT' && e.target.type === 'checkbox') {
+                updateActionButtons();
+                return;
+            }
+            
+            // 체크박스 상태 토글
+            const checkbox = row.querySelector('input[type="checkbox"]');
+            checkbox.checked = !checkbox.checked;
+            
+            // 행 선택 처리
+            selectDetailRow(row, item);
+        });
         
         row.innerHTML = `
+            <td><input type="checkbox" onchange="updateActionButtons()"></td>
             <td>${item.CD}</td>
             <td>${item.cd_nm}</td>
-            <td>${item.use_yn && item.use_yn.trim() === 'Y' ? '사용중' : '사용안함'}</td>
+            <td>${item.cd_desc || ''}</td>
+            <td>${(item.use_yn && (item.use_yn.trim() === 'T' || item.use_yn.trim() === 'Y')) ? '사용중' : '사용안함'}</td>
             <td>${item.update_dt || ''}</td>
         `;
         
@@ -602,13 +679,37 @@ export async function init() {
     function updateActionButtons() {
         const editBtn = document.getElementById('editBtn');
         const deleteBtn = document.getElementById('deleteBtn');
+        const activateBtn = document.getElementById('activateBtn');
+        const addDetailBtn = document.querySelector('#buttonContainer .btn-primary');
         
-        if (selectedRow) {
+        const selectedCheckboxes = document.querySelectorAll('#detailTableBody input[type="checkbox"]:checked');
+        const hasSelectedCheckboxes = selectedCheckboxes.length > 0;
+        const hasMultipleSelected = selectedCheckboxes.length >= 2;
+        
+        if (hasMultipleSelected) {
+            // 멀티선택 상태: 활성화 버튼 활성화, 추가/수정 버튼 비활성화
+            activateBtn.disabled = false;
+            addDetailBtn.disabled = true;
+            editBtn.disabled = true;
+            deleteBtn.disabled = true;
+        } else if (hasSelectedCheckboxes) {
+            // 단일 선택 상태: 활성화 버튼 비활성화, 추가/수정/삭제 버튼 활성화
+            activateBtn.disabled = true;
+            addDetailBtn.disabled = false;
             editBtn.disabled = false;
             deleteBtn.disabled = false;
         } else {
-            editBtn.disabled = true;
-            deleteBtn.disabled = true;
+            // 선택 없음: 활성화 버튼 비활성화, 추가 버튼 활성화
+            activateBtn.disabled = true;
+            addDetailBtn.disabled = false;
+            
+            if (selectedRow) {
+                editBtn.disabled = false;
+                deleteBtn.disabled = false;
+            } else {
+                editBtn.disabled = true;
+                deleteBtn.disabled = true;
+            }
         }
     }
 
@@ -1343,7 +1444,7 @@ export async function init() {
                         <div style="margin-bottom: 10px;">
                             <label style="display: block; font-weight: 600; margin-bottom: 5px; color: #555;">사용여부</label>
                             <select id="editDetailUseYn" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;">
-                                <option value="Y" ${item.use_yn === 'Y' ? 'selected' : ''}>사용중</option>
+                                <option value="Y" ${(item.use_yn === 'T' || item.use_yn === 'Y') ? 'selected' : ''}>사용중</option>
                                 <option value="N" ${item.use_yn === 'N' ? 'selected' : ''}>사용안함</option>
                             </select>
                         </div>
@@ -1613,10 +1714,72 @@ export async function init() {
         modal.appendChild(modalContent);
         document.body.appendChild(modal);
 
+        // 데이터 코드 입력 필드 유효성 검증
+        const cdInput = document.getElementById('newDetailCd');
+        const cdError = document.createElement('div');
+        cdError.id = 'newDetailCdError';
+        cdError.style.cssText = 'color: #dc3545; font-size: 0.85rem; margin-top: 3px; display: none;';
+        cdInput.parentNode.appendChild(cdError);
+        
+        cdInput.addEventListener('input', () => {
+            const cdValue = cdInput.value.trim();
+            const cdNum = parseInt(cdValue.replace('CD', ''));
+            
+            // 100의 배수 체크
+            if (cdNum % 100 === 0) {
+                cdError.textContent = '데이터 코드는 100의 배수 값을 사용할 수 없습니다 (그룹에서만 사용 가능).';
+                cdError.style.display = 'block';
+                cdInput.style.borderColor = '#dc3545';
+                saveBtn.disabled = true;
+            } else {
+                cdError.style.display = 'none';
+                cdInput.style.borderColor = '#ddd';
+                validateAddModal();
+            }
+        });
+
         // 이벤트 핸들러
         cancelBtn.addEventListener('click', () => {
             document.body.removeChild(modal);
         });
+
+        // 모달 유효성 검증 함수
+        async function validateAddModal() {
+            const cd = document.getElementById('newDetailCd').value.trim();
+            const cd_nm = document.getElementById('newDetailNm').value.trim();
+            
+            let isValid = true;
+            
+            // 필수값 체크
+            if (!cd || !cd_nm) {
+                isValid = false;
+            }
+            
+            // 데이터 코드 100의 배수 체크
+            const cdNum = parseInt(cd.replace('CD', ''));
+            if (cdNum % 100 === 0) {
+                isValid = false;
+            }
+            
+            // 중복 체크
+            const allData = await callAPI('data_definition/groups');
+            const exists = allData.some(item => item.cd_cl === group.cd && item.CD === cd);
+            if (exists) {
+                isValid = false;
+                document.getElementById('newDetailCdError').textContent = '이미 존재하는 데이터 코드입니다.';
+                document.getElementById('newDetailCdError').style.display = 'block';
+                cdInput.style.borderColor = '#dc3545';
+            } else if (!document.getElementById('newDetailCdError').textContent.includes('이미 존재')) {
+                document.getElementById('newDetailCdError').style.display = 'none';
+                cdInput.style.borderColor = '#ddd';
+            }
+            
+            saveBtn.disabled = !isValid;
+        }
+        
+        // 입력 필드에 이벤트 리스너 추가
+        document.getElementById('newDetailCd').addEventListener('input', validateAddModal);
+        document.getElementById('newDetailNm').addEventListener('input', validateAddModal);
 
         saveBtn.addEventListener('click', async () => {
             const cd = document.getElementById('newDetailCd').value.trim();
@@ -1626,14 +1789,6 @@ export async function init() {
 
             if (!cd || !cd_nm) {
                 alert('데이터 코드와 명칭을 모두 입력해주세요.');
-                return;
-            }
-
-            // 중복 체크 (DB에서 가져온 전체 데이터를 기준으로 확인)
-            const allData = await callAPI('data_definition/groups');
-            const exists = allData.some(item => item.cd_cl === group.cd && item.CD === cd);
-            if (exists) {
-                alert('이미 존재하는 데이터 코드입니다.');
                 return;
             }
 
