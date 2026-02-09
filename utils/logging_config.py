@@ -75,8 +75,18 @@ def setup_logging(app, debug_mode=False):
     if not os.path.exists(log_dir):
         os.makedirs(log_dir)
 
+    # 파일 롤오버시 오류 처리가 개선된 핸들러
+    class SafeTimedRotatingFileHandler(logging.handlers.TimedRotatingFileHandler):
+        def doRollover(self):
+            """파일 롤오버시 오류를 안전하게 처리합니다."""
+            try:
+                super().doRollover()
+            except Exception as e:
+                # 롤오버 실패시 오류 로그를 콘솔에 출력하고 계속 실행
+                print(f"로그 파일 롤오버 오류: {e}", file=sys.stderr)
+
     # 애플리케이션 로그 파일 핸들러
-    app_file_handler = logging.handlers.TimedRotatingFileHandler(
+    app_file_handler = SafeTimedRotatingFileHandler(
         filename=os.path.join(log_dir, 'app.log'), when='midnight', backupCount=30, encoding='utf-8'
     )
     app_file_handler.setFormatter(app_log_formatter)
@@ -87,7 +97,7 @@ def setup_logging(app, debug_mode=False):
     werkzeug_logger = logging.getLogger('werkzeug')
     werkzeug_logger.setLevel(logging.INFO)
     werkzeug_log_formatter = logging.Formatter('%(asctime)s - %(message)s')
-    werkzeug_file_handler = logging.handlers.TimedRotatingFileHandler(
+    werkzeug_file_handler = SafeTimedRotatingFileHandler(
         filename=os.path.join(log_dir, 'access.log'), when='midnight', backupCount=30, encoding='utf-8'
     )
     werkzeug_file_handler.setFormatter(werkzeug_log_formatter)

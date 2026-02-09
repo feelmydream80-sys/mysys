@@ -15,7 +15,7 @@ import { stateManager } from '../services/stateManager.js';
 import { statisticsTab } from '../tabs/statistics.js';
 import { userManagementTab } from '../tabs/userManagement.js';
 import { dataAccessTab } from '../tabs/dataAccess.js';
-import { init as initDataDefinition } from '../tabs/dataDefinition.js';
+import { init as initDataDefinition } from '../tabs/dataDefinition/dataDefinition.js';
 
 // 외부 모듈들 가져오기
 import { setDataFlowStatus } from '../modules/common/api/client.js';

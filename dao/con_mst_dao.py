@@ -146,24 +146,49 @@ class ConMstDAO:
     def update_mst_data(self, cd_cl, cd, data):
         """
         tb_con_mst의 데이터를 수정합니다.
+        기존 데이터를 가져와서 누락된 필드를 채워 null로 업데이트하는 문제를 방지합니다.
         """
         try:
+            # 기존 데이터 가져오기
+            existing_data = self.get_mst_data_by_cd(cd)
+            
+            # 기존 데이터가 없으면 오류 발생
+            if not existing_data:
+                raise ValueError(f"Data with CD {cd} does not exist.")
+            
+            # 전달된 데이터로 기존 데이터 업데이트 (누락된 필드는 기존 값 유지)
+            update_data = {
+                'cd_nm': data.get('cd_nm', existing_data.get('cd_nm')),
+                'cd_desc': data.get('cd_desc', existing_data.get('cd_desc')),
+                'item1': data.get('item1', existing_data.get('item1')),
+                'item2': data.get('item2', existing_data.get('item2')),
+                'item3': data.get('item3', existing_data.get('item3')),
+                'item4': data.get('item4', existing_data.get('item4')),
+                'item5': data.get('item5', existing_data.get('item5')),
+                'item6': data.get('item6', existing_data.get('item6')),
+                'item7': data.get('item7', existing_data.get('item7')),
+                'item8': data.get('item8', existing_data.get('item8')),
+                'item9': data.get('item9', existing_data.get('item9')),
+                'item10': data.get('item10', existing_data.get('item10')),
+                'use_yn': data.get('use_yn', existing_data.get('use_yn', 'Y')).strip()
+            }
+            
             with self.conn.cursor() as cur:
                 query = load_sql('mst/update_mst.sql')
                 cur.execute(query, (
-                    data.get('cd_nm'),
-                    data.get('cd_desc'),
-                    data.get('item1'),
-                    data.get('item2'),
-                    data.get('item3'),
-                    data.get('item4'),
-                    data.get('item5'),
-                    data.get('item6'),
-                    data.get('item7'),
-                    data.get('item8'),
-                    data.get('item9'),
-                    data.get('item10'),
-                    data.get('use_yn', 'Y').strip(),
+                    update_data['cd_nm'],
+                    update_data['cd_desc'],
+                    update_data['item1'],
+                    update_data['item2'],
+                    update_data['item3'],
+                    update_data['item4'],
+                    update_data['item5'],
+                    update_data['item6'],
+                    update_data['item7'],
+                    update_data['item8'],
+                    update_data['item9'],
+                    update_data['item10'],
+                    update_data['use_yn'],
                     cd_cl,
                     cd
                 ))

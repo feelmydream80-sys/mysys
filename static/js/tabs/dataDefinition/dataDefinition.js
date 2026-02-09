@@ -20,20 +20,14 @@ function debounce(func, delay) {
 }
 
 export async function init() {
-    // 중복 실행 방지
-    if (isInitialized) {
-        console.log('이미 초기화되었습니다.');
-        return;
-    }
-    
-    isInitialized = true;
-    
     console.log('데이터 정의 탭 초기화');
     
-    // F5 새로고침 시 전역 상태 초기화
+    // 항상 전역 상태 초기화
+    isInitialized = false;
     selectedGroup = null;
     selectedRow = null;
     isModalOpen = false;
+    allData = null;
     
     // 기존 모달이 남아있다면 제거
     const existingModal = document.querySelector('div[style*="rgba(0,0,0,0.5)"]');
@@ -518,6 +512,10 @@ function updateActionButtons() {
     const deactivateBtn = document.getElementById('deactivateBtn');
     const addDetailBtn = document.querySelector('#buttonContainer .btn-primary');
     
+    // 디버그 로그 추가
+    console.log('updateActionButtons 호출');
+    console.log('addDetailBtn:', addDetailBtn);
+    
     const selectedCheckboxes = document.querySelectorAll('#detailTableBody input[type="checkbox"]:checked');
     const hasSelectedCheckboxes = selectedCheckboxes.length > 0;
     const hasMultipleSelected = selectedCheckboxes.length >= 2;
@@ -547,6 +545,9 @@ function updateActionButtons() {
             deleteBtn.disabled = true;
         }
     }
+    
+    // 최종 상태 로그 추가
+    console.log('addDetailBtn.disabled:', addDetailBtn.disabled);
 }
 
 // 7. 이벤트 리스너 설정
