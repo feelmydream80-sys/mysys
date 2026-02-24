@@ -119,15 +119,15 @@ class UserManagementTab {
             if (a.is_admin !== b.is_admin) {
                 return a.is_admin ? -1 : 1;
             }
-            // 2. acc_cre_dt 값으로 내림차순 정렬 (최신 날짜가 먼저 오도록)
-            const dateA = a.acc_cre_dt ? new Date(a.acc_cre_dt) : new Date(0);
-            const dateB = b.acc_cre_dt ? new Date(b.acc_cre_dt) : new Date(0);
+            // 2. created_at 값으로 내림차순 정렬 (최신 날짜가 먼저 오도록)
+            const dateA = a.created_at ? new Date(a.created_at) : new Date(0);
+            const dateB = b.created_at ? new Date(b.created_at) : new Date(0);
             return dateB - dateA;
         });
         
         users.forEach(user => {
             const row = document.createElement('tr');
-            const createdAt = user.acc_cre_dt ? new Date(user.acc_cre_dt).toLocaleDateString('ko-KR') : 'N/A';
+            const createdAt = user.created_at ? new Date(user.created_at).toLocaleDateString('ko-KR') : 'N/A';
 
             // 권한 체크박스 HTML 생성
             let permissionsHtml = allMenus.map(menu => {
@@ -137,13 +137,13 @@ class UserManagementTab {
 
             // 작업 버튼 HTML 생성
             let actionHtml = '';
-            if (user.acc_sts === 'PENDING' || user.acc_sts === 'PENDING_RESET') {
+            if (user.status === 'PENDING' || user.status === 'PENDING_RESET') {
                 actionHtml = `<button class="approve-btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-xs" data-user-id="${user.user_id}">승인</button> <button class="reject-btn bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded text-xs" data-user-id="${user.user_id}">거절</button>`;
             } else {
                 actionHtml = `<button class="reset-password-btn bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded text-xs" data-user-id="${user.user_id}">비밀번호 초기화</button> <button class="delete-user-btn bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded text-xs" data-user-id="${user.user_id}">삭제</button>`;
             }
 
-            row.innerHTML = `<td>${user.user_id}</td><td>${actionHtml}</td><td>${user.acc_sts}</td><td>${createdAt}</td>${permissionsHtml}`;
+            row.innerHTML = `<td>${user.user_id}</td><td>${actionHtml}</td><td>${user.status}</td><td>${createdAt}</td>${permissionsHtml}`;
             this.elements.tableBody.appendChild(row);
         });
 

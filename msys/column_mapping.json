@@ -35,8 +35,9 @@
   },
   "tb_menu": {
     "menu_id": "menu_id",
-    "menu_nm": "menu_name",
-    "menu_url": "menu_url"
+    "menu_nm": "menu_nm",
+    "menu_url": "menu_url",
+    "menu_ord": "menu_ord"
   },
   "tb_user_auth_ctrl": {
     "auth_id": "id",
