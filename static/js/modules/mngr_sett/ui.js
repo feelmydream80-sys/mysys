@@ -1,5 +1,8 @@
 import { getRandomColorForAdmin } from '../mngr_sett/adminUtils.js';
 import { showConfirm } from '../common/utils.js';
+import { showToast } from '../../utils/toast.js';
+import { saveIconApi } from '../common/api/mngr_sett.js';
+import { getIcons, refreshIconsData } from '../mngr_sett/data.js';
 
 // @DOC: 이 파일은 관리자 설정 페이지의 UI 렌더링 및 조작과 관련된 함수들을 포함합니다.
 // DOM 요소 캐싱, 테이블 렌더링, 폼 표시/숨김 등 UI 로직을 담당하여 코드의 가독성과 유지보수성을 높입니다.
@@ -255,15 +258,17 @@ export function renderIconTable(allIcons) {
         row.dataset.iconId = icon.icon_id;
         row.innerHTML = `
             <td class="px-4 py-2 border-b">${icon.icon_id}</td>
-            <td class="px-4 py-2 border-b"><i class="${icon.icon_cd}"></i> ${icon.icon_cd}</td>
-            <td class="px-4 py-2 border-b">${icon.icon_nm}</td>
-            <td class="px-4 py-2 border-b">${icon.icon_expl || ''}</td>
+            <td class="px-4 py-2 border-b icon-cd-cell">${icon.icon_cd}</td>
+            <td class="px-4 py-2 border-b icon-nm-cell">${icon.icon_nm}</td>
+            <td class="px-4 py-2 border-b icon-expl-cell">${icon.icon_expl || ''}</td>
             <td class="px-4 py-2 border-b">
                 <input type="checkbox" class="toggle-display-yn" data-icon-id="${icon.icon_id}" ${icon.icon_dsp_yn === true ? 'checked' : ''}>
             </td>
-            <td class="px-4 py-2 border-b">
-                <button class="edit-icon-btn bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded-md mr-2" data-icon-id="${icon.icon_id}" style="height:28px; font-size:0.85em; display:inline-flex; align-items:center; justify-content:center;">수정</button>
-                <button class="delete-icon-btn bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded-md" data-icon-id="${icon.icon_id}" style="height:28px; font-size:0.85em; display:inline-flex; align-items:center; justify-content:center;">삭제</button>
+            <td class="px-4 py-2 border-b action-buttons">
+                <button class="edit-icon-btn bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-24 rounded-md mr-2" data-icon-id="${icon.icon_id}" style="height:28px; font-size:0.85em; display:inline-flex; align-items:center; justify-content:center;">수정</button>
+                <button class="delete-icon-btn bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-24 rounded-md" data-icon-id="${icon.icon_id}" style="height:28px; font-size:0.85em; display:inline-flex; align-items:center; justify-content:center;">삭제</button>
+                <button class="save-icon-btn bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-24 rounded-md mr-2" data-icon-id="${icon.icon_id}" style="height:28px; font-size:0.85em; display:inline-flex; align-items:center; justify-content:center; display:none;">저장</button>
+                <button class="cancel-edit-btn bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-24 rounded-md" data-icon-id="${icon.icon_id}" style="height:28px; font-size:0.85em; display:inline-flex; align-items:center; justify-content:center; display:none;">취소</button>
             </td>
         `;
     });
@@ -273,18 +278,132 @@ export function renderIconTable(allIcons) {
     });
     iconTableBody.querySelectorAll('.edit-icon-btn').forEach(button => {
         button.addEventListener('click', (event) => {
-            const iconId = parseInt(event.target.dataset.iconId);
-            displayIconForm(iconId, allIcons);
+            const iconId = parseInt(event.currentTarget.dataset.iconId);
+            const row = event.currentTarget.closest('tr');
+            enterEditMode(row, allIcons);
         });
     });
     iconTableBody.querySelectorAll('.delete-icon-btn').forEach(button => {
         button.addEventListener('click', (event) => {
-            const iconId = parseInt(event.target.dataset.iconId);
+            const iconId = parseInt(event.currentTarget.dataset.iconId);
             if (eventHandlers.confirmAndDeleteIcon) {
                 eventHandlers.confirmAndDeleteIcon(iconId);
             }
         });
     });
+    iconTableBody.querySelectorAll('.save-icon-btn').forEach(button => {
+        button.addEventListener('click', (event) => {
+            const iconId = parseInt(event.currentTarget.dataset.iconId);
+            const row = event.currentTarget.closest('tr');
+            saveEdit(row, allIcons);
+        });
+    });
+    iconTableBody.querySelectorAll('.cancel-edit-btn').forEach(button => {
+        button.addEventListener('click', (event) => {
+            const iconId = parseInt(event.currentTarget.dataset.iconId);
+            const row = event.currentTarget.closest('tr');
+            exitEditMode(row, allIcons);
+        });
+    });
+}
+
+/**
+ * @DOC: 아이콘 행을 편집 모드로 전환합니다.
+ * @param {HTMLElement} row - 편집할 행 요소.
+ * @param {Array<Object>} allIcons - 전체 아이콘 데이터 배열.
+ */
+function enterEditMode(row, allIcons) {
+    const iconId = parseInt(row.dataset.iconId);
+    const icon = allIcons.find(i => i.icon_id === iconId);
+
+    // 아이콘 코드, 이름, 설명 셀을 입력 필드로 변경
+    const iconCdCell = row.querySelector('.icon-cd-cell');
+    const iconNmCell = row.querySelector('.icon-nm-cell');
+    const iconExplCell = row.querySelector('.icon-expl-cell');
+
+    iconCdCell.innerHTML = `<input type="text" value="${icon.icon_cd}" class="edit-input w-full text-center" style="border: 1px dashed #666; padding: 4px;">`;
+    iconNmCell.innerHTML = `<input type="text" value="${icon.icon_nm}" class="edit-input w-full text-center" style="border: 1px dashed #666; padding: 4px;">`;
+    iconExplCell.innerHTML = `<input type="text" value="${icon.icon_expl || ''}" class="edit-input w-full text-center" style="border: 1px dashed #666; padding: 4px;">`;
+
+    // 버튼 변경: 수정/삭제 → 저장/취소
+    row.querySelector('.edit-icon-btn').style.display = 'none';
+    row.querySelector('.delete-icon-btn').style.display = 'none';
+    row.querySelector('.save-icon-btn').style.display = 'inline-block';
+    row.querySelector('.cancel-edit-btn').style.display = 'inline-block';
+}
+
+/**
+ * @DOC: 편집 모드를 종료하고 원래 상태로 복원합니다.
+ * @param {HTMLElement} row - 편집할 행 요소.
+ * @param {Array<Object>} allIcons - 전체 아이콘 데이터 배열.
+ */
+function exitEditMode(row, allIcons) {
+    const iconId = parseInt(row.dataset.iconId);
+    const icon = allIcons.find(i => i.icon_id === iconId);
+
+    // 입력 필드를 원래 텍스트로 변경
+    const iconCdCell = row.querySelector('.icon-cd-cell');
+    const iconNmCell = row.querySelector('.icon-nm-cell');
+    const iconExplCell = row.querySelector('.icon-expl-cell');
+
+    iconCdCell.textContent = icon.icon_cd;
+    iconNmCell.textContent = icon.icon_nm;
+    iconExplCell.textContent = icon.icon_expl || '';
+
+    // 버튼 변경: 저장/취소 → 수정/삭제
+    row.querySelector('.edit-icon-btn').style.display = 'inline-flex';
+    row.querySelector('.delete-icon-btn').style.display = 'inline-flex';
+    row.querySelector('.save-icon-btn').style.display = 'none';
+    row.querySelector('.cancel-edit-btn').style.display = 'none';
+}
+
+/**
+ * @DOC: 편집한 아이콘 데이터를 저장합니다.
+ * @param {HTMLElement} row - 편집할 행 요소.
+ * @param {Array<Object>} allIcons - 전체 아이콘 데이터 배열.
+ */
+function saveEdit(row, allIcons) {
+    const iconId = parseInt(row.dataset.iconId);
+    const icon = allIcons.find(i => i.icon_id === iconId);
+
+    // 입력 필드에서 값 가져오기
+    const iconCdInput = row.querySelector('.icon-cd-cell input');
+    const iconNmInput = row.querySelector('.icon-nm-cell input');
+    const iconExplInput = row.querySelector('.icon-expl-cell input');
+
+    // 아이콘 데이터 업데이트 - 키를 대문자로 변환
+    const updatedIcon = {
+        ICON_ID: icon.icon_id,
+        ICON_CD: iconCdInput.value,
+        ICON_NM: iconNmInput.value,
+        ICON_EXPL: iconExplInput.value,
+        ICON_DSP_YN: icon.icon_dsp_yn
+    };
+
+    // API 호출로 서버에 저장
+    saveIconApi(updatedIcon)
+        .then(() => {
+            showToast('아이콘 정보가 성공적으로 업데이트되었습니다.', 'success');
+            // 서버에서 최신 아이콘 데이터 가져오기
+            refreshIconsData()
+                .then(updatedIcons => {
+                    exitEditMode(row, updatedIcons);
+                    // 테이블 재렌더링으로 변경된 데이터 반영
+                    renderIconTable(updatedIcons);
+                    // 아이콘 선택 드롭다운 업데이트
+                    populateIconSelects(updatedIcons);
+                })
+                .catch(error => {
+                    console.error('최신 아이콘 데이터 가져오기 실패:', error);
+                    exitEditMode(row, allIcons);
+                    renderIconTable(allIcons);
+                    populateIconSelects(allIcons);
+                });
+        })
+        .catch(error => {
+            console.error('아이콘 저장 실패:', error);
+            showToast('아이콘 정보 업데이트 실패: ' + error.message, 'error');
+        });
 }
 
 /**
@@ -309,7 +428,7 @@ export function displayIconForm(iconId, allIcons) {
     const iconDescriptionField = container.querySelector('#iconDescription');
     const iconDisplayYnField = container.querySelector('#iconDisplayYn');
     const saveIconButton = container.querySelector('#saveIconBtn');
-    const cancelEditIconButton = container.querySelector('#cancelEditBtn');
+    const cancelEditIconButton = container.querySelector('#cancelIconEditBtn');
 
     if (iconId) {
         iconFormTitle.textContent = '아이콘 수정';
@@ -350,7 +469,7 @@ export function hideIconForm() {
     const iconDescriptionInput = container.querySelector('#iconDescription');
     const iconDisplayYn = container.querySelector('#iconDisplayYn');
     const saveIconButton = container.querySelector('#saveIconBtn');
-    const cancelEditIconButton = container.querySelector('#cancelEditBtn');
+    const cancelEditIconButton = container.querySelector('#cancelIconEditBtn');
 
     if (iconFormContainer) iconFormContainer.classList.add('hidden');
     if (iconIdInput) iconIdInput.value = '';

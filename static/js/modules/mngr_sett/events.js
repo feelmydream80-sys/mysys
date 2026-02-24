@@ -2,7 +2,7 @@
 import { showToast } from '../../utils/toast.js';
 import { showConfirm } from '../common/utils.js';
 import { saveAllSettingsApi, saveIconApi, deleteIconApi, toggleIconDisplayApi, exportSettingsApi, importSettingsApi, exportIconsApi, importIconsApi } from '../common/api/mngr_sett.js';
-import { getAdminSettings, getIcons } from './data.js';
+import { getAdminSettings, getIcons, refreshIconsData } from './data.js';
 import { renderSettingsTable, renderIconTable, populateIconSelects, hideIconForm, displayIconForm } from './ui.js';
 
 // @DOC: 이 파일은 관리자 설정 페이지의 모든 사용자 이벤트 처리와 관련된 함수들을 포함합니다.
@@ -218,7 +218,7 @@ export async function saveIcon() {
         await saveIconApi(iconData);
         showToast('아이콘이 성공적으로 저장되었습니다.', 'success');
         hideIconForm();
-        const allIcons = await getIcons();
+        const allIcons = await refreshIconsData();
         renderIconTable(allIcons);
         populateIconSelects(allIcons);
     } catch (error) {
@@ -251,7 +251,7 @@ export async function confirmAndDeleteIcon(iconId) {
         try {
             await deleteIconApi(iconId);
             showToast('아이콘이 성공적으로 삭제되었습니다.', 'success');
-            const allIcons = await getIcons();
+            const allIcons = await refreshIconsData();
             renderIconTable(allIcons);
             populateIconSelects(allIcons);
         } catch (error) {
@@ -279,7 +279,7 @@ export async function toggleIconDisplayStatus(event) {
     try {
         await toggleIconDisplayApi(iconId, displayYn);
         showToast('아이콘 표시 여부가 업데이트되었습니다.', 'success');
-        const allIcons = await getIcons();
+        const allIcons = await refreshIconsData();
         populateIconSelects(allIcons);
     } catch (error) {
         console.error('Error toggling icon display:', error);
@@ -329,7 +329,7 @@ export async function importIcons() {
     try {
         await importIconsApi(file);
         showToast('아이콘이 성공적으로 가져오기되었습니다.', 'success');
-        const allIcons = await getIcons();
+        const allIcons = await refreshIconsData();
         renderIconTable(allIcons);
         populateIconSelects(allIcons);
     } catch (error) {
