@@ -10,6 +10,7 @@ import { getAdminSettings as fetchAdminSettings, getIcons as fetchIcons, refresh
  * @returns {Promise<Array<Object>>} 성공 시 관리자 설정 데이터 배열을, 실패 시 에러를 반환합니다.
  */
 export function getAdminSettings() {
+    console.log('=== mngr_sett.data.getAdminSettings() called ===');
     return fetchAdminSettings();
 }
 
@@ -19,6 +20,7 @@ export function getAdminSettings() {
  * @returns {Promise<Array<Object>>} 성공 시 아이콘 데이터 배열을, 실패 시 에러를 반환합니다.
  */
 export function getIcons() {
+    console.log('=== mngr_sett.data.getIcons() called ===');
     return fetchIcons();
 }
 

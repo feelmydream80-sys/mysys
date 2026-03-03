@@ -61,6 +61,10 @@ export function setupTabs() {
  * // renderSettingsTable(adminSettings, icons);
  */
 export function renderSettingsTable(allMngrSett, allIcons) {
+    console.log('=== renderSettingsTable() called ===');
+    console.log('=== allMngrSett:', allMngrSett);
+    console.log('=== allIcons:', allIcons);
+    
     const container = document.getElementById('mngr_sett_page');
     if (!container) return;
     const settingsTableBody = container.querySelector('#settingsTableBody');

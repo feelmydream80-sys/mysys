@@ -40,6 +40,12 @@ async function loadDashboardSummary(initialLoad = false) {
     const dataFlowStatus = getDataFlowStatus();
     dataFlowStatus.overallStatus = "loading";
 
+    // 이벤트 객체가 전달된 경우 처리
+    const isEvent = arguments.length > 0 && typeof arguments[0] === 'object' && arguments[0].target;
+    if (isEvent) {
+        initialLoad = false;
+    }
+
     const startDate = document.getElementById('startDate')?.value || '';
     const endDate = document.getElementById('endDate')?.value || '';
     const allData = initialLoad || document.getElementById('allDataCheckbox')?.checked || false;

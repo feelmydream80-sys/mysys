@@ -9,6 +9,7 @@ const BASE_URL = '';
  * @returns {Promise<Array<Object>>} 관리자 설정 데이터 배열
  */
 export async function fetchAllMngrSett() {
+    console.log('=== fetchAllMngrSett() called ===');
     const apiName = "mngrSettFetch";
     updateApiStatus(apiName, "apiCallAttempted", true);
     updateApiStatus(apiName, "apiCallSuccess", false);
@@ -17,12 +18,16 @@ export async function fetchAllMngrSett() {
 
     try {
         const url = `${BASE_URL}/api/mngr_sett/settings/all`;
+        console.log('=== fetchAllMngrSett() - fetching from:', url);
         const response = await fetch(url);
+        console.log('=== fetchAllMngrSett() - response status:', response.status);
+        
         if (!response.ok) {
             const errorText = await response.text();
             throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
         }
         const data = await response.json();
+        console.log('=== fetchAllMngrSett() - data received:', data);
         showMessage('관리자 설정 데이터 로드 성공.', 'success');
         updateApiStatus(apiName, "apiCallSuccess", true);
         updateApiStatus(apiName, "apiResponseCount", data.length);
@@ -40,6 +45,7 @@ export async function fetchAllMngrSett() {
  * @returns {Promise<Array<Object>>} 아이콘 데이터 배열
  */
 export async function fetchAllIcons() {
+    console.log('=== fetchAllIcons() called ===');
     const apiName = "iconsFetch";
     updateApiStatus(apiName, "apiCallAttempted", true);
     updateApiStatus(apiName, "apiCallSuccess", false);
@@ -48,12 +54,16 @@ export async function fetchAllIcons() {
 
     try {
         const url = `${BASE_URL}/api/mngr_sett/icons/all`;
+        console.log('=== fetchAllIcons() - fetching from:', url);
         const response = await fetch(url);
+        console.log('=== fetchAllIcons() - response status:', response.status);
+        
         if (!response.ok) {
             const errorText = await response.text();
             throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
         }
         const data = await response.json();
+        console.log('=== fetchAllIcons() - data received:', data);
         showMessage('아이콘 데이터 로드 성공.', 'success');
         updateApiStatus(apiName, "apiCallSuccess", true);
         updateApiStatus(apiName, "apiResponseCount", data.length);

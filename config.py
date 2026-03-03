@@ -42,6 +42,13 @@ class Config:
 
     # Application Settings
     MENU_CACHE_ENABLED = True
+    
+    # Test Settings
+    BASE_URL = os.getenv('BASE_URL', 'http://127.0.0.1:18080/')
+    TEST_USER_ID = os.getenv('TEST_USER_ID', 'test3')
+    TEST_USER_PASSWORD = os.getenv('TEST_USER_PASSWORD', 'test3test3!')
+    ADMIN_USER_ID = os.getenv('ADMIN_USER_ID', 'admin')
+    ADMIN_USER_PASSWORD = os.getenv('ADMIN_USER_PASSWORD', 'admin')
 
     @classmethod
     def get_permanent_session_lifetime(cls):

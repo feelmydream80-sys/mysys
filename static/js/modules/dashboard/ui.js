@@ -42,8 +42,9 @@ export function initializeDatePickers(loadSummaryCallback) {
     if (endDatePicker) endDatePicker.value = defaultEndDate;
     if (allDataCheckbox) allDataCheckbox.checked = false;
 
-    if (startDatePicker) startDatePicker.addEventListener('change', loadSummaryCallback);
-    if (endDatePicker) endDatePicker.addEventListener('change', loadSummaryCallback);
+    // 이벤트 리스너에 익명 함수로 래핑하여 이벤트 객체가 전달되지 않도록 함
+    if (startDatePicker) startDatePicker.addEventListener('change', () => loadSummaryCallback());
+    if (endDatePicker) endDatePicker.addEventListener('change', () => loadSummaryCallback());
     if (allDataCheckbox) {
         allDataCheckbox.addEventListener('change', () => {
             if (startDatePicker) startDatePicker.disabled = allDataCheckbox.checked;

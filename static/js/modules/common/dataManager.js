@@ -37,13 +37,17 @@ let loadingPromises = {
  * @returns {Promise<Array>} 관리자 설정 데이터 배열
  */
 export async function getAdminSettings() {
+    console.log('=== dataManager.getAdminSettings() called ===');
     // 이미 로딩 중인 경우 기존 프로미스 반환
     if (loadingPromises.adminSettings) {
+        console.log('=== dataManager.getAdminSettings() - already loading ===');
         return loadingPromises.adminSettings;
     }
     
     // 캐시된 데이터가 있는 경우 반환
     if (dataCache.adminSettings) {
+        console.log('=== dataManager.getAdminSettings() - returning cached data ===');
+        console.log('=== Cached data:', dataCache.adminSettings);
         return JSON.parse(JSON.stringify(dataCache.adminSettings));
     }
     
@@ -51,8 +55,11 @@ export async function getAdminSettings() {
     loadingStatus.adminSettings = true;
     
     // API 호출
+    console.log('=== dataManager.getAdminSettings() - fetching from API ===');
     loadingPromises.adminSettings = fetchAllMngrSett()
         .then(data => {
+            console.log('=== dataManager.getAdminSettings() - API response received ===');
+            console.log('=== API data:', data);
             dataCache.adminSettings = JSON.parse(JSON.stringify(data));
             return JSON.parse(JSON.stringify(dataCache.adminSettings));
         })
@@ -74,13 +81,17 @@ export async function getAdminSettings() {
  * @returns {Promise<Array>} 아이콘 데이터 배열
  */
 export async function getIcons() {
+    console.log('=== dataManager.getIcons() called ===');
     // 이미 로딩 중인 경우 기존 프로미스 반환
     if (loadingPromises.icons) {
+        console.log('=== dataManager.getIcons() - already loading ===');
         return loadingPromises.icons;
     }
     
     // 캐시된 데이터가 있는 경우 반환
     if (dataCache.icons) {
+        console.log('=== dataManager.getIcons() - returning cached data ===');
+        console.log('=== Cached data:', dataCache.icons);
         return JSON.parse(JSON.stringify(dataCache.icons));
     }
     
@@ -88,8 +99,11 @@ export async function getIcons() {
     loadingStatus.icons = true;
     
     // API 호출
+    console.log('=== dataManager.getIcons() - fetching from API ===');
     loadingPromises.icons = fetchAllIcons()
         .then(data => {
+            console.log('=== dataManager.getIcons() - API response received ===');
+            console.log('=== API data:', data);
             dataCache.icons = JSON.parse(JSON.stringify(data));
             return JSON.parse(JSON.stringify(dataCache.icons));
         })

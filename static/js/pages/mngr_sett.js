@@ -764,8 +764,10 @@ async function refreshUserManagementTable() {
 }
 
 async function loadPageData() {
+    console.log('=== loadPageData() called ===');
     const container = document.getElementById('mngr_sett_page');
     if (!container) {
+        console.error('Container not found: mngr_sett_page');
         return;
     }
     const loadingOverlay = container.querySelector('#adminLoadingOverlay');
@@ -778,14 +780,20 @@ async function loadPageData() {
         let userData = { users: [], menus: [] };
 
         try {
+            console.log('=== loadPageData() - getting admin settings ===');
             adminSettings = await getAdminSettings();
+            console.log('=== loadPageData() - admin settings received ===');
+            console.log('=== Admin settings:', adminSettings);
         } catch (error) {
             console.error('관리자 설정 로드 실패:', error);
             showToast('관리자 설정 로드 실패: ' + error.message, 'warning');
         }
 
         try {
+            console.log('=== loadPageData() - getting icons ===');
             icons = await getIcons();
+            console.log('=== loadPageData() - icons received ===');
+            console.log('=== Icons:', icons);
         } catch (error) {
             console.error('아이콘 데이터 로드 실패:', error);
             showToast('아이콘 데이터 로드 실패: ' + error.message, 'warning');
@@ -800,12 +808,14 @@ async function loadPageData() {
 
         // 각 데이터 렌더링 (실패하더라도 다른 데이터는 렌더링)
         try {
+            console.log('=== loadPageData() - rendering settings table ===');
             renderSettingsTable(adminSettings, icons);
         } catch (error) {
             console.error('설정 테이블 렌더링 실패:', error);
         }
 
         try {
+            console.log('=== loadPageData() - rendering icon table ===');
             renderIconTable(icons);
         } catch (error) {
             console.error('아이콘 테이블 렌더링 실패:', error);
@@ -991,6 +1001,7 @@ export async function init() {
 
     // F5 새로고침 시 init() 함수가 호출되지 않는 근본 원인 해결
     // router.js의 DOMContentLoaded 이벤트 타이밍 문제 해결
+    initializePageHasRun = false; // 강제로 초기화 상태를 리셋
     await initializePage();
 }
 
