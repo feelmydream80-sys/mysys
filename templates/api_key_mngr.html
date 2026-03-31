@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API 키 관리</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body { font-family: 'Pretendard', system-ui, sans-serif; }
+        .timeline-header { background: linear-gradient(to right, #f3f4f6, #e5e7eb); }
+        .today-line { position: absolute; top: 0; bottom: 0; width: 2px; background: #ef4444; z-index: 10; box-shadow: 0 0 6px rgba(239, 68, 68, 0.6); }
+        .gantt-bar { transition: all 0.4s ease; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="flex h-screen">
+        <!-- 사이드바 -->
+        <div class="w-64 bg-white border-r shadow-sm">
+            <div class="p-6 border-b">
+                <h1 class="text-2xl font-bold text-indigo-700">API 키 관리</h1>
+            </div>
+            <nav class="p-4">
+                <a href="#" class="tab-btn flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-indigo-50 active" id="tab0" data-tab="0">
+                    <i class="fas fa-cog"></i>
+                    <span class="font-medium">데이터 설정</span>
+                </a>
+                <a href="#" class="tab-btn flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-indigo-50" id="tab1" data-tab="1">
+                    <i class="fas fa-chart-bar"></i>
+                    <span class="font-medium">기간 차트</span>
+                </a>
+            </nav>
+        </div>
+
+        <!-- 메인 콘텐츠 -->
+        <div class="flex-1 overflow-auto">
+            <!-- 데이터 설정 화면 -->
+            <div id="content0" class="tab-content p-8">
+                <div class="max-w-6xl mx-auto">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-3xl font-bold text-gray-800">API 키 관리</h2>
+                        <button id="update-cd-button" 
+                                class="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-2xl font-medium shadow-md transition">
+                            <i class="fas fa-sync"></i>
+                            <span>CD 업데이트</span>
+                        </button>
+                    </div>
+
+                    <!-- 정상 데이터 테이블 -->
+                    <div class="bg-white rounded-3xl shadow overflow-hidden mb-8" id="api-key-mngr-table-container">
+                        <div class="p-4 border-b">
+                            <h3 class="text-lg font-semibold">정상 API 키 관리 테이블</h3>
+                        </div>
+                        <table class="w-full">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th class="py-4 px-6 text-left font-medium text-gray-600">코드명</th>
+                                    <th class="py-4 px-6 text-left font-medium text-gray-600">API값</th>
+                                    <th class="py-4 px-6 text-left font-medium text-gray-600">API책임자이메일</th>
+                                    <th class="py-4 px-6 text-left font-medium text-gray-600">기간</th>
+                                    <th class="py-4 px-6 text-left font-medium text-gray-600">등록일</th>
+                                    <th class="py-4 px-6 text-left font-medium text-gray-600">남은 기간</th>
+                                    <th class="py-4 px-6 text-left font-medium text-gray-600">알림 메일 전송</th>
+                                </tr>
+                            </thead>
+                        <tbody id="api-key-mngr-table-body" class="divide-y">
+                                <!-- 데이터 로딩 중 -->
+                            </tbody>
+                        </table>
+                        <!-- 페이지네이션 영역 -->
+                        <div id="api-key-mngr-pagination" class="flex justify-center items-center gap-2 mt-4 p-4"></div>
+                    </div>
+
+                    <!-- 비정상 데이터 테이블 -->
+                    <div class="bg-white rounded-3xl shadow overflow-hidden" id="abnormal-api-key-mngr-table-container">
+                        <div class="p-4 border-b">
+                            <h3 class="text-lg font-semibold">비정상 API 키 관리 테이블</h3>
+                        </div>
+                        <table class="w-full">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th class="py-4 px-6 text-left font-medium text-gray-600">코드명</th>
+                                    <th class="py-4 px-6 text-left font-medium text-gray-600">API값</th>
+                                    <th class="py-4 px-6 text-left font-medium text-gray-600">API책임자이메일</th>
+                                    <th class="py-4 px-6 text-left font-medium text-gray-600">기간</th>
+                                    <th class="py-4 px-6 text-left font-medium text-gray-600">등록일</th>
+                                    <th class="py-4 px-6 text-left font-medium text-gray-600">남은 기간</th>
+                                    <th class="py-4 px-6 text-left font-medium text-gray-600">알림 메일 전송</th>
+                                </tr>
+                            </thead>
+                        <tbody id="abnormal-api-key-mngr-table-body" class="divide-y">
+                                <!-- 데이터 로딩 중 -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="mt-8 bg-amber-50 border border-amber-200 rounded-2xl p-6 text-sm text-amber-800">
+                        <strong>CD 업데이트 동작 설명</strong><br>
+                        • TB_MNGR_SETT의 CD 값을 가져와 TB_API_KEY_MNG에 없는 CD는 자동 추가<br>
+                        • TB_CON_MST에서 해당 CD의 <strong>ITEM10</strong> 값을 가져와 업데이트<br>
+                        • TB_CON_MST의 <strong>UDATE_DT</strong>를 <strong>START_DT</strong>에 저장<br>
+                        • DUE 기본값은 <strong>1년</strong>으로 설정<br>
+                        <small class="text-amber-600 mt-2 block">(로직은 DAO / SERVICE 레이어로 분리하여 구현)</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 기간 차트 화면 -->
+            <div id="content1" class="tab-content hidden p-8">
+                <div class="max-w-6xl mx-auto">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">기간 차트 (유효기간 관리)</h2>
+                    <div class="bg-white rounded-3xl shadow p-8">
+                        <div class="flex justify-between items-center mb-6">
+                            <div>
+                <h3 class="font-semibold text-xl">API 키 유통기한 Gantt 차트</h3>
+                                <p class="text-gray-500 text-sm">기준일: {{ current_date }}</p>
+                            </div>
+                            <div class="flex items-center gap-6 text-sm">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-4 h-4 bg-green-500 rounded"></div>
+                                    <span>여유 (1개월 초과)</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-4 h-4 bg-red-500 rounded"></div>
+                                    <span>긴급 (1개월 이내)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 차트 -->
+                        <div id="api-key-expiry-chart" class="space-y-8 mt-8">
+                            <!-- 차트 데이터 로딩 중 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 로딩 표시 -->
+    <div id="loading" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white p-6 rounded-lg shadow-xl">
+            <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500 mx-auto"></div>
+            <p class="mt-4 text-center text-gray-700">데이터 로딩 중...</p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/modules/common/api/api_key_mngr.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/modules/api_key_mngr/data.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/modules/api_key_mngr/ui.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/pages/api_key_mngr.js') }}"></script>
+</body>
+</html>

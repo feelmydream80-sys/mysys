@@ -70,7 +70,7 @@
     "item8": "item8",
     "item9": "item9",
     "item10": "item10",
-    "update_dt": "update_dt",
+    "update_dt": "udate_dt",
     "del_dt": "del_dt",
     "use_yn": "use_yn"
   },
@@ -102,5 +102,11 @@
     "icon_expl": "description",
     "icon_cre_dt": "created_at",
     "icon_dsp_yn": "display_yn"
+  },
+  "tb_api_key_mngr": {
+    "cd": "cd",
+    "due": "due",
+    "start_dt": "start_dt",
+    "api_ownr_email_addr": "api_ownr_email_addr"
   }
 }

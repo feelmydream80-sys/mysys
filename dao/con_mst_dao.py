@@ -16,21 +16,21 @@ class ConMstDAO:
         try:
             with self.conn.cursor() as cur:
                 query = load_sql('mst/get_all_mst.sql')
-                logging.info(f"🔍 tb_con_mst SQL 쿼리 실행: {query}")
+                logging.info("tb_con_mst SQL 쿼리 실행: %s", query)
                 cur.execute(query)
                 columns = [desc[0].lower() for desc in cur.description]
-                logging.info(f"🔍 tb_con_mst SQL 컬럼명: {columns}")
+                logging.info("tb_con_mst SQL 컬럼명: %s", columns)
                 results = cur.fetchall()
-                logging.info(f"🔍 tb_con_mst SQL 결과 개수: {len(results)}")
+                logging.info("tb_con_mst SQL 결과 개수: %d", len(results))
                 
                 # 처음 3개 결과 로그
                 for i, row in enumerate(results[:3]):
-                    logging.info(f"🔍 tb_con_mst SQL 결과 {i+1}: {dict(zip(columns, row))}")
+                    logging.info("tb_con_mst SQL 결과 %d: %s", i+1, dict(zip(columns, row)))
                 
                 data = [dict(zip(columns, row)) for row in results]
                 return convert_to_legacy_columns('TB_CON_MST', data)
         except Exception as e:
-            logging.error(f"❌ 모든 MST 데이터 로드 실패: {e}", exc_info=True)
+            logging.error("모든 MST 데이터 로드 실패: %s", e, exc_info=True)
             return []
 
     def get_all_mst_full(self) -> list[dict]:
@@ -41,21 +41,21 @@ class ConMstDAO:
         try:
             with self.conn.cursor() as cur:
                 query = load_sql('mst/get_all_mst_full.sql')
-                logging.info(f"🔍 tb_con_mst SQL 쿼리 실행: {query}")
+                logging.info("tb_con_mst SQL 쿼리 실행: %s", query)
                 cur.execute(query)
                 columns = [desc[0].lower() for desc in cur.description]
-                logging.info(f"🔍 tb_con_mst SQL 컬럼명: {columns}")
+                logging.info("tb_con_mst SQL 컬럼명: %s", columns)
                 results = cur.fetchall()
-                logging.info(f"🔍 tb_con_mst SQL 결과 개수: {len(results)}")
+                logging.info("tb_con_mst SQL 결과 개수: %d", len(results))
                 
                 # 처음 5개 결과 로그
                 for i, row in enumerate(results[:5]):
-                    logging.info(f"🔍 tb_con_mst SQL 결과 {i+1}: {dict(zip(columns, row))}")
+                    logging.info("tb_con_mst SQL 결과 %d: %s", i+1, dict(zip(columns, row)))
                 
                 data = [dict(zip(columns, row)) for row in results]
                 return convert_to_legacy_columns('TB_CON_MST', data)
         except Exception as e:
-            logging.error(f"❌ 모든 MST 데이터 로드 실패: {e}", exc_info=True)
+            logging.error("모든 MST 데이터 로드 실패: %s", e, exc_info=True)
             return []
 
     # ✅ 추가: 특정 cd에 해당하는 cd_nm과 item2를 조회하는 메서드
@@ -69,12 +69,15 @@ class ConMstDAO:
                 cur.execute(query, (cd,))
                 result = cur.fetchone()
                 if result:
-                    columns = [desc[0] for desc in cur.description]
+                    columns = [desc[0].lower() for desc in cur.description]
                     data = dict(zip(columns, result))
-                    return convert_to_legacy_columns('TB_CON_MST', data)
+                    converted = convert_to_legacy_columns('TB_CON_MST', data)
+                    logging.debug("tb_con_mst 데이터 조회 성공 (cd: %s): %s", cd, converted)
+                    return converted
+                logging.debug("tb_con_mst에서 CD %s를 찾을 수 없습니다.", cd)
                 return None
         except Exception as e:
-            logging.error(f"❌ tb_con_mst 데이터 로드 실패 (cd: {cd}): {e}", exc_info=True)
+            logging.error("tb_con_mst 데이터 로드 실패 (cd: %s): %s", cd, e, exc_info=True)
             return None
 
     def get_error_code_map(self) -> list[dict]:
@@ -88,7 +91,7 @@ class ConMstDAO:
                 data = [dict(zip(columns, row)) for row in cur.fetchall()]
                 return convert_to_legacy_columns('TB_CON_MST', data)
         except Exception as e:
-            logging.error(f"❌ 장애코드 매핑 데이터 로드 실패: {e}", exc_info=True)
+            logging.error("장애코드 매핑 데이터 로드 실패: %s", e, exc_info=True)
             return []
 
     def get_job_mst_info(self, job_ids):
@@ -138,9 +141,9 @@ class ConMstDAO:
                     data.get('item9'),
                     data.get('item10')
                 ))
-                logging.info(f"✅ tb_con_mst 데이터 삽입 성공 (cd: {data.get('cd')})")
+                logging.info("tb_con_mst 데이터 삽입 성공 (cd: %s)", data.get('cd'))
         except Exception as e:
-            logging.error(f"❌ tb_con_mst 데이터 삽입 실패: {e}", exc_info=True)
+            logging.error("tb_con_mst 데이터 삽입 실패: %s", e, exc_info=True)
             raise
 
     def update_mst_data(self, cd_cl, cd, data):
@@ -192,9 +195,9 @@ class ConMstDAO:
                     cd_cl,
                     cd
                 ))
-                logging.info(f"✅ tb_con_mst 데이터 수정 성공 (cd: {cd})")
+                logging.info("tb_con_mst 데이터 수정 성공 (cd: %s)", cd)
         except Exception as e:
-            logging.error(f"❌ tb_con_mst 데이터 수정 실패: {e}", exc_info=True)
+            logging.error("tb_con_mst 데이터 수정 실패: %s", e, exc_info=True)
             raise
 
     def delete_mst_data(self, cd_cl, cd):
@@ -205,9 +208,9 @@ class ConMstDAO:
             with self.conn.cursor() as cur:
                 query = load_sql('mst/delete_mst.sql')
                 cur.execute(query, (cd_cl, cd))
-                logging.info(f"✅ tb_con_mst 데이터 삭제 성공 (cd: {cd})")
+                logging.info("tb_con_mst 데이터 삭제 성공 (cd: %s)", cd)
         except Exception as e:
-            logging.error(f"❌ tb_con_mst 데이터 삭제 실패: {e}", exc_info=True)
+            logging.error("tb_con_mst 데이터 삭제 실패: %s", e, exc_info=True)
             raise
 
     def get_paged_jobs(self, start, length, search_value, start_date=None, end_date=None, all_data=True):
