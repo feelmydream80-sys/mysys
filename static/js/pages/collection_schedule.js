@@ -201,6 +201,17 @@ export function init() {
         return 'status-success';
     }
 
+    function getProgressBarColorClass(rate, redThreshold, orangeThreshold) {
+        if (rate < redThreshold) return 'progress-bar-danger';
+        if (rate < orangeThreshold) return 'progress-bar-warning';
+        return 'progress-bar-success';
+    }
+
+    function createProgressBarHtml(rate, redThreshold, orangeThreshold) {
+        const colorClass = getProgressBarColorClass(rate, redThreshold, orangeThreshold);
+        return `<div class="progress-bar-container"><div class="progress-bar-fill ${colorClass}" style="width: ${rate}%"></div></div>`;
+    }
+
     function createTooltipContent(job, name) {
         const lines = [];
         if (job.date) {
@@ -291,30 +302,45 @@ export function init() {
             const jobsContainer = document.createElement('div');
             jobsContainer.className = 'jobs-container';
 
-            const jobsByGroup = dayData.reduce((acc, job) => {
+            // 2단계 그룹핑: 상위 그룹(CD100) → 하위 그룹(CD101, CD102, CD103)
+            const jobsBySubGroup = dayData.reduce((acc, job) => {
                 const jobIdNum = parseInt(job.job_id.replace('CD', ''), 10);
                 if (isNaN(jobIdNum)) return acc;
-                const groupId = `CD${Math.floor(jobIdNum / 100) * 100}`;
-                if (!acc[groupId]) acc[groupId] = [];
-                acc[groupId].push(job);
+                // 하위 그룹은 개별 job_id (CD101, CD102, CD103)
+                const subGroupId = job.job_id;
+                if (!acc[subGroupId]) acc[subGroupId] = [];
+                acc[subGroupId].push(job);
                 return acc;
             }, {});
 
-            Object.keys(jobsByGroup).sort((a, b) => {
+            // 상위 그룹으로 묶기 (CD100, CD200, CD300)
+            const jobsByParentGroup = {};
+            Object.keys(jobsBySubGroup).forEach(subGroupId => {
+                const subIdNum = parseInt(subGroupId.replace('CD', ''), 10);
+                const parentGroupId = `CD${Math.floor(subIdNum / 100) * 100}`;
+                if (!jobsByParentGroup[parentGroupId]) jobsByParentGroup[parentGroupId] = {};
+                jobsByParentGroup[parentGroupId][subGroupId] = jobsBySubGroup[subGroupId];
+            });
+
+            Object.keys(jobsByParentGroup).sort((a, b) => {
                 const numA = parseInt(a.replace('CD', ''), 10);
                 const numB = parseInt(b.replace('CD', ''), 10);
                 return numA - numB;
-            }).forEach(groupName => {
-                const groupJobs = jobsByGroup[groupName];
+            }).forEach(parentGroupName => {
+                const subGroups = jobsByParentGroup[parentGroupName];
                 const groupingThreshold = settingsManager.get('grpMinCnt');
+                
+                // 전체 job 수 계산
+                const totalJobs = Object.values(subGroups).reduce((sum, jobs) => sum + jobs.length, 0);
+                
+                if (totalJobs >= groupingThreshold) {
+                    // 상위 그룹 렌더링 (CD100)
+                    const allSubGroupJobs = Object.values(subGroups).flat();
+                    const allScheduled = allSubGroupJobs.every(j => j.status === '예정');
 
-                if (groupJobs.length >= groupingThreshold) {
-                    // Render as a group pill
-                    const allScheduled = groupJobs.every(j => j.status === '예정');
-
-                    const total = groupJobs.length;
-                    const success = groupJobs.filter(j => j.status === '성공').length;
-                    const fail = groupJobs.filter(j => j.status === '실패').length;
+                    const total = allSubGroupJobs.length;
+                    const success = allSubGroupJobs.filter(j => j.status === '성공').length;
+                    const fail = allSubGroupJobs.filter(j => j.status === '실패').length;
                     const completed = success + fail;
                     
                     const progressRate = total > 0 ? Math.round((completed / total) * 100) : 0;
@@ -324,233 +350,386 @@ export function init() {
                     if (allScheduled) {
                         colorClass = 'status-scheduled';
                     } else {
-                       const colorCriteria = settingsManager.get('grpColrCrtr') || 'prgr'; // 'prgr' for progress, 'succ' for success
+                       const colorCriteria = settingsManager.get('grpColrCrtr') || 'prgr';
                       if (colorCriteria === 'succ') {
-                          // Success rate criteria
                           colorClass = getGroupPillColorClass(successRate, settingsManager.get('succRtRedThrsval'), settingsManager.get('succRtOrgThrsval'));
                       } else {
-                          // Progress rate criteria (default)
                           colorClass = getGroupPillColorClass(progressRate, settingsManager.get('prgsRtRedThrsval'), settingsManager.get('prgsRtOrgThrsval'));
                        }
                     }
 
                     const groupContainer = document.createElement('div');
                     groupContainer.className = 'group-container';
-                    groupContainer.style.position = 'relative'; // 팝업의 상대적 위치 기준점
+                    groupContainer.style.position = 'relative';
 
                     const groupPill = document.createElement('div');
                     groupPill.className = `job-pill group-pill-summary ${colorClass}`;
-                    // Apply border style from settings
                     const borderStyle = settingsManager.get('grpBrdrStyl') || 'solid';
                     if (borderStyle === 'none') {
                         groupPill.style.borderWidth = '0';
                     } else {
                         groupPill.style.borderStyle = borderStyle;
-                        // 'none'이 아닐 경우 기본 border-width를 유지하거나 설정합니다.
                         groupPill.style.borderWidth = '2px';
                     }
 
                     const displayMode = document.querySelector('input[name="displayMode"]:checked').value;
-                    const originalGroupName = displayMode === 'name' && mstData[groupName] ? mstData[groupName] : groupName;
+                    const originalParentName = displayMode === 'name' && mstData[parentGroupName] ? mstData[parentGroupName] : parentGroupName;
+                    
+                    const redThreshold = settingsManager.get('prgsRtRedThrsval') || 30;
+                    const orangeThreshold = settingsManager.get('prgsRtOrgThrsval') || 100;
+                    
                     groupPill.innerHTML = `
-                        <div>${originalGroupName}</div>
-                        <div class="text-center">
-                            (${settingsManager.getGroupIcon('prgs') || ''}&nbsp;${progressRate}% / ${settingsManager.getGroupIcon('sucs') || ''}&nbsp;${successRate}%)
+                        <div>${originalParentName} <span class="expand-icon">▶</span></div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            ${createProgressBarHtml(progressRate, redThreshold, orangeThreshold)}
+                            <span style="font-size: 0.75rem; white-space: nowrap;">${completed}/${total}</span>
+                        </div>
+                        <div class="text-center" style="font-size: 0.75rem;">
+                            성공: ${success} / 실패: ${fail} (${successRate}%)
                         </div>
                     `;
-                    groupPill.title = originalGroupName;
+                    groupPill.title = originalParentName;
 
-                    // 팝업 로직 (주간/월간 모두 동일)
-                    const popup = document.createElement('div');
-                    popup.className = 'popup';
+                    // 상위 그룹 팝업 - 하위 그룹들을 팝업으로 표시 (5x4 페이징)
+                    const parentPopup = document.createElement('div');
+                    parentPopup.className = 'popup';
+                    parentPopup.style.maxWidth = '900px';
+                    parentPopup.style.zIndex = '10000';
+                    parentPopup.style.position = 'fixed';
                     
-                    // 팝업 내용 컨테이너 (5열 그리드)
-                    const popupContent = document.createElement('div');
-                    popupContent.className = 'popup-content';
-                    
-                    // 정렬된 Job 목록
-                    const sortedJobs = groupJobs.sort((a, b) => {
-                        const numA = parseInt(a.job_id.replace('CD', ''), 10);
-                        const numB = parseInt(b.job_id.replace('CD', ''), 10);
+                    const parentPopupContent = document.createElement('div');
+                    parentPopupContent.className = 'popup-content';
+                    parentPopupContent.style.gridTemplateColumns = 'repeat(5, 1fr)';
+                    parentPopupContent.style.gap = '0.75rem';
+
+                    // 하위 그룹 정렬
+                    const sortedSubGroupIds = Object.keys(subGroups).sort((a, b) => {
+                        const numA = parseInt(a.replace('CD', ''), 10);
+                        const numB = parseInt(b.replace('CD', ''), 10);
                         return numA - numB;
                     });
 
-                    // Job Pill 생성
-                    sortedJobs.forEach(job => {
-                        const popupDisplayMode = document.querySelector('input[name="displayMode"]:checked').value;
-                        let originalName = popupDisplayMode === 'name' && mstData[job.job_id] ? mstData[job.job_id] : job.job_id;
-                        const statusInfo = statusMap[job.status] || { key: 'schd', class: 'status-scheduled' };
+                    // 하위 그룹들을 팝업 내용에 추가
+                    sortedSubGroupIds.forEach(subGroupId => {
+                        const subGroupJobs = subGroups[subGroupId];
+                        const subTotal = subGroupJobs.length;
+                        const subSuccess = subGroupJobs.filter(j => j.status === '성공').length;
+                        const subFail = subGroupJobs.filter(j => j.status === '실패').length;
+                        const subCompleted = subSuccess + subFail;
+                        const subProgressRate = subTotal > 0 ? Math.round((subCompleted / subTotal) * 100) : 0;
+                        const subSuccessRate = subCompleted > 0 ? Math.round((subSuccess / subCompleted) * 100) : 0;
+                        const subAllScheduled = subGroupJobs.every(j => j.status === '예정');
 
-                        // If there are multiple jobs for the same job_id in a day,
-                        // it implies multiple schedules. Display the scheduled hour from the job.date field.
-                        const sameDayJobs = dayData.filter(d => d.job_id === job.job_id);
-                        if (sameDayJobs.length > 1) {
-                            const timePart = (job.date.split(' ')[1] || "");
-                            if (timePart) {
-                                const hour = parseInt(timePart.substring(0, 2), 10);
-                                originalName += `(${hour}시)`;
+                        let subColorClass;
+                        if (subAllScheduled) {
+                            subColorClass = 'status-scheduled';
+                        } else {
+                            const colorCriteria = settingsManager.get('grpColrCrtr') || 'prgr';
+                            if (colorCriteria === 'succ') {
+                                subColorClass = getGroupPillColorClass(subSuccessRate, settingsManager.get('succRtRedThrsval'), settingsManager.get('succRtOrgThrsval'));
+                            } else {
+                                subColorClass = getGroupPillColorClass(subProgressRate, settingsManager.get('prgsRtRedThrsval'), settingsManager.get('prgsRtOrgThrsval'));
                             }
                         }
-                        const iconHtml = settingsManager.getIcon(statusInfo.key);
-                        const contentHtml = iconHtml ? `${iconHtml}&nbsp;${originalName}` : originalName;
 
-                        const pillElement = document.createElement('div');
-                        pillElement.className = `job-pill ${statusInfo.class}`;
-                        pillElement.title = createTooltipContent(job, originalName);
-                        pillElement.innerHTML = contentHtml;
+                        const subGroupContainer = document.createElement('div');
+                        subGroupContainer.className = 'group-container sub-group-item';
+                        subGroupContainer.style.position = 'relative';
 
-                        popupContent.appendChild(pillElement);
-                    });
+                        const subGroupPill = document.createElement('div');
+                        subGroupPill.className = `job-pill group-pill-summary ${subColorClass} sub-group-pill`;
+                        if (borderStyle === 'none') {
+                            subGroupPill.style.borderWidth = '0';
+                        } else {
+                            subGroupPill.style.borderStyle = borderStyle;
+                            subGroupPill.style.borderWidth = '1px';
+                        }
 
-                    // 페이징 컨트롤 생성
-                    const pagination = document.createElement('div');
-                    pagination.className = 'pagination';
-                    
-                    // 페이지 정보
-                    const itemsPerPage = 50; // 최대 50개 표시
-                    const totalPages = Math.ceil(sortedJobs.length / itemsPerPage);
-                    let currentPage = 1;
-
-                    // 페이지 내용 업데이트 함수
-                    function updatePopupContent() {
-                        const startIndex = (currentPage - 1) * itemsPerPage;
-                        const endIndex = startIndex + itemsPerPage;
+                        const originalSubName = displayMode === 'name' && mstData[subGroupId] ? mstData[subGroupId] : subGroupId;
                         
-                        // 모든 Job Pill 숨기기
-                        Array.from(popupContent.children).forEach((pill, index) => {
-                            pill.style.display = (index >= startIndex && index < endIndex) ? 'block' : 'none';
+                        subGroupPill.innerHTML = `
+                            <div style="font-size: 0.85rem;">${originalSubName}</div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                ${createProgressBarHtml(subProgressRate, redThreshold, orangeThreshold)}
+                                <span style="font-size: 0.7rem; white-space: nowrap;">${subCompleted}/${subTotal}</span>
+                            </div>
+                            <div class="text-center" style="font-size: 0.7rem;">
+                                성공: ${subSuccess} / 실패: ${subFail} (${subSuccessRate}%)
+                            </div>
+                        `;
+                        subGroupPill.title = originalSubName;
+
+                        // 하위 그룹의 상세 팝업
+                        const subPopup = document.createElement('div');
+                        subPopup.className = 'popup';
+                        subPopup.style.zIndex = '100000';
+                        subPopup.style.position = 'fixed';
+                        const subPopupContent = document.createElement('div');
+                        subPopupContent.className = 'popup-content';
+
+                        const sortedSubJobs = subGroupJobs.sort((a, b) => {
+                            const numA = parseInt(a.job_id.replace('CD', ''), 10);
+                            const numB = parseInt(b.job_id.replace('CD', ''), 10);
+                            return numA - numB;
                         });
 
-                        // 페이징 UI 업데이트
-                        updatePaginationUI();
-                    }
+                        sortedSubJobs.forEach(job => {
+                            const popupDisplayMode = document.querySelector('input[name="displayMode"]:checked').value;
+                            let originalName = popupDisplayMode === 'name' && mstData[job.job_id] ? mstData[job.job_id] : job.job_id;
+                            const statusInfo = statusMap[job.status] || { key: 'schd', class: 'status-scheduled' };
 
-                    // 페이징 UI 업데이트 함수
-                    function updatePaginationUI() {
-                        pagination.innerHTML = '';
-
-                        // 이전 페이지 버튼
-                        const prevBtn = document.createElement('button');
-                        prevBtn.textContent = '← 이전';
-                        prevBtn.disabled = currentPage === 1;
-                        prevBtn.addEventListener('click', () => {
-                            if (currentPage > 1) {
-                                currentPage--;
-                                updatePopupContent();
+                            const sameDayJobs = dayData.filter(d => d.job_id === job.job_id);
+                            if (sameDayJobs.length > 1) {
+                                const timePart = (job.date.split(' ')[1] || "");
+                                if (timePart) {
+                                    const hour = parseInt(timePart.substring(0, 2), 10);
+                                    originalName += `(${hour}시)`;
+                                }
                             }
+                            const iconHtml = settingsManager.getIcon(statusInfo.key);
+                            const contentHtml = iconHtml ? `${iconHtml}&nbsp;${originalName}` : originalName;
+
+                            const pillElement = document.createElement('div');
+                            pillElement.className = `job-pill ${statusInfo.class}`;
+                            pillElement.title = createTooltipContent(job, originalName);
+                            pillElement.innerHTML = contentHtml;
+                            subPopupContent.appendChild(pillElement);
                         });
-                        pagination.appendChild(prevBtn);
 
-                        // 페이지 번호 표시
-                        const pageInfo = document.createElement('span');
-                        pageInfo.className = 'page-info';
-                        pageInfo.textContent = `${currentPage} / ${totalPages}`;
-                        pagination.appendChild(pageInfo);
+                        const subPagination = document.createElement('div');
+                        subPagination.className = 'pagination';
+                        const subItemsPerPage = 50;
+                        const subTotalPages = Math.ceil(sortedSubJobs.length / subItemsPerPage);
+                        let subCurrentPage = 1;
 
-                        // 다음 페이지 버튼
-                        const nextBtn = document.createElement('button');
-                        nextBtn.textContent = '다음 →';
-                        nextBtn.disabled = currentPage === totalPages;
-                        nextBtn.addEventListener('click', () => {
-                            if (currentPage < totalPages) {
-                                currentPage++;
-                                updatePopupContent();
-                            }
-                        });
-                        pagination.appendChild(nextBtn);
-                    }
+                        function updateSubPopupContent() {
+                            const startIndex = (subCurrentPage - 1) * subItemsPerPage;
+                            const endIndex = startIndex + subItemsPerPage;
+                            Array.from(subPopupContent.children).forEach((pill, index) => {
+                                pill.style.display = (index >= startIndex && index < endIndex) ? 'block' : 'none';
+                            });
+                            updateSubPaginationUI();
+                        }
 
-                    // 팝업에 내용 추가
-                    popup.appendChild(popupContent);
-                    if (totalPages > 1) {
-                        popup.appendChild(pagination);
-                    }
+                        function updateSubPaginationUI() {
+                            subPagination.innerHTML = '';
+                            const prevBtn = document.createElement('button');
+                            prevBtn.textContent = '← 이전';
+                            prevBtn.disabled = subCurrentPage === 1;
+                            prevBtn.addEventListener('click', (e) => {
+                                e.stopPropagation();
+                                if (subCurrentPage > 1) {
+                                    subCurrentPage--;
+                                    updateSubPopupContent();
+                                }
+                            });
+                            subPagination.appendChild(prevBtn);
 
-                    document.body.appendChild(popup);
+                            const pageInfo = document.createElement('span');
+                            pageInfo.className = 'page-info';
+                            pageInfo.textContent = `${subCurrentPage} / ${subTotalPages}`;
+                            subPagination.appendChild(pageInfo);
 
-                    // 초기 페이지 내용 표시
-                    updatePopupContent();
+                            const nextBtn = document.createElement('button');
+                            nextBtn.textContent = '다음 →';
+                            nextBtn.disabled = subCurrentPage === subTotalPages;
+                            nextBtn.addEventListener('click', (e) => {
+                                e.stopPropagation();
+                                if (subCurrentPage < subTotalPages) {
+                                    subCurrentPage++;
+                                    updateSubPopupContent();
+                                }
+                            });
+                            subPagination.appendChild(nextBtn);
+                        }
 
-                        // --- Popup click logic ---
-                        const togglePopup = (event) => {
-                            event.stopPropagation(); // 이벤트 버블링 방지
+                        subPopup.appendChild(subPopupContent);
+                        if (subTotalPages > 1) {
+                            subPopup.appendChild(subPagination);
+                        }
+                        document.body.appendChild(subPopup);
+                        updateSubPopupContent();
 
-                            // 다른 팝업들을 모두 닫음
+                        const toggleSubPopup = (event) => {
+                            event.stopPropagation();
                             document.querySelectorAll('.popup').forEach(p => {
-                                if (p !== popup) {
+                                if (p !== subPopup && p !== parentPopup) {
                                     p.style.display = 'none';
                                     p.classList.remove('active');
                                 }
                             });
 
-                            // 현재 팝업 토글
-                            const isVisible = popup.style.display === 'block';
+                            const isVisible = subPopup.style.display === 'block';
                             if (isVisible) {
-                                popup.style.display = 'none';
-                                popup.classList.remove('active');
+                                subPopup.style.display = 'none';
+                                subPopup.classList.remove('active');
                             } else {
-                                // 팝업 위치 계산 및 설정 (body 기준 절대 위치)
-                                const pillRect = groupPill.getBoundingClientRect();
+                                const pillRect = subGroupPill.getBoundingClientRect();
+                                subPopup.style.display = 'block';
+                                subPopup.style.visibility = 'hidden';
+                                subPopup.style.position = 'fixed';
+                                const popupRect = subPopup.getBoundingClientRect();
+                                subPopup.style.visibility = 'visible';
 
-                                // 팝업을 임시로 표시해서 크기를 측정
-                                popup.style.display = 'block';
-                                popup.style.visibility = 'hidden'; // 화면에 보이지 않게
-                                popup.style.position = 'absolute'; // body 기준 절대 위치
-                                const popupRect = popup.getBoundingClientRect();
-                                popup.style.visibility = 'visible';
+                                // fixed 포지션이므로 viewport 기준 좌표 사용
+                                const pillBottom = pillRect.bottom;
+                                const pillTop = pillRect.top;
+                                const pillLeft = pillRect.left;
 
-                                // 팝업 위치 우선순위: 아래쪽 → 위쪽 → 중앙 (화면 내 절대 위치)
+                                const belowSpace = window.innerHeight - pillRect.bottom - 5;
                                 let top, left;
-
-                                // 그룹 필의 절대 위치를 기준으로 계산
-                                const pillBottom = pillRect.bottom + window.scrollY;
-                                const pillTop = pillRect.top + window.scrollY;
-                                const pillLeft = pillRect.left + window.scrollX;
-                                const pillRight = pillRect.right + window.scrollX;
-
-                                // 1. 아래쪽 공간 확인 (기본 우선순위)
-                                const belowSpace = window.innerHeight - (pillRect.bottom + window.scrollY) - 5;
                                 if (belowSpace >= popupRect.height) {
-                                    // 아래쪽에 충분한 공간이 있음
                                     top = pillBottom + 5;
-                                    left = Math.max(0, Math.min(pillLeft, window.innerWidth + window.scrollX - popupRect.width));
+                                    left = Math.max(0, Math.min(pillLeft, window.innerWidth - popupRect.width));
                                 } else {
-                                    // 2. 위쪽 공간 확인
-                                    const aboveSpace = pillRect.top + window.scrollY - 5;
+                                    const aboveSpace = pillRect.top - 5;
                                     if (aboveSpace >= popupRect.height) {
-                                        // 위쪽에 충분한 공간이 있음
                                         top = pillTop - popupRect.height - 5;
-                                        left = Math.max(0, Math.min(pillLeft, window.innerWidth + window.scrollX - popupRect.width));
+                                        left = Math.max(0, Math.min(pillLeft, window.innerWidth - popupRect.width));
                                     } else {
-                                        // 3. 양쪽 모두 공간 부족 - 화면 중앙에 표시
-                                        top = Math.max(0, (window.innerHeight - popupRect.height) / 2 + window.scrollY);
-                                        left = Math.max(0, (window.innerWidth - popupRect.width) / 2 + window.scrollX);
+                                        top = Math.max(0, (window.innerHeight - popupRect.height) / 2);
+                                        left = Math.max(0, (window.innerWidth - popupRect.width) / 2);
                                     }
                                 }
 
-                                // 최종 위치 설정 (화면 경계 보장)
-                                top = Math.max(0, Math.min(top, window.innerHeight + window.scrollY - popupRect.height));
-                                left = Math.max(0, Math.min(left, window.innerWidth + window.scrollX - popupRect.width));
+                                top = Math.max(0, Math.min(top, window.innerHeight - popupRect.height));
+                                left = Math.max(0, Math.min(left, window.innerWidth - popupRect.width));
 
-                                popup.style.top = `${top}px`;
-                                popup.style.left = `${left}px`;
-                                popup.classList.add('active');
+                                subPopup.style.top = `${top}px`;
+                                subPopup.style.left = `${left}px`;
+                                subPopup.classList.add('active');
                             }
                         };
 
-                    groupPill.addEventListener('click', togglePopup);
+                        subGroupPill.addEventListener('click', toggleSubPopup);
+                        subGroupContainer.appendChild(subGroupPill);
+                        parentPopupContent.appendChild(subGroupContainer);
+                    });
+
+                    // 상위 그룹 팝업 페이징 (5x4 = 20개씩)
+                    const parentPagination = document.createElement('div');
+                    parentPagination.className = 'pagination';
+                    const parentItemsPerPage = 20; // 5열 x 4행
+                    const parentTotalPages = Math.ceil(sortedSubGroupIds.length / parentItemsPerPage);
+                    let parentCurrentPage = 1;
+
+                    function updateParentPopupContent() {
+                        const startIndex = (parentCurrentPage - 1) * parentItemsPerPage;
+                        const endIndex = startIndex + parentItemsPerPage;
+                        Array.from(parentPopupContent.children).forEach((pill, index) => {
+                            pill.style.display = (index >= startIndex && index < endIndex) ? 'block' : 'none';
+                        });
+                        updateParentPaginationUI();
+                    }
+
+                    function updateParentPaginationUI() {
+                        parentPagination.innerHTML = '';
+                        if (parentTotalPages <= 1) return;
+                        
+                        const prevBtn = document.createElement('button');
+                        prevBtn.textContent = '← 이전';
+                        prevBtn.disabled = parentCurrentPage === 1;
+                        prevBtn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            if (parentCurrentPage > 1) {
+                                parentCurrentPage--;
+                                updateParentPopupContent();
+                            }
+                        });
+                        parentPagination.appendChild(prevBtn);
+
+                        const pageInfo = document.createElement('span');
+                        pageInfo.className = 'page-info';
+                        pageInfo.textContent = `${parentCurrentPage} / ${parentTotalPages}`;
+                        parentPagination.appendChild(pageInfo);
+
+                        const nextBtn = document.createElement('button');
+                        nextBtn.textContent = '다음 →';
+                        nextBtn.disabled = parentCurrentPage === parentTotalPages;
+                        nextBtn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            if (parentCurrentPage < parentTotalPages) {
+                                parentCurrentPage++;
+                                updateParentPopupContent();
+                            }
+                        });
+                        parentPagination.appendChild(nextBtn);
+                    }
+
+                    parentPopup.appendChild(parentPopupContent);
+                    if (parentTotalPages > 1) {
+                        parentPopup.appendChild(parentPagination);
+                    }
+                    document.body.appendChild(parentPopup);
+                    updateParentPopupContent();
+
+                    // 상위 그룹 클릭 시 하위 그룹 팝업 표시
+                    groupPill.addEventListener('click', (event) => {
+                        event.stopPropagation();
+                        document.querySelectorAll('.popup').forEach(p => {
+                            if (p !== parentPopup) {
+                                p.style.display = 'none';
+                                p.classList.remove('active');
+                            }
+                        });
+
+                        const isVisible = parentPopup.style.display === 'block';
+                        if (isVisible) {
+                            parentPopup.style.display = 'none';
+                            parentPopup.classList.remove('active');
+                        } else {
+                            // 팝업을 열 때 페이지 초기화
+                            parentCurrentPage = 1;
+                            updateParentPopupContent();
+                            const pillRect = groupPill.getBoundingClientRect();
+                            parentPopup.style.display = 'block';
+                            parentPopup.style.visibility = 'hidden';
+                            parentPopup.style.position = 'fixed';
+                            const popupRect = parentPopup.getBoundingClientRect();
+                            parentPopup.style.visibility = 'visible';
+
+                            // fixed 포지션이므로 viewport 기준 좌표 사용
+                            const pillBottom = pillRect.bottom;
+                            const pillLeft = pillRect.left;
+                            const pillTop = pillRect.top;
+
+                            const belowSpace = window.innerHeight - pillRect.bottom - 5;
+                            let top, left;
+                            if (belowSpace >= popupRect.height) {
+                                top = pillBottom + 5;
+                                left = Math.max(0, Math.min(pillLeft, window.innerWidth - popupRect.width));
+                            } else {
+                                const aboveSpace = pillRect.top - 5;
+                                if (aboveSpace >= popupRect.height) {
+                                    top = pillTop - popupRect.height - 5;
+                                    left = Math.max(0, Math.min(pillLeft, window.innerWidth - popupRect.width));
+                                } else {
+                                    top = Math.max(0, (window.innerHeight - popupRect.height) / 2);
+                                    left = Math.max(0, (window.innerWidth - popupRect.width) / 2);
+                                }
+                            }
+
+                            top = Math.max(0, Math.min(top, window.innerHeight - popupRect.height));
+                            left = Math.max(0, Math.min(left, window.innerWidth - popupRect.width));
+
+                            parentPopup.style.top = `${top}px`;
+                            parentPopup.style.left = `${left}px`;
+                            parentPopup.classList.add('active');
+                        }
+                    });
 
                     groupContainer.appendChild(groupPill);
-                   jobsContainer.appendChild(groupContainer);
+                    jobsContainer.appendChild(groupContainer);
                 } else {
-                    // Render individual job pills
-                    groupJobs.sort((a, b) => {
+                    // 임계값 미달 - 개별 job pills로 렌더링
+                    const allSubGroupJobs = Object.values(subGroups).flat();
+                    allSubGroupJobs.sort((a, b) => {
                         const numA = parseInt(a.job_id.replace('CD', ''), 10);
                         const numB = parseInt(b.job_id.replace('CD', ''), 10);
                         return numA - numB;
                     });
                     
-                    groupJobs.forEach(job => {
+                    allSubGroupJobs.forEach(job => {
                         const jobItem = document.createElement('div');
                         const statusInfo = statusMap[job.status] || { key: 'schd', class: 'status-scheduled' };
                         jobItem.className = `job-pill ${statusInfo.class}`;
