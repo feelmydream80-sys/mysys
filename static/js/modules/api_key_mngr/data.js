@@ -1,8 +1,24 @@
 /**
  * API 키 관리 페이지의 데이터 모듈
+ * axios 대신 fetch API를 사용하여 SPA 라우팅 환경에서도 안정적으로 동작합니다.
  */
 
-const ApiKeyMngrData = {
+// API 응답을 처리하는 헬퍼 함수
+async function apiFetch(url, options = {}) {
+    const response = await fetch(url, {
+        ...options,
+        headers: {
+            'Content-Type': 'application/json',
+            ...options.headers
+        }
+    });
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return response.json();
+}
+
+window.ApiKeyMngrData = {
     // API 키 관리 데이터
     apiKeyMngrData: [],
 
@@ -11,14 +27,14 @@ const ApiKeyMngrData = {
      */
     loadApiKeyMngrData: async function() {
         try {
-            const response = await axios.get('/api/api_key_mngr');
+            const data = await apiFetch('/api/api_key_mngr');
             
-            if (response.status === 200 && response.data.success) {
-                this.apiKeyMngrData = response.data.data;
+            if (data.success) {
+                this.apiKeyMngrData = data.data;
                 console.log('API 키 관리 데이터 로드 성공:', this.apiKeyMngrData);
                 return true;
             } else {
-                console.error('API 키 관리 데이터 로드 실패:', response.data.message);
+                console.error('API 키 관리 데이터 로드 실패:', data.message);
                 return false;
             }
         } catch (error) {
@@ -32,15 +48,17 @@ const ApiKeyMngrData = {
      */
     updateCdFromMngrSett: async function() {
         try {
-            const response = await axios.post('/api/api_key_mngr/update_cds');
+            const data = await apiFetch('/api/api_key_mngr/update_cds', {
+                method: 'POST'
+            });
             
-            if (response.status === 200 && response.data.success) {
-                console.log('CD 업데이트 성공:', response.data.result);
+            if (data.success) {
+                console.log('CD 업데이트 성공:', data.result);
                 // 데이터 다시 로드
                 await this.loadApiKeyMngrData();
                 return true;
             } else {
-                console.error('CD 업데이트 실패:', response.data.message);
+                console.error('CD 업데이트 실패:', data.message);
                 return false;
             }
         } catch (error) {
@@ -73,10 +91,10 @@ const ApiKeyMngrData = {
     },
 
     /**
-     * 위험군 API 키 관리 데이터 반환 (1개월 이내 만료)
+     * 위험군 API 키 관리 데이터 반환 (1개월 이내 만료 + 만료된 키 포함)
      */
     getRiskApiKeyMngrData: function() {
-        return this.apiKeyMngrData.filter(item => item.api_key && item.days_remaining > 0 && item.days_remaining <= 30);
+        return this.apiKeyMngrData.filter(item => item.api_key && item.days_remaining <= 30);
     },
 
     /**
@@ -84,20 +102,23 @@ const ApiKeyMngrData = {
      */
     updateApiKeyMngr: async function(cd, due, start_dt, api_ownr_email_addr, api_key) {
         try {
-            const response = await axios.put(`/api/api_key_mngr/${cd}`, {
-                due: due,
-                start_dt: start_dt,
-                api_ownr_email_addr: api_ownr_email_addr,
-                api_key: api_key
+            const data = await apiFetch(`/api/api_key_mngr/${cd}`, {
+                method: 'PUT',
+                body: JSON.stringify({
+                    due: due,
+                    start_dt: start_dt,
+                    api_ownr_email_addr: api_ownr_email_addr,
+                    api_key: api_key
+                })
             });
             
-            if (response.status === 200 && response.data.success) {
+            if (data.success) {
                 console.log('API 키 관리 데이터 업데이트 성공');
                 // 데이터 다시 로드
                 await this.loadApiKeyMngrData();
                 return true;
             } else {
-                console.error('API 키 관리 데이터 업데이트 실패:', response.data.message);
+                console.error('API 키 관리 데이터 업데이트 실패:', data.message);
                 return false;
             }
         } catch (error) {
@@ -112,16 +133,17 @@ const ApiKeyMngrData = {
      */
     sendEmail: async function(cds) {
         try {
-            const response = await axios.post('/api/api_key_mngr/send_email', {
-                cds: cds
+            const data = await apiFetch('/api/api_key_mngr/send_email', {
+                method: 'POST',
+                body: JSON.stringify({ cds: cds })
             });
             
-            if (response.status === 200 && response.data.success) {
-                console.log('메일 발송 성공:', response.data.results);
-                return response.data;
+            if (data.success) {
+                console.log('메일 발송 성공:', data.results);
+                return data;
             } else {
-                console.error('메일 발송 실패:', response.data.message);
-                return { success: false, message: response.data.message };
+                console.error('메일 발송 실패:', data.message);
+                return { success: false, message: data.message };
             }
         } catch (error) {
             console.error('메일 발송 오류:', error);
@@ -143,12 +165,12 @@ const ApiKeyMngrData = {
                 page_size: pageSize,
                 ...filters
             });
-            const response = await axios.get(`/api/api_key_mngr/mail_send_history?${params}`);
+            const data = await apiFetch(`/api/api_key_mngr/mail_send_history?${params}`);
             
-            if (response.status === 200 && response.data.success) {
-                return response.data.data;
+            if (data.success) {
+                return data.data;
             } else {
-                console.error('메일 전송 이력 조회 실패:', response.data.message);
+                console.error('메일 전송 이력 조회 실패:', data.message);
                 return { logs: [], pagination: {} };
             }
         } catch (error) {
@@ -162,17 +184,20 @@ const ApiKeyMngrData = {
      */
     sendScheduledMails: async function(targetCds = null, excludeCds = null) {
         try {
-            const response = await axios.post('/api/api_key_mngr/send_scheduled_mails', {
-                target_cds: targetCds,
-                exclude_cds: excludeCds
+            const data = await apiFetch('/api/api_key_mngr/send_scheduled_mails', {
+                method: 'POST',
+                body: JSON.stringify({
+                    target_cds: targetCds,
+                    exclude_cds: excludeCds
+                })
             });
             
-            if (response.status === 200 && response.data.success) {
-                console.log('스케줄 메일 발송 성공:', response.data.results);
-                return response.data;
+            if (data.success) {
+                console.log('스케줄 메일 발송 성공:', data.results);
+                return data;
             } else {
-                console.error('스케줄 메일 발송 실패:', response.data.message);
-                return { success: false, message: response.data.message };
+                console.error('스케줄 메일 발송 실패:', data.message);
+                return { success: false, message: data.message };
             }
         } catch (error) {
             console.error('스케줄 메일 발송 오류:', error);
@@ -189,12 +214,12 @@ const ApiKeyMngrData = {
      */
     getScheduleSettings: async function() {
         try {
-            const response = await axios.get('/api/api_key_mngr/schedule_settings');
+            const data = await apiFetch('/api/api_key_mngr/schedule_settings');
             
-            if (response.status === 200 && response.data.success) {
-                return response.data.settings;
+            if (data.success) {
+                return data.settings;
             } else {
-                console.error('스케줄 설정 조회 실패:', response.data.message);
+                console.error('스케줄 설정 조회 실패:', data.message);
                 return [];
             }
         } catch (error) {
@@ -208,13 +233,16 @@ const ApiKeyMngrData = {
      */
     saveScheduleSettings: async function(settings) {
         try {
-            const response = await axios.post('/api/api_key_mngr/schedule_settings', settings);
+            const data = await apiFetch('/api/api_key_mngr/schedule_settings', {
+                method: 'POST',
+                body: JSON.stringify(settings)
+            });
             
-            if (response.status === 200 && response.data.success) {
+            if (data.success) {
                 console.log('스케줄 설정 저장 성공');
                 return true;
             } else {
-                console.error('스케줄 설정 저장 실패:', response.data.message);
+                console.error('스케줄 설정 저장 실패:', data.message);
                 return false;
             }
         } catch (error) {
@@ -237,10 +265,10 @@ const ApiKeyMngrData = {
                 page: 1,
                 page_size: 1000
             });
-            const response = await axios.get(`/api/api_key_mngr/mail_send_history?${params}`);
+            const data = await apiFetch(`/api/api_key_mngr/mail_send_history?${params}`);
             
-            if (response.status === 200 && response.data.success) {
-                const logs = response.data.data.logs || [];
+            if (data.success) {
+                const logs = data.data.logs || [];
                 
                 // CD별로 그룹화하여 최신 성공 이력만 추출
                 const mailStatusMap = {};
@@ -278,7 +306,7 @@ const ApiKeyMngrData = {
                 
                 return mailStatusMap;
             } else {
-                console.error('메일 전송 이력 조회 실패:', response.data.message);
+                console.error('메일 전송 이력 조회 실패:', data.message);
                 return {};
             }
         } catch (error) {
@@ -292,10 +320,10 @@ const ApiKeyMngrData = {
      */
     getScheduleHourInfo: async function() {
         try {
-            const response = await axios.get('/api/api_key_mngr/schedule_settings');
+            const data = await apiFetch('/api/api_key_mngr/schedule_settings');
             
-            if (response.status === 200 && response.data.success) {
-                const settings = response.data.settings || [];
+            if (data.success) {
+                const settings = data.data.settings || [];
                 const hourInfo = {};
                 
                 settings.forEach(s => {
@@ -321,16 +349,17 @@ const ApiKeyMngrData = {
      */
     sendTestMail: async function(testEmail) {
         try {
-            const response = await axios.post('/api/api_key_mngr/send_test_mail', {
-                test_email: testEmail
+            const data = await apiFetch('/api/api_key_mngr/send_test_mail', {
+                method: 'POST',
+                body: JSON.stringify({ test_email: testEmail })
             });
             
-            if (response.status === 200 && response.data.success) {
-                console.log('테스트 메일 발송 성공:', response.data.message);
-                return response.data;
+            if (data.success) {
+                console.log('테스트 메일 발송 성공:', data.message);
+                return data;
             } else {
-                console.error('테스트 메일 발송 실패:', response.data.message);
-                return { success: false, message: response.data.message };
+                console.error('테스트 메일 발송 실패:', data.message);
+                return { success: false, message: data.message };
             }
         } catch (error) {
             console.error('테스트 메일 발송 오류:', error);
@@ -349,13 +378,13 @@ const ApiKeyMngrData = {
      */
     getMailSettingHistory: async function(mailTp, version) {
         try {
-            const response = await axios.get(`/api/api_key_mngr/mail_setting_history?mail_tp=mail${mailTp}&version=${version}`);
+            const data = await apiFetch(`/api/api_key_mngr/mail_setting_history?mail_tp=mail${mailTp}&version=${version}`);
             
-            if (response.status === 200 && response.data.success) {
-                return response.data;
+            if (data.success) {
+                return data;
             } else {
-                console.error('메일 설정 이력 조회 실패:', response.data.message);
-                return { success: false, message: response.data.message };
+                console.error('메일 설정 이력 조회 실패:', data.message);
+                return { success: false, message: data.message };
             }
         } catch (error) {
             console.error('메일 설정 이력 조회 오류:', error);
@@ -369,10 +398,10 @@ const ApiKeyMngrData = {
      */
     getCurrentMailSetting: async function(mailTp) {
         try {
-            const response = await axios.get(`/api/api_key_mngr/mail_settings`);
+            const data = await apiFetch(`/api/api_key_mngr/mail_settings`);
             
-            if (response.status === 200 && response.data.success) {
-                const settings = response.data.settings || {};
+            if (data.success) {
+                const settings = data.data.settings || {};
                 const key = `mail${mailTp}`;
                 const setting = settings[key] || {};
                 
@@ -385,8 +414,8 @@ const ApiKeyMngrData = {
                     }
                 };
             } else {
-                console.error('현재 메일 설정 조회 실패:', response.data.message);
-                return { success: false, message: response.data.message };
+                console.error('현재 메일 설정 조회 실패:', data.message);
+                return { success: false, message: data.message };
             }
         } catch (error) {
             console.error('현재 메일 설정 조회 오류:', error);
@@ -401,10 +430,10 @@ const ApiKeyMngrData = {
      */
     getMailSettingHistoryCount: async function(mailTp) {
         try {
-            const response = await axios.get(`/api/api_key_mngr/mail_setting_history_count?mail_tp=mail${mailTp}`);
+            const data = await apiFetch(`/api/api_key_mngr/mail_setting_history_count?mail_tp=mail${mailTp}`);
             
-            if (response.status === 200 && response.data.success) {
-                return response.data.count || 0;
+            if (data.success) {
+                return data.count || 0;
             }
             return 0;
         } catch (error) {
