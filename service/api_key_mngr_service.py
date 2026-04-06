@@ -5,7 +5,7 @@ from dao.con_mst_dao import ConMstDAO
 from datetime import datetime
 from msys.database import get_db_connection
 import logging
-from mail_send import send_email, create_api_key_expiry_email, validate_email_address
+from msys.mail_send import send_email, create_api_key_expiry_email, validate_email_address
 
 class ApiKeyMngrService:
     """TB_API_KEY_MNGR 서비스 클래스"""
@@ -18,7 +18,9 @@ class ApiKeyMngrService:
     def get_all_api_key_mngr(self):
         """Get all API key manager records with expiry information"""
         try:
+            self.logger.info("[API키관리-서비스] get_all_api_key_mngr 호출")
             data = self.dao.select_all()
+            self.logger.info(f"[API키관리-서비스] DAO 조회 결과 - 데이터 건수: {len(data)}")
             
             # Convert dates and calculate expiry info
             result = []
@@ -67,14 +69,21 @@ class ApiKeyMngrService:
                     con_mst_data = con_mst_dao.get_mst_data_by_cd(cd)
                     
                     if con_mst_data:
+                        start_dt = con_mst_data.get('update_dt')
+                        if not start_dt:
+                            self.logger.warning(f"No update_dt found for CD: {cd}, using current date")
+                            from datetime import datetime
+                            start_dt = datetime.now().date()
+                        
                         self.dao.insert(
                             cd=cd,
                             due=1,  # Default due is 1 year
-                            start_dt=con_mst_data['udate_dt'],
+                            start_dt=start_dt,
                             api_ownr_email_addr='',  # Empty string instead of None
                             conn=conn
                         )
                         added_cds.append(cd)
+                        self.logger.info(f"Successfully added CD: {cd}, start_dt: {start_dt}")
                     else:
                         self.logger.warning(f"No CON_MST data found for CD: {cd}")
                 
@@ -231,7 +240,7 @@ class ApiKeyMngrService:
                 
                 # Send email (following mail_s.txt EmailOperator pattern)
                 try:
-                    success = send_email(
+                    success, error_msg = send_email(
                         to=email_addr,
                         subject=subject,
                         html_content=body
@@ -255,7 +264,7 @@ class ApiKeyMngrService:
                     else:
                         results['failed'].append({
                             'cd': api_key_data['cd'],
-                            'reason': 'send_email returned False'
+                            'reason': error_msg or 'send_email returned False'
                         })
                         # Log the failed event
                         try:
@@ -263,7 +272,7 @@ class ApiKeyMngrService:
                                 cd=api_key_data['cd'],
                                 to_email=email_addr,
                                 success=False,
-                                error_msg='send_email returned False'
+                                error_msg=error_msg or 'send_email returned False'
                             )
                         except:
                             pass

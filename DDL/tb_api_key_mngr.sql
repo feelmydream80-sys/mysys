@@ -7,6 +7,6 @@ CREATE TABLE TB_API_KEY_MNGR (
 );
 
 -- 인덱스 생성
-CREATE INDEX idx_tb_api_key_mngr_cd ON TB_API_KEY_MNGR(CD);
+
 CREATE INDEX idx_tb_api_key_mngr_start_dt ON TB_API_KEY_MNGR(START_DT);
 CREATE INDEX idx_tb_api_key_mngr_email ON TB_API_KEY_MNGR(API_OWNR_EMAIL_ADDR);

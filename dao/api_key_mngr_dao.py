@@ -15,6 +15,7 @@ class ApiKeyMngrDao:
     def select_all(self) -> List[Dict[str, Any]]:
         """Select all active records from TB_API_KEY_MNGR with joined TB_CON_MST data (USE_YN='Y' only)"""
         try:
+            self.logger.info("[API키관리-DAO] select_all 호출")
             conn = get_db_connection()
             cursor = conn.cursor()
             
@@ -28,12 +29,13 @@ class ApiKeyMngrDao:
                     a.start_dt,
                     b.USE_YN as use_yn
                 FROM TB_API_KEY_MNGR a
-                LEFT JOIN TB_CON_MST b ON a.cd = b.CD
-                WHERE b.USE_YN = 'Y'
+                LEFT JOIN TB_CON_MST b ON a.cd = b.CD AND b.USE_YN = 'Y'
             """
             
+            self.logger.info(f"[API키관리-DAO] SQL 실행: {query.strip()}")
             cursor.execute(query)
             rows = cursor.fetchall()
+            self.logger.info(f"[API키키관리-DAO] fetch 결과 - 행 수: {len(rows)}")
             
             # Convert to list of dictionaries
             data = []
@@ -445,9 +447,6 @@ class ApiKeyMngrDao:
         except Exception as e:
             self.logger.error(f"Error selecting mail send logs: {e}")
             raise
-        finally:
-            if 'conn' in locals():
-                conn.close()
 
     def count_mail_send_logs(self, cd: str = None, mail_tp: str = None, success: bool = None) -> int:
         """메일 전송 이력 카운트 (필터 지원)"""
@@ -476,9 +475,6 @@ class ApiKeyMngrDao:
         except Exception as e:
             self.logger.error(f"Error counting mail send logs: {e}")
             raise
-        finally:
-            if 'conn' in locals():
-                conn.close()
 
     # ==========================================
     # 스케줄 설정 관련 메서드 (신규 추가)

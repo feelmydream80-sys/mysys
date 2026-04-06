@@ -4,7 +4,7 @@ import os
 import logging
 from flask import g
 from psycopg2 import pool
-from config import config
+from msys.config import config
 
 # --- Connection Pool ---
 db_pool = None

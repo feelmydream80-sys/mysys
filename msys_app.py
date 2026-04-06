@@ -20,7 +20,7 @@ from msys.database import close_db_connection, init_db_pool
 from routes.admin_routes import admin_bp
 from utils.logging_config import setup_logging
 from utils.auth_middleware import setup_auth_middleware
-from config import config
+from msys.config import config
 
 # 간단한 스케줄러 (추가 설치 불필요 - threading.Timer 사용)
 class SimpleScheduler:

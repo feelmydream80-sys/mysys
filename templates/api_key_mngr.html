@@ -479,11 +479,14 @@
         <!-- 콘텐츠 섹션 (mngr_sett와 동일한 구조) -->
         <div class="content-section">
             <!-- 탭 네비게이션 -->
-            <div class="tabs">
-                <button class="tab-button active" data-tab="0">API 키 관리</button>
-                <button class="tab-button" data-tab="1">기간 차트</button>
-                <button class="tab-button" data-tab="2">위험군</button>
-                <button class="tab-button" data-tab="3">설정</button>
+            <div class="tabs flex justify-between items-center">
+                <div class="flex space-x-2">
+                    <button class="tab-button active" data-tab="0">API 키 관리</button>
+                    <button class="tab-button" data-tab="1">기간 차트</button>
+                    <button class="tab-button" data-tab="2">위험군</button>
+                    <button class="tab-button" data-tab="3">설정</button>
+                </div>
+                <button id="sync-settings-btn" onclick="ApiKeyMngrUI.syncSettings()" class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition">설정 동기화</button>
             </div>
 
             <!-- API 키 관리 탭 -->

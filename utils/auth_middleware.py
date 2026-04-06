@@ -48,7 +48,7 @@ def setup_auth_middleware(app, auth_enabled=True):
         if request.path.startswith('/static'):
             return
 
-        log_operation("인증", "요청 검증", "권한 체크", f"{request.method} {request.path}")
+        # log_operation("인증", "요청 검증", "권한 체크", f"{request.method} {request.path}")
 
         # 세션을 영구 세션으로 설정. PERMANENT_SESSION_LIFETIME에 설정된 시간 후에 만료됩니다.
         session.permanent = True
@@ -59,13 +59,13 @@ def setup_auth_middleware(app, auth_enabled=True):
             return
 
         g.user = session.get('user', None)
-        user_status = "로그인됨" if g.user else "미로그인"
-        log_operation("인증", "세션 확인", "사용자 상태", user_status)
+        # user_status = "로그인됨" if g.user else "미로그인"
+        # log_operation("인증", "세션 확인", "사용자 상태", user_status)
 
         # Sliding Session: Update expiry time on each request if user is logged in
         if g.user:
             expiry_time_str = session.get('expiry_time')
-            log_operation("인증", "세션 검증", "만료 시간 확인", "존재함" if expiry_time_str else "없음")
+            # log_operation("인증", "세션 검증", "만료 시간 확인", "존재함" if expiry_time_str else "없음")
 
             # expiry_time이 없는 구형 세션은 강제 로그아웃
             if not expiry_time_str:
@@ -79,8 +79,8 @@ def setup_auth_middleware(app, auth_enabled=True):
                 expiry_time = datetime.fromisoformat(expiry_time_str)
                 now = datetime.utcnow()
                 is_expired = now > expiry_time
-                expiry_status = "만료됨" if is_expired else "유효함"
-                log_operation("인증", "세션 검증", "만료 상태 체크", expiry_status)
+                # expiry_status = "만료됨" if is_expired else "유효함"
+                # log_operation("인증", "세션 검증", "만료 상태 체크", expiry_status)
 
                 if is_expired:
                     session.clear()
@@ -117,7 +117,7 @@ def setup_auth_middleware(app, auth_enabled=True):
         excluded_endpoints = ['auth.login', 'auth.logout', 'auth.register', 'auth.request_reset_password', 'auth.guest_login', 'static', 'index']
 
         if g.user:
-            log_operation("인증", "권한 체크", "메뉴 접근", f"경로: {request.path}")
+            # log_operation("인증", "권한 체크", "메뉴 접근", f"경로: {request.path}")
 
             # 메뉴 권한 체크
             endpoint = request.endpoint
@@ -133,7 +133,7 @@ def setup_auth_middleware(app, auth_enabled=True):
                     else:
                         return render_template("unauthorized.html")
 
-            log_operation("인증", "권한 체크", "접근 승인", "통과")
+            # log_operation("인증", "권한 체크", "접근 승인", "통과")
             return
 
         endpoint_status = "제외 엔드포인트" if request.endpoint in excluded_endpoints else "인증 필요"

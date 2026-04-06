@@ -2,6 +2,9 @@ from flask import Blueprint, request, jsonify
 from service.api_key_mngr_service import ApiKeyMngrService
 from service.mail_scheduler_service import MailSchedulerService
 from ..auth_routes import login_required, check_password_change_required, api_key_mngr_required
+import logging
+
+logger = logging.getLogger(__name__)
 
 api_key_mngr_api = Blueprint('api_key_mngr_api', __name__, url_prefix='/api')
 
@@ -12,13 +15,18 @@ api_key_mngr_api = Blueprint('api_key_mngr_api', __name__, url_prefix='/api')
 def get_all_api_key_mngr():
     """모든 API 키 관리 정보 조회"""
     try:
+        logger.info("[API키관리] API 요청 수신 - /api/api_key_mngr")
         service = ApiKeyMngrService()
         data = service.get_all_api_key_mngr()
-        return jsonify({
+        logger.info(f"[API키관리] 서비스 응답 - 데이터 건수: {len(data)}")
+        response = jsonify({
             'success': True,
             'data': data
-        }), 200
+        })
+        logger.info(f"[API키관리] 응답 전송 - status: 200, 데이터 크기: {len(str(data))} bytes")
+        return response, 200
     except Exception as e:
+        logger.error(f"[API키관리] 예외 발생: {type(e).__name__}: {e}", exc_info=True)
         return jsonify({
             'success': False,
             'message': str(e)

@@ -7,7 +7,7 @@ import sys
 # 모듈 경로 추가
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from config import config
+from msys.config import config
 
 # 로깅 설정
 log_dir = config.LOG_DIR

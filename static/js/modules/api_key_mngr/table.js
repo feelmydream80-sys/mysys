@@ -774,13 +774,17 @@ window.ApiKeyMngrUI.handleUpdateApiKeyMngr = async function(cd) {
         const success = await ApiKeyMngrData.updateApiKeyMngr(cd, due, startDt, apiOwnrEmail, apiKey);
         if (success) {
             window.ApiKeyMngrUI.hideEditModal();
+            // 데이터를 다시 로드하여 최신 데이터로 화면 갱신
+            await ApiKeyMngrData.loadApiKeyMngrData();
             window.ApiKeyMngrUI.renderApiKeyMngrTable();
             window.ApiKeyMngrUI.renderAbnormalApiKeyMngrTable();
             window.ApiKeyMngrUI.renderGanttChart();
+            window.ApiKeyMngrUI.renderRiskApiKeyMngrTable();
         } else {
-            console.error('API 키 관리 데이터 업데이트에 실패했습니다.');
+            window.ApiKeyMngrUI.showErrorMessage('API 키 관리 데이터 업데이트에 실패했습니다.');
         }
     } catch (error) {
         console.error('API 키 관리 데이터 업데이트 오류:', error);
+        window.ApiKeyMngrUI.showErrorMessage('API 키 관리 데이터 업데이트 중 오류가 발생했습니다.');
     }
 };

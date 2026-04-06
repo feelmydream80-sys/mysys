@@ -337,3 +337,23 @@ faillock
 Kepco123456/
 
 .env가 변경될 경우 DB 주소값이 변경되는 현상이 있음
+
+/data/external_data_monitoring/log/external_data_monitoring.log 
+일반 테스트 방법
+[etl_user@cib040l5 ~]$ source /data/external_data_monitoring/.web/bin/activate
+(.web) [etl_user@cib040l5 ~]$  python /data/external_data_monitoring/msys/msys_app.py
+
+
+msys/column_mapping.json not found. Starting with empty mappings.
+Traceback (most recent call last):
+  File "/data/external_data_monitoring/msys/msys_app.py", line 20, in <module>
+    from routes.admin_routes import admin_bp
+  File "/data/external_data_monitoring/msys/routes/admin_routes.py", line 3, in <module>
+    from .auth_routes import login_required, admin_required
+  File "/data/external_data_monitoring/msys/routes/auth_routes.py", line 8, in <module>
+    from service.auth_service import AuthService
+  File "/data/external_data_monitoring/msys/service/__init__.py", line 1, in <module>
+    from .api_key_mngr_service import ApiKeyMngrService
+  File "/data/external_data_monitoring/msys/service/api_key_mngr_service.py", line 8, in <module>
+    from mail_send import send_email, create_api_key_expiry_email, validate_email_address
+ModuleNotFoundError: No module named 'mail_send'

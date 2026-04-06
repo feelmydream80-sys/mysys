@@ -6,6 +6,41 @@
 window.ApiKeyMngrUI = window.ApiKeyMngrUI || {};
 
 // ==========================================
+// 설정 동기화
+// ==========================================
+
+/**
+ * 설정 동기화 (TB_MNGR_SETT → TB_API_KEY_MNGR CD 업데이트)
+ */
+window.ApiKeyMngrUI.syncSettings = async function() {
+    if (!confirm('TB_MNGR_SETT에서 CD 값을 가져와 TB_API_KEY_MNGR을 동기화하시겠습니까?')) {
+        return;
+    }
+
+    window.ApiKeyMngrUI.showLoading(true);
+    try {
+        const result = await ApiKeyMngrData.updateCdFromMngrSett();
+        
+        if (result.success) {
+            const addedCount = result.added_count || 0;
+            alert(`설정 동기화 완료\n\n추가된 CD: ${addedCount}개`);
+            // 데이터 새로고침
+            await ApiKeyMngrData.loadApiKeyMngrData();
+            if (typeof ApiKeyMngrUI.renderTable === 'function') {
+                ApiKeyMngrUI.renderTable();
+            }
+        } else {
+            alert(`설정 동기화 실패: ${result.message || '알 수 없는 오류'}`);
+        }
+    } catch (error) {
+        console.error('설정 동기화 오류:', error);
+        alert('설정 동기화 중 오류가 발생했습니다.');
+    } finally {
+        window.ApiKeyMngrUI.hideLoading();
+    }
+};
+
+// ==========================================
 // 알림 메일 발송
 // ==========================================
 
@@ -28,6 +63,12 @@ window.ApiKeyMngrUI.sendNotification = async function(cd) {
             let message = `메일 발송 완료: 성공 ${successCount}건`;
             if (failedCount > 0) message += `, 실패 ${failedCount}건`;
             if (skippedCount > 0) message += `, 건너뜀 ${skippedCount}건`;
+            
+            // 실패 사유를 메시지에 포함
+            if (failedCount > 0) {
+                const failedReasons = result.results.failed.map(f => `CD: ${f.cd} - ${f.reason}`).join('\n');
+                message += `\n\n[실패 사유]\n${failedReasons}`;
+            }
             
             // 건너뜀 사유를 메시지에 포함
             if (skippedCount > 0) {
@@ -78,6 +119,12 @@ window.ApiKeyMngrUI.sendNotificationBulk = async function(cds) {
             if (failedCount > 0) message += `, 실패 ${failedCount}건`;
             if (skippedCount > 0) message += `, 건너뜀 ${skippedCount}건`;
             
+            // 실패 사유를 메시지에 포함
+            if (failedCount > 0) {
+                const failedReasons = result.results.failed.map(f => `CD: ${f.cd} - ${f.reason}`).join('\n');
+                message += `\n\n[실패 사유]\n${failedReasons}`;
+            }
+            
             // 건너뜀 사유를 메시지에 포함
             if (skippedCount > 0) {
                 const skippedReasons = result.results.skipped.map(s => `CD: ${s.cd} - ${s.reason}`).join('\n');
@@ -111,10 +158,11 @@ window.ApiKeyMngrUI.sendNotificationBulk = async function(cds) {
  */
 window.ApiKeyMngrUI.loadPreviewSampleData = async function() {
     try {
-        const response = await axios.get('/api/api_key_mngr');
-        if (response.data.success && response.data.data.length > 0) {
+        const response = await fetch('/api/api_key_mngr');
+        const data = await response.json();
+        if (data.success && data.data.length > 0) {
             // 첫 번째 레코드를 샘플로 사용
-            const item = response.data.data[0];
+            const item = data.data[0];
             const today = new Date();
             const startDate = new Date(item.start_dt);
             const expiryDate = new Date(startDate.getFullYear() + item.due, startDate.getMonth(), startDate.getDate());
@@ -247,9 +295,10 @@ window.ApiKeyMngrUI.loadMailSettings = async function() {
     };
     
     try {
-        const response = await axios.get('/api/api_key_mngr/mail_settings');
-        if (response.data.success) {
-            const settings = response.data.settings || {};
+        const response = await fetch('/api/api_key_mngr/mail_settings');
+        const data = await response.json();
+        if (data.success) {
+            const settings = data.settings || {};
             
             // mail30 설정
             if (settings.mail30) {
@@ -322,11 +371,21 @@ window.ApiKeyMngrUI.saveMailSettings = async function() {
     };
 
     try {
-        const response = await axios.post('/api/api_key_mngr/mail_settings', settings);
-        if (response.data.success) {
-            alert('메일 설정이 저장되었습니다.');
+        const response = await fetch('/api/api_key_mngr/mail_settings', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(settings)
+        });
+        const data = await response.json();
+        if (data.success) {
+            // 미리보기 샘플 데이터 다시 로드
+            await window.ApiKeyMngrUI.loadPreviewSampleData();
+            window.ApiKeyMngrUI.updatePreview('30');
+            window.ApiKeyMngrUI.updatePreview('7');
+            window.ApiKeyMngrUI.updatePreview('0');
+            window.ApiKeyMngrUI.updateHistoryButtonStates();
         } else {
-            alert('메일 설정 저장 실패: ' + (response.data.message || '알 수 없는 오류'));
+            alert('메일 설정 저장 실패: ' + (data.message || '알 수 없는 오류'));
         }
     } catch (error) {
         console.error('메일 설정 저장 오류:', error);
@@ -616,6 +675,12 @@ window.ApiKeyMngrUI.sendScheduledMails = async function() {
             if (failedCount > 0) message += `❌ 실패: ${failedCount}건\n`;
             message += `⏭️ 건너뜀: ${skippedCount}건`;
             
+            // 실패 사유를 메시지에 포함
+            if (failedCount > 0) {
+                const failedReasons = result.results.failed.map(f => `CD: ${f.cd} - ${f.reason}`).join('\n');
+                message += `\n\n[실패 사유]\n${failedReasons}`;
+            }
+            
             // 건너뜀 사유를 메시지에 포함
             if (skippedCount > 0) {
                 const skippedReasons = result.results.skipped.map(s => `CD: ${s.cd} - ${s.reason}`).join('\n');
@@ -649,9 +714,10 @@ window.ApiKeyMngrUI.loadEventLog = async function() {
     if (!tableBody) return;
 
     try {
-        const response = await axios.get('/api/api_key_mngr/event_log');
-        if (response.data.success) {
-            const logs = response.data.logs || [];
+        const response = await fetch('/api/api_key_mngr/event_log');
+        const data = await response.json();
+        if (data.success) {
+            const logs = data.logs || [];
             tableBody.innerHTML = '';
             
             if (logs.length === 0) {

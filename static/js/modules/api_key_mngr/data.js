@@ -44,7 +44,7 @@ window.ApiKeyMngrData = {
     },
 
     /**
-     * CD 업데이트
+     * CD 업데이트 (TB_MNGR_SETT → TB_API_KEY_MNGR)
      */
     updateCdFromMngrSett: async function() {
         try {
@@ -53,17 +53,17 @@ window.ApiKeyMngrData = {
             });
             
             if (data.success) {
-                console.log('CD 업데이트 성공:', data.result);
+                console.log('CD 업데이트 성공:', data);
                 // 데이터 다시 로드
                 await this.loadApiKeyMngrData();
-                return true;
+                return { success: true, added_count: data.added_count || 0 };
             } else {
                 console.error('CD 업데이트 실패:', data.message);
-                return false;
+                return { success: false, message: data.message };
             }
         } catch (error) {
             console.error('CD 업데이트 오류:', error);
-            return false;
+            return { success: false, message: error.message };
         }
     },
 
@@ -323,7 +323,7 @@ window.ApiKeyMngrData = {
             const data = await apiFetch('/api/api_key_mngr/schedule_settings');
             
             if (data.success) {
-                const settings = data.data.settings || [];
+                const settings = data.settings || data.data?.settings || [];
                 const hourInfo = {};
                 
                 settings.forEach(s => {
@@ -401,7 +401,7 @@ window.ApiKeyMngrData = {
             const data = await apiFetch(`/api/api_key_mngr/mail_settings`);
             
             if (data.success) {
-                const settings = data.data.settings || {};
+                const settings = data.settings || {};
                 const key = `mail${mailTp}`;
                 const setting = settings[key] || {};
                 

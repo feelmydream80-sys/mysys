@@ -4,7 +4,7 @@ API 키 만료 알림 메일을 스케줄에 따라 자동 발송
 """
 from dao.api_key_mngr_dao import ApiKeyMngrDao
 from service.api_key_mngr_service import ApiKeyMngrService
-from mail_send import send_email, create_api_key_expiry_email, validate_email_address
+from msys.mail_send import send_email, create_api_key_expiry_email, validate_email_address
 from datetime import datetime, date, timedelta
 import logging
 import json
@@ -119,7 +119,7 @@ class MailSchedulerService:
                         body_template=body_template
                     )
                     
-                    success = send_email(
+                    success, error_msg = send_email(
                         to=email_addr,
                         subject=subject,
                         html_content=body
@@ -131,7 +131,7 @@ class MailSchedulerService:
                         mail_tp=mail_tp,
                         sent_dt=today,
                         success=success,
-                        error_msg=None if success else 'send_email returned False'
+                        error_msg=error_msg
                     )
                     
                     if success:
@@ -146,7 +146,7 @@ class MailSchedulerService:
                         results['failed'].append({
                             'cd': cd,
                             'mail_tp': mail_tp,
-                            'reason': 'send_email returned False'
+                            'reason': error_msg or 'send_email returned False'
                         })
                         
                 except Exception as e:
@@ -308,7 +308,7 @@ class MailSchedulerService:
             '''
             
             # 메일 발송
-            success = send_email(
+            success, error_msg = send_email(
                 to=test_email,
                 subject=subject,
                 html_content=body
@@ -321,7 +321,7 @@ class MailSchedulerService:
                     mail_tp='test',
                     sent_dt=date.today(),
                     success=success,
-                    error_msg=None if success else 'send_email returned False'
+                    error_msg=error_msg
                 )
             except Exception as log_err:
                 self.logger.warning(f"Failed to record test mail log: {log_err}")
@@ -335,7 +335,7 @@ class MailSchedulerService:
             else:
                 return {
                     'success': False,
-                    'message': '메일 발송에 실패했습니다. (send_email returned False)'
+                    'message': f'메일 발송에 실패했습니다: {error_msg}'
                 }
                 
         except Exception as e:

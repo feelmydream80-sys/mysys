@@ -3,7 +3,7 @@ import logging.handlers
 import sys
 import os
 from flask import request, current_app
-from config import config
+from msys.config import config
 
 def log_operation(menu: str, function: str, operation: str, result: str, level: str = "INFO", details: dict = None):
     """
@@ -18,7 +18,7 @@ def log_operation(menu: str, function: str, operation: str, result: str, level: 
         level: 로그 레벨 ("DEBUG", "INFO", "WARNING", "ERROR")
         details: 추가 상세 정보 (디버그 모드에서만 출력)
     """
-    from config import config
+    from msys.config import config
 
     # 디버그 모드가 아니고 DEBUG 레벨이면 로깅하지 않음
     if not config.DEBUG and level == "DEBUG":
