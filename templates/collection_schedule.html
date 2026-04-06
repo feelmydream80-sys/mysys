@@ -21,11 +21,11 @@
     .jobs-container { display: flex; flex-direction: column; gap: 0.5rem; }
     .job-pill {
         padding: 0.25rem 0.6rem;
-        border-radius: 9999px;
+        border-radius: 8px;
         font-size: 0.8rem;
         font-weight: 500;
         text-align: center;
-        border: 1px solid transparent; /* To maintain layout consistency */
+        border: 1px solid transparent;
         /* For text truncation */
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -181,6 +181,52 @@
     }
     .toggle-icon.collapsed {
         transform: rotate(-90deg);
+    }
+
+    /* Progress Bar Styles */
+    .progress-bar-container {
+        width: 100%;
+        height: 8px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        overflow: hidden;
+        margin: 0.25rem 0;
+    }
+    .progress-bar-fill {
+        height: 100%;
+        border-radius: 8px;
+        transition: width 0.3s ease;
+    }
+    .progress-bar-success {
+        background-color: #86efac; /* 파스텔 녹색 */
+    }
+    .progress-bar-warning {
+        background-color: #fdba74; /* 파스텔 주황 */
+    }
+    .progress-bar-danger {
+        background-color: #fca5a5; /* 파스텔 빨강 */
+    }
+
+    /* Group expand/collapse */
+    .group-pill-summary .expand-icon {
+        display: inline-block;
+        transition: transform 0.2s;
+        margin-left: 0.25rem;
+        font-size: 0.7rem;
+    }
+    .group-pill-summary.expanded .expand-icon {
+        transform: rotate(90deg);
+    }
+    .sub-groups-container {
+        display: none;
+        margin-top: 0.5rem;
+        padding-left: 0.5rem;
+    }
+    .sub-groups-container.expanded {
+        display: block;
+    }
+    .sub-group-pill {
+        margin-bottom: 0.5rem;
     }
 </style>
 {% endblock %}
