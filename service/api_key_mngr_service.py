@@ -173,6 +173,18 @@ class ApiKeyMngrService:
             # Filter data for requested CDs
             target_data = [item for item in all_data if item['cd'] in cds]
             
+            # 메일 설정 가져오기 (템플릿용)
+            mail_settings = {}
+            try:
+                settings_list = self.get_mail_settings()
+                for s in settings_list:
+                    mail_settings[s['mail_tp']] = {
+                        'subject': s.get('subject', ''),
+                        'body': s.get('body', '')
+                    }
+            except Exception as e:
+                self.logger.warning(f"Failed to load mail settings: {e}")
+            
             for api_key_data in target_data:
                 # Validate email address
                 email_addr = api_key_data.get('api_ownr_email_addr', '')
@@ -194,8 +206,28 @@ class ApiKeyMngrService:
                         pass
                     continue
                 
-                # Create email content (following mail_s.txt structure)
-                subject, body = create_api_key_expiry_email(api_key_data)
+                # 남은 기간에 따른 메일 설정 선택
+                days_remaining = api_key_data.get('days_remaining', 999)
+                if days_remaining <= 0:
+                    mail_tp = 'mail0'
+                elif days_remaining <= 7:
+                    mail_tp = 'mail7'
+                elif days_remaining <= 30:
+                    mail_tp = 'mail30'
+                else:
+                    mail_tp = 'mail30'  # 기본값
+                
+                # 메일 설정에서 템플릿 가져오기
+                mail_setting = mail_settings.get(mail_tp, {})
+                subject_template = mail_setting.get('subject', None) or None
+                body_template = mail_setting.get('body', None) or None
+                
+                # Create email content with template variables
+                subject, body = create_api_key_expiry_email(
+                    api_key_data,
+                    subject_template=subject_template,
+                    body_template=body_template
+                )
                 
                 # Send email (following mail_s.txt EmailOperator pattern)
                 try:

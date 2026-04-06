@@ -12,6 +12,8 @@ from datetime import datetime, timedelta, date
 import decimal  # Decimal도 처리하려면
 import json
 import os
+import threading
+import time
 
 from routes import init_app as init_routes
 from msys.database import close_db_connection, init_db_pool
@@ -19,6 +21,58 @@ from routes.admin_routes import admin_bp
 from utils.logging_config import setup_logging
 from utils.auth_middleware import setup_auth_middleware
 from config import config
+
+# 간단한 스케줄러 (추가 설치 불필요 - threading.Timer 사용)
+class SimpleScheduler:
+    """Python 내장 threading.Timer를 사용한 간단한 스케줄러"""
+    def __init__(self):
+        self.jobs = {}
+        self.running = False
+    
+    def add_job(self, id, func, hour=9, minute=0):
+        """스케줄 작업 추가"""
+        self.jobs[id] = {'func': func, 'hour': hour, 'minute': minute}
+    
+    def remove_job(self, id):
+        """스케줄 작업 제거"""
+        if id in self.jobs:
+            del self.jobs[id]
+    
+    def _calculate_next_run(self, hour, minute):
+        """다음 실행 시간 계산 (초 단위)"""
+        now = datetime.now()
+        target = now.replace(hour=hour, minute=minute, second=0, microsecond=0)
+        if target <= now:
+            target = target + timedelta(days=1)
+        return (target - now).total_seconds()
+    
+    def _run_job(self, job_id, func, hour, minute):
+        """작업 실행 및 다음 실행 예약"""
+        try:
+            func()
+        except Exception as e:
+            logging.error(f"Job {job_id} failed: {e}")
+        finally:
+            if self.running and job_id in self.jobs:
+                next_run = self._calculate_next_run(hour, minute)
+                timer = threading.Timer(next_run, self._run_job, [job_id, func, hour, minute])
+                timer.daemon = True
+                timer.start()
+    
+    def start(self):
+        """스케줄러 시작"""
+        self.running = True
+        for job_id, job in self.jobs.items():
+            next_run = self._calculate_next_run(job['hour'], job['minute'])
+            timer = threading.Timer(next_run, self._run_job, [job_id, job['func'], job['hour'], job['minute']])
+            timer.daemon = True
+            timer.start()
+    
+    def stop(self):
+        """스케줄러 중지"""
+        self.running = False
+
+scheduler = SimpleScheduler()
 
 def create_app():
     app = Flask(__name__, static_folder='static', static_url_path='/static')
@@ -145,7 +199,88 @@ def create_app():
 
     return app
 
+def init_mail_scheduler(app):
+    """메일 스케줄러 초기화"""
+    with app.app_context():
+        try:
+            from service.mail_scheduler_service import MailSchedulerService
+            from dao.api_key_mngr_dao import ApiKeyMngrDao
+            
+            dao = ApiKeyMngrDao()
+            settings = dao.select_schedule_settings()
+            
+            if settings and len(settings) > 0:
+                schd = settings[0]
+                
+                if schd.get('is_active', False):
+                    schd_time = schd.get('schd_time', '09:00')
+                    hour, minute = map(int, schd_time.split(':'))
+                    
+                    target_cds = None
+                    if schd.get('target_cds'):
+                        target_cds = [cd.strip() for cd in schd['target_cds'].split(',')]
+                    
+                    exclude_cds = None
+                    if schd.get('exclude_cds'):
+                        exclude_cds = [cd.strip() for cd in schd['exclude_cds'].split(',')]
+                    
+                    def scheduled_mail_job():
+                        """스케줄된 메일 발송 작업"""
+                        with app.app_context():
+                            app.logger.info("Starting scheduled mail job...")
+                            try:
+                                service = MailSchedulerService()
+                                result = service.check_and_send_scheduled_mails(
+                                    target_cds=target_cds,
+                                    exclude_cds=exclude_cds
+                                )
+                                
+                                success_count = len(result.get('success', []))
+                                failed_count = len(result.get('failed', []))
+                                app.logger.info(
+                                    f"Scheduled mail job completed: "
+                                    f"success={success_count}, failed={failed_count}"
+                                )
+                                
+                                # 마지막 실행 정보 업데이트
+                                dao.update_schedule_last_run(
+                                    schd.get('schd_id', 1),
+                                    'success' if failed_count == 0 else 'partial'
+                                )
+                            except Exception as e:
+                                app.logger.error(f"Scheduled mail job failed: {e}")
+                                try:
+                                    dao.update_schedule_last_run(schd.get('schd_id', 1), 'failed')
+                                except:
+                                    pass
+                    
+                    # 기존 작업 제거 후 새 작업 추가
+                    try:
+                        scheduler.remove_job('daily_mail_send')
+                    except:
+                        pass
+                    
+                    scheduler.add_job(
+                        id='daily_mail_send',
+                        func=scheduled_mail_job,
+                        hour=hour,
+                        minute=minute
+                    )
+                    
+                    app.logger.info(f"Mail scheduler initialized: {hour:02d}:{minute:02d}")
+                else:
+                    app.logger.info("Mail scheduler is disabled")
+            else:
+                app.logger.info("No schedule settings found")
+        except Exception as e:
+            app.logger.error(f"Failed to initialize mail scheduler: {e}")
+
 if __name__ == '__main__':
     app = create_app()
+    
+    # 스케줄러 초기화 (추가 설치 불필요)
+    init_mail_scheduler(app)
+    scheduler.start()
+    
     app.logger.info(f" * Running on http://{config.HOST}:{config.PORT}")
     app.run(host=config.HOST, port=config.PORT, debug=config.DEBUG)

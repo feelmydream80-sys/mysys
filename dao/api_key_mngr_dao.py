@@ -22,6 +22,7 @@ class ApiKeyMngrDao:
                 SELECT 
                     a.cd,
                     b.ITEM10 as api_key,
+                    b.cd_nm,
                     a.api_ownr_email_addr,
                     a.due,
                     a.start_dt
@@ -38,9 +39,10 @@ class ApiKeyMngrDao:
                 data.append({
                     'cd': row[0],
                     'api_key': row[1],
-                    'api_ownr_email_addr': row[2],
-                    'due': row[3],
-                    'start_dt': row[4]
+                    'cd_nm': row[2],
+                    'api_ownr_email_addr': row[3],
+                    'due': row[4],
+                    'start_dt': row[5]
                 })
             
             self.logger.debug(f"Fetched {len(data)} records from TB_API_KEY_MNGR with joined TB_CON_MST data")
@@ -63,6 +65,7 @@ class ApiKeyMngrDao:
                 SELECT 
                     a.cd,
                     b.ITEM10 as api_key,
+                    b.cd_nm,
                     a.api_ownr_email_addr,
                     a.due,
                     a.start_dt
@@ -78,9 +81,10 @@ class ApiKeyMngrDao:
                 return {
                     'cd': row[0],
                     'api_key': row[1],
-                    'api_ownr_email_addr': row[2],
-                    'due': row[3],
-                    'start_dt': row[4]
+                    'cd_nm': row[2],
+                    'api_ownr_email_addr': row[3],
+                    'due': row[4],
+                    'start_dt': row[5]
                 }
             return None
             
@@ -173,12 +177,16 @@ class ApiKeyMngrDao:
                 conn.close()
 
     def select_mail_settings(self) -> Dict[str, Any]:
-        """Select all mail settings from TB_API_KEY_MNGR_MAIL_SETT"""
+        """Select all active mail settings from TB_API_KEY_MNGR_MAIL_SETT"""
         try:
             conn = get_db_connection()
             cursor = conn.cursor(cursor_factory=RealDictCursor)
             
-            query = "SELECT mail_tp, subject, from_email, body FROM TB_API_KEY_MNGR_MAIL_SETT"
+            query = """
+                SELECT mail_tp, subject, from_email, body 
+                FROM TB_API_KEY_MNGR_MAIL_SETT 
+                WHERE is_active = TRUE
+            """
             cursor.execute(query)
             rows = cursor.fetchall()
             
@@ -201,25 +209,27 @@ class ApiKeyMngrDao:
                 conn.close()
 
     def upsert_mail_settings(self, mail_tp: str, subject: str, from_email: str, body: str) -> bool:
-        """Insert or update mail settings in TB_API_KEY_MNGR_MAIL_SETT"""
+        """Insert new mail setting and deactivate old ones in TB_API_KEY_MNGR_MAIL_SETT"""
         try:
             conn = get_db_connection()
             cursor = conn.cursor()
             
-            query = """
-                INSERT INTO TB_API_KEY_MNGR_MAIL_SETT (mail_tp, subject, from_email, body)
-                VALUES (%s, %s, %s, %s)
-                ON CONFLICT (mail_tp) DO UPDATE
-                SET subject = EXCLUDED.subject,
-                    from_email = EXCLUDED.from_email,
-                    body = EXCLUDED.body,
-                    upd_dt = NOW()
-            """
+            # 기존 활성 설정 비활성화
+            cursor.execute(
+                "UPDATE TB_API_KEY_MNGR_MAIL_SETT SET is_active = FALSE WHERE mail_tp = %s",
+                (mail_tp,)
+            )
             
-            cursor.execute(query, (mail_tp, subject, from_email, body))
+            # 새 설정 삽입
+            cursor.execute(
+                """INSERT INTO TB_API_KEY_MNGR_MAIL_SETT (mail_tp, subject, from_email, body, is_active)
+                   VALUES (%s, %s, %s, %s, TRUE)""",
+                (mail_tp, subject, from_email, body)
+            )
+            
             conn.commit()
             
-            self.logger.debug(f"Successfully upserted mail settings for: {mail_tp}")
+            self.logger.debug(f"Successfully inserted new mail setting for: {mail_tp}")
             return True
             
         except Exception as e:
@@ -328,6 +338,263 @@ class ApiKeyMngrDao:
             if 'conn' in locals():
                 conn.close()
 
+    # ==========================================
+    # 메일 전송 이력 관련 메서드 (신규 추가)
+    # ==========================================
+
+    def get_mail_send_log(self, cd: str, mail_tp: str, sent_dt) -> Dict[str, Any]:
+        """특정 CD의 특정 날짜 메일 발송 이력 조회"""
+        try:
+            conn = get_db_connection()
+            cursor = conn.cursor(cursor_factory=RealDictCursor)
+            
+            query = """
+                SELECT log_id, cd, mail_tp, sent_dt, success, error_msg, reg_dt
+                FROM TB_API_KEY_MNGR_MAIL_LOG
+                WHERE cd = %s AND mail_tp = %s AND sent_dt = %s
+                ORDER BY reg_dt DESC
+                LIMIT 1
+            """
+            
+            cursor.execute(query, (cd, mail_tp, sent_dt))
+            row = cursor.fetchone()
+            
+            return row if row else None
+            
+        except Exception as e:
+            self.logger.error(f"Error getting mail send log for CD {cd}: {e}")
+            raise
+        finally:
+            if 'conn' in locals():
+                conn.close()
+
+    def insert_mail_send_log(self, cd: str, mail_tp: str, sent_dt, success: bool, error_msg: str = None) -> bool:
+        """메일 발송 이력 기록"""
+        try:
+            conn = get_db_connection()
+            cursor = conn.cursor()
+            
+            query = """
+                INSERT INTO TB_API_KEY_MNGR_MAIL_LOG (cd, mail_tp, sent_dt, success, error_msg)
+                VALUES (%s, %s, %s, %s, %s)
+            """
+            
+            cursor.execute(query, (cd, mail_tp, sent_dt, success, error_msg))
+            conn.commit()
+            
+            self.logger.debug(f"Successfully inserted mail send log for CD: {cd}, mail_tp: {mail_tp}")
+            return True
+            
+        except Exception as e:
+            if 'conn' in locals():
+                conn.rollback()
+            self.logger.error(f"Error inserting mail send log: {e}")
+            raise
+        finally:
+            if 'conn' in locals():
+                conn.close()
+
+    def select_mail_send_logs(self, page_size: int = 50, offset: int = 0, 
+                               cd: str = None, mail_tp: str = None, success: bool = None) -> List[Dict[str, Any]]:
+        """메일 전송 이력 조회 (페이지네이션 + 필터)"""
+        try:
+            conn = get_db_connection()
+            cursor = conn.cursor(cursor_factory=RealDictCursor)
+            
+            query = """
+                SELECT log_id, cd, mail_tp, sent_dt, success, error_msg, reg_dt
+                FROM TB_API_KEY_MNGR_MAIL_LOG
+                WHERE 1=1
+            """
+            params = []
+            
+            if cd:
+                query += " AND cd = %s"
+                params.append(cd)
+            if mail_tp:
+                query += " AND mail_tp = %s"
+                params.append(mail_tp)
+            if success is not None:
+                query += " AND success = %s"
+                params.append(success)
+            
+            query += " ORDER BY reg_dt DESC LIMIT %s OFFSET %s"
+            params.extend([page_size, offset])
+            
+            cursor.execute(query, params)
+            rows = cursor.fetchall()
+            
+            logs = []
+            for row in rows:
+                logs.append({
+                    'log_id': row['log_id'],
+                    'cd': row['cd'],
+                    'mail_tp': row['mail_tp'],
+                    'sent_dt': row['sent_dt'].isoformat() if row['sent_dt'] else None,
+                    'success': row['success'],
+                    'error_msg': row['error_msg'],
+                    'reg_dt': row['reg_dt'].strftime('%Y-%m-%d %H:%M:%S') if row['reg_dt'] else None
+                })
+            
+            self.logger.debug(f"Fetched {len(logs)} mail send logs")
+            return logs
+            
+        except Exception as e:
+            self.logger.error(f"Error selecting mail send logs: {e}")
+            raise
+        finally:
+            if 'conn' in locals():
+                conn.close()
+
+    def count_mail_send_logs(self, cd: str = None, mail_tp: str = None, success: bool = None) -> int:
+        """메일 전송 이력 카운트 (필터 지원)"""
+        try:
+            conn = get_db_connection()
+            cursor = conn.cursor()
+            
+            query = "SELECT COUNT(*) FROM TB_API_KEY_MNGR_MAIL_LOG WHERE 1=1"
+            params = []
+            
+            if cd:
+                query += " AND cd = %s"
+                params.append(cd)
+            if mail_tp:
+                query += " AND mail_tp = %s"
+                params.append(mail_tp)
+            if success is not None:
+                query += " AND success = %s"
+                params.append(success)
+            
+            cursor.execute(query, params)
+            count = cursor.fetchone()[0]
+            
+            return count
+            
+        except Exception as e:
+            self.logger.error(f"Error counting mail send logs: {e}")
+            raise
+        finally:
+            if 'conn' in locals():
+                conn.close()
+
+    # ==========================================
+    # 스케줄 설정 관련 메서드 (신규 추가)
+    # ==========================================
+
+    def select_schedule_settings(self) -> List[Dict[str, Any]]:
+        """스케줄 설정 조회 (3개 스케줄: 30일전, 7일전, 당일)"""
+        try:
+            conn = get_db_connection()
+            cursor = conn.cursor(cursor_factory=RealDictCursor)
+            
+            query = """
+                SELECT schd_id, schd_tp, schd_cycle, schd_hour, 
+                       is_active, last_run_dt, last_run_result, reg_dt, upd_dt
+                FROM TB_API_KEY_MNGR_MAIL_SCHD
+                ORDER BY 
+                    CASE schd_tp 
+                        WHEN '30일전' THEN 1 
+                        WHEN '7일전' THEN 2 
+                        WHEN '당일' THEN 3 
+                        ELSE 4 
+                    END
+            """
+            
+            cursor.execute(query)
+            rows = cursor.fetchall()
+            
+            settings = []
+            for row in rows:
+                settings.append({
+                    'schd_id': row['schd_id'],
+                    'schd_tp': row['schd_tp'],
+                    'schd_cycle': row['schd_cycle'],
+                    'schd_hour': row['schd_hour'],
+                    'is_active': row['is_active'],
+                    'last_run_dt': row['last_run_dt'].strftime('%Y-%m-%d %H:%M:%S') if row['last_run_dt'] else None,
+                    'last_run_result': row['last_run_result'],
+                    'reg_dt': row['reg_dt'].strftime('%Y-%m-%d %H:%M:%S') if row['reg_dt'] else None,
+                    'upd_dt': row['upd_dt'].strftime('%Y-%m-%d %H:%M:%S') if row['upd_dt'] else None
+                })
+            
+            self.logger.debug(f"Fetched {len(settings)} schedule settings")
+            return settings
+            
+        except Exception as e:
+            self.logger.error(f"Error selecting schedule settings: {e}")
+            raise
+        finally:
+            if 'conn' in locals():
+                conn.close()
+
+    def upsert_schedule_settings(self, schedules: List[Dict[str, Any]]) -> bool:
+        """스케줄 설정 저장/수정 (3개 스케줄 일괄 처리)"""
+        try:
+            conn = get_db_connection()
+            cursor = conn.cursor()
+            
+            for schd in schedules:
+                query = """
+                    INSERT INTO TB_API_KEY_MNGR_MAIL_SCHD 
+                        (schd_tp, schd_cycle, schd_hour, is_active)
+                    VALUES (%s, %s, %s, %s)
+                    ON CONFLICT (schd_tp) DO UPDATE
+                    SET schd_cycle = EXCLUDED.schd_cycle,
+                        schd_hour = EXCLUDED.schd_hour,
+                        is_active = EXCLUDED.is_active,
+                        upd_dt = NOW()
+                """
+                
+                cursor.execute(query, (
+                    schd.get('schd_tp'),
+                    schd.get('schd_cycle', 1),
+                    schd.get('schd_hour', 9),
+                    schd.get('is_active', True)
+                ))
+            
+            conn.commit()
+            
+            self.logger.debug("Successfully upserted schedule settings")
+            return True
+            
+        except Exception as e:
+            if 'conn' in locals():
+                conn.rollback()
+            self.logger.error(f"Error upserting schedule settings: {e}")
+            raise
+        finally:
+            if 'conn' in locals():
+                conn.close()
+
+    def update_schedule_last_run(self, schd_tp: str, result: str) -> bool:
+        """스케줄 마지막 실행 정보 업데이트"""
+        try:
+            conn = get_db_connection()
+            cursor = conn.cursor()
+            
+            query = """
+                UPDATE TB_API_KEY_MNGR_MAIL_SCHD
+                SET last_run_dt = NOW(),
+                    last_run_result = %s,
+                    upd_dt = NOW()
+                WHERE schd_tp = %s
+            """
+            
+            cursor.execute(query, (result, schd_tp))
+            conn.commit()
+            
+            self.logger.debug(f"Updated last run info for schedule {schd_tp}")
+            return True
+            
+        except Exception as e:
+            if 'conn' in locals():
+                conn.rollback()
+            self.logger.error(f"Error updating schedule last run: {e}")
+            raise
+        finally:
+            if 'conn' in locals():
+                conn.close()
+
     def select_cds_not_in_api_key_mngr(self, conn=None) -> List[Dict[str, Any]]:
         """Select all CD values from TB_MNGR_SETT that are not in TB_API_KEY_MNGR"""
         # Create a completely new method that handles connection properly
@@ -369,3 +636,74 @@ class ApiKeyMngrDao:
                     pass
         
         return data
+
+    def get_mail_setting_history(self, mail_tp, version):
+        """
+        메일 설정 이력 조회 (과거 버전)
+        
+        :param mail_tp: 메일 유형 (mail30, mail7, mail0)
+        :param version: 버전 번호 (1=최신, 2=두번째 전, 3=세번째 전)
+        :return: 설정 데이터 dict or None
+        """
+        conn = None
+        try:
+            conn = get_db_connection()
+            cursor = conn.cursor(cursor_factory=RealDictCursor)
+            
+            # 최신 순으로 정렬하여 version에 해당하는 레코드 조회
+            query = """
+                SELECT mail_tp, subject, from_email, body, reg_dt
+                FROM TB_API_KEY_MNGR_MAIL_SETT
+                WHERE mail_tp = %s
+                ORDER BY reg_dt DESC
+                LIMIT 1 OFFSET %s
+            """
+            
+            cursor.execute(query, (mail_tp, version - 1))
+            row = cursor.fetchone()
+            
+            if row:
+                return {
+                    'mail_tp': row['mail_tp'],
+                    'subject': row['subject'],
+                    'from_email': row['from_email'],
+                    'body': row['body'],
+                    'reg_dt': row['reg_dt']
+                }
+            return None
+            
+        except Exception as e:
+            self.logger.error(f"Error getting mail setting history for {mail_tp} version {version}: {e}")
+            raise
+        finally:
+            if conn:
+                conn.close()
+
+    def count_mail_setting_history(self, mail_tp):
+        """
+        메일 설정 이력 개수 조회
+        
+        :param mail_tp: 메일 유형 (mail30, mail7, mail0)
+        :return: 이력 개수
+        """
+        conn = None
+        try:
+            conn = get_db_connection()
+            cursor = conn.cursor()
+            
+            query = """
+                SELECT COUNT(*) FROM TB_API_KEY_MNGR_MAIL_SETT
+                WHERE mail_tp = %s
+            """
+            
+            cursor.execute(query, (mail_tp,))
+            count = cursor.fetchone()[0]
+            
+            return count
+            
+        except Exception as e:
+            self.logger.error(f"Error counting mail setting history for {mail_tp}: {e}")
+            raise
+        finally:
+            if conn:
+                conn.close()

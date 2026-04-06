@@ -302,9 +302,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script type="module">
-    import { init } from "{{ url_for('static', filename='js/pages/collection_schedule.js') }}?v={{ now.timestamp() }}";
-    // DOM이 로드된 후 init 함수를 실행합니다.
-    document.addEventListener('DOMContentLoaded', init);
-</script>
+<!-- router.js가 module.init()을 호출하므로 여기서는 중복 호출하지 않음 -->
 {% endblock %}
