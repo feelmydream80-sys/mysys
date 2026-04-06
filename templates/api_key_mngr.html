@@ -3,7 +3,7 @@
 {% block title %}API 키 관리{% endblock %}
 
 {% block head %}
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='vendor/css/ibm-plex.css') }}">
 <style id="page-specific-style">
     .timeline-header { background: linear-gradient(to right, #f3f4f6, #e5e7eb); }
     .today-line { position: absolute; top: 0; bottom: 0; width: 2px; background: #ef4444; z-index: 10; box-shadow: 0 0 6px rgba(239, 68, 68, 0.6); }
@@ -968,8 +968,8 @@
                                         <input type="checkbox" id="schd_7_active" class="rounded border-gray-300" checked>
                                         <label class="text-sm font-medium text-gray-700">활성화</label>
                                     </div>
-                                    <div class="mt-2 p-2 bg-orange-50 rounded-lg border border-orange-200">
-                                        <p class="text-xs text-gray-700"><span class="font-semibold text-orange-700">7일전</span> <span id="schd_7_info">[1]일 [09]시</span></p>
+                                    <div class="mt-2 p-2 bg-amber-50 rounded-lg border border-amber-200">
+                                        <p class="text-xs text-gray-700"><span class="font-semibold text-amber-700">7일전</span> <span id="schd_7_info">[1]일 [09]시</span></p>
                                     </div>
                                 </div>
                             </div>
@@ -1103,7 +1103,7 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="{{ url_for('static', filename='vendor/js/axios.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/modules/api_key_mngr/data.js') }}"></script>
     <script src="{{ url_for('static', filename='js/modules/api_key_mngr/core.js') }}"></script>
     <script src="{{ url_for('static', filename='js/modules/api_key_mngr/table.js') }}"></script>
