@@ -78,36 +78,73 @@ export function init() {
     const settingsManager = {
         _settings: {},
         _icons: {},
+        _statusCodes: [],
 
-        // Helper to generate correct HTML for either an icon class or a literal character
         _generateIconHtml(iconCode) {
             if (!iconCode) {
                 return '';
             }
-            // If it looks like a Font Awesome class, use an <i> tag
             if (iconCode.includes('fa-')) {
                 return `<i class="${iconCode}"></i>`;
             }
-            // Otherwise, return the literal character
             return iconCode;
         },
 
         init() {
-            // Re-initialize based on current settings
             this.applyToUI();
             this.updateGuidePopup();
         },
 
         updateSettings(settings) {
-            if (settings && settings.useYn === 'Y') {
+            if (settings) {
                 this._settings = settings;
-                // _extractIcons is no longer needed as we directly use icon codes
             }
             this.init();
         },
 
-        // This function is no longer needed as we directly use the _cd fields.
-        /* _extractIcons(settings) { ... } */
+        updateStatusCodes(statusCodes) {
+            this._statusCodes = statusCodes || [];
+            this.buildDynamicStatusMap();
+        },
+
+        buildDynamicStatusMap() {
+            this._statusMapByCd = {};
+            this._statusCodes.forEach(code => {
+                const cd = code.cd || code.CD;
+                const bg_colr = code.bg_colr || code.BG_COLR;
+                const txt_colr = code.txt_colr || code.TXT_COLR;
+                const icon_cd = code.icon_cd || code.ICON_CD;
+                
+                if (cd) {
+                    this._statusMapByCd[cd] = {
+                        key: cd,
+                        bg_colr: bg_colr,
+                        txt_colr: txt_colr,
+                        icon_cd: icon_cd
+                    };
+                }
+            });
+        },
+
+        getStatusInfoByCd(statusCd) {
+            const cd = statusCd?.toUpperCase() || statusCd;
+            const info = this._statusMapByCd[cd] || this._statusMapByCd[statusCd];
+            
+            if (info) {
+                return {
+                    key: info.key,
+                    class: `status-${info.key}`,
+                    icon_cd: info.icon_cd,
+                    bg_colr: info.bg_colr,
+                    txt_colr: info.txt_colr
+                };
+            }
+            return null;
+        },
+
+        getStatusInfo(statusCd) {
+            return this.getStatusInfoByCd(statusCd) || { key: statusCd, class: `status-${statusCd}`, icon_cd: null, bg_colr: null, txt_colr: null };
+        },
         
         applyToUI() {
             const styleId = 'dynamic-status-styles';
@@ -119,13 +156,26 @@ export function init() {
             }
 
             const s = this._settings;
-            styleElement.innerHTML = `
-                .status-success { background-color: ${s.sucsBgColr}; color: ${s.sucsTxtColr} !important; }
-                .status-fail { background-color: ${s.failBgColr}; color: ${s.failTxtColr} !important; }
-                .status-inprogress { background-color: ${s.prgsBgColr}; color: ${s.prgsTxtColr} !important; }
-                .status-nodata { background-color: ${s.nodtBgColr}; color: ${s.nodtTxtColr} !important; }
-                .status-scheduled { background-color: ${s.schdBgColr}; color: ${s.schdTxtColr} !important; }
-            `;
+            
+            const defaultColors = {
+                'CD901': { bg: '#dcfce7', txt: '#166534' },
+                'CD902': { bg: '#fee2e2', txt: '#991b1b' },
+                'CD907': { bg: '#f3f4f6', txt: '#6b7280' },
+                'CD908': { bg: '#e5e7eb', txt: '#374151' }
+            };
+
+            let cssRules = '';
+            this._statusCodes.forEach(code => {
+                const cd = code.cd || code.CD;
+                const bg = code.bg_colr || code.BG_COLR || defaultColors[cd]?.bg || '#808080';
+                const txt = code.txt_colr || code.TXT_COLR || defaultColors[cd]?.txt || '#ffffff';
+                cssRules += `.status-${cd} { background-color: ${bg}; color: ${txt} !important; }\n`;
+                if (cd === 'CD902') {
+                    cssRules += `.status-${cd}-warn { background-color: ${bg}; color: ${txt} !important; opacity: 0.5; }\n`;
+                }
+            });
+
+            styleElement.innerHTML = cssRules;
 
             document.getElementById('grouping-threshold').value = s.grpMinCnt || 0;
             document.getElementById('red-threshold').value = s.prgsRtRedThrsval || 0;
@@ -136,31 +186,36 @@ export function init() {
             const popup = document.getElementById('guide-popup');
             if (!popup) return;
 
-            const createLi = (statusKey, label) => {
-                const iconCode = this._settings[`${statusKey}IconCd`];
-                const bgColor = this._settings[`${statusKey}BgColr`];
-                const textColor = this._settings[`${statusKey}TxtColr`];
-                const iconHtml = this._generateIconHtml(iconCode);
+            const statusList = this._statusCodes.map(code => {
+                const cd = code.cd || code.CD;
+                return {
+                    key: cd,
+                    label: code.nm || code.NM || cd,
+                    cd: cd,
+                    descr: code.descr || code.DESCR || '',
+                    icon_cd: code.icon_cd || code.ICON_CD,
+                    bg_colr: code.bg_colr || code.BG_COLR,
+                    txt_colr: code.txt_colr || code.TXT_COLR
+                };
+            });
+
+            const createLi = (status) => {
+                const iconHtml = this._generateIconHtml(status.icon_cd);
+                const bgColor = status.bg_colr || '#808080';
+                const textColor = status.txt_colr || '#ffffff';
 
                 return `
                     <li class="flex items-center">
-                        <span class="job-pill mr-2" style="background-color:${bgColor}; color:${textColor};">${iconHtml} ${label}</span>
-                        ${{sucs:'수집 완료', fail:'수집 중 오류 발생', prgs:'수집 진행 중', nodt:'수집되지 않음', schd:'수집 예정'}[statusKey]}
+                        <span class="job-pill mr-2" style="background-color:${bgColor}; color:${textColor};">${iconHtml} ${status.label}</span>
+                        ${status.descr || ''}
                     </li>`;
             };
             
-            const individualItemsHtml = `
-                ${createLi('sucs', '성공')}
-                ${createLi('fail', '실패')}
-                ${createLi('prgs', '수집중')}
-                ${createLi('nodt', '미수집')}
-                ${createLi('schd', '예정')}
-            `;
+            const individualItemsHtml = statusList.map(s => createLi(s)).join('');
             
             const groupItemsHtml = `
-                <li class="flex items-center"><span class="job-pill status-success mr-2">정상 (녹색)</span> '경고' 임계값 이상</li>
-                <li class="flex items-center"><span class="job-pill status-inprogress mr-2">경고 (주황색)</span> '문제점'과 '경고' 임계값 사이</li>
-                <li class="flex items-center"><span class="job-pill status-fail mr-2">문제점 (붉은색)</span> '문제점' 임계값 미만</li>
+                <li class="flex items-center"><span class="job-pill status-CD901 mr-2">정상 (녹색)</span> '경고' 임계값 이상</li>
+                <li class="flex items-center"><span class="job-pill status-CD902 mr-2">문제점 (붉은색)</span> '문제점' 임계값 미만</li>
             `;
 
             popup.querySelector('#individual-status-guide').innerHTML = individualItemsHtml;
@@ -171,36 +226,35 @@ export function init() {
             return this._settings[key];
         },
         
-        getIcon(statusKey) {
-            // Directly access the icon code from the settings object
-            const iconCode = this._settings[`${statusKey}IconCd`];
-            return this._generateIconHtml(iconCode); // Use the new helper
+        getIconByCd(statusCd) {
+            const cd = statusCd?.toUpperCase() || statusCd;
+            const info = this._statusMapByCd[cd] || this._statusMapByCd[statusCd];
+            if (info && info.icon_cd) {
+                return this._generateIconHtml(info.icon_cd);
+            }
+            return '';
         },
-        
-        getGroupIcon(type) { // type is 'prgs' or 'sucs'
-            const keyMap = {
-                prgs: 'grpPrgsIconCd',
-                sucs: 'grpSucsIconCd'
-            };
-            const iconCode = this._settings[keyMap[type]];
+
+        getIcon(statusKey) {
+            const iconCode = this._settings[`${statusKey}IconCd`];
             return this._generateIconHtml(iconCode);
         }
     };
     
     // --- End Settings Manager ---
 
-    const statusMap = {
-        '성공': { key: 'sucs', class: 'status-success' },
-        '실패': { key: 'fail', class: 'status-fail' },
-        '미수집': { key: 'nodt', class: 'status-nodata' },
-        '수집중': { key: 'prgs', class: 'status-inprogress' },
-        '예정': { key: 'schd', class: 'status-scheduled' }
-    };
+    function getStatusInfoByCd(statusCd) {
+        return settingsManager.getStatusInfoByCd(statusCd) || { key: statusCd, class: `status-${statusCd}`, icon_cd: null, bg_colr: null, txt_colr: null };
+    }
+
+    function isStatusDisplayed(job) {
+        return true;
+    }
 
     function getGroupPillColorClass(rate, redThreshold, orangeThreshold) {
-        if (rate < redThreshold) return 'status-fail';
-        if (rate < orangeThreshold) return 'status-inprogress';
-        return 'status-success';
+        if (rate < redThreshold) return 'status-CD902';
+        if (rate < orangeThreshold) return 'status-CD902-warn';
+        return 'status-CD901';
     }
 
     function getProgressBarColorClass(rate, redThreshold, orangeThreshold) {
@@ -273,31 +327,29 @@ export function init() {
             dayHeader.className = 'day-header';
             const dateStr = `${String(currentDate.getMonth() + 1).padStart(2, '0')}/${String(currentDate.getDate()).padStart(2, '0')} (${['일', '월', '화', '수', '목', '금', '토'][currentDate.getDay()]})`;
             
-            // 날짜별 상태 카운트 계산
+            // 날짜별 상태 카운트 계산 (CD 코드 기반)
             const statusCounts = {
-                '성공': 0,
-                '실패': 0,
-                '미수집': 0,
-                '예정': 0
+                'CD901': 0,  // 성공
+                'CD902': 0,  // 실패
+                'CD908': 0,  // 미수집 (CD904, CD905 포함)
+                'CD907': 0   // 예정
             };
             
-            dayData.forEach(job => {
-                if (statusCounts.hasOwnProperty(job.status)) {
-                    statusCounts[job.status]++;
-                } else if (job.status === '수집중') {
-                    // 수집중은 미수집으로 분류
-                    statusCounts['미수집']++;
-                }
+            dayData.filter(isStatusDisplayed).forEach(job => {
+                if (job.status === 'CD901') statusCounts['CD901']++;
+                else if (job.status === 'CD902') statusCounts['CD902']++;
+                else if (job.status === 'CD907') statusCounts['CD907']++;
+                else if (['CD908', 'CD904', 'CD905'].includes(job.status)) statusCounts['CD908']++;
             });
             
             // 날짜 헤더에 카운트 표시 (작은 글씨)
             dayHeader.innerHTML = `
                 <div>${dateStr}</div>
                 <div style="font-size: 10px; margin-top: 2px;">
-                    <span style="color: ${settingsManager.get('sucsTxtColr') || '#008000'}">성공: ${statusCounts['성공']}</span> / 
-                    <span style="color: ${settingsManager.get('failTxtColr') || '#ff0000'}">실패: ${statusCounts['실패']}</span> / 
-                    <span style="color: ${settingsManager.get('nodtTxtColr') || '#808080'}">미수집: ${statusCounts['미수집']}</span> / 
-                    <span style="color: ${settingsManager.get('schdTxtColr') || '#0000ff'}">예정: ${statusCounts['예정']}</span>
+                    <span style="color: ${settingsManager.getStatusInfoByCd('CD901')?.txt_colr || '#166534'}">성공: ${statusCounts['CD901']}</span> / 
+                    <span style="color: ${settingsManager.getStatusInfoByCd('CD902')?.txt_colr || '#991b1b'}">실패: ${statusCounts['CD902']}</span> / 
+                    <span style="color: ${settingsManager.getStatusInfoByCd('CD908')?.txt_colr || '#374151'}">미수집: ${statusCounts['CD908']}</span> / 
+                    <span style="color: ${settingsManager.getStatusInfoByCd('CD907')?.txt_colr || '#6b7280'}">예정: ${statusCounts['CD907']}</span>
                 </div>
             `;
             
@@ -333,16 +385,18 @@ export function init() {
                 const groupingThreshold = settingsManager.get('grpMinCnt');
                 
                 // 전체 job 수 계산
-                const totalJobs = Object.values(subGroups).reduce((sum, jobs) => sum + jobs.length, 0);
+                const totalJobs = Object.values(subGroups).flat().filter(isStatusDisplayed).length;
                 
                 if (totalJobs >= groupingThreshold) {
                     // 상위 그룹 렌더링 (CD100)
-                    const allSubGroupJobs = Object.values(subGroups).flat();
-                    const allScheduled = allSubGroupJobs.every(j => j.status === '예정');
+                    const allSubGroupJobs = Object.values(subGroups).flat().filter(isStatusDisplayed);
+                    // CD904, CD905는 "없는 것"으로 취급
+                    const validJobs = allSubGroupJobs.filter(j => ['CD901', 'CD902', 'CD907', 'CD908'].includes(j.status));
+                    const allScheduled = validJobs.length > 0 && validJobs.every(j => j.status === 'CD907');
 
-                    const total = allSubGroupJobs.length;
-                    const success = allSubGroupJobs.filter(j => j.status === '성공').length;
-                    const fail = allSubGroupJobs.filter(j => j.status === '실패').length;
+                    const total = validJobs.length;
+                    const success = validJobs.filter(j => j.status === 'CD901').length;
+                    const fail = validJobs.filter(j => j.status === 'CD902').length;
                     const completed = success + fail;
                     
                     const progressRate = total > 0 ? Math.round((completed / total) * 100) : 0;
@@ -350,7 +404,7 @@ export function init() {
 
                     let colorClass;
                     if (allScheduled) {
-                        colorClass = 'status-scheduled';
+                        colorClass = 'status-CD907';
                     } else {
                        const colorCriteria = settingsManager.get('grpColrCrtr') || 'prgr';
                       if (colorCriteria === 'succ') {
@@ -414,17 +468,20 @@ export function init() {
                     // 하위 그룹들을 팝업 내용에 추가
                     sortedSubGroupIds.forEach(subGroupId => {
                         const subGroupJobs = subGroups[subGroupId];
-                        const subTotal = subGroupJobs.length;
-                        const subSuccess = subGroupJobs.filter(j => j.status === '성공').length;
-                        const subFail = subGroupJobs.filter(j => j.status === '실패').length;
+                        const filteredSubJobs = subGroupJobs.filter(isStatusDisplayed);
+                        // CD904, CD905는 "없는 것"으로 취급
+                        const validSubJobs = filteredSubJobs.filter(j => ['CD901', 'CD902', 'CD907', 'CD908'].includes(j.status));
+                        const subTotal = validSubJobs.length;
+                        const subSuccess = validSubJobs.filter(j => j.status === 'CD901').length;
+                        const subFail = validSubJobs.filter(j => j.status === 'CD902').length;
                         const subCompleted = subSuccess + subFail;
                         const subProgressRate = subTotal > 0 ? Math.round((subCompleted / subTotal) * 100) : 0;
                         const subSuccessRate = subCompleted > 0 ? Math.round((subSuccess / subCompleted) * 100) : 0;
-                        const subAllScheduled = subGroupJobs.every(j => j.status === '예정');
+                        const subAllScheduled = validSubJobs.length > 0 && validSubJobs.every(j => j.status === 'CD907');
 
                         let subColorClass;
                         if (subAllScheduled) {
-                            subColorClass = 'status-scheduled';
+                            subColorClass = 'status-CD907';
                         } else {
                             const colorCriteria = settingsManager.get('grpColrCrtr') || 'prgr';
                             if (colorCriteria === 'succ') {
@@ -478,7 +535,7 @@ export function init() {
                         sortedSubJobs.forEach(job => {
                             const popupDisplayMode = document.querySelector('input[name="displayMode"]:checked').value;
                             let originalName = popupDisplayMode === 'name' && mstData[job.job_id] ? mstData[job.job_id] : job.job_id;
-                            const statusInfo = statusMap[job.status] || { key: 'schd', class: 'status-scheduled' };
+                            const statusInfo = getStatusInfoByCd(job.status);
 
                             const sameDayJobs = dayData.filter(d => d.job_id === job.job_id);
                             if (sameDayJobs.length > 1) {
@@ -488,13 +545,19 @@ export function init() {
                                     originalName += `(${hour}시)`;
                                 }
                             }
-                            const iconHtml = settingsManager.getIcon(statusInfo.key);
+                            const iconHtml = settingsManager.getIconByCd(job.status);
                             const contentHtml = iconHtml ? `${iconHtml}&nbsp;${originalName}` : originalName;
 
                             const pillElement = document.createElement('div');
                             pillElement.className = `job-pill ${statusInfo.class}`;
                             pillElement.title = createTooltipContent(job, originalName);
                             pillElement.innerHTML = contentHtml;
+                            if (statusInfo.bg_colr) {
+                                pillElement.style.backgroundColor = statusInfo.bg_colr;
+                            }
+                            if (statusInfo.txt_colr) {
+                                pillElement.style.color = statusInfo.txt_colr;
+                            }
                             subPopupContent.appendChild(pillElement);
                         });
 
@@ -724,7 +787,7 @@ export function init() {
                     jobsContainer.appendChild(groupContainer);
                 } else {
                     // 임계값 미달 - 개별 job pills로 렌더링
-                    const allSubGroupJobs = Object.values(subGroups).flat();
+                    const allSubGroupJobs = Object.values(subGroups).flat().filter(isStatusDisplayed);
                     allSubGroupJobs.sort((a, b) => {
                         const numA = parseInt(a.job_id.replace('CD', ''), 10);
                         const numB = parseInt(b.job_id.replace('CD', ''), 10);
@@ -733,16 +796,21 @@ export function init() {
                     
                     allSubGroupJobs.forEach(job => {
                         const jobItem = document.createElement('div');
-                        const statusInfo = statusMap[job.status] || { key: 'schd', class: 'status-scheduled' };
+                        const statusInfo = getStatusInfoByCd(job.status);
                         jobItem.className = `job-pill ${statusInfo.class}`;
+                        if (statusInfo.bg_colr) {
+                            jobItem.style.backgroundColor = statusInfo.bg_colr;
+                        }
+                        if (statusInfo.txt_colr) {
+                            jobItem.style.color = statusInfo.txt_colr;
+                        }
                         const displayMode = document.querySelector('input[name="displayMode"]:checked').value;
                         let originalName = displayMode === 'name' && mstData[job.job_id] ? mstData[job.job_id] : job.job_id;
                         const maxLength = 12;
                         if (originalName.length > maxLength) {
                             originalName = originalName.substring(0, maxLength) + '...';
                         }
-                        // 아이콘과 텍스트 사이에 공백 추가
-                        const iconHTML = settingsManager.getIcon(statusInfo.key);
+                        const iconHTML = settingsManager.getIconByCd(job.status);
                         jobItem.innerHTML = iconHTML ? `${iconHTML}&nbsp;${originalName}` : originalName;
                         jobItem.title = createTooltipContent(job, originalName);
                         jobsContainer.appendChild(jobItem);
@@ -758,10 +826,11 @@ export function init() {
     }
 
     function updateSummary(data) {
-        const total = data.filter(d => d.status !== '예정').length;
-        const success = data.filter(d => d.status === '성공').length;
-        const fail = data.filter(d => d.status === '실패').length;
-        const nodata = data.filter(d => d.status === '미수집' || d.status === '수집중').length;
+        const filteredData = data.filter(isStatusDisplayed);
+        const total = filteredData.filter(d => d.status !== 'CD907').length;
+        const success = filteredData.filter(d => d.status === 'CD901').length;
+        const fail = filteredData.filter(d => d.status === 'CD902').length;
+        const nodata = filteredData.filter(d => ['CD908', 'CD904', 'CD905'].includes(d.status)).length;
 
         totalCountEl.textContent = total;
         successCountEl.textContent = success;
@@ -832,6 +901,11 @@ export function init() {
             // Update settings manager with the new settings from the API
             if (data.display_settings) {
                 settingsManager.updateSettings(data.display_settings);
+            }
+
+            if (data.status_codes) {
+                settingsManager.updateStatusCodes(data.status_codes);
+                settingsManager.applyToUI();
             }
 
             cardTitle.textContent = viewType === 'weekly' ? '주간 수집 현황 히트맵' : '월간 수집 현황 히트맵';

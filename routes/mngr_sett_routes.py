@@ -7,6 +7,7 @@ from datetime import datetime
 
 from service.mngr_sett_service import MngrSettService
 from service.icon_service import IconService
+from dao.sts_cd_dao import StsCdDAO
 from msys.database import get_db_connection
 from service.user_service import UserService
 from service.password_service import PasswordService
@@ -331,6 +332,52 @@ def export_icons():
     except Exception as e:
         logging.error(f"❌ API: 아이콘 CSV 데이터 내보내기 실패: {e}", exc_info=True)
         return jsonify({"message": "아이콘 데이터 내보내기 중 오류가 발생했습니다."}), 500
+
+# --- 상태코드 API ---
+@api_mngr_sett_bp.route('/status_codes', methods=['GET'])
+@login_required
+@check_password_change_required
+@mngr_sett_required
+def get_all_status_codes():
+    """
+    상태코드 마스터 목록 조회 API
+    ✅ 기존 소스 수정 없이 신규 추가
+    ✅ TB_STS_CD_MST 테이블에서 직접 조회
+    """
+    try:
+        status_codes = StsCdDAO.get_all()
+        return jsonify(status_codes), 200
+    except Exception as e:
+        logging.error(f"❌ API: 상태코드 목록 조회 실패: {e}", exc_info=True)
+        return jsonify({"message": "상태코드 목록 조회 중 오류가 발생했습니다."}), 500
+
+@api_mngr_sett_bp.route('/status_codes/save', methods=['POST'])
+@login_required
+@check_password_change_required
+@mngr_sett_required
+def save_status_code():
+    """
+    상태코드 저장 API
+    ✅ 기존 기능에 영향 없음
+    """
+    data = request.json
+    try:
+        # DB 연결 및 서비스 호출
+        conn = get_db_connection()
+        service = MngrSettService(conn)
+        service.save_status_code_service(data)
+        conn.commit()
+        
+        # 배열인 경우와 단일 객체인 경우 구분하여 로그 출력
+        if isinstance(data, list):
+            logging.info(f"✅ API: 상태코드 배치 저장 완료 - 총 {len(data)}개")
+        else:
+            logging.info(f"✅ API: 상태코드 저장 완료 - CD: {data.get('cd')}")
+        return jsonify({"message": "상태코드가 저장되었습니다."}), 200
+    except Exception as e:
+        conn.rollback()
+        logging.error(f"❌ API: 상태코드 저장 실패: {e}", exc_info=True)
+        return jsonify({"message": "상태코드 저장 중 오류가 발생했습니다."}), 500
 
 # --- 사용자 관리 API ---
 

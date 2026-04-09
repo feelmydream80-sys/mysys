@@ -480,26 +480,6 @@ class MngrSettService:
                 'use_yn': 'useYn',
                 'grp_brdr_styl': 'grpBrdrStyl',
                 'grp_colr_crtr': 'grpColrCrtr',
-                'sucs_icon_id': 'sucsIconId',
-                'sucs_icon_cd': 'sucsIconCd',
-                'sucs_bg_colr': 'sucsBgColr',
-                'sucs_txt_colr': 'sucsTxtColr',
-                'fail_icon_id': 'failIconId',
-                'fail_icon_cd': 'failIconCd',
-                'fail_bg_colr': 'failBgColr',
-                'fail_txt_colr': 'failTxtColr',
-                'prgs_icon_id': 'prgsIconId',
-                'prgs_icon_cd': 'prgsIconCd',
-                'prgs_bg_colr': 'prgsBgColr',
-                'prgs_txt_colr': 'prgsTxtColr',
-                'nodt_icon_id': 'nodtIconId',
-                'nodt_icon_cd': 'nodtIconCd',
-                'nodt_bg_colr': 'nodtBgColr',
-                'nodt_txt_colr': 'nodtTxtColr',
-                'schd_icon_id': 'schdIconId',
-                'schd_icon_cd': 'schdIconCd',
-                'schd_bg_colr': 'schdBgColr',
-                'schd_txt_colr': 'schdTxtColr',
                 'grp_prgs_icon_id': 'grpPrgsIconId',
                 'grp_prgs_icon_cd': 'grpPrgsIconCd',
                 'grp_sucs_icon_id': 'grpSucsIconId',
@@ -548,6 +528,82 @@ class MngrSettService:
             except Exception:
                 pass
             raise
+     
+    def save_status_code_service(self, status_data: dict | list):
+        """
+        상태코드 저장 서비스
+        
+        Args:
+            status_data: 단일 상태코드 데이터 또는 상태코드 데이터 리스트
+                단일: {
+                    'cd': 'CD901',
+                    'nm': '성공',
+                    'descr': 'Total Finished',
+                    'colr': '#28a745',
+                    'icon_cd': '✅',
+                    'ord': 901,
+                    'use_yn': 'Y'
+                }
+                리스트: [{...}, {...}, ...]
+        """
+        try:
+            # 리스트인 경우 각 항목을 개별적으로 처리
+            if isinstance(status_data, list):
+                self.logger.info(f"Service: 상태코드 배치 저장 시작 - 총 {len(status_data)}개")
+                for item in status_data:
+                    self._save_single_status_code(item)
+                self.logger.info(f"Service: 상태코드 배치 저장 완료 - 총 {len(status_data)}개")
+            else:
+                self._save_single_status_code(status_data)
+                
+        except Exception as e:
+            self.logger.error(f"Service: 상태코드 저장 실패: {e}", exc_info=True)
+            raise
+    
+    def _save_single_status_code(self, status_data: dict):
+        """단일 상태코드 저장 (내부 메서드)"""
+        try:
+            cd = status_data.get('cd', 'UNKNOWN')
+            self.logger.info(f"Service: 상태코드 저장 시작 - CD: {cd}")
+            
+            processed_data = status_data.copy()
+            
+            if 'icon_id' in processed_data and processed_data['icon_id']:
+                icon_id = processed_data['icon_id']
+                icon_code = self.icon_service.get_icon_code_by_id(icon_id)
+                if icon_code:
+                    processed_data['icon_cd'] = icon_code
+                    self.logger.info(f"Service: icon_id({icon_id}) → icon_cd({icon_code}) 변환 완료")
+                else:
+                    self.logger.warning(f"Service: icon_id({icon_id})에 해당하는 icon_code를 찾을 수 없음")
+            
+            from dao.sts_cd_dao import StsCdDAO
+            StsCdDAO.upsert_status_code(processed_data)
+            
+            self.logger.info(f"Service: 상태코드 저장 완료 - CD: {cd}")
+            
+        except Exception as e:
+            cd = status_data.get('cd', 'UNKNOWN')
+            self.logger.error(f"Service: 단일 상태코드 저장 실패 - CD: {cd}: {e}", exc_info=True)
+            raise
+    
+    def get_status_codes_service(self) -> List[Dict]:
+        """
+        상태코드 목록 조회 서비스
+        tb_sts_cd_mst 테이블에서 모든 사용 가능한 상태코드를 조회합니다.
+        
+        Returns:
+            List[Dict]: 상태코드 목록 (cd, nm, descr, colr, icon_cd, ord 포함)
+        """
+        try:
+            self.logger.info("=== SERVICE: get_status_codes_service() 시작 ===")
+            from dao.sts_cd_dao import StsCdDAO
+            status_codes = StsCdDAO.get_all()
+            self.logger.info(f"SERVICE: 상태코드 {len(status_codes)}개 조회 완료")
+            return status_codes
+        except Exception as e:
+            self.logger.error(f"SERVICE: 상태코드 조회 실패: {e}", exc_info=True)
+            return []
     
     def save_schedule_settings_service(self, settings_data: Dict, user_id: str):
         """

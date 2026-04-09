@@ -81,17 +81,14 @@ class CollectionScheduleService:
 
     def _match_schedule_with_history(self, scheduled_tasks: List[Dict], history_by_date_job: Dict[str, List[Dict]]) -> None:
         """스케줄과 히스토리를 날짜별로 순차 매칭하여 상태를 업데이트합니다."""
-        # 날짜별로 스케줄 그룹화
         date_schedules = {}
         for task in scheduled_tasks:
-            date_str = task['date'][:10]  # YYYY-MM-DD
+            date_str = task['date'][:10]
             if date_str not in date_schedules:
                 date_schedules[date_str] = []
             date_schedules[date_str].append(task)
 
-        # 각 날짜별로 매칭
         for date_str, day_schedules in date_schedules.items():
-            # 해당 날짜의 히스토리 가져오기
             date_job_key = f"{date_str}_"
             day_histories = []
             for key, histories in history_by_date_job.items():
@@ -99,9 +96,9 @@ class CollectionScheduleService:
                     day_histories.extend(histories)
 
             if not day_histories:
+                current_app.logger.info(f"🔵 [{date_str}] 히스토리 없음 - 상태 유지: {[t['status'] for t in day_schedules]}")
                 continue
 
-            # job별로 그룹화
             job_schedules = {}
             job_histories = {}
 
@@ -117,24 +114,19 @@ class CollectionScheduleService:
                     job_histories[job] = []
                 job_histories[job].append(hist)
 
-            # 각 job별로 순차 매칭
             for job, schedules in job_schedules.items():
                 if job in job_histories:
-                    # 스케줄과 히스토리를 시간순으로 정렬
                     schedules.sort(key=lambda x: x['date'])
                     histories = sorted(job_histories[job], key=lambda x: x['start_dt_kst'])
 
-                    # 상태 매핑: CD901 성공, CD904 수집중, 나머지는 실패
-                    korean_status_mapping = {
-                        'CD901': '성공',
-                        'CD904': '수집중',
-                        # 다른 모든 코드는 실패로 처리
-                    }
-
-                    # 순차적으로 매칭 (실행 기록 수만큼 스케줄에 성공 처리)
                     for i, hist in enumerate(histories):
                         if i < len(schedules):
-                            schedules[i]['status'] = korean_status_mapping.get(hist['status'], '실패')
+                            hist_status = hist.get('status')
+                            if hist_status and str(hist_status).strip():
+                                schedules[i]['status'] = hist_status
+                                current_app.logger.info(f"🔵 [{date_str}] {job} 매칭됨 - hist_status: {hist_status}")
+                            else:
+                                schedules[i]['status'] = 'CD908'
                             schedules[i]['actual_date'] = hist['start_dt_kst'].strftime('%Y-%m-%d %H:%M:%S')
 
     def _get_allowed_job_ids_for_schedule(self, user: Optional[Dict]) -> Optional[List[str]]:
@@ -185,9 +177,9 @@ class CollectionScheduleService:
                     schedule_time = cron.get_next(datetime)
                     while schedule_time.date() == current_date:
                         schedule_time_aware = kst.localize(schedule_time)
-                        status = "미수집"
+                        status = "CD908"
                         if schedule_time_aware > now_kst:
-                            status = "예정"
+                            status = "CD907"
 
                         scheduled_tasks.append({
                             "date": schedule_time.strftime('%Y-%m-%d %H:%M:%S'),

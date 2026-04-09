@@ -66,9 +66,7 @@ function renderScheduleSettingsForm(settings) {
         failIconId: null, failBgColr: '#FFF5F5', failTxtColr: '#C53030',
         prgsIconId: null, prgsBgColr: '#FFFFF0', prgsTxtColr: '#D69E2E',
         nodtIconId: null, nodtBgColr: '#F7FAFC', nodtTxtColr: '#718096',
-        schdIconId: null, schdBgColr: '#FFFFFF', schdTxtColr: '#1A202C',
-        grpPrgsIconId: null,
-        grpSucsIconId: null
+        schdIconId: null, schdBgColr: '#FFFFFF', schdTxtColr: '#1A202C'
     };
 
     let receivedSettings = {};
@@ -177,34 +175,29 @@ function renderScheduleSettingsForm(settings) {
                             </label>
                         </div>
                     </div>
-                    <div class="form-row">
-                        <label for="prgsRtRedThrsval">진행률 문제점 임계값 (%)</label>
-                        <input type="number" id="prgsRtRedThrsval" value="${setting.prgsRtRedThrsval ?? ''}" class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    <div class="threshold-row">
+                        <div class="form-row" style="flex: 1;">
+                            <label for="succRtRedThrsval">성공률 문제점 임계값 (%)</label>
+                            <input type="number" id="succRtRedThrsval" value="${setting.succRtRedThrsval ?? ''}" class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                            <small class="threshold-desc">임계값 미만 → CD902 배경색</small>
+                        </div>
+                        <div class="form-row" style="flex: 1;">
+                            <label for="succRtOrgThrsval">성공률 정상 임계값 (%)</label>
+                            <input type="number" id="succRtOrgThrsval" value="${setting.succRtOrgThrsval ?? ''}" class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                            <small class="threshold-desc">임계값 이상 → CD901 배경색</small>
+                        </div>
                     </div>
-                    <div class="form-row">
-                        <label for="prgsRtOrgThrsval">진행률 경고 임계값 (%)</label>
-                        <input type="number" id="prgsRtOrgThrsval" value="${setting.prgsRtOrgThrsval ?? ''}" class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-                    </div>
-                    <div class="form-row">
-                        <label for="succRtRedThrsval">성공률 문제점 임계값 (%)</label>
-                        <input type="number" id="succRtRedThrsval" value="${setting.succRtRedThrsval ?? ''}" class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-                    </div>
-                    <div class="form-row">
-                        <label for="succRtOrgThrsval">성공률 경고 임계값 (%)</label>
-                        <input type="number" id="succRtOrgThrsval" value="${setting.succRtOrgThrsval ?? ''}" class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-                    </div>
-                </div>
-
-                <!-- Group Icon Settings -->
-                <div class="setting-group">
-                    <div class="setting-group-title">그룹 아이콘 설정</div>
-                    <div class="form-row">
-                        <label for="grpPrgsIconId">그룹 진행률 아이콘</label>
-                        <select id="grpPrgsIconId">${createIconOptions(setting.grpPrgsIconId)}</select>
-                    </div>
-                    <div class="form-row">
-                        <label for="grpSucsIconId">그룹 성공률 아이콘</label>
-                        <select id="grpSucsIconId">${createIconOptions(setting.grpSucsIconId)}</select>
+                    <div class="threshold-row">
+                        <div class="form-row" style="flex: 1;">
+                            <label for="prgsRtRedThrsval">진행률 문제점 임계값 (%)</label>
+                            <input type="number" id="prgsRtRedThrsval" value="${setting.prgsRtRedThrsval ?? ''}" class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                            <small class="threshold-desc">임계값 미만 → CD902 배경색</small>
+                        </div>
+                        <div class="form-row" style="flex: 1;">
+                            <label for="prgsRtOrgThrsval">진행률 정상 임계값 (%)</label>
+                            <input type="number" id="prgsRtOrgThrsval" value="${setting.prgsRtOrgThrsval ?? ''}" class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                            <small class="threshold-desc">임계값 이상 → CD901 배경색</small>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -212,13 +205,17 @@ function renderScheduleSettingsForm(settings) {
 
         <!-- Status Settings -->
         <div class="settings-section">
-            <h2 class="section-title">상태별 표시 설정</h2>
-            <div class="status-settings-grid">
-                ${createStatusCard('sucs', '성공', setting.sucsIconId, setting.sucsBgColr, setting.sucsTxtColr)}
-                ${createStatusCard('fail', '실패', setting.failIconId, setting.failBgColr, setting.failTxtColr)}
-                ${createStatusCard('prgs', '수집중', setting.prgsIconId, setting.prgsBgColr, setting.prgsTxtColr)}
-                ${createStatusCard('nodt', '미수집', setting.nodtIconId, setting.nodtBgColr, setting.nodtTxtColr)}
-                ${createStatusCard('schd', '예정', setting.schdIconId, setting.schdBgColr, setting.schdTxtColr)}
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 2px solid #e2e8f0;">
+                <h2 class="section-title" style="margin: 0; border-bottom: none; padding-bottom: 0;">상태별 표시 설정</h2>
+                <button id="syncStatusCodesBtn" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.875rem;">
+                    🔄 상태코드 동기화
+                </button>
+            </div>
+            <div class="status-settings-grid" id="statusCodesContainer">
+                <!-- 상태코드 카드는 동적으로 로드됩니다 -->
+                <div style="text-align: center; padding: 2rem; color: #64748b;">
+                    상태코드를 불러오는 중입니다...
+                </div>
             </div>
         </div>
     `;
@@ -275,6 +272,19 @@ function renderScheduleSettingsForm(settings) {
         /* Form Elements */
         .form-row {
             margin-bottom: 1rem;
+        }
+
+        .threshold-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .threshold-desc {
+            display: block;
+            font-size: 0.75rem;
+            color: #94a3b8;
+            margin-top: 0.25rem;
         }
 
         label {
@@ -371,10 +381,10 @@ function renderScheduleSettingsForm(settings) {
             background-color: white;
         }
 
-        /* 5-Column Grid for Status Settings */
+        /* Dynamic Flex Wrap Layout for Status Settings */
         .status-settings-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            display: flex;
+            flex-wrap: wrap;
             gap: 1.5rem;
         }
 
@@ -383,6 +393,9 @@ function renderScheduleSettingsForm(settings) {
             background-color: #f1f5f9;
             padding: 1.25rem;
             border-radius: 0.5rem;
+            flex: 0 0 auto;
+            min-width: 180px;
+            max-width: 220px;
         }
 
         .status-card-title {
@@ -444,18 +457,10 @@ function renderScheduleSettingsForm(settings) {
             .basic-settings-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-
-            .status-settings-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
         }
 
         @media (max-width: 768px) {
             .basic-settings-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .status-settings-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -499,6 +504,159 @@ function renderScheduleSettingsForm(settings) {
             radio.checked = true;
         });
     });
+
+    // 상태코드 동기화 버튼 이벤트 리스너 등록
+    const syncBtn = document.getElementById('syncStatusCodesBtn');
+    if (syncBtn) {
+        syncBtn.addEventListener('click', loadStatusCodes);
+    }
+
+    // 페이지 렌더링 후 상태코드 자동 로드
+    setTimeout(loadStatusCodes, 100);
+}
+
+/**
+ * 상태코드 마스터 테이블에서 모든 상태코드를 불러와서 UI에 렌더링 합니다
+ */
+async function loadStatusCodes() {
+    console.log('🔵 === CD900: loadStatusCodes() 시작 ===');
+    
+    const container = document.getElementById('statusCodesContainer');
+    if (!container) {
+        console.error('🔴 statusCodesContainer를 찾을 수 없습니다');
+        return;
+    }
+
+    try {
+        console.log('🔵 API 호출 시작: /api/mngr_sett/status_codes');
+        
+        const response = await fetch('/api/mngr_sett/status_codes');
+        console.log('🔵 응답 수신 완료', {
+            status: response.status,
+            ok: response.ok
+        });
+
+        if (!response.ok) {
+            throw new Error(`상태코드 조회 실패 (${response.status})`);
+        }
+
+        const statusCodes = await response.json();
+        console.log('🟢 상태코드 데이터 수신 성공', {
+            총건수: Array.isArray(statusCodes) ? statusCodes.length : 0,
+            데이터: statusCodes
+        });
+
+        // 아이콘 옵션 가져오기
+        const allIcons = window.allIconsData || [];
+        const createIconOptions = (selectedIconCd) => {
+            const options = ['<option value="">선택 안 함</option>'];
+            allIcons.forEach(icon => {
+                const isSelected = icon.icon_cd === selectedIconCd;
+                options.push(`<option value="${icon.icon_id}" data-icon-cd="${icon.icon_cd}" ${isSelected ? 'selected' : ''}>${icon.icon_cd}</option>`);
+            });
+            return options.join('');
+        };
+
+        // 상태코드 카드 렌더링
+        container.innerHTML = statusCodes.map(code => `
+            <div class="status-card">
+                <div class="status-card-title">${code.cd}(${code.nm})</div>
+                <div class="form-row">
+                    <label for="status_${code.cd}_icon">아이콘</label>
+                    <select id="status_${code.cd}_icon">${createIconOptions(code.icon_cd)}</select>
+                </div>
+                <div class="form-row">
+                    <label for="status_${code.cd}_bg">배경색</label>
+                    <div class="color-input-wrapper">
+                        <div class="color-preview" style="background-color: ${code.bg_colr || '#f1f5f9'}"></div>
+                        <input type="color" id="status_${code.cd}_bg" value="${code.bg_colr || '#f1f5f9'}">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <label for="status_${code.cd}_txt">텍스트색</label>
+                    <div class="color-input-wrapper">
+                        <div class="color-preview" style="background-color: ${code.txt_colr || '#475569'}"></div>
+                        <input type="color" id="status_${code.cd}_txt" value="${code.txt_colr || '#475569'}">
+                    </div>
+                </div>
+            </div>
+        `).join('') + `
+            <div style="width: 100%; text-align: right; margin-top: 1rem;">
+                <button id="saveStatusCodesBtn" class="btn btn-primary">
+                    💾 상태코드 설정 저장
+                </button>
+            </div>
+        `;
+
+        console.log('🟢 상태코드 카드 렌더링 완료');
+
+        // 색상 프리뷰 이벤트 리스너 재등록
+        attachColorInputListeners();
+        
+        showToast('상태코드 목록이 정상적으로 로드되었습니다.', 'success');
+
+        // 저장 버튼 이벤트 리스너 등록
+        const saveBtn = document.getElementById('saveStatusCodesBtn');
+        if (saveBtn) {
+            saveBtn.addEventListener('click', saveStatusCodes);
+        }
+
+    } catch (error) {
+        console.error('🔴 상태코드 로드 오류:', error);
+        container.innerHTML = `
+            <div style="text-align: center; padding: 2rem; color: #dc3545;">
+                ❌ 상태코드를 불러오는데 실패했습니다<br>
+                오류: ${error.message}
+            </div>
+        `;
+        showToast(`상태코드 로드 실패: ${error.message}`, 'error');
+    }
+
+    console.log('🔵 === CD900: loadStatusCodes() 종료 ===');
+}
+
+/**
+ * 상태코드 설정을 저장합니다
+ */
+async function saveStatusCodes() {
+    console.log('🔵 === CD900: saveStatusCodes() 시작 ===');
+    
+    try {
+        const response = await fetch('/api/mngr_sett/status_codes');
+        const statusCodes = await response.json();
+        
+        const saveData = statusCodes.map(code => {
+            return {
+                cd: code.cd,
+                icon_id: parseInt(document.getElementById(`status_${code.cd}_icon`).value) || null,
+                bg_colr: document.getElementById(`status_${code.cd}_bg`).value,
+                txt_colr: document.getElementById(`status_${code.cd}_txt`).value
+            };
+        });
+
+        console.log('🟢 저장할 데이터:', saveData);
+
+        const saveResponse = await fetch('/api/mngr_sett/status_codes/save', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(saveData)
+        });
+
+        const result = await saveResponse.json();
+
+        if (!saveResponse.ok) {
+            throw new Error(result.message || '상태코드 설정 저장에 실패했습니다.');
+        }
+
+        showToast('상태코드 설정이 성공적으로 저장되었습니다.', 'success');
+        console.log('🟢 저장 완료');
+
+    } catch (error) {
+        console.error('🔴 상태코드 저장 오류:', error);
+        showToast(`저장 실패: ${error.message}`, 'error');
+    }
+
+    console.log('🔵 === CD900: saveStatusCodes() 종료 ===');
 }
 
 
@@ -662,17 +820,24 @@ async function saveScheduleSettings() {
     }
     
     if (prgsRtRedThrsval >= prgsRtOrgThrsval) {
-        showToast('진행률의 문제점 임계값은 경고 임계값보다 작아야 합니다.', 'error');
+        showToast('진행률의 문제점 임계값은 정상 임계값보다 작아야 합니다.', 'error');
         return;
     }
     if (succRtRedThrsval >= succRtOrgThrsval) {
-       showToast('성공률의 문제점 임계값은 경고 임계값보다 작아야 합니다.', 'error');
+       showToast('성공률의 문제점 임계값은 정상 임계값보다 작아야 합니다.', 'error');
        return;
-   }
+    }
 
     const getIconId = (id) => {
-        const value = document.getElementById(id).value;
+        const element = document.getElementById(id);
+        if (!element) return null;
+        const value = element.value;
         return value ? parseInt(value) : null;
+    };
+
+    const getColorValue = (id, defaultValue = '') => {
+        const element = document.getElementById(id);
+        return element ? element.value : defaultValue;
     };
 
     const settingsData = {
@@ -685,21 +850,6 @@ async function saveScheduleSettings() {
         use_yn: useYn,
         grp_brdr_styl: document.querySelector('input[name="grpBrdrStyl"]:checked') ? document.querySelector('input[name="grpBrdrStyl"]:checked').value : 'solid',
         grp_colr_crtr: document.querySelector('input[name="grpColrCrtr"]:checked') ? document.querySelector('input[name="grpColrCrtr"]:checked').value : 'prgr',
-        sucs_icon_id: getIconId('sucsIconId'),
-        sucs_bg_colr: document.getElementById('sucsBgColr').value,
-        sucs_txt_colr: document.getElementById('sucsTxtColr').value,
-        fail_icon_id: getIconId('failIconId'),
-        fail_bg_colr: document.getElementById('failBgColr').value,
-        fail_txt_colr: document.getElementById('failTxtColr').value,
-        prgs_icon_id: getIconId('prgsIconId'),
-        prgs_bg_colr: document.getElementById('prgsBgColr').value,
-        prgs_txt_colr: document.getElementById('prgsTxtColr').value,
-        nodt_icon_id: getIconId('nodtIconId'),
-        nodt_bg_colr: document.getElementById('nodtBgColr').value,
-        nodt_txt_colr: document.getElementById('nodtTxtColr').value,
-        schd_icon_id: getIconId('schdIconId'),
-        schd_bg_colr: document.getElementById('schdBgColr').value,
-        schd_txt_colr: document.getElementById('schdTxtColr').value,
         grp_prgs_icon_id: getIconId('grpPrgsIconId'),
         grp_sucs_icon_id: getIconId('grpSucsIconId')
     };

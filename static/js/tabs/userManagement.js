@@ -105,6 +105,22 @@ class UserManagementTab {
      * @param {Array<object>} menus - 메뉴 목록
      */
     renderTable(users, menus) {
+        // === 디버깅용 콘솔 로그 시작 ===
+        console.log('=== [USER MANAGEMENT] renderTable() 호출 ===');
+        console.log('[USER MANAGEMENT] users:', users);
+        console.log('[USER MANAGEMENT] users.length:', users?.length);
+        if (users && users.length > 0) {
+            const firstUser = users[0];
+            console.log('[USER MANAGEMENT] 첫 번째 사용자 객체:', firstUser);
+            console.log('[USER MANAGEMENT] 첫 번째 사용자 키 목록:', Object.keys(firstUser));
+            console.log('[USER MANAGEMENT] firstUser.status:', firstUser.status);
+            console.log('[USER MANAGEMENT] firstUser.created_at:', firstUser.created_at);
+            console.log('[USER MANAGEMENT] firstUser.acc_sts:', firstUser.acc_sts);
+            console.log('[USER MANAGEMENT] firstUser.acc_cre_dt:', firstUser.acc_cre_dt);
+        }
+        console.log('=== [USER MANAGEMENT] renderTable() 끝 ===');
+        // === 디버깅용 콘솔 로그 끝 ===
+        
         if (!this.elements.tableBody) return;
 
         // 'admin' 권한을 'mngr_sett'으로 변경하고, 메뉴 목록에 포함시켜 일관성 있게 처리
@@ -125,9 +141,10 @@ class UserManagementTab {
             if (a.is_admin !== b.is_admin) {
                 return a.is_admin ? -1 : 1;
             }
-            // 2. created_at 값으로 내림차순 정렬 (최신 날짜가 먼저 오도록)
-            const dateA = a.created_at ? new Date(a.created_at) : new Date(0);
-            const dateB = b.created_at ? new Date(b.created_at) : new Date(0);
+            // 2. 가입일 값으로 내림차순 정렬 (최신 날짜가 먼저 오도록)
+            // 환경에 따라 created_at 또는 acc_cre_dt 사용
+            const dateA = new Date(a.created_at || a.acc_cre_dt || 0);
+            const dateB = new Date(b.created_at || b.acc_cre_dt || 0);
             return dateB - dateA;
         });
         
@@ -140,7 +157,12 @@ class UserManagementTab {
         
         pagedUsers.forEach(user => {
             const row = document.createElement('tr');
-            const createdAt = user.created_at ? new Date(user.created_at).toLocaleDateString('ko-KR') : 'N/A';
+            // 환경에 따라 created_at 또는 acc_cre_dt 사용
+            const createdAtRaw = user.created_at || user.acc_cre_dt;
+            const createdAt = createdAtRaw ? new Date(createdAtRaw).toLocaleDateString('ko-KR') : 'N/A';
+
+            // 환경에 따라 status 또는 acc_sts 사용
+            const userStatus = user.status || user.acc_sts || 'UNKNOWN';
 
             // 권한 체크박스 HTML 생성
             let permissionsHtml = allMenus.map(menu => {
@@ -150,13 +172,13 @@ class UserManagementTab {
 
             // 작업 버튼 HTML 생성
             let actionHtml = '';
-            if (user.status === 'PENDING' || user.status === 'PENDING_RESET') {
+            if (userStatus === 'PENDING' || userStatus === 'PENDING_RESET') {
                 actionHtml = `<button class="approve-btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-xs" data-user-id="${user.user_id}">승인</button> <button class="reject-btn bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded text-xs" data-user-id="${user.user_id}">거절</button>`;
             } else {
                 actionHtml = `<button class="reset-password-btn bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded text-xs" data-user-id="${user.user_id}">비밀번호 초기화</button> <button class="delete-user-btn bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded text-xs" data-user-id="${user.user_id}">삭제</button>`;
             }
 
-            row.innerHTML = `<td>${user.user_id}</td><td>${actionHtml}</td><td>${user.status}</td><td>${createdAt}</td>${permissionsHtml}`;
+            row.innerHTML = `<td>${user.user_id}</td><td>${actionHtml}</td><td>${userStatus}</td><td>${createdAt}</td>${permissionsHtml}`;
             this.elements.tableBody.appendChild(row);
         });
 

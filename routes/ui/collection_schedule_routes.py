@@ -79,10 +79,13 @@ def api_collection_schedule():
             current_app.logger.info(f"DEBUG_ICON_CHECK: Fetched display_settings from service: {display_settings}")
             
             report_data = collection_schedule_service.get_schedule_only(start_date, end_date, user)
+            
+            status_codes = mngr_sett_service.get_status_codes_service()
         
         response_data = {
             "schedule_data": report_data,
-            "display_settings": display_settings
+            "display_settings": display_settings,
+            "status_codes": status_codes
         }
         
         current_app.logger.info(f"DEBUG_ICON_CHECK: Final response_data to be sent: {response_data}")

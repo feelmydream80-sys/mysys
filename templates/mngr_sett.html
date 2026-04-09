@@ -1209,17 +1209,13 @@
             </div>
 
             <div id="userManagement" class="tab-content">
-                <div class="flex justify-between items-center mb-4">
+                <div class="flex justify-between items-center mb-4 flex-wrap gap-2">
                     <h2 class="text-xl font-semibold text-gray-700">사용자 관리</h2>
-                    <div class="flex gap-2">
+                    <p class="text-sm text-gray-500 flex-1 min-w-[300px]">* '관리자'는 모든 메뉴 접근 권한을 가지며, 사용자 승인 및 권한 변경이 가능합니다. '관리자 설정' 메뉴 접근 권한을 부여하면 관리자로 간주됩니다.</p>
+                    <div class="flex gap-2 items-center">
+                        <input type="text" id="userSearchInput" placeholder="사용자 ID 검색..." class="border p-2 rounded-md shadow-sm">
                         <button id="saveAllPermissionsBtn" class="save">사용자 권한 저장</button>
                         <button id="bulkAddUsersBtn" class="save">대량 사용자 추가</button>
-                    </div>
-                </div>
-                <div class="flex justify-between items-center mb-4">
-                    <p class="text-sm text-gray-600">* '관리자'는 모든 메뉴 접근 권한을 가지며, 사용자 승인 및 권한 변경이 가능합니다.<br>'관리자 설정' 메뉴 접근 권한을 부여하면 관리자로 간주됩니다.</p>
-                    <div class="flex items-center gap-2">
-                        <input type="text" id="userSearchInput" placeholder="사용자 ID 검색..." class="border p-2 rounded-md shadow-sm">
                     </div>
                 </div>
                 <div class="table-responsive">

@@ -76,12 +76,22 @@ class IconService:
 
     def toggle_icon_display(self, icon_id: int, display_yn: str):
         try:
-            # Convert boolean to 'Y'/'N' if necessary
             status_str = display_yn if isinstance(display_yn, str) else ('Y' if display_yn else 'N')
             self.icon_mapper.toggle_icon_display(icon_id, status_str)
         except Exception as e:
             logging.error(f"❌ 아이콘 ID {icon_id} 표시 여부 상태 토글 실패: {e}", exc_info=True)
             raise
+
+    def get_icon_code_by_id(self, icon_id: int) -> str:
+        try:
+            all_icons = self.get_all_icons_data()
+            for icon in all_icons:
+                if icon.get('icon_id') == icon_id:
+                    return icon.get('icon_cd')
+            return None
+        except Exception as e:
+            logging.error(f"❌ 아이콘 ID {icon_id}로 icon_cd 조회 실패: {e}", exc_info=True)
+            return None
 
     def import_icons_from_csv(self, file_stream):
         """
