@@ -7,6 +7,7 @@ from typing import Optional, Dict
 import pytz
 from service.mngr_sett_service import MngrSettService
 from service.collection_schedule_service import CollectionScheduleService
+from mapper.grp_memo_mapper import GrpMemoMapper
 
 collection_schedule_bp = Blueprint('collection_schedule', __name__)
 
@@ -93,3 +94,130 @@ def api_collection_schedule():
     except Exception as e:
         current_app.logger.error(f"Failed to get data report: {e}", exc_info=True)
         return jsonify({"error": "데이터를 조회하는 중 오류가 발생했습니다."}), 500
+
+
+@collection_schedule_bp.route("/api/group-memo", methods=['GET'])
+@login_required
+def get_group_memo():
+    """그룹 메모를 조회합니다."""
+    grp_id = request.args.get('grp_id')
+    depth = int(request.args.get('depth', 1))
+    memo_date = request.args.get('memo_date')
+
+    if not grp_id or not memo_date:
+        return jsonify({"error": "grp_id와 memo_date는 필수입니다."}), 400
+
+    try:
+        with get_db_connection() as db_connection:
+            grp_memo_mapper = GrpMemoMapper(db_connection)
+            memo = grp_memo_mapper.get_memo(grp_id, depth, memo_date)
+        return jsonify({"memo": memo})
+    except Exception as e:
+        current_app.logger.error(f"Failed to get group memo: {e}", exc_info=True)
+        return jsonify({"error": "메모 조회 중 오류가 발생했습니다."}), 500
+
+
+@collection_schedule_bp.route("/api/group-memo", methods=['POST'])
+@login_required
+def create_group_memo():
+    """그룹 메모를 생성합니다 (관리자만 가능)."""
+    user = session.get('user')
+    if 'mngr_sett' not in user.get('permissions', []):
+        return jsonify({"error": "관리자 권한이 필요합니다."}), 403
+
+    data = request.get_json()
+    grp_id = data.get('grp_id')
+    depth = int(data.get('depth', 1))
+    memo_date = data.get('memo_date')
+    content = data.get('content')
+
+    if not grp_id or not memo_date or content is None:
+        return jsonify({"error": "grp_id, memo_date, content는 필수입니다."}), 400
+
+    try:
+        with get_db_connection() as db_connection:
+            grp_memo_mapper = GrpMemoMapper(db_connection)
+            existing = grp_memo_mapper.get_memo(grp_id, depth, memo_date)
+            if existing:
+                grp_memo_mapper.update_memo(grp_id, depth, memo_date, content, user['user_id'])
+            else:
+                grp_memo_mapper.insert_memo(grp_id, depth, memo_date, content, user['user_id'])
+        return jsonify({"success": True})
+    except Exception as e:
+        current_app.logger.error(f"Failed to create/update group memo: {e}", exc_info=True)
+        return jsonify({"error": "메모 저장 중 오류가 발생했습니다."}), 500
+
+
+@collection_schedule_bp.route("/api/group-memo", methods=['PUT'])
+@login_required
+def update_group_memo():
+    """그룹 메모를 수정합니다 (관리자만 가능)."""
+    user = session.get('user')
+    if 'mngr_sett' not in user.get('permissions', []):
+        return jsonify({"error": "관리자 권한이 필요합니다."}), 403
+
+    data = request.get_json()
+    grp_id = data.get('grp_id')
+    depth = int(data.get('depth', 1))
+    memo_date = data.get('memo_date')
+    content = data.get('content')
+
+    if not grp_id or not memo_date or content is None:
+        return jsonify({"error": "grp_id, memo_date, content는 필수입니다."}), 400
+
+    try:
+        with get_db_connection() as db_connection:
+            grp_memo_mapper = GrpMemoMapper(db_connection)
+            grp_memo_mapper.update_memo(grp_id, depth, memo_date, content, user['user_id'])
+        return jsonify({"success": True})
+    except Exception as e:
+        current_app.logger.error(f"Failed to update group memo: {e}", exc_info=True)
+        return jsonify({"error": "메모 수정 중 오류가 발생했습니다."}), 500
+
+
+@collection_schedule_bp.route("/api/group-memo", methods=['DELETE'])
+@login_required
+def delete_group_memo():
+    """그룹 메모를 삭제합니다 (관리자만 가능)."""
+    user = session.get('user')
+    if 'mngr_sett' not in user.get('permissions', []):
+        return jsonify({"error": "관리자 권한이 필요합니다."}), 403
+
+    grp_id = request.args.get('grp_id')
+    depth = int(request.args.get('depth', 1))
+    memo_date = request.args.get('memo_date')
+
+    if not grp_id or not memo_date:
+        return jsonify({"error": "grp_id와 memo_date는 필수입니다."}), 400
+
+    try:
+        with get_db_connection() as db_connection:
+            grp_memo_mapper = GrpMemoMapper(db_connection)
+            grp_memo_mapper.delete_memo(grp_id, depth, memo_date)
+        return jsonify({"success": True})
+    except Exception as e:
+        current_app.logger.error(f"Failed to delete group memo: {e}", exc_info=True)
+        return jsonify({"error": "메모 삭제 중 오류가 발생했습니다."}), 500
+
+
+@collection_schedule_bp.route("/api/memos-batch", methods=['GET'])
+@login_required
+def get_memos_batch():
+    """여러 그룹/날짜의 메모를 한 번에 조회합니다."""
+    grp_ids_str = request.args.get('grp_ids', '')
+    dates_str = request.args.get('dates', '')
+
+    if not grp_ids_str or not dates_str:
+        return jsonify({"memos": []})
+
+    grp_ids = grp_ids_str.split(',')
+    dates = dates_str.split(',')
+
+    try:
+        with get_db_connection() as db_connection:
+            grp_memo_mapper = GrpMemoMapper(db_connection)
+            memos = grp_memo_mapper.get_all_memos_with_dates(grp_ids, dates)
+        return jsonify({"memos": memos})
+    except Exception as e:
+        current_app.logger.error(f"Failed to get batch memos: {e}", exc_info=True)
+        return jsonify({"error": "메모 조회 중 오류가 발생했습니다."}), 500

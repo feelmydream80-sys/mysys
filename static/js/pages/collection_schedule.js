@@ -2,7 +2,24 @@ import { showToast } from '../utils/toast.js';
 import { downloadExcelTemplate } from '../utils/excelDownload.js';
 import { filterActiveMstData } from '../modules/common/utils.js';
 
+// 전역 변수
+let mstData = {}; // For mapping job_id to name
+let monthOffset = 0; // 월 오프셋: 0=현재월, -1=지난달, 1=다음달
+let weekOffset = 0; // 주 오프셋: 0=이번 주, -1=지난 주, 1=다음 주
+let subGroupsByParent = {}; // 상위 그룹별 하위 jobs (스케줄 데이터 기반)
+
 export function init() {
+    // Get user info from body data attribute
+    let isAdminUser = false;
+    const body = document.body;
+    if (body && body.dataset.user) {
+        try {
+            const userData = JSON.parse(body.dataset.user);
+            isAdminUser = userData.permissions && userData.permissions.includes('mngr_sett');
+        } catch (e) {
+            console.error('Failed to parse user data:', e);
+        }
+    }
 
     // DOM Elements
     const weeklyBtn = document.getElementById('weekly-btn');
@@ -19,9 +36,9 @@ export function init() {
     const settingsContainer = document.getElementById('settings-container');
     const toggleIcon = document.getElementById('toggle-icon');
     
-    let mstData = {}; // For mapping job_id to name
-    let monthOffset = 0; // 월 오프셋: 0=현재월, -1=지난달, 1=다음달
-    let weekOffset = 0; // 주 오프셋: 0=이번 주, -1=지난 주, 1=다음 주
+    // monthOffset와 weekOffset은 전역 변수를 재사용
+    let monthOffset = 0;
+    let weekOffset = 0;
 
     // --- Guide Popup ---
     const guideToggleBtn = document.getElementById('guide-toggle-btn');
@@ -429,13 +446,21 @@ export function init() {
                     }
 
                     const displayMode = document.querySelector('input[name="displayMode"]:checked').value;
-                    const originalParentName = displayMode === 'name' && mstData[parentGroupName] ? mstData[parentGroupName] : parentGroupName;
+                    let parentDisplayName = parentGroupName;
+                    if (displayMode === 'name' && mstData[parentGroupName]) {
+                        parentDisplayName = mstData[parentGroupName].cd_nm;
+                    } else if (displayMode === 'desc' && mstData[parentGroupName]) {
+                        parentDisplayName = mstData[parentGroupName].cd_desc || parentGroupName;
+                    }
                     
                     const redThreshold = settingsManager.get('prgsRtRedThrsval') || 30;
                     const orangeThreshold = settingsManager.get('prgsRtOrgThrsval') || 100;
                     
                     groupPill.innerHTML = `
-                        <div>${originalParentName} <span class="expand-icon">▶</span></div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${parentDisplayName} <span class="expand-icon">▶</span></span>
+                            <span class="memo-btn" data-grp-id="${parentGroupName}" data-date="${currentDateStr}" data-depth="1" style="cursor: pointer; font-size: 0.65rem; padding: 1px 3px; border-radius: 4px;">+</span>
+                        </div>
                         <div style="display: flex; align-items: center; gap: 0.5rem;">
                             ${createProgressBarHtml(progressRate, redThreshold, orangeThreshold)}
                             <span style="font-size: 0.75rem; white-space: nowrap;">${completed}/${total}</span>
@@ -444,7 +469,7 @@ export function init() {
                             성공: ${success} / 실패: ${fail} (${successRate}%)
                         </div>
                     `;
-                    groupPill.title = originalParentName;
+                    groupPill.title = parentDisplayName;
 
                     // 상위 그룹 팝업 - 하위 그룹들을 팝업으로 표시 (5x4 페이징)
                     const parentPopup = document.createElement('div');
@@ -504,10 +529,17 @@ export function init() {
                             subGroupPill.style.borderWidth = '1px';
                         }
 
-                        const originalSubName = displayMode === 'name' && mstData[subGroupId] ? mstData[subGroupId] : subGroupId;
+                        let subDisplayName = subGroupId;
+                        if (displayMode === 'name' && mstData[subGroupId]) {
+                            subDisplayName = mstData[subGroupId].cd_nm;
+                        } else if (displayMode === 'desc' && mstData[subGroupId]) {
+                            subDisplayName = mstData[subGroupId].cd_desc || subGroupId;
+                        }
                         
                         subGroupPill.innerHTML = `
-                            <div style="font-size: 0.85rem;">${originalSubName}</div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-size: 0.85rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${subDisplayName}</span>
+                            </div>
                             <div style="display: flex; align-items: center; gap: 0.5rem;">
                                 ${createProgressBarHtml(subProgressRate, redThreshold, orangeThreshold)}
                                 <span style="font-size: 0.7rem; white-space: nowrap;">${subCompleted}/${subTotal}</span>
@@ -516,7 +548,7 @@ export function init() {
                                 성공: ${subSuccess} / 실패: ${subFail} (${subSuccessRate}%)
                             </div>
                         `;
-                        subGroupPill.title = originalSubName;
+                        subGroupPill.title = subDisplayName;
 
                         // 하위 그룹의 상세 팝업
                         const subPopup = document.createElement('div');
@@ -534,7 +566,12 @@ export function init() {
 
                         sortedSubJobs.forEach(job => {
                             const popupDisplayMode = document.querySelector('input[name="displayMode"]:checked').value;
-                            let originalName = popupDisplayMode === 'name' && mstData[job.job_id] ? mstData[job.job_id] : job.job_id;
+                            let jobDisplayName = job.job_id;
+                            if (popupDisplayMode === 'name' && mstData[job.job_id]) {
+                                jobDisplayName = mstData[job.job_id].cd_nm;
+                            } else if (popupDisplayMode === 'desc' && mstData[job.job_id]) {
+                                jobDisplayName = mstData[job.job_id].cd_desc || job.job_id;
+                            }
                             const statusInfo = getStatusInfoByCd(job.status);
 
                             const sameDayJobs = dayData.filter(d => d.job_id === job.job_id);
@@ -542,15 +579,15 @@ export function init() {
                                 const timePart = (job.date.split(' ')[1] || "");
                                 if (timePart) {
                                     const hour = parseInt(timePart.substring(0, 2), 10);
-                                    originalName += `(${hour}시)`;
+                                    jobDisplayName += `(${hour}시)`;
                                 }
                             }
                             const iconHtml = settingsManager.getIconByCd(job.status);
-                            const contentHtml = iconHtml ? `${iconHtml}&nbsp;${originalName}` : originalName;
+                            const contentHtml = iconHtml ? `${iconHtml}&nbsp;${jobDisplayName}` : jobDisplayName;
 
                             const pillElement = document.createElement('div');
                             pillElement.className = `job-pill ${statusInfo.class}`;
-                            pillElement.title = createTooltipContent(job, originalName);
+                            pillElement.title = createTooltipContent(job, jobDisplayName);
                             pillElement.innerHTML = contentHtml;
                             if (statusInfo.bg_colr) {
                                 pillElement.style.backgroundColor = statusInfo.bg_colr;
@@ -616,6 +653,12 @@ export function init() {
                         updateSubPopupContent();
 
                         const toggleSubPopup = (event) => {
+                            // memo-btn 클릭 시에는 메모 팝업만 열림
+                            if (event.target.classList.contains('memo-btn')) {
+                                event.stopPropagation();
+                                return;
+                            }
+                            
                             event.stopPropagation();
                             document.querySelectorAll('.popup').forEach(p => {
                                 if (p !== subPopup && p !== parentPopup) {
@@ -730,6 +773,11 @@ export function init() {
 
                     // 상위 그룹 클릭 시 하위 그룹 팝업 표시
                     groupPill.addEventListener('click', (event) => {
+                        // memo-btn 클릭 시 parentPopup 열지 않고 종료 (이벤트는 document까지 전파)
+                        if (event.target.classList.contains('memo-btn')) {
+                            return;
+                        }
+                        
                         event.stopPropagation();
                         document.querySelectorAll('.popup').forEach(p => {
                             if (p !== parentPopup) {
@@ -805,14 +853,19 @@ export function init() {
                             jobItem.style.color = statusInfo.txt_colr;
                         }
                         const displayMode = document.querySelector('input[name="displayMode"]:checked').value;
-                        let originalName = displayMode === 'name' && mstData[job.job_id] ? mstData[job.job_id] : job.job_id;
+                        let jobDisplayName = job.job_id;
+                        if (displayMode === 'name' && mstData[job.job_id]) {
+                            jobDisplayName = mstData[job.job_id].cd_nm;
+                        } else if (displayMode === 'desc' && mstData[job.job_id]) {
+                            jobDisplayName = mstData[job.job_id].cd_desc || job.job_id;
+                        }
                         const maxLength = 12;
-                        if (originalName.length > maxLength) {
-                            originalName = originalName.substring(0, maxLength) + '...';
+                        if (jobDisplayName.length > maxLength) {
+                            jobDisplayName = jobDisplayName.substring(0, maxLength) + '...';
                         }
                         const iconHTML = settingsManager.getIconByCd(job.status);
-                        jobItem.innerHTML = iconHTML ? `${iconHTML}&nbsp;${originalName}` : originalName;
-                        jobItem.title = createTooltipContent(job, originalName);
+                        jobItem.innerHTML = iconHTML ? `${iconHTML}&nbsp;${jobDisplayName}` : jobDisplayName;
+                        jobItem.title = createTooltipContent(job, jobDisplayName);
                         jobsContainer.appendChild(jobItem);
                     });
                 }
@@ -864,7 +917,10 @@ export function init() {
                     // use_yn 필터 적용
                     const activeMstResult = filterActiveMstData(mstResult);
                     mstData = activeMstResult.reduce((acc, item) => {
-                        acc[item.job_id] = item.cd_nm;
+                        acc[item.job_id] = {
+                            cd_nm: item.cd_nm,
+                            cd_desc: item.cd_desc ? item.cd_desc.replace(/_/g, ' ') : ''
+                        };
                         return acc;
                     }, {});
                 }
@@ -917,6 +973,7 @@ export function init() {
             if(data.schedule_data) {
                 renderCalendar(data.schedule_data, today, viewType);
                 updateSummary(data.schedule_data);
+                await updateMemoButtons();
             }
 
             showToast(viewType === 'weekly' ? '주간 데이터를 불러왔습니다.' : '월간 데이터를 불러왔습니다.', 'success');
@@ -1054,4 +1111,219 @@ export function init() {
     monthOffset = 0;
     weekOffset = 0;
     fetchData(initialView);
+
+    // 메모 팝업 이벤트 처리
+    const memoPopup = document.getElementById('memo-popup');
+    const memoForm = document.getElementById('memo-form');
+    const memoCloseBtn = document.getElementById('memo-close-btn');
+    const memoDeleteBtn = document.getElementById('memo-delete-btn');
+    const memoContent = document.getElementById('memo-content');
+    const memoGrpId = document.getElementById('memo-grp-id');
+    const memoDate = document.getElementById('memo-date');
+    const memoDepth = document.getElementById('memo-depth');
+
+    if (memoCloseBtn && memoPopup) {
+        memoCloseBtn.addEventListener('click', () => {
+            memoPopup.classList.add('hidden');
+        });
+    }
+
+    if (memoPopup) {
+        memoPopup.addEventListener('click', (e) => {
+            if (e.target === memoPopup) {
+                memoPopup.classList.add('hidden');
+            }
+        });
+    }
+
+    if (memoForm) {
+        memoForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const grpId = memoGrpId.value;
+            const date = memoDate.value;
+            const depth = parseInt(memoDepth.value);
+            const content = memoContent.value;
+
+            try {
+                const response = await fetch('/api/group-memo', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ grp_id: grpId, memo_date: date, depth: depth, content: content })
+                });
+                const result = await response.json();
+                if (result.success) {
+                    memoPopup.classList.add('hidden');
+                    await updateMemoButtons();
+                }
+            } catch (err) {
+                console.error('메모 저장 오류:', err);
+                alert('메모 저장 중 오류가 발생했습니다.');
+            }
+        });
+    }
+
+    if (memoDeleteBtn) {
+        memoDeleteBtn.addEventListener('click', async () => {
+            if (!confirm('메모를 삭제하시겠습니까?')) return;
+            const grpId = memoGrpId.value;
+            const date = memoDate.value;
+            const depth = parseInt(memoDepth.value);
+
+            try {
+                const response = await fetch(`/api/group-memo?grp_id=${grpId}&depth=${depth}&memo_date=${date}`, {
+                    method: 'DELETE'
+                });
+                const result = await response.json();
+                if (result.success) {
+                    memoPopup.classList.add('hidden');
+                    await updateMemoButtons();
+                } else {
+                    alert(result.error || '메모 삭제에 실패했습니다.');
+                }
+            } catch (err) {
+                console.error('메모 삭제 오류:', err);
+                alert('메모 삭제 중 오류가 발생했습니다.');
+            }
+        });
+    }
+
+    // 메모 버튼 클릭 이벤트 - 동적으로 생성된 요소 위임
+    document.addEventListener('click', async (e) => {
+        if (e.target.classList.contains('memo-btn')) {
+            e.stopPropagation();
+            const grpId = e.target.dataset.grpId;
+            const date = e.target.dataset.date;
+            const depth = parseInt(e.target.dataset.depth);
+
+            memoGrpId.value = grpId;
+            memoDate.value = date;
+            memoDepth.value = depth;
+
+            let loadedMemo = null;
+            
+            // 기존 메모 로드
+            try {
+                const response = await fetch(`/api/group-memo?grp_id=${grpId}&depth=${depth}&memo_date=${date}`);
+                const result = await response.json();
+                loadedMemo = result.memo;
+            } catch (err) {
+                console.error('메모 로드 오류:', err);
+            }
+
+            const isAdmin = typeof isAdminUser !== 'undefined' && isAdminUser;
+            
+            // 관리자이고 상위 그룹(depth=1)일 때 하위 그룹 정보 자동 입력
+            if (isAdmin && depth === 1) {
+                const subGroups = getSubGroupsByParent(grpId);
+                const subGroupList = subGroups.length > 0 ? subGroups.map(sg => `${sg.id} - ${sg.name}`).join('\n') + '\n\n' : '';
+                
+                if (loadedMemo) {
+                    memoContent.value = subGroupList + loadedMemo.content;
+                } else {
+                    memoContent.value = subGroupList;
+                }
+            } else {
+                // 일반적인 경우
+                if (loadedMemo) {
+                    memoContent.value = loadedMemo.content;
+                } else {
+                    memoContent.value = '';
+                }
+            }
+
+            // 저장/삭제 버튼 표시 여부
+            if (memoForm && memoForm.querySelector) {
+                memoForm.querySelector('button[type="submit"]').style.display = isAdmin ? 'inline-block' : 'none';
+            }
+            if (memoDeleteBtn) {
+                memoDeleteBtn.style.display = (isAdmin && loadedMemo) ? 'inline-block' : 'none';
+            }
+
+            if (memoPopup) {
+                memoPopup.classList.remove('hidden');
+            }
+        }
+    });
+
+    // ESC 키로 메모 팝업 닫기
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && memoPopup && !memoPopup.classList.contains('hidden')) {
+            memoPopup.classList.add('hidden');
+        }
+    });
+}
+
+async function updateMemoButtons() {
+    const memoBtns = document.querySelectorAll('.memo-btn');
+    if (memoBtns.length === 0) {
+        return;
+    }
+
+    const grpIds = [...new Set(Array.from(memoBtns).map(btn => btn.dataset.grpId))];
+    const dates = [...new Set(Array.from(memoBtns).map(btn => btn.dataset.date))];
+
+    try {
+        const apiUrl = '/api/memos-batch?grp_ids=' + grpIds.join(',') + '&dates=' + dates.join(',');
+        const response = await fetch(apiUrl);
+        const result = await response.json();
+        
+        if (!result.memos || result.memos.length === 0) {
+            memoBtns.forEach(btn => {
+                btn.textContent = '+';
+                btn.style.color = '';
+            });
+            return;
+        }
+
+        memoBtns.forEach(btn => {
+            const btnGrpId = btn.dataset.grpId;
+            const btnDate = btn.dataset.date;
+            
+            const hasMemo = result.memos.some(m => {
+                const memoDateObj = new Date(m.memo_date);
+                const memoDateStr = !isNaN(memoDateObj) ? memoDateObj.toISOString().split('T')[0] : String(m.memo_date).slice(0, 10);
+                return m.grp_id === btnGrpId && memoDateStr === btnDate;
+            });
+            
+            if (hasMemo) {
+                btn.textContent = '✓';
+                btn.style.color = 'inherit';
+            } else {
+                btn.textContent = '+';
+                btn.style.color = '';
+            }
+        });
+    } catch (err) {
+        console.error('[updateMemoButtons] 오류:', err);
+    }
+}
+
+// 상위 그룹의 하위 그룹 목록 조회
+function getSubGroupsByParent(parentGrpId) {
+    const subGroups = [];
+    const parentIdNum = parseInt(parentGrpId.replace('CD', ''), 10);
+    
+    if (isNaN(parentIdNum)) return subGroups;
+    
+    Object.keys(mstData).forEach(jobId => {
+        const jobIdNum = parseInt(jobId.replace('CD', ''), 10);
+        if (!isNaN(jobIdNum) && Math.floor(jobIdNum / 100) * 100 === parentIdNum) {
+            // 하위 그룹 (예: CD100의 하위: CD101~CD199)
+            const subGroupPrefix = parentIdNum * 100;
+            const subGroupSuffix = jobIdNum % 100;
+            if (subGroupSuffix > 0 && subGroupSuffix < 100) {
+                const mstInfo = mstData[jobId];
+                subGroups.push({
+                    id: jobId,
+                    name: mstInfo ? mstInfo.cd_nm : jobId
+                });
+            }
+        }
+    });
+    
+    return subGroups.sort((a, b) => {
+        const numA = parseInt(a.id.replace('CD', ''), 10);
+        const numB = parseInt(b.id.replace('CD', ''), 10);
+        return numA - numB;
+    });
 }
