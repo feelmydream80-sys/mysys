@@ -3,7 +3,7 @@
 
 import { showMessage, formatNumberWithCommas } from '../common/utils.js';
 import { initPagination } from '../ui_components/pagination.js';
-import { formatDate, setDefaultDates } from '../common/dateUtils.js';
+import { formatDate, setDefaultDates } from '../modules/common/dateUtils.js';
 import { displayMinMaxDates } from './ui.js';
 
 // @AI_MOD: 전역 이벤트 로그 배열을 let -> const로 변경하고, toast와 공유

@@ -11,6 +11,7 @@ from dao.sts_cd_dao import StsCdDAO
 from msys.database import get_db_connection
 from service.user_service import UserService
 from service.password_service import PasswordService
+from utils.datetime_utils import convert_datetime_fields_to_kst_str
 from .auth_routes import login_required, check_password_change_required, admin_required
 
 mngr_sett_bp = Blueprint('mngr_sett', __name__)
@@ -392,6 +393,10 @@ def get_all_users():
         conn = get_db_connection()
         user_service = UserService(conn)
         data = user_service.get_all_users_with_permissions(search_term)
+        
+        # KST 시간대 변환
+        convert_datetime_fields_to_kst_str(data.get('users', []))
+        
         return jsonify(data), 200
     except Exception as e:
         logging.error(f"❌ API: 사용자 목록 조회 실패: {e}", exc_info=True)

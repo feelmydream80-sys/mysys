@@ -2,6 +2,7 @@
 import { FIELD_DEFINITIONS, FIELD_LABELS, DEFAULT_COLUMNS, DISPLAY_OPTIONS, TOAST_TYPES } from './modules/constants.js';
 import { getGroups, createItem, updateGroup, deleteGroup, updateDetail } from './modules/api.js';
 import { showToast, createModal, getAddGroupModalHTML, getEditGroupModalHTML, getDetailModalHTML } from './modules/ui.js';
+import { formatDateTime, toKST } from '../../modules/common/dateUtils.js';
 
 // 전역 상태
 let selectedGroup = null;
@@ -482,8 +483,8 @@ function renderPagedDetails(groupDetails) {
         
         // 날짜 필드 (update_dt)
         if (column === 'update_dt') {
-            const dateA = new Date(valA);
-            const dateB = new Date(valB);
+            const dateA = toKST(valA);
+            const dateB = toKST(valB);
             return direction === 'asc' ? dateA - dateB : dateB - dateA;
         }
         
@@ -717,8 +718,10 @@ function renderDetailRow(item) {
         <td>${item.cd_nm}</td>
         <td>${item.cd_desc || ''}</td>
         <td>${(item.use_yn && item.use_yn.trim() === 'Y') ? '사용중' : '사용안함'}</td>
-        <td>${item.update_dt || ''}</td>
+        <td>${item.update_dt ? formatDateTime(item.update_dt, 'YYYY-MM-DD HH:mm:ss') : ''}</td>
     `;
+    
+    console.log('DEBUG dataDefinition: item.update_dt =', item.update_dt, '-> formatDateTime result =', item.update_dt ? formatDateTime(item.update_dt, 'YYYY-MM-DD HH:mm:ss') : '');
     
     return row;
 }

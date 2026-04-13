@@ -4,6 +4,7 @@ import logging
 from service.data_definition_service import DataDefinitionService
 from msys.database import get_db_connection
 from routes.auth_routes import login_required, check_password_change_required
+from utils.datetime_utils import convert_datetime_fields_to_kst_str
 
 bp = Blueprint('data_definition_api', __name__, url_prefix='/api/data_definition')
 
@@ -50,6 +51,9 @@ def get_group_details(cd):
         with get_db_connection() as conn:
             service = DataDefinitionService(conn)
             details = service.get_group_details(cd)
+            
+            # KST 시간대 변환
+            convert_datetime_fields_to_kst_str(details)
             
             # 로그 추가
             logging.info(f"🔍 get_group_details API 결과 개수: {len(details)}")

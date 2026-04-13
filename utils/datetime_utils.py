@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 from typing import Optional, List, Dict, Any
 import pytz
 from flask import current_app
@@ -92,9 +92,9 @@ def utc_to_kst_str(dt: datetime) -> str:
         dt: UTC datetime 객체 (naive일 경우 UTC로 간주)
 
     Returns:
-        KST 시간대의 'YYYY-MM-DD HH:MM:SS' 형식 문자열
+        KST 시간대의 'YYYY-MM-DD HH:MM:SS+09:00' 형식 문자열 (시간대 정보 포함)
     """
-    return utc_to_kst(dt).strftime('%Y-%m-%d %H:%M:%S')
+    return utc_to_kst(dt).strftime('%Y-%m-%d %H:%M:%S+09:00')
 
 def get_kst_now() -> datetime:
     """
@@ -105,6 +105,36 @@ def get_kst_now() -> datetime:
     """
     kst = pytz.timezone('Asia/Seoul')
     return datetime.now(kst)
+
+def get_utc_now() -> datetime:
+    """
+    현재 UTC 시간을 반환합니다.
+
+    Returns:
+        UTC timezone이 적용된 현재 datetime 객체
+    """
+    return datetime.now(pytz.utc)
+
+def format_kst_now(format: str = '%Y-%m-%d') -> str:
+    """
+    현재 KST 시간을 지정된 형식으로 반환합니다.
+
+    Args:
+        format: strftime 형식 문자열
+
+    Returns:
+        형식화된 KST 시간 문자열
+    """
+    return get_kst_now().strftime(format)
+
+def get_kst_now_date() -> date:
+    """
+    현재 KST 날짜를 반환합니다.
+
+    Returns:
+        KST timezone의 날짜 객체
+    """
+    return get_kst_now().date()
 
 def convert_datetime_fields_to_kst_str(data: Any) -> Any:
     """

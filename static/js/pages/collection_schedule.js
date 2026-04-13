@@ -1,12 +1,15 @@
 import { showToast } from '../utils/toast.js';
 import { downloadExcelTemplate } from '../utils/excelDownload.js';
 import { filterActiveMstData } from '../modules/common/utils.js';
+import { scheduleSettingsApi } from '../services/api.js';
+import { getKSTNow } from '../modules/common/dateUtils.js';
 
 // 전역 변수
 let mstData = {}; // For mapping job_id to name
 let monthOffset = 0; // 월 오프셋: 0=현재월, -1=지난달, 1=다음달
 let weekOffset = 0; // 주 오프셋: 0=이번 주, -1=지난 주, 1=다음 주
 let subGroupsByParent = {}; // 상위 그룹별 하위 jobs (스케줄 데이터 기반)
+let memoColors = { iconId: null, bgColr: '#fef08b', txtColr: '#a16207' };
 
 export function init() {
     // Get user info from body data attribute
@@ -966,6 +969,21 @@ export function init() {
                 settingsManager.updateSettings(data.display_settings);
             }
 
+            // Load memo colors from schedule settings
+            try {
+                const schedRes = await scheduleSettingsApi.getSettings();
+                if (schedRes && schedRes[0]) {
+                    const s = schedRes[0];
+                    memoColors = {
+                        iconId: s.memo_icon_id || null,
+                        bgColr: s.memo_bg_colr || '#fef08b',
+                        txtColr: s.memo_txt_colr || '#a16207'
+                    };
+                }
+            } catch (e) {
+                console.warn('[memo colors] 로드 실패, 기본값 사용:', e);
+            }
+
             if (data.status_codes) {
                 settingsManager.updateStatusCodes(data.status_codes);
                 settingsManager.applyToUI();
@@ -1226,7 +1244,7 @@ export function init() {
             if (isAdmin && depth === 1) {
                 const subGroups = getSubGroupsByParent(grpId);
                 const subGroupList = subGroups.length > 0 ? subGroups.map(sg => {
-                    const now = new Date(Date.now() + (9 * 60 * 60 * 1000)); // KST
+                    const now = getKSTNow();
                     const dateStr = `${String(now.getFullYear()).slice(2)}.${String(now.getMonth() + 1).padStart(2, '0')}.${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
                     return `${sg.cd}-${sg.cd_nm}\n- '${dateStr}' : 특이사항 없음`;
                 }).join('\n') + '\n\n' : '';
@@ -1328,6 +1346,7 @@ async function updateMemoButtons() {
             memoBtns.forEach(btn => {
                 btn.textContent = '+';
                 btn.style.color = '';
+                btn.style.backgroundColor = '';
             });
             return;
         }
@@ -1344,10 +1363,12 @@ async function updateMemoButtons() {
             
             if (hasMemo) {
                 btn.textContent = '✓';
-                btn.style.color = 'inherit';
+                btn.style.color = memoColors.txtColr;
+                btn.style.backgroundColor = memoColors.bgColr;
             } else {
                 btn.textContent = '+';
                 btn.style.color = '';
+                btn.style.backgroundColor = '';
             }
         });
     } catch (err) {
