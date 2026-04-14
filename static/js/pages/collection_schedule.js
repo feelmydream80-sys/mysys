@@ -362,9 +362,12 @@ export function init() {
                 else if (['CD908', 'CD904', 'CD905'].includes(job.status)) statusCounts['CD908']++;
             });
             
+            // 날짜별 Jobs 수 (하위 그룹 수, 고유 job_id 수 - Cron 반복 미포함)
+            const jobsCount = new Set(dayData.filter(isStatusDisplayed).map(j => j.job_id)).size;
+
             // 날짜 헤더에 카운트 표시 (작은 글씨)
             dayHeader.innerHTML = `
-                <div>${dateStr}</div>
+                <div>${dateStr} <span style="color: #4b5563;">Jobs: ${jobsCount}</span></div>
                 <div style="font-size: 10px; margin-top: 2px;">
                     <span style="color: ${settingsManager.getStatusInfoByCd('CD901')?.txt_colr || '#166534'}">성공: ${statusCounts['CD901']}</span> / 
                     <span style="color: ${settingsManager.getStatusInfoByCd('CD902')?.txt_colr || '#991b1b'}">실패: ${statusCounts['CD902']}</span> / 
@@ -1194,7 +1197,6 @@ export function init() {
 
     if (memoDeleteBtn) {
         memoDeleteBtn.addEventListener('click', async () => {
-            if (!confirm('메모를 삭제하시겠습니까?')) return;
             const grpId = memoGrpId.value;
             const date = memoDate.value;
             const depth = parseInt(memoDepth.value);
@@ -1205,6 +1207,16 @@ export function init() {
                 });
                 const result = await response.json();
                 if (result.success) {
+                    // 삭제 후 popup 닫기 전에 현재 그룹의 메모 버튼 색상 즉시 초기화
+                    const currentMemoBtn = document.querySelector(`.memo-btn[data-grp-id='${grpId}'][data-date='${date}']`);
+                    if (currentMemoBtn) {
+                        const groupContainer = currentMemoBtn.closest('.group-container');
+                        const groupPill = groupContainer?.querySelector('.group-pill-summary');
+                        if (groupPill) {
+                            groupPill.style.removeProperty('background-color');
+                            groupPill.style.removeProperty('color');
+                        }
+                    }
                     memoPopup.classList.add('hidden');
                     await updateMemoButtons();
                 } else {
@@ -1383,12 +1395,12 @@ async function updateMemoButtons() {
                 btn.style.color = '';
                 btn.style.backgroundColor = '';
                 
-                // 그룹 색상 초기화 (기존 색상 클래스로 복구)
+                // 메모가 없는 그룹은 색상 초기화 (삭제된 경우)
                 const groupContainer = btn.closest('.group-container');
                 const groupPill = groupContainer?.querySelector('.group-pill-summary');
                 if (groupPill) {
-                    groupPill.style.setProperty('background-color', '', '');
-                    groupPill.style.setProperty('color', '', '');
+                    groupPill.style.removeProperty('background-color');
+                    groupPill.style.removeProperty('color');
                 }
             }
         });
