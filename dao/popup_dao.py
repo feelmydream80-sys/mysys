@@ -33,7 +33,7 @@ class PopupDao:
         query = """
             SELECT POPUP_ID, TITL, CONT, IMG_PATH, LNK_URL, START_DT, END_DT,
                    USE_YN, DISP_ORD, DISP_TYPE, WIDTH, HEIGHT, BG_COLR,
-                   HIDE_OPT_YN, HIDE_DAYS_MAX, TARGET_ROLE, TARGET_PAGES,
+                   HIDE_OPT_YN, HIDE_DAYS_MAX,
                    REG_USER_ID, REG_DT, UPD_USER_ID, UPD_DT
             FROM TB_POPUP_MST
             WHERE DEL_YN = 'N'
@@ -64,7 +64,7 @@ class PopupDao:
         query = """
             SELECT POPUP_ID, TITL, CONT, IMG_PATH, LNK_URL, START_DT, END_DT,
                    USE_YN, DISP_ORD, DISP_TYPE, WIDTH, HEIGHT, BG_COLR,
-                   HIDE_OPT_YN, HIDE_DAYS_MAX, TARGET_ROLE, TARGET_PAGES,
+                   HIDE_OPT_YN, HIDE_DAYS_MAX,
                    REG_USER_ID, REG_DT, UPD_USER_ID, UPD_DT
             FROM TB_POPUP_MST
             WHERE POPUP_ID = %s AND DEL_YN = 'N'
@@ -91,7 +91,7 @@ class PopupDao:
         query = """
             SELECT POPUP_ID, TITL, CONT, IMG_PATH, LNK_URL, START_DT, END_DT,
                    USE_YN, DISP_ORD, DISP_TYPE, WIDTH, HEIGHT, BG_COLR,
-                   HIDE_OPT_YN, HIDE_DAYS_MAX, TARGET_ROLE, TARGET_PAGES,
+                   HIDE_OPT_YN, HIDE_DAYS_MAX,
                    REG_USER_ID, REG_DT, UPD_USER_ID, UPD_DT
             FROM TB_POPUP_MST
             WHERE USE_YN = 'Y'
@@ -123,9 +123,9 @@ class PopupDao:
             INSERT INTO TB_POPUP_MST (
                 TITL, CONT, IMG_PATH, LNK_URL, START_DT, END_DT,
                 USE_YN, DISP_ORD, DISP_TYPE, WIDTH, HEIGHT, BG_COLR,
-                HIDE_OPT_YN, HIDE_DAYS_MAX, TARGET_ROLE, TARGET_PAGES,
+                HIDE_OPT_YN, HIDE_DAYS_MAX,
                 REG_USER_ID, REG_DT
-            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             RETURNING POPUP_ID
         """
         try:
@@ -145,8 +145,6 @@ class PopupDao:
                     data.get('BG_COLR', '#FFFFFF'),
                     data.get('HIDE_OPT_YN', 'Y'),
                     data.get('HIDE_DAYS_MAX', 7),
-                    data.get('TARGET_ROLE', 'ALL'),
-                    data.get('TARGET_PAGES', 'ALL'),
                     data.get('REG_USER_ID'),
                     get_kst_now().strftime('%Y-%m-%d %H:%M:%S')
                 ))
@@ -184,8 +182,6 @@ class PopupDao:
                 BG_COLR = %s,
                 HIDE_OPT_YN = %s,
                 HIDE_DAYS_MAX = %s,
-                TARGET_ROLE = %s,
-                TARGET_PAGES = %s,
                 UPD_USER_ID = %s,
                 UPD_DT = %s
             WHERE POPUP_ID = %s
@@ -207,8 +203,6 @@ class PopupDao:
                     data.get('BG_COLR', '#FFFFFF'),
                     data.get('HIDE_OPT_YN', 'Y'),
                     data.get('HIDE_DAYS_MAX', 7),
-                    data.get('TARGET_ROLE', 'ALL'),
-                    data.get('TARGET_PAGES', 'ALL'),
                     data.get('UPD_USER_ID'),
                     get_kst_now().strftime('%Y-%m-%d %H:%M:%S'),
                     popup_id
