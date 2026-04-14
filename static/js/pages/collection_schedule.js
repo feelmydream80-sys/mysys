@@ -2,7 +2,7 @@ import { showToast } from '../utils/toast.js';
 import { downloadExcelTemplate } from '../utils/excelDownload.js';
 import { filterActiveMstData } from '../modules/common/utils.js';
 import { scheduleSettingsApi } from '../services/api.js';
-import { getKSTNow, formatDateTime } from '../modules/common/dateUtils.js';
+import { getKSTNow, formatDateTime, formatDBDateTime } from '../modules/common/dateUtils.js';
 
 // 전역 변수
 let mstData = {}; // For mapping job_id to name
@@ -1290,28 +1290,13 @@ export function init() {
             const memoInfo = document.getElementById('memo-info');
             const memoWriter = document.getElementById('memo-writer');
             const memoDateInfo = document.getElementById('memo-date-info');
+            console.log('[DEBUG] 메모 정보 표시:', { loadedMemo, memoInfo, memoWriter, memoDateInfo });
             if (memoInfo && memoWriter && memoDateInfo) {
                 if (loadedMemo && loadedMemo.writer_id) {
                     memoWriter.textContent = loadedMemo.writer_id;
                     const createdAt = loadedMemo.created_at || loadedMemo.createdAt;
-                    if (createdAt) {
-                        // KST 시간 직접 파싱 (timezone 정보 없음)
-                        const parts = createdAt.match(/(\d{4})-(\d{2})-(\d{2})\s+(\d{2}):(\d{2}):(\d{2})/);
-                        if (parts) {
-                            const year = parts[1].slice(2);
-                            const month = parts[2];
-                            const day = parts[3];
-                            const hours = parts[4];
-                            const minutes = parts[5];
-                            memoDateInfo.textContent = `${year}.${month}.${day} ${hours}:${minutes}`;
-                        } else {
-                            const d = new Date(createdAt);
-                            const dateStr = `${String(d.getFullYear()).slice(2)}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')} ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
-                            memoDateInfo.textContent = dateStr;
-                        }
-                    } else {
-                        memoDateInfo.textContent = '';
-                    }
+                    console.log('[DEBUG] createdAt:', createdAt, 'formatDBDateTime 결과:', formatDBDateTime(createdAt));
+                    memoDateInfo.textContent = formatDBDateTime(createdAt);
                 } else {
                     memoWriter.textContent = '';
                     memoDateInfo.textContent = '';

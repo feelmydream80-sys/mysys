@@ -1786,8 +1786,16 @@
 
                     <!-- Don't show 설정 -->
                     <div class="form-group" style="margin-bottom: 15px;">
-                        <label for="popupDontShowDays" style="display: block; margin-bottom: 5px; font-weight: 600;">다시 보지 않음 기간 (일)</label>
-                        <input type="number" id="popupDontShowDays" value="7" min="1" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                        <label for="popupHideDaysMax" style="display: block; margin-bottom: 5px; font-weight: 600;">최대 숨김 일수 (1-7)</label>
+                        <select id="popupHideDaysMax" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                            <option value="1" selected>1일</option>
+                            <option value="2">2일</option>
+                            <option value="3">3일</option>
+                            <option value="4">4일</option>
+                            <option value="5">5일</option>
+                            <option value="6">6일</option>
+                            <option value="7">7일</option>
+                        </select>
                     </div>
 
                     <!-- 타겟 페이지 -->
@@ -1837,6 +1845,8 @@
 {% block scripts %}
     <!-- XLSX Library for Excel Export -->
     <script src="{{ url_for('static', filename='vendor/js/xlsx.full.min.js') }}"></script>
+    <!-- Popup Management JavaScript -->
+    <script src="{{ url_for('static', filename='js/pages/popup_management.js') }}"></script>
     <!-- Custom JavaScript -->
     <script type="module">
         import { init } from '/static/js/pages/mngr_sett.js';

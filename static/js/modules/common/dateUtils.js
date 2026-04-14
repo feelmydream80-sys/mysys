@@ -10,7 +10,10 @@ const KST_OFFSET_MS = 9 * 60 * 60 * 1000; // UTC+9 (KST)
  * @returns {Date} KST 기준 현재 시간
  */
 export function getKSTNow() {
-    return new Date(Date.now() + KST_OFFSET_MS);
+    const now = new Date();
+    // 현재 로컬 시간을 UTC로 변환 후 KST 오프셋 적용
+    const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+    return new Date(utc + KST_OFFSET_MS);
 }
 
 /**
@@ -184,4 +187,26 @@ export function setYearToDate() {
     if (endDateInput) {
         endDateInput.value = formatDate(today);
     }
+}
+
+/**
+ * DB에서 가져온 KST 시간 문자열을 표시용 포맷으로 변환합니다.
+ * DB에 저장된 시간은 KST(UTC+9) 기준으로 가정합니다.
+ * @param {string} dbDateTime - DB 시간 문자열 (YYYY-MM-DD HH:mm:ss)
+ * @returns {string} 포맷팅된 시간 문자열 (YY.MM.DD HH:mm), 파싱 실패 시 빈 문자열 반환
+ */
+export function formatDBDateTime(dbDateTime) {
+    if (!dbDateTime) return '';
+
+    // YYYY-MM-DD HH:mm:ss 형식 파싱 (DB KST 시간)
+    const parts = dbDateTime.match(/(\d{4})-(\d{2})-(\d{2})\s+(\d{2}):(\d{2}):(\d{2})/);
+    if (!parts) return '';
+
+    const year = parts[1].slice(2);  // YY
+    const month = parts[2];
+    const day = parts[3];
+    const hours = parts[4];
+    const minutes = parts[5];
+
+    return `${year}.${month}.${day} ${hours}:${minutes}`;
 }

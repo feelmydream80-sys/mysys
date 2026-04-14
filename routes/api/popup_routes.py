@@ -4,7 +4,10 @@ API routes for popup management.
 """
 from flask import Blueprint, request, jsonify, session
 import logging
+import os
+import uuid
 from functools import wraps
+from datetime import datetime
 
 from msys.database import get_db_connection
 from service.popup_service import PopupService
@@ -243,3 +246,67 @@ def delete_popup(popup_id):
     except Exception as e:
         logging.error(f"❌ API: 팝업 삭제 실패 (ID: {popup_id}): {e}", exc_info=True)
         return jsonify({"message": "팝업 삭제 중 오류가 발생했습니다."}), 500
+
+@popup_api_bp.route('/upload', methods=['POST'])
+@login_required_api
+@admin_required_api
+def upload_image():
+    """
+    Upload an image for popup.
+    
+    Request:
+        file: Image file (multipart/form-data)
+    
+    Returns:
+        JSON with image path and success message.
+    """
+    try:
+        if 'file' not in request.files:
+            return jsonify({"message": "파일이 없습니다."}), 400
+        
+        file = request.files['file']
+        
+        if file.filename == '':
+            return jsonify({"message": "파일이 선택되지 않았습니다."}), 400
+        
+        # Check file extension
+        allowed_extensions = {'png', 'jpg', 'jpeg', 'gif'}
+        file_ext = file.filename.rsplit('.', 1)[1].lower() if '.' in file.filename else ''
+        
+        if file_ext not in allowed_extensions:
+            return jsonify({"message": "허용되지 않는 파일 형식입니다. (png, jpg, jpeg, gif만 가능)"}), 400
+        
+        # Check file size (5MB = 5 * 1024 * 1024 bytes)
+        file.seek(0, os.SEEK_END)
+        file_size = file.tell()
+        file.seek(0)
+        
+        if file_size > 5 * 1024 * 1024:
+            return jsonify({"message": "파일 크기는 5MB를 초과할 수 없습니다."}), 400
+        
+        # Generate unique filename
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        unique_id = str(uuid.uuid4())[:8]
+        new_filename = f"popup_{timestamp}_{unique_id}.{file_ext}"
+        
+        # Save file
+        upload_folder = os.path.join('static', 'uploads', 'popups')
+        os.makedirs(upload_folder, exist_ok=True)
+        
+        file_path = os.path.join(upload_folder, new_filename)
+        file.save(file_path)
+        
+        # Return relative path for database storage
+        image_path = f"/static/uploads/popups/{new_filename}"
+        
+        logging.info(f"✅ API: 이미지 업로드 성공 - {new_filename}")
+        
+        return jsonify({
+            "message": "이미지가 성공적으로 업로드되었습니다.",
+            "image_path": image_path,
+            "filename": new_filename
+        }), 200
+        
+    except Exception as e:
+        logging.error(f"❌ API: 이미지 업로드 실패: {e}", exc_info=True)
+        return jsonify({"message": "이미지 업로드 중 오류가 발생했습니다."}), 500

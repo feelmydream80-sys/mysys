@@ -31,13 +31,16 @@ class PopupDao:
             List of popup dictionaries.
         """
         query = """
-            SELECT popup_id, title, content, start_time, end_time, use_yn,
-                   regr_id, reg_dtm, updr_id, upd_dtm
+            SELECT POPUP_ID, TITL, CONT, IMG_PATH, LNK_URL, START_DT, END_DT,
+                   USE_YN, DISP_ORD, DISP_TYPE, WIDTH, HEIGHT, BG_COLR,
+                   HIDE_OPT_YN, HIDE_DAYS_MAX, TARGET_ROLE, TARGET_PAGES,
+                   REG_USER_ID, REG_DT, UPD_USER_ID, UPD_DT
             FROM TB_POPUP_MST
+            WHERE DEL_YN = 'N'
         """
         if not include_inactive:
-            query += " WHERE use_yn = 'Y'"
-        query += " ORDER BY reg_dtm DESC"
+            query += " AND USE_YN = 'Y'"
+        query += " ORDER BY DISP_ORD ASC, REG_DT DESC"
         
         try:
             with self.conn.cursor(cursor_factory=RealDictCursor) as cur:
@@ -59,10 +62,12 @@ class PopupDao:
             Popup dictionary if found, None otherwise.
         """
         query = """
-            SELECT popup_id, title, content, start_time, end_time, use_yn,
-                   regr_id, reg_dtm, updr_id, upd_dtm
+            SELECT POPUP_ID, TITL, CONT, IMG_PATH, LNK_URL, START_DT, END_DT,
+                   USE_YN, DISP_ORD, DISP_TYPE, WIDTH, HEIGHT, BG_COLR,
+                   HIDE_OPT_YN, HIDE_DAYS_MAX, TARGET_ROLE, TARGET_PAGES,
+                   REG_USER_ID, REG_DT, UPD_USER_ID, UPD_DT
             FROM TB_POPUP_MST
-            WHERE popup_id = %s
+            WHERE POPUP_ID = %s AND DEL_YN = 'N'
         """
         try:
             with self.conn.cursor(cursor_factory=RealDictCursor) as cur:
@@ -84,13 +89,16 @@ class PopupDao:
             List of active popup dictionaries.
         """
         query = """
-            SELECT popup_id, title, content, start_time, end_time, use_yn,
-                   regr_id, reg_dtm, updr_id, upd_dtm
+            SELECT POPUP_ID, TITL, CONT, IMG_PATH, LNK_URL, START_DT, END_DT,
+                   USE_YN, DISP_ORD, DISP_TYPE, WIDTH, HEIGHT, BG_COLR,
+                   HIDE_OPT_YN, HIDE_DAYS_MAX, TARGET_ROLE, TARGET_PAGES,
+                   REG_USER_ID, REG_DT, UPD_USER_ID, UPD_DT
             FROM TB_POPUP_MST
-            WHERE use_yn = 'Y'
-              AND start_time <= %s
-              AND end_time >= %s
-            ORDER BY reg_dtm DESC
+            WHERE USE_YN = 'Y'
+              AND DEL_YN = 'N'
+              AND START_DT <= %s
+              AND END_DT >= %s
+            ORDER BY DISP_ORD ASC, REG_DT DESC
         """
         try:
             with self.conn.cursor(cursor_factory=RealDictCursor) as cur:
@@ -107,25 +115,39 @@ class PopupDao:
         
         Args:
             data: Dictionary containing popup data.
-                Required keys: title, content, start_time, end_time, use_yn, regr_id
         
         Returns:
             The ID of the newly inserted popup.
         """
         query = """
-            INSERT INTO TB_POPUP_MST (title, content, start_time, end_time, use_yn, regr_id, reg_dtm)
-            VALUES (%s, %s, %s, %s, %s, %s, %s)
-            RETURNING popup_id
+            INSERT INTO TB_POPUP_MST (
+                TITL, CONT, IMG_PATH, LNK_URL, START_DT, END_DT,
+                USE_YN, DISP_ORD, DISP_TYPE, WIDTH, HEIGHT, BG_COLR,
+                HIDE_OPT_YN, HIDE_DAYS_MAX, TARGET_ROLE, TARGET_PAGES,
+                REG_USER_ID, REG_DT
+            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            RETURNING POPUP_ID
         """
         try:
             with self.conn.cursor(cursor_factory=RealDictCursor) as cur:
                 cur.execute(query, (
-                    data.get('title'),
-                    data.get('content'),
-                    data.get('start_time'),
-                    data.get('end_time'),
-                    data.get('use_yn', 'Y'),
-                    data.get('regr_id'),
+                    data.get('TITL'),
+                    data.get('CONT'),
+                    data.get('IMG_PATH'),
+                    data.get('LNK_URL'),
+                    data.get('START_DT'),
+                    data.get('END_DT'),
+                    data.get('USE_YN', 'Y'),
+                    data.get('DISP_ORD', 999),
+                    data.get('DISP_TYPE', 'MODAL'),
+                    data.get('WIDTH', 500),
+                    data.get('HEIGHT'),
+                    data.get('BG_COLR', '#FFFFFF'),
+                    data.get('HIDE_OPT_YN', 'Y'),
+                    data.get('HIDE_DAYS_MAX', 7),
+                    data.get('TARGET_ROLE', 'ALL'),
+                    data.get('TARGET_PAGES', 'ALL'),
+                    data.get('REG_USER_ID'),
                     get_kst_now().strftime('%Y-%m-%d %H:%M:%S')
                 ))
                 result = cur.fetchone()
@@ -148,24 +170,46 @@ class PopupDao:
         """
         query = """
             UPDATE TB_POPUP_MST
-            SET title = %s,
-                content = %s,
-                start_time = %s,
-                end_time = %s,
-                use_yn = %s,
-                updr_id = %s,
-                upd_dtm = %s
-            WHERE popup_id = %s
+            SET TITL = %s,
+                CONT = %s,
+                IMG_PATH = %s,
+                LNK_URL = %s,
+                START_DT = %s,
+                END_DT = %s,
+                USE_YN = %s,
+                DISP_ORD = %s,
+                DISP_TYPE = %s,
+                WIDTH = %s,
+                HEIGHT = %s,
+                BG_COLR = %s,
+                HIDE_OPT_YN = %s,
+                HIDE_DAYS_MAX = %s,
+                TARGET_ROLE = %s,
+                TARGET_PAGES = %s,
+                UPD_USER_ID = %s,
+                UPD_DT = %s
+            WHERE POPUP_ID = %s
         """
         try:
             with self.conn.cursor() as cur:
                 cur.execute(query, (
-                    data.get('title'),
-                    data.get('content'),
-                    data.get('start_time'),
-                    data.get('end_time'),
-                    data.get('use_yn', 'Y'),
-                    data.get('updr_id'),
+                    data.get('TITL'),
+                    data.get('CONT'),
+                    data.get('IMG_PATH'),
+                    data.get('LNK_URL'),
+                    data.get('START_DT'),
+                    data.get('END_DT'),
+                    data.get('USE_YN', 'Y'),
+                    data.get('DISP_ORD', 999),
+                    data.get('DISP_TYPE', 'MODAL'),
+                    data.get('WIDTH', 500),
+                    data.get('HEIGHT'),
+                    data.get('BG_COLR', '#FFFFFF'),
+                    data.get('HIDE_OPT_YN', 'Y'),
+                    data.get('HIDE_DAYS_MAX', 7),
+                    data.get('TARGET_ROLE', 'ALL'),
+                    data.get('TARGET_PAGES', 'ALL'),
+                    data.get('UPD_USER_ID'),
                     get_kst_now().strftime('%Y-%m-%d %H:%M:%S'),
                     popup_id
                 ))
@@ -178,7 +222,7 @@ class PopupDao:
 
     def delete_popup(self, popup_id: int, user_id: str):
         """
-        Deletes a popup from the database (soft delete by setting use_yn = 'N').
+        Deletes a popup from the database (soft delete by setting DEL_YN = 'Y').
         
         Args:
             popup_id: The ID of the popup to delete.
@@ -186,10 +230,10 @@ class PopupDao:
         """
         query = """
             UPDATE TB_POPUP_MST
-            SET use_yn = 'N',
-                updr_id = %s,
-                upd_dtm = %s
-            WHERE popup_id = %s
+            SET DEL_YN = 'Y',
+                UPD_USER_ID = %s,
+                UPD_DT = %s
+            WHERE POPUP_ID = %s
         """
         try:
             with self.conn.cursor() as cur:

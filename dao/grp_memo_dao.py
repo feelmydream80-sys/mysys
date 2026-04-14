@@ -25,7 +25,8 @@ class GrpMemoDao:
         Retrieves a single memo by group ID, depth, and date.
         """
         query = """
-            SELECT grp_id, memo_date, depth, content, writer_id, created_at
+            SELECT grp_id, memo_date, depth, content, writer_id,
+                   TO_CHAR(created_at, 'YYYY-MM-DD HH24:MI:SS') as created_at
             FROM TB_GRP_MEMO
             WHERE grp_id = %s AND depth = %s AND memo_date = %s
         """
@@ -43,7 +44,8 @@ class GrpMemoDao:
         Retrieves all memos for a specific group.
         """
         query = """
-            SELECT grp_id, memo_date, depth, content
+            SELECT grp_id, memo_date, depth, content,
+                   TO_CHAR(created_at, 'YYYY-MM-DD HH24:MI:SS') as created_at
             FROM TB_GRP_MEMO
             WHERE grp_id = %s
             ORDER BY memo_date DESC
@@ -119,9 +121,10 @@ class GrpMemoDao:
         """
         if not grp_ids or not dates:
             return []
-        
+
         query = """
-            SELECT grp_id, memo_date, depth, content
+            SELECT grp_id, memo_date, depth, content,
+                   TO_CHAR(created_at, 'YYYY-MM-DD HH24:MI:SS') as created_at
             FROM TB_GRP_MEMO
             WHERE grp_id = ANY(%s) AND memo_date = ANY(%s::date[])
         """

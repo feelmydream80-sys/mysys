@@ -1,10 +1,6 @@
-✅ TB_STS_CD_MST 색상 정보 로드 완료: 8 건
-mngr_sett.js:17 === fetchAllMngrSett() called === {}
-mngr_sett.js:34 === fetchAllMngrSett() - fetching from: /api/mngr_sett/settings/all?page=1&per_page=10
-ui.js:29 ✅ TB_STS_CD_MST 색상 정보 로드 완료: 8 건
-mngr_sett.js:17 === fetchAllMngrSett() called === {}
-mngr_sett.js:34 === fetchAllMngrSett() - fetching from: /api/mngr_sett/settings/all?page=1&per_page=10
-2mngr_sett.js:36 === fetchAllMngrSett() - response status: 200
-mngr_sett.js:43 === fetchAllMngrSett() - data received: {data: Array(10), page: 1, per_page: 10, total: 44, total_pages: 5}
-mngr_sett.js:43 === fetchAllMngrSett() - data received: {data: Array(10), page: 1, per_page: 10, total: 44, total_pages: 5}data: Array(10)0: {cd: 'CD1001', cd_desc: '어린이집별_기본정보_조회', cd_nm: 'cpmsapi030', cf_fail_icon_code: '🔴', cf_success_icon_code: '🟢', …}1: {cd: 'CD1002', cd_desc: '시군구코드_조회', cd_nm: 'cpmsapi020', cf_fail_icon_code: '🔴', cf_success_icon_code: '🟢', …}2: {cd: 'CD1003', cd_desc: null, cd_nm: 'CD1003 명칭', cf_fail_icon_code: '🔴', cf_success_icon_code: '🟢', …}3: {cd: 'CD101', cd_desc: '위성(4시간 전), 날씨모델 정보', cd_nm: 'forecasts', cf_fail_icon_code: '🔴', cf_success_icon_code: '🟢', …}4: {cd: 'CD102', cd_desc: '위성(4시간 전), 날씨모델 정보', cd_nm: 'forecasts_o', cf_fail_icon_code: '🔴', cf_success_icon_code: '🟢', …}5: {cd: 'CD103', cd_desc: '위성, 날씨모델 지난 7일간 데이터', cd_nm: 'live', cf_fail_icon_code: '🔴', cf_success_icon_code: '🟢', …}6: {cd: 'CD104', cd_desc: '위성, 날씨모델 지난 7일간 데이터', cd_nm: 'live_o', cf_fail_icon_code: '🔴', cf_success_icon_code: '🟢', …}7: {cd: 'CD105', cd_desc: null, cd_nm: 'CD105 명칭', cf_fail_icon_code: '🔴', cf_success_icon_code: '🟢', …}8: {cd: 'CD111', cd_desc: null, cd_nm: 'CD111 명칭', cf_fail_icon_code: '🔴', cf_success_icon_code: '🟢', …}9: {cd: 'CD1111101', cd_desc: 'tttt', cd_nm: 'tttt', cf_fail_icon_code: '🔴', cf_success_icon_code: '🟢', …}length: 10[[Prototype]]: Array(0)page: 1per_page: 10total: 44total_pages: 5[[Prototype]]: Object
-2ui.js:29 ✅ TB_STS_CD_MST 색상 정보 로드 완료: 8 건
+popupManagement.js:388 Uncaught (in promise) TypeError: Cannot set properties of null (setting 'value')
+    at PopupManagementTab.openPopupModal (popupManagement.js:388:64)
+    at HTMLButtonElement.<anonymous> (popupManagement.js:62:76)
+
+﻿
+

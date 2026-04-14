@@ -143,6 +143,9 @@
         });
     </script>
     
+    <!-- Popup Display Module (for notice popups) -->
+    <script src="{{ url_for('static', filename='js/modules/popup_display.js') }}?v={{ now.timestamp() }}"></script>
+    
     {% block scripts %}{% endblock %}
 </body>
 </html>

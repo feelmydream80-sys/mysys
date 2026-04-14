@@ -81,7 +81,7 @@ class PopupService:
         
         Args:
             data: Dictionary containing popup data.
-                Required keys: title, content, start_time, end_time, use_yn
+                Required keys: TITL, CONT, START_DT, END_DT
             user_id: The ID of the user creating the popup.
         
         Returns:
@@ -91,13 +91,13 @@ class PopupService:
             self.logger.info(f"Service: Creating new popup by user {user_id}")
             
             # Validate required fields
-            required_fields = ['title', 'content', 'start_time', 'end_time']
+            required_fields = ['TITL', 'CONT', 'START_DT', 'END_DT']
             for field in required_fields:
                 if field not in data or not data[field]:
                     raise ValueError(f"Required field '{field}' is missing or empty")
             
             # Add user_id as registrant
-            data['regr_id'] = user_id
+            data['REG_USER_ID'] = user_id
             
             popup_id = self.popup_dao.insert_popup(data)
             self.logger.info(f"Service: Popup created successfully with ID {popup_id}")
@@ -124,7 +124,7 @@ class PopupService:
                 raise ValueError(f"Popup with ID {popup_id} not found")
             
             # Add user_id as updater
-            data['updr_id'] = user_id
+            data['UPD_USER_ID'] = user_id
             
             self.popup_dao.update_popup(popup_id, data)
             self.logger.info(f"Service: Popup {popup_id} updated successfully")

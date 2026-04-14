@@ -12,6 +12,7 @@ def init_app(app):
     from .api.card_summary_api import card_summary_api_bp
     from .api.data_definition_api import bp as data_definition_api_bp
     from .api.api_key_mngr_routes import api_key_mngr_api
+    from .api.popup_routes import popup_api_bp
     from .ui import dashboard_routes, collection_schedule_routes, api_key_mngr_routes
     from . import mapping_routes
     from . import admin_routes
@@ -40,3 +41,4 @@ def init_app(app):
     app.register_blueprint(data_definition_api_bp)
     app.register_blueprint(api_key_mngr_api)
     app.register_blueprint(api_key_mngr_routes.api_key_mngr_ui)
+    app.register_blueprint(popup_api_bp)
