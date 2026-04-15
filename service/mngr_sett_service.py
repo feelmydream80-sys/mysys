@@ -480,7 +480,6 @@ class MngrSettService:
                 'use_yn': 'useYn',
                 'grp_brdr_styl': 'grpBrdrStyl',
                 'grp_colr_crtr': 'grpColrCrtr',
-                'memo_icon_id': 'memoIconId',
                 'memo_bg_colr': 'memoBgColr',
                 'memo_txt_colr': 'memoTxtColr'
             }

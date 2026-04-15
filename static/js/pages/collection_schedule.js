@@ -984,7 +984,6 @@ export function init() {
                 if (schedRes && typeof schedRes === 'object' && Object.keys(schedRes).length > 0) {
                     const s = schedRes;
                     memoColors = {
-                        iconId: s.memoIconId || null,
                         bgColr: s.memoBgColr || '#708090',
                         txtColr: s.memoTxtColr || '#ffffff'
                     };

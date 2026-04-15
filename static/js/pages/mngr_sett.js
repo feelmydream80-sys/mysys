@@ -202,10 +202,6 @@ function renderScheduleSettingsForm(settings) {
                 <div class="setting-group" style="margin-top: 1.5rem;">
                     <div class="setting-group-title">메모 존재시 그룹 색상</div>
                     <div class="form-row">
-                        <label for="memoIconId">아이콘</label>
-                        <select id="memoIconId">${createIconOptions(setting.memoIconId)}</select>
-                    </div>
-                    <div class="form-row">
                         <label for="memoBgColr">배경색</label>
                         <div class="color-input-wrapper">
                             <div class="color-preview" style="background-color: ${setting.memoBgColr || '#fef08b'}"></div>
@@ -848,13 +844,6 @@ async function saveScheduleSettings() {
        return;
     }
 
-    const getIconId = (id) => {
-        const element = document.getElementById(id);
-        if (!element) return null;
-        const value = element.value;
-        return value ? parseInt(value) : null;
-    };
-
     const getColorValue = (id, defaultValue = '') => {
         const element = document.getElementById(id);
         return element ? element.value : defaultValue;
@@ -870,7 +859,6 @@ async function saveScheduleSettings() {
         use_yn: useYn,
         grp_brdr_styl: document.querySelector('input[name="grpBrdrStyl"]:checked') ? document.querySelector('input[name="grpBrdrStyl"]:checked').value : 'solid',
         grp_colr_crtr: document.querySelector('input[name="grpColrCrtr"]:checked') ? document.querySelector('input[name="grpColrCrtr"]:checked').value : 'prgr',
-        memo_icon_id: getIconId('memoIconId'),
         memo_bg_colr: getColorValue('memoBgColr', '#fef08b'),
         memo_txt_colr: getColorValue('memoTxtColr', '#a16207')
     };
