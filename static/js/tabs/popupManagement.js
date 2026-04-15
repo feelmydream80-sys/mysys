@@ -3,6 +3,7 @@
 
 import { showToast } from '../utils/toast.js';
 import { popupManagementApi } from '../services/api.js';
+import { getKSTNow, formatDate, formatDateTime } from '../modules/common/dateUtils.js';
 
 /**
  * 팝업 관리 탭 클래스
@@ -82,7 +83,10 @@ class PopupManagementTab {
 
         const saveBtn = document.getElementById('savePopupBtn');
         if (saveBtn) {
-            saveBtn.addEventListener('click', () => this.savePopup());
+            // 기존 이벤트 리스너 제거 후 새로 등록 (중복 방지)
+            const newSaveBtn = saveBtn.cloneNode(true);
+            saveBtn.parentNode.replaceChild(newSaveBtn, saveBtn);
+            newSaveBtn.addEventListener('click', () => this.savePopup());
         }
 
         const imageInput = document.getElementById('popupImageInput');
@@ -200,8 +204,15 @@ class PopupManagementTab {
 
     async loadPopups() {
         try {
+            console.log('🔍 [PIPELINE] Frontend: loadPopups() 시작');
             const searchTerm = this.elements.searchInput ? this.elements.searchInput.value : '';
             const data = await popupManagementApi.getPopups(searchTerm, this.currentPage, this.itemsPerPage);
+            
+            console.log('🔍 [PIPELINE] Frontend: API 응답 데이터:', data);
+            console.log('🔍 [PIPELINE] Frontend: popups 개수:', data.popups?.length);
+            if (data.popups && data.popups.length > 0) {
+                console.log('🔍 [PIPELINE] Frontend: 첫 번째 팝업:', data.popups[0]);
+            }
 
             this.totalPopups = data.total || 0;
             this.totalPages = Math.ceil(this.totalPopups / this.itemsPerPage);
@@ -209,6 +220,7 @@ class PopupManagementTab {
             this.renderPopupTable(data.popups || []);
             this.renderPagination();
         } catch (error) {
+            console.error('🔍 [PIPELINE] Frontend: loadPopups() 실패:', error);
             showToast('팝업 목록 로드 실패: ' + error.message, 'error');
         }
     }
@@ -232,7 +244,7 @@ class PopupManagementTab {
             const statusBadge = this.getStatusBadge(popup.use_yn, popup.start_dt, popup.end_dt);
 
             row.innerHTML = '<td>' + popup.popup_id + '</td>' +
-                '<td>' + popup.titl + '</td>' +
+                '<td>' + (popup.titl || '(제목 없음)') + '</td>' +
                 '<td>' + startDate + ' ~ ' + endDate + '</td>' +
                 '<td>' + (popup.width || 400) + 'px x ' + (popup.height || 300) + 'px</td>' +
                 '<td>' + statusBadge + '</td>' +
@@ -396,6 +408,10 @@ class PopupManagementTab {
             document.getElementById('popupBgColor').value = '#ffffff';
             document.getElementById('popupStatus').value = 'ACTIVE';
             document.getElementById('popupHideDaysMax').value = 7;
+
+            // 기본 날짜 설정 (오늘 ~ 오늘+7일)
+            document.getElementById('popupStartDate').value = this.getDefaultStartDate();
+            document.getElementById('popupEndDate').value = this.getDefaultEndDate();
         }
 
         form.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
@@ -409,12 +425,28 @@ class PopupManagementTab {
     }
 
     populateForm(popup) {
+        console.log('🔍 [PIPELINE] Frontend: populateForm() 시작 - 받은 데이터:', popup);
         document.getElementById('popupId').value = popup.popup_id || '';
         document.getElementById('popupTitle').value = popup.titl || '';
         document.getElementById('popupContent').value = popup.cont || '';
         document.getElementById('popupLinkUrl').value = popup.lnk_url || '';
-        document.getElementById('popupStartDate').value = popup.start_dt ? popup.start_dt.split('T')[0] : '';
-        document.getElementById('popupEndDate').value = popup.end_dt ? popup.end_dt.split('T')[0] : '';
+        
+        // 날짜 처리 - 다양한 형식 지원
+        let startDateStr = '';
+        let endDateStr = '';
+        
+        if (popup.start_dt) {
+            // ISO 8601 형식(2026-04-15T00:00:00) 또는 공백 구분(2026-04-15 00:00:00)
+            startDateStr = popup.start_dt.split(/[T ]/)[0];
+        }
+        if (popup.end_dt) {
+            endDateStr = popup.end_dt.split(/[T ]/)[0];
+        }
+        
+        console.log('🔍 [PIPELINE] Frontend: 날짜 파싱 결과:', { startDateStr, endDateStr, raw_start: popup.start_dt, raw_end: popup.end_dt });
+        
+        document.getElementById('popupStartDate').value = startDateStr;
+        document.getElementById('popupEndDate').value = endDateStr;
         document.getElementById('popupWidth').value = popup.width || 400;
         document.getElementById('popupHeight').value = popup.height || 300;
         document.getElementById('popupBgColor').value = popup.bg_colr || '#ffffff';
@@ -550,19 +582,63 @@ class PopupManagementTab {
         }
     }
 
+    /**
+     * 기본 시작일 반환 (오늘 날짜)
+     * @returns {string} YYYY-MM-DD
+     */
+    getDefaultStartDate() {
+        const now = getKSTNow();
+        return formatDate(now);
+    }
+
+    /**
+     * 기본 종료일 반환 (오늘 + 7일)
+     * @returns {string} YYYY-MM-DD
+     */
+    getDefaultEndDate() {
+        const now = getKSTNow();
+        now.setDate(now.getDate() + 7);
+        return formatDate(now);
+    }
+
     async savePopup() {
+        // 저장 버튼 중복 클릭 방지
+        const saveBtn = document.getElementById('savePopupBtn');
+        if (saveBtn && saveBtn.disabled) {
+            return;
+        }
+        if (saveBtn) {
+            saveBtn.disabled = true;
+        }
+
         if (!this.validateForm()) {
             showToast('필수 입력 항목을 확인해주세요.', 'warning');
+            if (saveBtn) saveBtn.disabled = false;
+            return;
+        }
+
+        // 제목과 내용 빈 값 검증
+        const title = document.getElementById('popupTitle').value.trim();
+        const content = document.getElementById('popupContent').value.trim();
+        if (!title || !content) {
+            showToast('제목과 내용을 입력해주세요.', 'warning');
+            if (saveBtn) saveBtn.disabled = false;
             return;
         }
 
         const formData = new FormData();
 
-        formData.append('titl', document.getElementById('popupTitle').value.trim());
-        formData.append('cont', document.getElementById('popupContent').value.trim());
+        // 날짜 처리 - 빈 값이면 기본값 사용
+        const startDateInput = document.getElementById('popupStartDate').value;
+        const endDateInput = document.getElementById('popupEndDate').value;
+        const startDate = startDateInput || this.getDefaultStartDate();
+        const endDate = endDateInput || this.getDefaultEndDate();
+
+        formData.append('titl', title);
+        formData.append('cont', content);
         formData.append('lnk_url', document.getElementById('popupLinkUrl').value.trim());
-        formData.append('start_dt', document.getElementById('popupStartDate').value + ' 00:00:00');
-        formData.append('end_dt', document.getElementById('popupEndDate').value + ' 23:59:59');
+        formData.append('start_dt', startDate + ' 00:00:00');
+        formData.append('end_dt', endDate + ' 23:59:59');
         formData.append('width', document.getElementById('popupWidth').value);
         formData.append('height', document.getElementById('popupHeight').value);
         formData.append('bg_colr', document.getElementById('popupBgColor').value);
@@ -585,13 +661,14 @@ class PopupManagementTab {
                 showToast('팝업이 성공적으로 생성되었습니다.', 'success');
             }
 
-            this.closePopupModal();
-            this.loadPopups();
+            await this.closePopupModal();
+            await this.loadPopups();
         } catch (error) {
             showToast('저장 실패: ' + error.message, 'error');
         } finally {
             const loadingOverlay = document.getElementById('adminLoadingOverlay');
             if (loadingOverlay) loadingOverlay.classList.add('hidden');
+            if (saveBtn) saveBtn.disabled = false;
         }
     }
 

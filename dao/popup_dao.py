@@ -33,7 +33,7 @@ class PopupDao:
         query = """
             SELECT POPUP_ID, TITL, CONT, IMG_PATH, LNK_URL, START_DT, END_DT,
                    USE_YN, DISP_ORD, DISP_TYPE, WIDTH, HEIGHT, BG_COLR,
-                   HIDE_OPT_YN, HIDE_DAYS_MAX,
+                   HIDE_OPT_YN, HIDE_DAYS_MAX, LOC,
                    REG_USER_ID, REG_DT, UPD_USER_ID, UPD_DT
             FROM TB_POPUP_MST
             WHERE DEL_YN = 'N'
@@ -44,9 +44,14 @@ class PopupDao:
         
         try:
             with self.conn.cursor(cursor_factory=RealDictCursor) as cur:
+                self.logger.info(f"🔍 [PIPELINE] DAO SQL 실행: {query[:100]}...")
                 cur.execute(query)
                 results = cur.fetchall()
-                return [dict(row) for row in results]
+                popups = [dict(row) for row in results]
+                self.logger.info(f"🔍 [PIPELINE] DAO 조회 결과: {len(popups)}개")
+                if popups:
+                    self.logger.info(f"🔍 [PIPELINE] DAO 첫 번째 데이터: popup_id={popups[0].get('popup_id')}, titl={popups[0].get('titl')}")
+                return popups
         except psycopg2.Error as e:
             self.logger.error(f"❌ DAO: Error fetching all popups: {e}", exc_info=True)
             raise
@@ -64,7 +69,7 @@ class PopupDao:
         query = """
             SELECT POPUP_ID, TITL, CONT, IMG_PATH, LNK_URL, START_DT, END_DT,
                    USE_YN, DISP_ORD, DISP_TYPE, WIDTH, HEIGHT, BG_COLR,
-                   HIDE_OPT_YN, HIDE_DAYS_MAX,
+                   HIDE_OPT_YN, HIDE_DAYS_MAX, LOC,
                    REG_USER_ID, REG_DT, UPD_USER_ID, UPD_DT
             FROM TB_POPUP_MST
             WHERE POPUP_ID = %s AND DEL_YN = 'N'
@@ -91,7 +96,7 @@ class PopupDao:
         query = """
             SELECT POPUP_ID, TITL, CONT, IMG_PATH, LNK_URL, START_DT, END_DT,
                    USE_YN, DISP_ORD, DISP_TYPE, WIDTH, HEIGHT, BG_COLR,
-                   HIDE_OPT_YN, HIDE_DAYS_MAX,
+                   HIDE_OPT_YN, HIDE_DAYS_MAX, LOC,
                    REG_USER_ID, REG_DT, UPD_USER_ID, UPD_DT
             FROM TB_POPUP_MST
             WHERE USE_YN = 'Y'
@@ -123,9 +128,9 @@ class PopupDao:
             INSERT INTO TB_POPUP_MST (
                 TITL, CONT, IMG_PATH, LNK_URL, START_DT, END_DT,
                 USE_YN, DISP_ORD, DISP_TYPE, WIDTH, HEIGHT, BG_COLR,
-                HIDE_OPT_YN, HIDE_DAYS_MAX,
+                HIDE_OPT_YN, HIDE_DAYS_MAX, LOC,
                 REG_USER_ID, REG_DT
-            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             RETURNING POPUP_ID
         """
         try:
@@ -145,6 +150,7 @@ class PopupDao:
                     data.get('BG_COLR', '#FFFFFF'),
                     data.get('HIDE_OPT_YN', 'Y'),
                     data.get('HIDE_DAYS_MAX', 7),
+                    data.get('LOC', 'CENTER'),
                     data.get('REG_USER_ID'),
                     get_kst_now().strftime('%Y-%m-%d %H:%M:%S')
                 ))
@@ -182,6 +188,7 @@ class PopupDao:
                 BG_COLR = %s,
                 HIDE_OPT_YN = %s,
                 HIDE_DAYS_MAX = %s,
+                LOC = %s,
                 UPD_USER_ID = %s,
                 UPD_DT = %s
             WHERE POPUP_ID = %s
@@ -203,6 +210,7 @@ class PopupDao:
                     data.get('BG_COLR', '#FFFFFF'),
                     data.get('HIDE_OPT_YN', 'Y'),
                     data.get('HIDE_DAYS_MAX', 7),
+                    data.get('LOC', 'CENTER'),
                     data.get('UPD_USER_ID'),
                     get_kst_now().strftime('%Y-%m-%d %H:%M:%S'),
                     popup_id
