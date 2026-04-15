@@ -4,7 +4,7 @@ Handles all business logic related to administrator settings.
 """
 import logging
 import random
-from typing import List, Dict, Set
+from typing import List, Dict, Set, Union
 from mapper.mst_mapper import MstMapper
 from mapper.mngr_sett_mapper import MngrSettMapper
 from dao.schedule_settings_dao import ScheduleSettingsDAO
@@ -527,7 +527,7 @@ class MngrSettService:
                 pass
             raise
      
-    def save_status_code_service(self, status_data: dict | list):
+    def save_status_code_service(self, status_data: Union[dict, list]):
         """
         상태코드 저장 서비스
         
