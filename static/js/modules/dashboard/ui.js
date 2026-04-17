@@ -24,6 +24,7 @@
 
 import { fetchMinMaxDates } from '../common/api/dashboard.js';
 import { showMessage, formatNumberWithKoreanUnits } from '../common/utils.js';
+import { getKSTNow, formatDate } from '../common/dateUtils.js';
 
 /**
  * @description 날짜 선택기(Datepicker)를 초기화하고 변경 이벤트를 설정합니다.
@@ -34,9 +35,13 @@ export function initializeDatePickers(loadSummaryCallback) {
     const endDatePicker = document.getElementById('endDate');
     const allDataCheckbox = document.getElementById('allDataCheckbox');
 
-    const currentYear = luxon.DateTime.local().year;
-    const defaultStartDate = luxon.DateTime.local().set({ year: currentYear, month: 1, day: 1 }).toISODate();
-    const defaultEndDate = luxon.DateTime.local().toISODate();
+    // KST 기준으로 일자 계산 (공통 모듈 사용)
+    const today = getKSTNow();
+    const currentYear = today.getFullYear();
+    const startOfYear = new Date(currentYear, 0, 1);
+    
+    const defaultStartDate = formatDate(startOfYear);
+    const defaultEndDate = formatDate(today);
 
     if (startDatePicker) startDatePicker.value = defaultStartDate;
     if (endDatePicker) endDatePicker.value = defaultEndDate;

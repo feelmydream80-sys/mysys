@@ -110,19 +110,27 @@ class DashboardService:
         """Combine historical summary data with today's schedule data."""
         # Fetch historical summary data
         historical_summary_list = self.dashboard_mapper.get_summary(start_date, end_date, all_data, allowed_job_ids)
+        logging.info(f"[PIPELINE-1] Historical data count from DB: {len(historical_summary_list)}")
         historical_summary_map = {item['job_id']: item for item in historical_summary_list}
+        logging.info(f"[PIPELINE-2] Historical summary map keys: {list(historical_summary_map.keys())}")
 
         # Fetch today's schedule and status
         kst = pytz.timezone('Asia/Seoul')
         today = datetime.now(kst).date()
         collection_schedule_service = CollectionScheduleService(self.connection)
         job_statuses_today = collection_schedule_service.get_schedule_only(today, today, user)
+        logging.info(f"[PIPELINE-3] Today's schedule count from CollectionScheduleService: {len(job_statuses_today)}")
+        logging.info(f"[PIPELINE-3.1] Today's schedule job_ids: {[j.get('job_id') for j in job_statuses_today]}")
 
         # Process today's data to get counts
         today_counts = self._process_today_schedule_data(job_statuses_today)
+        logging.info(f"[PIPELINE-4] Today counts keys: {list(today_counts.keys())}")
+        logging.info(f"[PIPELINE-4.1] Today counts data: {dict(today_counts)}")
 
         # Only use job IDs that exist in historical data
         all_known_job_ids = sorted(list(set(historical_summary_map.keys())))
+        logging.info(f"[PIPELINE-5] all_known_job_ids (historical only): {all_known_job_ids}")
+        logging.info(f"[PIPELINE-5.1] Missing from today_counts: {[jid for jid in today_counts.keys() if jid not in all_known_job_ids]}")
 
         # Build the final combined summary data
         combined_summary_data = []
@@ -132,6 +140,9 @@ class DashboardService:
 
             item = self._create_combined_item(job_id, hist_data, today_data)
             combined_summary_data.append(item)
+        
+        logging.info(f"[PIPELINE-6] Final combined summary data count: {len(combined_summary_data)}")
+        logging.info(f"[PIPELINE-6.1] Final job_ids: {[item.get('job_id') for item in combined_summary_data]}")
 
         return combined_summary_data
 
@@ -139,28 +150,48 @@ class DashboardService:
         """Process today's schedule data to get status counts per job."""
         today_counts = defaultdict(lambda: {"success": 0, "fail": 0, "progress": 0, "uncollected": 0, "total_scheduled": 0})
 
-        # Get status mapping for dynamic lookup
-        from mapper.mst_mapper import MstMapper
-        mst_mapper = MstMapper(self.connection)
-        error_codes = mst_mapper.get_error_code_map()
-        status_mapping = {row['cd']: row['cd_nm'] for row in error_codes}
-
-        # Create reverse mapping for status name to category
-        # 성공 = success, 수집중 = progress, 실패 = fail
-        status_to_category = {
-            '성공': 'success',
-            '수집중': 'progress',
-            '실패': 'fail'
-        }
+        # StatusCodeService를 사용하여 코드 기반으로 분류
+        from service.status_code_service import status_code_service
+        
+        # Service가 초기화되지 않았거나 빈 리스트 반환 시 기본값 사용
+        success_codes = status_code_service.get_success_codes() if status_code_service else []
+        fail_codes = status_code_service.get_fail_codes() if status_code_service else []
+        in_progress_codes = status_code_service.get_in_progress_codes() if status_code_service else []
+        
+        # 빈 리스트 체크 및 기본값 적용
+        if not success_codes:
+            success_codes = ['CD901']
+            print(f"[DEBUG-CODES] Using default success_codes: {success_codes}")
+        if not fail_codes:
+            fail_codes = ['CD902', 'CD903']
+            print(f"[DEBUG-CODES] Using default fail_codes: {fail_codes}")
+        if not in_progress_codes:
+            in_progress_codes = ['CD904']
+            print(f"[DEBUG-CODES] Using default in_progress_codes: {in_progress_codes}")
 
         for job in job_statuses_today:
             job_id = job['job_id']
             status = job['status']
 
-            if status != '예정':
+            # CD907(예정)이 아닌 경우에만 카운트
+            if status != 'CD907':
                 today_counts[job_id]["total_scheduled"] += 1
-                category = status_to_category.get(status, 'uncollected')
+                
+                # 코드 기반으로 카테고리 분류
+                if status in success_codes:
+                    category = 'success'
+                elif status in in_progress_codes:
+                    category = 'progress'
+                elif status in fail_codes:
+                    category = 'fail'
+                else:
+                    category = 'uncollected'
+                    
                 today_counts[job_id][category] += 1
+                
+                # [DEBUG] CD101 등 특정 job 로깅
+                if job_id in ['CD101', 'CD102']:
+                    print(f"[DEBUG-COUNT] {job_id}: status={status}, category={category}, success_codes={success_codes}, fail_codes={fail_codes}")
 
         return today_counts
 

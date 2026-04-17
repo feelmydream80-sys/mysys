@@ -2,6 +2,7 @@ from msys.database import get_db_connection
 from mapper.mst_mapper import MstMapper
 from mapper.user_mapper import UserMapper
 from mapper.dashboard_mapper import DashboardMapper
+from utils.kst_utils import utc_to_kst_date_str, parse_datetime_to_kst
 
 from datetime import datetime, timedelta
 import croniter
@@ -9,7 +10,6 @@ import pytz
 import re
 from typing import Optional, Dict, List
 from flask import current_app
-from utils.datetime_utils import utc_to_kst
 
 
 class CollectionScheduleService:
@@ -48,20 +48,23 @@ class CollectionScheduleService:
         """히스토리 데이터를 가져와서 날짜/Job ID별로 그룹화합니다."""
         dashboard_mapper = DashboardMapper(self.conn)
 
-        # 히스토리 데이터 조회
+        # 히스토리 데이터 조회 (SQL에서 이미 KST 문자열로 반환)
         history_data = dashboard_mapper.get_collection_history_for_schedule(start_date, end_date, allowed_job_ids)
 
         # 날짜/Job ID별 그룹화
         history_by_date_job = {}
         for hist in history_data:
             try:
-                # KST 변환 및 시간 정보 유지
-                start_dt_utc = hist['start_dt']
-                if start_dt_utc.tzinfo is None:
-                    start_dt_utc = pytz.utc.localize(start_dt_utc)
-                start_dt_kst = utc_to_kst(start_dt_utc)
-
-                date_key = start_dt_kst.strftime('%Y-%m-%d')
+                # scheduled_time (UTC)를 KST 기준 날짜로 변환
+                scheduled_time = hist.get('scheduled_time')
+                if scheduled_time:
+                    # UTC → KST 변환 후 날짜 추출
+                    date_key = utc_to_kst_date_str(scheduled_time)
+                else:
+                    # scheduled_time 없으면 start_dt (KST) 사용
+                    start_dt_str = hist['start_dt']
+                    date_key = start_dt_str[:10]  # YYYY-MM-DD 부분 추출
+                
                 job_key = hist['job_id']
 
                 key = f"{date_key}_{job_key}"
@@ -69,14 +72,16 @@ class CollectionScheduleService:
                     history_by_date_job[key] = []
 
                 history_by_date_job[key].append({
-                    'start_dt_kst': start_dt_kst,
+                    'start_dt_str': hist['start_dt'],
                     'status': hist['status'],
                     'job_id': job_key
                 })
             except Exception as e:
-                current_app.logger.warning(f"Error processing history record: {e}")
+                # current_app.logger.warning(f"Error processing history record: {e}")
                 continue
 
+        # [PIPELINE-1] 그룹화 결과: 177건 → ?개 키
+        # current_app.logger.info(f"[PIPELINE-1] history_keys={len(history_by_date_job)}, samples={list(history_by_date_job.keys())[:3]}")
         return history_by_date_job
 
     def _match_schedule_with_history(self, scheduled_tasks: List[Dict], history_by_date_job: Dict[str, List[Dict]]) -> None:
@@ -88,6 +93,16 @@ class CollectionScheduleService:
                 date_schedules[date_str] = []
             date_schedules[date_str].append(task)
 
+        # [DEBUG] 스케줄 상태 분포 로깅
+        debug_status_map = {}
+        for task in scheduled_tasks:
+            job_id = task['job_id']
+            status = task['status']
+            if job_id not in debug_status_map:
+                debug_status_map[job_id] = []
+            debug_status_map[job_id].append({'date': task['date'], 'status': status})
+        print(f"[DEBUG-MATCH-0] Initial schedule statuses sample: {dict(list(debug_status_map.items())[:3])}")
+
         for date_str, day_schedules in date_schedules.items():
             date_job_key = f"{date_str}_"
             day_histories = []
@@ -96,7 +111,7 @@ class CollectionScheduleService:
                     day_histories.extend(histories)
 
             if not day_histories:
-                current_app.logger.info(f"🔵 [{date_str}] 히스토리 없음 - 상태 유지: {[t['status'] for t in day_schedules]}")
+                print(f"[DEBUG-MATCH-1] [{date_str}] No history found, keeping original statuses")
                 continue
 
             job_schedules = {}
@@ -114,20 +129,28 @@ class CollectionScheduleService:
                     job_histories[job] = []
                 job_histories[job].append(hist)
 
+            print(f"[DEBUG-MATCH-2] [{date_str}] Schedules: {list(job_schedules.keys())[:5]}, Histories: {list(job_histories.keys())[:5]}")
+
             for job, schedules in job_schedules.items():
                 if job in job_histories:
                     schedules.sort(key=lambda x: x['date'])
-                    histories = sorted(job_histories[job], key=lambda x: x['start_dt_kst'])
+                    histories = sorted(job_histories[job], key=lambda x: x['start_dt_str'])
 
                     for i, hist in enumerate(histories):
                         if i < len(schedules):
+                            old_status = schedules[i]['status']
                             hist_status = hist.get('status')
                             if hist_status and str(hist_status).strip():
                                 schedules[i]['status'] = hist_status
-                                current_app.logger.info(f"🔵 [{date_str}] {job} 매칭됨 - hist_status: {hist_status}")
+                                print(f"[DEBUG-MATCH-3] [{date_str}] {job}: {old_status} -> {hist_status} (matched with {hist['start_dt_str']})")
                             else:
                                 schedules[i]['status'] = 'CD908'
-                            schedules[i]['actual_date'] = hist['start_dt_kst'].strftime('%Y-%m-%d %H:%M:%S')
+                                print(f"[DEBUG-MATCH-3] [{date_str}] {job}: {old_status} -> CD908 (no hist status)")
+                            schedules[i]['actual_date'] = hist['start_dt_str']
+
+        # [PIPELINE-2] 매칭 결과: scheduled_tasks 중 actual_date 포함된 작업 수
+        # matched_count = sum(1 for t in scheduled_tasks if 'actual_date' in t)
+        # current_app.logger.info(f"[PIPELINE-2] scheduled_tasks={len(scheduled_tasks)}, matched={matched_count}")
 
     def _get_allowed_job_ids_for_schedule(self, user: Optional[Dict]) -> Optional[List[str]]:
         """사용자 권한에 따라 허용된 Job ID 목록을 반환합니다."""
@@ -191,10 +214,11 @@ class CollectionScheduleService:
                         })
                         schedule_time = cron.get_next(datetime)
                 except (ValueError, KeyError):
-                    current_app.logger.warning(f"Skipping job '{cd}' due to invalid cron string: '{cron_str}'")
+                    # current_app.logger.warning(f"Skipping job '{cd}' due to invalid cron string: '{cron_str}'")
                     continue
                 except Exception as e:
-                    current_app.logger.error(f"Error parsing cron string '{cron_str}' for job '{cd}': {e}")
+                    # current_app.logger.error(f"Error parsing cron string '{cron_str}' for job '{cd}': {e}")
+                    pass
             current_date += timedelta(days=1)
 
         return scheduled_tasks
