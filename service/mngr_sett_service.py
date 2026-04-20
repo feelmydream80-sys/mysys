@@ -10,6 +10,7 @@ from mapper.mngr_sett_mapper import MngrSettMapper
 from dao.schedule_settings_dao import ScheduleSettingsDAO
 from mapper.user_mapper import UserMapper
 from msys.column_mapper import convert_to_new_columns, convert_to_legacy_columns
+from utils.job_utils import should_exclude_job
 
 # Default settings are defined once as a constant for consistency.
 DEFAULT_ADMIN_SETTINGS = {
@@ -396,21 +397,7 @@ class MngrSettService:
 
     def _should_exclude_job(self, job_id):
         """설정 생성을 제외해야 할 job_id인지 확인합니다."""
-        if not job_id or not str(job_id).strip():
-            return True
-        
-        job_id = str(job_id).upper()
-        
-        # CD900~CD999 범위 제외
-        if job_id.startswith('CD') and len(job_id) > 2:
-            try:
-                cd_number = int(job_id[2:])
-                if (cd_number >= 900 and cd_number <= 999) or (cd_number % 100 == 0):
-                    return True
-            except ValueError:
-                pass
-        
-        return False
+        return should_exclude_job(job_id)
 
     def export_settings(self) -> List[Dict]:
         try:

@@ -1,6 +1,43 @@
-popupManagement.js:388 Uncaught (in promise) TypeError: Cannot set properties of null (setting 'value')
-    at PopupManagementTab.openPopupModal (popupManagement.js:388:64)
-    at HTMLButtonElement.<anonymous> (popupManagement.js:62:76)
+## 현재 상태
+Dashboard에서 CD400(100단위 Job)이 표시되어 사용자 혼란 발생. 
+동일한 100단위 제외 로직이 여러 파일에 중복 구현되어 유지보수 어려움.
 
-﻿
+## 완료된 것
+- [x] 원인 분석: TB_CON_HIST에 CD400만 오늘 데이터 존재, use_yn='Y' 확인
+- [x] utils/job_utils.py 신규 생성: should_exclude_job() 공통 함수 구현
+- [x] service/dashboard_service.py: get_summary()에 100단위 필터링 적용
+- [x] service/mngr_sett_service.py: _should_exclude_job() 메서드 → 공통 함수 사용하도록 리팩토링
+- [x] routes/api/data_definition_api.py: 중복 검증 로직 → 공통 함수 사용하도록 리팩토링
+- [x] service/data_definition_service.py: 7개 중복 로직 → 공통 함수 사용하도록 리팩토링
+- [x] 지침 수정: 06.git-rules.md에 상세 커밋 메시지/CR 보고서 템플릿 추가
 
+## 진행 중인 것
+없음 (Build Mode 작업 완료)
+
+## 미결 결정사항
+- CD400 제외 후 Dashboard에서 정상적으로 사라지는지 테스트 필요
+- CD101 성공률이 계속 정상 표시되는지 확인 필요
+
+## 다음 작업
+- [ ] Dashboard 접속하여 CD400 미표시 확인
+- [ ] CD101 성공률 100% 정상 표시 확인
+- [ ] 기존 기능 (mngr_sett, data_definition) 정상 작동 확인
+- [ ] CR 보고서 작성 (REQ-2604-011.md)
+- [ ] Git commit & push
+
+## 주의사항 / 이전 실수
+- 공통 유틸로 분리하여 코드 중복 제거 (유지보수성 향상)
+- 로깅 추가: "[FILTER] After 100-unit exclusion: X job IDs remaining"
+- DashboardService에서는 TB_CON_HIST 기준으로 job_id 조회 후 use_yn 필터링 적용
+- 100단위 제외는 use_yn 필터링 이후에 적용됨
+
+## 관련 파일 경로
+| 구분 | 파일 경로 | 변경 유형 |
+|------|-----------|-----------|
+| Backend | utils/job_utils.py | 생성 |
+| Backend | service/dashboard_service.py | 수정 |
+| Backend | service/mngr_sett_service.py | 수정 |
+| Backend | routes/api/data_definition_api.py | 수정 |
+| Backend | service/data_definition_service.py | 수정 |
+| Document | .clinerules/06.git-rules.md | 수정 |
+| Document | dashboard_improvement_plan.md | 수정 |

@@ -5,6 +5,7 @@ from service.data_definition_service import DataDefinitionService
 from msys.database import get_db_connection
 from routes.auth_routes import login_required, check_password_change_required
 from utils.datetime_utils import convert_datetime_fields_to_kst_str
+from utils.job_utils import should_exclude_job
 
 bp = Blueprint('data_definition_api', __name__, url_prefix='/api/data_definition')
 
@@ -95,10 +96,9 @@ def create_mngr_sett():
         
         if not cd:
             return jsonify({"message": "CD is required."}), 400
-            
+
         # CD900-CD999 범위와 100의 배수는 제외
-        cd_number = int(cd[2:]) if cd.startswith('CD') and cd[2:].isdigit() else None
-        if cd_number and ((900 <= cd_number <= 999) or (cd_number % 100 == 0)):
+        if should_exclude_job(cd):
             return jsonify({"message": "CD900-CD999 범위와 100의 배수는 제외됩니다."}), 400
         
         with get_db_connection() as conn:

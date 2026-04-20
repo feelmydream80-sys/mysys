@@ -16,6 +16,7 @@ from service.collection_schedule_service import CollectionScheduleService
 from datetime import datetime
 import pytz
 from collections import defaultdict
+from utils.job_utils import should_exclude_job
 
 
 class DashboardService:
@@ -53,6 +54,16 @@ class DashboardService:
             filtered_job_ids = list(set(allowed_job_ids) & set(active_job_ids))
         else:
             filtered_job_ids = active_job_ids
+
+        if not filtered_job_ids:
+            return []
+
+        # 3.5. Exclude 100-unit jobs (CD100, CD200, etc.) and CD900~CD999
+        filtered_job_ids = [
+            jid for jid in filtered_job_ids
+            if not should_exclude_job(jid)
+        ]
+        logging.info(f"[FILTER] After 100-unit exclusion: {len(filtered_job_ids)} job IDs remaining")
 
         if not filtered_job_ids:
             return []
