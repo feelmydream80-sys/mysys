@@ -355,6 +355,43 @@ function renderCardSummary(data, searchTerm = '') {
     }
 }
 
+function getGroupDisplayName(group, groupData) {
+    const displayMode = document.querySelector('input[name="displayMode"]:checked')?.value || 'code';
+    
+    // 그룹의 첫 번째 job에서 기본 ID 추출하여 그룹명 조회
+    let groupName = '';
+    const statuses = Object.values(groupData.statuses || {});
+    if (statuses.length > 0 && statuses[0].jobs && statuses[0].jobs.length > 0) {
+        const firstJob = statuses[0].jobs[0];
+        // "CD101(14시)" -> "CD101" 추출
+        const match = firstJob.match(/([^(]+)/);
+        if (match) {
+            const baseJobId = match[1].trim();
+            // CD101 -> CD100 (그룹 코드로 변환)
+            const numericPart = baseJobId.substring(2);
+            let groupJobId = '';
+            if (numericPart.length >= 3) {
+                // CD10x -> CD100
+                groupJobId = baseJobId.substring(0, 4) + '0';
+            } else {
+                groupJobId = baseJobId.substring(0, 3) + '00';
+            }
+            groupName = mstData[groupJobId] || mstData[baseJobId] || '';
+        }
+    }
+    
+    // 표시 모드에 따라 그룹명 반환
+    switch (displayMode) {
+        case 'name':
+            return groupName || group;
+        case 'both':
+            return groupName ? `${group} (${groupName})` : group;
+        case 'code':
+        default:
+            return group;
+    }
+}
+
 function createGroupCard(group, groupData) {
     const groupCard = document.createElement('div');
     groupCard.className = 'group-card';
@@ -367,13 +404,15 @@ function createGroupCard(group, groupData) {
     });
     const summaryText = summary.join(' / ');
 
+    const groupDisplayName = getGroupDisplayName(group, groupData);
+
     const groupHeader = document.createElement('div');
     groupHeader.className = 'group-header';
     groupHeader.style.backgroundColor = groupData.group_bg_colr || 'rgba(107, 114, 128, 0.5)';
     groupHeader.style.color = groupData.group_txt_colr || '#ffffff';
     groupHeader.innerHTML = `
         <div class="group-title">
-            ${group}
+            ${groupDisplayName}
             <span class="group-summary">${summaryText}</span>
         </div>
         <div class="group-total">총 ${groupData.total}건</div>
@@ -771,7 +810,9 @@ function runPhysicsAnimation(containerId, jobs, color) {
 
     const balls = [];
     for (let i = 0; i < jobs.length; i++) {
-        const ball = new Ball(color, jobs[i], i, width, balls, ballRadius);
+        // 툴팁에 getDisplayName() 적용하여 라디오 버튼 선택에 따라 표시값 변경
+        const displayTooltip = getDisplayName(jobs[i]);
+        const ball = new Ball(color, displayTooltip, i, width, balls, ballRadius);
         container.appendChild(ball.createElement());
         balls.push(ball);
     }
