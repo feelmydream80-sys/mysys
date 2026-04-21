@@ -13,15 +13,17 @@ function getDisplayName(cd) {
 
     const baseCd = match[1].trim();
     const suffix = match[2] || '';
-    const name = mstData[baseCd] || '';
-
-    if (!name) return cd; // No name found, return original
+    const mstInfo = mstData[baseCd] || {};
+    const name = mstInfo.cd_nm || '';
+    const desc = mstInfo.cd_desc || '';
 
     switch (displayMode) {
         case 'name':
-            return name + suffix;
+            return name ? name + suffix : cd;
         case 'both':
-            return `${cd} (${name})`;
+            return name ? `${cd} (${name})` : cd;
+        case 'desc':
+            return desc ? desc + suffix : cd;
         case 'code':
         default:
             return cd;
@@ -43,12 +45,18 @@ function createTooltipContent(jobId, group, status) {
     const baseJobId = match ? match[1].trim() : jobId;
     const hour = match && match[2] ? match[2] : '';
     
-    // MST 데이터에서 이름 찾기
-    const name = mstData[baseJobId] || '';
+    // MST 데이터에서 이름과 설명 찾기
+    const mstInfo = mstData[baseJobId] || {};
+    const name = mstInfo.cd_nm || '';
+    const desc = mstInfo.cd_desc || '';
     const displayName = name || baseJobId;
     
     lines.push(`Job: ${displayName}`);
     lines.push(`ID: ${baseJobId}`);
+    
+    if (desc) {
+        lines.push(`설명: ${desc}`);
+    }
     
     if (group) {
         lines.push(`그룹: ${group}`);
@@ -137,7 +145,10 @@ async function fetchAndRenderCardSummary(searchTerm = '') {
                 // use_yn 필터 적용
                 const activeMstResult = filterActiveMstData(mstResult);
                 mstData = activeMstResult.reduce((acc, item) => {
-                    acc[item.job_id] = item.cd_nm;
+                    acc[item.job_id] = {
+                        cd_nm: item.cd_nm || '',
+                        cd_desc: item.cd_desc || ''
+                    };
                     return acc;
                 }, {});
             }
@@ -360,6 +371,7 @@ function getGroupDisplayName(group, groupData) {
     
     // 그룹의 첫 번째 job에서 기본 ID 추출하여 그룹명 조회
     let groupName = '';
+    let groupDesc = '';
     const statuses = Object.values(groupData.statuses || {});
     if (statuses.length > 0 && statuses[0].jobs && statuses[0].jobs.length > 0) {
         const firstJob = statuses[0].jobs[0];
@@ -380,7 +392,9 @@ function getGroupDisplayName(group, groupData) {
                 // CDxx -> CDxx00 (1~2자리)
                 groupJobId = 'CD' + numericPart + '00';
             }
-            groupName = mstData[groupJobId] || mstData[baseJobId] || '';
+            const groupMstInfo = mstData[groupJobId] || mstData[baseJobId] || {};
+            groupName = groupMstInfo.cd_nm || '';
+            groupDesc = groupMstInfo.cd_desc || '';
         }
     }
     
@@ -390,6 +404,8 @@ function getGroupDisplayName(group, groupData) {
             return groupName || group;
         case 'both':
             return groupName ? `${group} (${groupName})` : group;
+        case 'desc':
+            return groupDesc || group;
         case 'code':
         default:
             return group;
