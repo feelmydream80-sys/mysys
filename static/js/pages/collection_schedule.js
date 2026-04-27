@@ -1246,8 +1246,17 @@ export function init() {
     }
 
     // Initial load - 게스트는 월간으로 고정
-    const urlParams = new URLSearchParams(window.location.search);
-    const isGuest = urlParams.get('guest') === '1';
+    // 세션의 is_guest 정보를 확인 (body data-user attribute에서 파싱)
+    // body 변수는 init() 함수 시작 부분에서 이미 선언됨 (Line 18)
+    let isGuest = false;
+    if (body && body.dataset.user) {
+        try {
+            const userData = JSON.parse(body.dataset.user);
+            isGuest = userData.is_guest === true;
+        } catch (e) {
+            console.error('Failed to parse user data for guest check:', e);
+        }
+    }
     const initialView = isGuest ? 'monthly' : 'weekly';
     // 초기 뷰에 따라 오프셋 초기화
     monthOffset = 0;

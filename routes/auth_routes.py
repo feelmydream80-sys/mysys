@@ -127,6 +127,11 @@ def check_password_change_required(f):
         if is_admin:
             return f(*args, **kwargs)
         
+        # Bypass check for guest users (게스트는 비밀번호 변경 불필요)
+        is_guest = session.get('user', {}).get('is_guest', False)
+        if is_guest:
+            return f(*args, **kwargs)
+        
         if session.get('force_password_change'):
             flash("계속하려면 비밀번호를 변경해야 합니다.", "warning")
             return redirect(url_for('auth.change_password'))

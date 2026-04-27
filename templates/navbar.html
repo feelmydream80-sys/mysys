@@ -30,7 +30,9 @@
                             </svg>
                         </button>
                         <div id="user-menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg p-2 z-50">
+                            {% if not g.user.is_guest %}
                             <a href="{{ url_for('auth.change_password') }}" class="block w-full text-center bg-blue-500 hover:bg-blue-600 text-white px-1 py-2 rounded-md transition duration-300 font-medium whitespace-nowrap mb-2">비밀번호 변경</a>
+                            {% endif %}
                             <a href="{{ url_for('auth.logout') }}" class="block w-full text-center bg-red-500 hover:bg-red-600 text-white px-1 py-2 rounded-md transition duration-300 font-medium whitespace-nowrap">로그아웃</a>
                         </div>
                     </div>
