@@ -217,6 +217,11 @@ class UserListRenderer {
         const tbody = document.getElementById('userAccessTableBody');
         if (!tbody) return;
 
+        // 테이블 렌더링 전에 헤더 동기화
+        if (window.userAccessInfo) {
+            window.userAccessInfo.updateMonthHeaders();
+        }
+
         if (users.length === 0) {
             tbody.innerHTML = `
                 <tr>

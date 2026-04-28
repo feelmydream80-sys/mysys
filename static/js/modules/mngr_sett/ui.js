@@ -47,6 +47,13 @@ export function setupTabs() {
             if (tab.dataset.tab === 'statistics') {
                 // statisticsTab.activate() 호출은 mngr_sett.js에서 처리됨
             }
+
+// 사용자접속정보 탭 재진입 시 데이터 리로드 (헤더 먼저 업데이트)
+            if (tab.dataset.tab === 'userAccessInfo' && window.userAccessInfo) {
+                window.userAccessInfo.updateMonthHeaders();
+                window.userAccessInfo.updateThresholdInputs();
+                window.userAccessInfo.refresh();
+            }
         });
     });
 }
