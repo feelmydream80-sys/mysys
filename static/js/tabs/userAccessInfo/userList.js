@@ -7,25 +7,10 @@ import { config } from './config.js';
 import statusManager from './statusManager.js';
 import { formatDBDateTime, getLast6Months, getWeeksPerMonthFn } from '../../modules/common/dateUtils.js';
 
-// 히트맵 색상 계산 (모드별 다른 기준)
+// 히트맵 색상 계산 (파스텔 퍼플)
 function hmColor(value, mode = 'all') {
     if (!value) return '#f3f4f6'; // 0회: 회색
-    
-    if (mode === 'distinct') {
-        // 1일 1접속 모드: 1-5회 기준
-        if (value === 1) return '#dbeafe';  // 1회: 연한 파랑
-        if (value === 2) return '#93c5fd';  // 2회: 중간 파랑
-        if (value === 3) return '#3b82f6';  // 3회: 진한 파랑
-        if (value >= 4) return '#1e40af';   // 4-5회: 가장 진한 파랑
-    } else {
-        // 중복 포함 모드: 1-10, 11-30, 31-50, 51-100, 100+ 기준
-        if (value <= 10) return '#dbeafe';   // 1-10회: 연한 파랑
-        if (value <= 30) return '#93c5fd';   // 11-30회: 중간 파랑
-        if (value <= 50) return '#3b82f6';   // 31-50회: 진한 파랑
-        if (value <= 100) return '#1d4ed8';  // 51-100회: 더 진한 파랑
-        return '#1e40af';                     // 100회+: 가장 진한 파랑
-    }
-    return '#f3f4f6';
+    return '#C4A5F8'; // 파스텔 퍼플 (일정)
 }
 
 // 날짜 차이 계산
@@ -274,12 +259,7 @@ class UserListRenderer {
 
     renderPagination(data) {
         const container = document.getElementById('userAccessPagination');
-        const resultCount = document.getElementById('userAccessResultCount');
         const totalCountEl = document.getElementById('userAccessTotalCount');
-        
-        if (resultCount) {
-            resultCount.textContent = data.total + '명';
-        }
         
         // 총 인원 표시 업데이트
         if (totalCountEl) {
@@ -382,9 +362,15 @@ class UserListRenderer {
                 return `<div style="width: 4px; height: ${heightPx}px; background: ${color}; border-radius: 1px; flex-shrink: 0;" title="${idx + 1}주차: ${val}회"></div>`;
             }).join('');
             
+            // 해당 월의 총합
+            const monthTotal = monthWeeks.reduce((sum, v) => sum + (v || 0), 0);
+            
             return `<td style="text-align: center; padding: 8px 4px;">
-                <div style="display: flex; align-items: flex-end; justify-content: center; gap: 2px; height: 30px;">
-                    ${bars}
+                <div style="display: flex; align-items: center; justify-content: center; gap: 6px; height: 30px;">
+                    <div style="display: flex; align-items: flex-end; gap: 2px;">
+                        ${bars}
+                    </div>
+                    <span style="font-size: 10px; font-weight: 500; color: #666; min-width: 20px; text-align: left;">${monthTotal}</span>
                 </div>
             </td>`;
         }).join('');
@@ -422,8 +408,11 @@ class UserListRenderer {
                 return `${x},${y}`;
             }).join(' ');
 
+            // 해당 월의 총합
+            const monthTotal = monthWeeks.reduce((sum, v) => sum + (v || 0), 0);
+
             return `<td style="text-align: center; padding: 8px 4px;">
-                <div style="display: flex; flex-direction: column; align-items: center; gap: 2px;">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 6px;">
                     <svg width="50" height="25" style="vertical-align: middle;">
                         <polyline points="${points}" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         ${monthWeeks.map((val, i) => {
@@ -432,7 +421,7 @@ class UserListRenderer {
                             return `<circle cx="${x}" cy="${y}" r="2" fill="${i === monthWeeks.length - 1 ? '#1e40af' : '#93c5fd'}"/>`;
                         }).join('')}
                     </svg>
-                    <span style="font-size: 10px; font-weight: 500; color: ${monthWeeks[monthWeeks.length - 1] > 0 ? '#333' : '#999'};">${monthWeeks[monthWeeks.length - 1]}</span>
+                    <span style="font-size: 10px; font-weight: 500; color: #666; min-width: 20px; text-align: left;">${monthTotal}</span>
                 </div>
             </td>`;
         }).join('');
