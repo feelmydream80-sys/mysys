@@ -154,10 +154,10 @@ function renderEventLogToasts(logs, errorCodeMap = {}) {
             
             // 기본 아이콘 매핑 (CD900번대 코드용)
             const defaultIconMap = {
-                'CD901': adminSetting.sr_success_icon_code || '🟢',
-                'CD902': adminSetting.cf_fail_icon_code || '🔴',
+                'CD901': adminSetting.sr_success_icon_code || '🔔',
+                'CD902': adminSetting.cf_fail_icon_code || '🔔',
                 'CD903': adminSetting.cf_warning_icon_code || '🟠',
-                'CD904': adminSetting.sr_success_icon_code || '🔵'
+                'CD904': adminSetting.sr_success_icon_code || '🔔'
             };
             icon = defaultIconMap[status] || '🔔';
 
@@ -270,7 +270,7 @@ export async function loadEventLogPage(page = 1) {
         });
         
     } catch (error) {
-        console.error('이벤트 로그 로드 중 오류:', error);
+        
         allEventLogData = [];
         initPagination({
             fullData: [],
@@ -360,7 +360,7 @@ export function initEventLog(settings) {
                     throw new Error(errorData.error || '서버 응답 오류');
                 }
             } catch (error) {
-                console.error('이벤트 로그 저장 실패:', error);
+                
                 showMessage(`이벤트 로그 저장에 실패했습니다: ${error.message}`, 'error');
                 this.textContent = '저장 실패';
             } finally {
