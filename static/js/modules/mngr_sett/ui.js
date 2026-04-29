@@ -48,11 +48,11 @@ export function setupTabs() {
                 // statisticsTab.activate() 호출은 mngr_sett.js에서 처리됨
             }
 
-// 사용자접속정보 탭 재진입 시 데이터 리로드 (헤더 먼저 업데이트)
+            // 사용자접속정보 탭 활성화 시 데이터 reload
             if (tab.dataset.tab === 'userAccessInfo' && window.userAccessInfo) {
                 window.userAccessInfo.updateMonthHeaders();
                 window.userAccessInfo.updateThresholdInputs();
-                window.userAccessInfo.refresh();
+                window.userAccessInfo.refresh(1, null, null, true);
             }
         });
     });
@@ -313,10 +313,6 @@ export function initSettingsPagination() {
  * @param {Object} paginationInfo - 페이징 정보 { total, page, per_page, total_pages }
  */
 export function renderSettingsTable(allMngrSett, allIcons, paginationInfo = null) {
-    console.log('=== renderSettingsTable() called ===');
-    console.log('=== allMngrSett:', allMngrSett);
-    console.log('=== allIcons:', allIcons);
-    console.log('=== paginationInfo:', paginationInfo);
     
     const container = document.getElementById('mngr_sett_page');
     if (!container) return;
@@ -953,14 +949,12 @@ function saveEdit(row, allIcons) {
                     populateIconSelects(updatedIcons);
                 })
                 .catch(error => {
-                    console.error('최신 아이콘 데이터 가져오기 실패:', error);
                     exitEditMode(row, allIcons);
                     renderIconTable(allIcons);
                     populateIconSelects(allIcons);
                 });
         })
         .catch(error => {
-            console.error('아이콘 저장 실패:', error);
             showToast('아이콘 정보 업데이트 실패: ' + error.message, 'error');
         });
 }

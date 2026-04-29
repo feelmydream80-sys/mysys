@@ -41,8 +41,8 @@ class UserAccessInfo {
     // 차트 타입 설정 (히트맵 vs 선차트) - 전역 적용
     setChartType(type) {
         this.chartType = type;
-        // userListRenderer의 차트 타입도 동기화
-        if (this.userListRenderer) {
+        // init 완료 후에만 userListRenderer의 차트 타입 동기화 (중복 렌더링 방지)
+        if (this.isInitialized && this.userListRenderer) {
             this.userListRenderer.setChartType(type);
         }
         this.updateChartTypeButtons(type);
@@ -81,39 +81,48 @@ class UserAccessInfo {
     }
 
     async init() {
-        // 이미 초기화됨
         if (this.isInitialized) return;
 
-        // Chart.js 로드 확인
         try {
             await ensureChartJS();
         } catch (e) {
-            console.warn('Chart.js 로드 실패:', e);
         }
 
-        // 임계값 로드 (DB에서)
         await statusManager.loadThresholds();
-
-        // userList.js에 임계값 전달
         setThresholds(statusManager.thresholds);
-
-        // HTML input 요소에 DB 값 설정
         this.updateThresholdInputs();
-
-        // 월별 히트맵 헤더 업데이트
         this.updateMonthHeaders();
-
-        // 초기 렌더링
-        await this.refresh();
-
-        // 이벤트 리스너 설정
         this.setupEventListeners();
-
-        // 차트 타입 버튼 초기화
         this.updateChartTypeButtons(this.chartType);
 
         this.isInitialized = true;
-        console.log('UserAccessInfo initialized with thresholds:', statusManager.thresholds);
+    }
+
+    // Promise 기반 파이프라인: 중복 호출 방지
+    async pipeline() {
+        if (this._pipelinePromise) {
+            return this._pipelinePromise;
+        }
+
+        this._pipelinePromise = this._executePipeline();
+        
+        try {
+            return await this._pipelinePromise;
+        } finally {
+            this._pipelinePromise = null;
+        }
+    }
+
+    async _executePipeline() {
+        // 순차 실행: 초기화 → 데이터 로드 → 렌더링 → 애니메이션
+        if (!this.isInitialized) {
+            await this.init();
+        } else {
+            // 이미 초기화됨: 헤더 업데이트 후 forceReload로 데이터 갱신
+            this.updateMonthHeaders();
+            this.updateThresholdInputs();
+            await userListRenderer.render(1, null, null, true);
+        }
     }
 
     updateMonthHeaders() {
@@ -190,11 +199,11 @@ class UserAccessInfo {
         }
     }
 
-    async refresh(page = 1, pageSize = null, searchTerm = null) {
+    async refresh(page = 1, pageSize = null, searchTerm = null, forceReload = false) {
         const ps = pageSize || parseInt(document.getElementById('userAccessItemsPerPage')?.value || 10);
         const term = searchTerm !== null ? searchTerm : (document.getElementById('userAccessSearchInput')?.value || '');
 
-        await userListRenderer.render(page, ps, term);
+        await userListRenderer.render(page, ps, term, 'none', 0, forceReload);
     }
 
     updateThresholdInputs() {
@@ -291,7 +300,6 @@ class UserAccessInfo {
             // 차트 렌더링
             this.renderCharts(user);
         } catch (e) {
-            console.error('Failed to load user detail:', e);
             this.showMessage('사용자 상세 정보 로드에 실패했습니다.', 'error');
         }
     }
@@ -325,20 +333,14 @@ class UserAccessInfo {
         }
     }
 
-    // 차트 렌더링
     renderCharts(user) {
-        // 주간 차트 렌더링
         this.renderWeeklyChart(user);
         
-        // 차트 타입 버튼 상태 업데이트
         this.updateChartTypeButtons(this.chartType);
-        // Chart.js가 로드되어 있는지 확인
         if (typeof Chart === 'undefined') {
-            console.error('Chart.js is not loaded');
             return;
         }
 
-        // 기존 차트 제거
         if (this.chartInst) {
             this.chartInst.destroy();
             this.chartInst = null;
@@ -402,14 +404,11 @@ class UserAccessInfo {
         }
     }
 
-    // 주간 히트맵/차트 렌더링
     renderWeeklyChart(user) {
         if (typeof Chart === 'undefined') {
-            console.error('Chart.js is not loaded');
             return;
         }
 
-        // 기존 주간 차트 제거
         if (this.weeklyChartInst) {
             this.weeklyChartInst.destroy();
             this.weeklyChartInst = null;
@@ -591,23 +590,24 @@ const userAccessInfo = new UserAccessInfo();
 // 전역에서 접근 가능하도록 등록
 window.userAccessInfo = userAccessInfo;
 
-// 초기화: 탭이 선택되면 자동으로 init 실행
-document.addEventListener('DOMContentLoaded', () => {
-    // Tab switching 이벤트 리스너
+// Promise 기반 파이프라인: 중복 호출 방지
+function setupTabHandlers() {
     const tabButtons = document.querySelectorAll('.tab-button[data-tab="userAccessInfo"]');
     if (tabButtons.length > 0) {
         tabButtons.forEach(btn => {
             btn.addEventListener('click', async () => {
-                // 탭이 활성화되면 초기화
-                setTimeout(async () => {
-                    const tabContent = document.getElementById('userAccessInfo');
-                    if (tabContent && tabContent.classList.contains('active')) {
-                        await userAccessInfo.init();
-                    }
-                }, 100);
+                // 파이프라인 실행: 탭 활성화 시 한 번만 데이터 로드
+                await userAccessInfo.pipeline();
             });
         });
     }
-});
+}
+
+// DOM 준비 상태 확인 후 핸들러 설정
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupTabHandlers);
+} else {
+    setupTabHandlers();
+}
 
 export default userAccessInfo;

@@ -13,6 +13,46 @@ function hmColor(value, mode = 'all') {
     return '#C4A5F8'; // 파스텔 퍼플 (일정)
 }
 
+// 애니메이션 스타일 전역 플래그
+window.__userAccessAnimationsAdded = window.__userAccessAnimationsAdded || false;
+
+// 애니메이션 스타일 추가 (한 번만)
+(function addAnimationStyles() {
+    if (window.__userAccessAnimationsAdded || document.getElementById('user-access-animations')) {
+        return;
+    }
+    window.__userAccessAnimationsAdded = true;
+    
+    const style = document.createElement('style');
+    style.id = 'user-access-animations';
+    style.textContent = `
+        @keyframes heatmapGrow {
+            from { transform: scaleY(0); opacity: 0; }
+            to { transform: scaleY(1); opacity: 1; }
+        }
+        @keyframes lineDraw {
+            from { stroke-dashoffset: var(--line-length, 100); }
+            to { stroke-dashoffset: 0; }
+        }
+        @keyframes pointAppear {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .heatmap-bar {
+            transform-origin: bottom;
+            animation: heatmapGrow 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        .line-path {
+            animation: lineDraw 0.6s ease-out forwards;
+        }
+        .line-point {
+            transform-origin: center;
+            animation: pointAppear 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+    `;
+    document.head.appendChild(style);
+})();
+
 // 날짜 차이 계산
 function daysAgo(dateStr) {
     if (!dateStr) return 999;
@@ -44,13 +84,18 @@ class UserListRenderer {
         this.users = []; // 사용자 데이터 캐시
         this.mode = 'all'; // 'all' (중복 포함) 또는 'distinct' (1일 1접속)
         this.chartType = 'heatmap'; // 전역 차트 타입 (heatmap 또는 line) - 모든 사용자 동일
+        this._renderDebounceTimer = null; // 렌더링 디바운스 타이머
+        this._isRendering = false; // 렌더링 중 플래그
+        this._loadingPromise = null; // Promise 기반 파이프라인: 중복 API 호출 방지
     }
 
     // 전역 차트 타입 설정
     setChartType(chartType) {
         this.chartType = chartType;
-        // 전체 테이블 다시 렌더링
-        this.renderTable(this.users);
+        // init 완료된 경우에만 테이블 재렌더링 (중복 방지)
+        if (window.userAccessInfo?.isInitialized) {
+            this.renderTable(this.users);
+        }
         // 버튼 상태 업데이트
         this.updateChartTypeButtons();
     }
@@ -81,26 +126,50 @@ class UserListRenderer {
         await this.render(this.currentPage, this.pageSize, this.searchTerm, this.filterMode, this.filterDays);
     }
 
-    async render(page = 1, pageSize = 10, searchTerm = '', filterMode = 'none', filterDays = 0) {
+    // Promise 기반: 중복 호출 방지
+    async render(page = 1, pageSize = 10, searchTerm = '', filterMode = 'none', filterDays = 0, forceReload = false) {
+        // 이미 진행 중이면 기존 Promise 반환
+        if (this._loadingPromise) {
+            return this._loadingPromise;
+        }
+
+        this._loadingPromise = this._doRender(page, pageSize, searchTerm, filterMode, filterDays, forceReload);
+        
+        try {
+            return await this._loadingPromise;
+        } finally {
+            this._loadingPromise = null;
+        }
+    }
+
+    async _doRender(page, pageSize, searchTerm, filterMode, filterDays, forceReload) {
         this.currentPage = page;
         this.pageSize = pageSize;
         this.searchTerm = searchTerm;
         this.filterMode = filterMode;
         this.filterDays = filterDays;
 
-        // API에서 사용자 데이터 가져오기
-        const data = await this.fetchUsers(page, pageSize, searchTerm);
-        this.users = data.items;
+        let data = null;
+
+        // forceReload가 true이거나 캐시된 데이터가 없으면 API에서 다시 로드
+        if (forceReload || !this.users || this.users.length === 0) {
+            data = await this.fetchUsers(page, pageSize, searchTerm);
+            this.users = data.items;
+        }
 
         // 필터 적용
-        if (filterMode === 'all' && filterDays > 0) {
+        if (filterMode === 'all' && filterDays > 0 && this.users) {
             this.users = this.users.filter(u => daysAgo(u.last_acs_dt) >= filterDays);
-            data.total = this.users.length;
-            data.total_pages = Math.ceil(data.total / pageSize);
+            if (data) {
+                data.total = this.users.length;
+                data.total_pages = Math.ceil(data.total / pageSize);
+            }
         }
 
         this.renderTable(this.users);
-        this.renderPagination(data);
+        if (data && data.total !== undefined) {
+            this.renderPagination(data);
+        }
         this.updateChartTypeButtons();
 
         return data;
@@ -150,8 +219,6 @@ class UserListRenderer {
                 total_pages: data.total_pages
             };
         } catch (e) {
-            console.error('Failed to fetch users:', e);
-            // 에러 시 빈 결과 반환
             return {
                 items: [],
                 total: 0,
@@ -199,12 +266,21 @@ class UserListRenderer {
     }
 
     renderTable(users) {
+        // 디바운싱: 50ms 이내 중복 호출 방지
+        if (this._renderDebounceTimer) {
+            clearTimeout(this._renderDebounceTimer);
+        }
+        
+        this._renderDebounceTimer = setTimeout(() => {
+            this._doRenderTable(users);
+        }, 50);
+    }
+    
+    _doRenderTable(users) {
         const tbody = document.getElementById('userAccessTableBody');
-        if (!tbody) return;
-
-        // 테이블 렌더링 전에 헤더 동기화
-        if (window.userAccessInfo) {
-            window.userAccessInfo.updateMonthHeaders();
+        if (!tbody) {
+            this._renderDebounceTimer = null;
+            return;
         }
 
         if (users.length === 0) {
@@ -215,6 +291,7 @@ class UserListRenderer {
                     </td>
                 </tr>
             `;
+            this._renderDebounceTimer = null;
             return;
         }
 
@@ -255,6 +332,8 @@ class UserListRenderer {
                 </tr>
             `;
         }).join('');
+        
+        this._renderDebounceTimer = null;
     }
 
     renderPagination(data) {
@@ -359,7 +438,8 @@ class UserListRenderer {
                 // 값에 비례하여 높이 조정 (최소 30px의 20% = 6px, 최대 100% = 30px)
                 const heightPercent = Math.min(100, Math.max(20, val * 5)); // 값 * 5%로 높이 결정
                 const heightPx = Math.round(30 * heightPercent / 100);
-                return `<div style="width: 4px; height: ${heightPx}px; background: ${color}; border-radius: 1px; flex-shrink: 0;" title="${idx + 1}주차: ${val}회"></div>`;
+                const delay = idx * 40; // 각 막대당 40ms 지연
+                return `<div class="heatmap-bar" style="width: 4px; height: ${heightPx}px; background: ${color}; border-radius: 1px; flex-shrink: 0; animation-delay: ${delay}ms; opacity: 0;" title="${idx + 1}주차: ${val}회"></div>`;
             }).join('');
             
             // 해당 월의 총합
@@ -402,11 +482,22 @@ class UserListRenderer {
             }
 
             const maxVal = Math.max(...monthWeeks, 1);
-            const points = monthWeeks.map((val, i) => {
+            const pointsArr = monthWeeks.map((val, i) => {
                 const x = (i / (monthWeeks.length - 1 || 1)) * 50;
                 const y = 25 - ((val / maxVal) * 20);
-                return `${x},${y}`;
-            }).join(' ');
+                return { x, y, val };
+            });
+            const points = pointsArr.map(p => `${p.x},${p.y}`).join(' ');
+
+            // 실제 선 길이 계산 (피타고라스 정리)
+            let lineLength = 0;
+            for (let i = 1; i < pointsArr.length; i++) {
+                const dx = pointsArr[i].x - pointsArr[i-1].x;
+                const dy = pointsArr[i].y - pointsArr[i-1].y;
+                lineLength += Math.sqrt(dx * dx + dy * dy);
+            }
+            // 여유 있게 1.5배 (stroke-linecap 등 고려)
+            lineLength = Math.ceil(lineLength * 1.5);
 
             // 해당 월의 총합
             const monthTotal = monthWeeks.reduce((sum, v) => sum + (v || 0), 0);
@@ -414,17 +505,20 @@ class UserListRenderer {
             return `<td style="text-align: center; padding: 8px 4px;">
                 <div style="display: flex; align-items: center; justify-content: center; gap: 6px;">
                     <svg width="50" height="25" style="vertical-align: middle;">
-                        <polyline points="${points}" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        ${monthWeeks.map((val, i) => {
-                            const x = (i / (monthWeeks.length - 1 || 1)) * 50;
-                            const y = 25 - ((val / maxVal) * 20);
-                            return `<circle cx="${x}" cy="${y}" r="2" fill="${i === monthWeeks.length - 1 ? '#1e40af' : '#93c5fd'}"/>`;
+                        <polyline class="line-path" points="${points}" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
+                            stroke-dasharray="${lineLength}" stroke-dashoffset="${lineLength}" style="--line-length: ${lineLength}; animation-delay: ${monthIdx * 100}ms;"/>
+                        ${pointsArr.map((p, i) => {
+                            const pointDelay = monthIdx * 100 + (i * 50) + 300;
+                            const fill = i === pointsArr.length - 1 ? '#1e40af' : '#93c5fd';
+                            return `<circle class="line-point" cx="${p.x}" cy="${p.y}" r="2" fill="${fill}" style="animation-delay: ${pointDelay}ms; opacity: 0;"/>`;
                         }).join('')}
                     </svg>
                     <span style="font-size: 10px; font-weight: 500; color: #666; min-width: 20px; text-align: left;">${monthTotal}</span>
                 </div>
             </td>`;
         }).join('');
+        
+        this._renderDebounceTimer = null;
     }
 }
 
