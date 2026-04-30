@@ -984,66 +984,27 @@ async function refreshUserManagementTable() {
  * @param {string} options.searchTerm - 검색어
  */
 async function loadPageData(options = {}) {
-    // window._mngrSettState에서 값 가져오기
     const state = window._mngrSettState || {};
     const { page = 1, perPage = state.settingsItemsPerPage || 10, searchTerm = null } = options;
     
-    // 중복 호출 방지: 이미 실행 중이면 스킵
     if (loadPageDataDebounceTimer) {
-        console.log('=== loadPageData() already running, skipping ===');
         return;
     }
     
-    console.log('=== loadPageData() called ===', options);
     const container = document.getElementById('mngr_sett_page');
-    if (!container) {
-        console.error('Container not found: mngr_sett_page');
-        return;
-    }
-    const loadingOverlay = container.querySelector('#adminLoadingOverlay');
-    if (loadingOverlay) loadingOverlay.classList.remove('hidden');
+    if (!container) return;
     
-    // 디바운스 타이머 설정 (동시 호출 방지)
     loadPageDataDebounceTimer = true;
 
     try {
-        // 개별적으로 API 호출하여 하나의 실패가 전체를 망가뜨리지 않도록 함
-        let adminSettingsResult = { data: [], total: 0, page: 1, per_page: 10, total_pages: 0 };
-        let icons = [];
-        let userData = { users: [], menus: [] };
+        const [adminResult, iconsResult, userResult] = await Promise.allSettled([
+            getAdminSettings({ page, perPage, searchTerm, bypassCache: true }),
+            getIcons(),
+            userManagementTab.fetchUsersAndMenus()
+        ]);
 
-        try {
-            console.log('=== loadPageData() - getting admin settings ===');
-            // 서버 사이드 페이징 옵션 전달
-            adminSettingsResult = await getAdminSettings({ page, perPage, searchTerm, bypassCache: true });
-            console.log('=== loadPageData() - admin settings received ===');
-            console.log('=== Admin settings:', adminSettingsResult);
-        } catch (error) {
-            console.error('관리자 설정 로드 실패:', error);
-            showToast('관리자 설정 로드 실패: ' + error.message, 'warning');
-        }
-
-        try {
-            console.log('=== loadPageData() - getting icons ===');
-            icons = await getIcons();
-            console.log('=== loadPageData() - icons received ===');
-            console.log('=== Icons:', icons);
-        } catch (error) {
-            console.error('아이콘 데이터 로드 실패:', error);
-            showToast('아이콘 데이터 로드 실패: ' + error.message, 'warning');
-        }
-
-        try {
-            userData = await userManagementTab.fetchUsersAndMenus();
-        } catch (error) {
-            console.error('사용자 데이터 로드 실패:', error);
-            showToast('사용자 데이터 로드 실패: ' + error.message, 'warning');
-        }
-
-        // 각 데이터 렌더링 (실패하더라도 다른 데이터는 렌더링)
-        try {
-            console.log('=== loadPageData() - rendering settings table ===');
-            // 서버에서 받은 페이징된 데이터와 paginationInfo 전달
+        if (adminResult.status === 'fulfilled') {
+            const adminSettingsResult = adminResult.value;
             const adminSettingsData = adminSettingsResult.data || adminSettingsResult;
             const paginationInfo = {
                 total: adminSettingsResult.total || 0,
@@ -1051,42 +1012,51 @@ async function loadPageData(options = {}) {
                 per_page: adminSettingsResult.per_page || 10,
                 total_pages: adminSettingsResult.total_pages || 0
             };
-            renderSettingsTable(adminSettingsData, icons, paginationInfo);
-        } catch (error) {
-            console.error('설정 테이블 렌더링 실패:', error);
+            renderSettingsTable(adminSettingsData, iconsResult.status === 'fulfilled' ? iconsResult.value : [], paginationInfo);
+        } else {
+            showToast('관리자 설정 로드 실패: ' + adminResult.reason.message, 'warning');
+            const settingsLoadingRow = document.getElementById('settings-loading-row');
+            if (settingsLoadingRow) {
+                settingsLoadingRow.innerHTML = '<td colspan="20" class="text-center py-4 text-red-500">관리자 설정 로드 실패</td>';
+            }
         }
 
-        try {
-            console.log('=== loadPageData() - rendering icon table ===');
+        const icons = iconsResult.status === 'fulfilled' ? iconsResult.value : [];
+
+        if (iconsResult.status === 'fulfilled') {
             renderIconTable(icons);
-        } catch (error) {
-            console.error('아이콘 테이블 렌더링 실패:', error);
-        }
-
-        try {
             populateIconSelects(icons);
             window.allIconsData = icons;
-        } catch (error) {
-            console.error('아이콘 선택 옵션 설정 실패:', error);
+        } else {
+            showToast('아이콘 데이터 로드 실패: ' + iconsResult.reason.message, 'warning');
+            const iconLoadingRow = document.getElementById('icon-loading-row');
+            if (iconLoadingRow) {
+                iconLoadingRow.innerHTML = '<td colspan="6" class="text-center py-4 text-red-500">아이콘 데이터 로드 실패</td>';
+            }
         }
 
-        try {
-            userManagementTab.renderTable(userData.users, userData.menus);
-        } catch (error) {
-            console.error('사용자 관리 테이블 렌더링 실패:', error);
+        if (userResult.status === 'fulfilled') {
+            userManagementTab.renderTable(userResult.value.users, userResult.value.menus);
+        } else {
+            showToast('사용자 데이터 로드 실패: ' + userResult.reason.message, 'warning');
+            const userLoadingRow = document.getElementById('user-loading-row');
+            if (userLoadingRow) {
+                userLoadingRow.innerHTML = '<td colspan="5" class="text-center py-4 text-red-500">사용자 데이터 로드 실패</td>';
+            }
         }
 
-        showToast('관리자 설정 페이지 로드 완료.', 'success');
+        if (adminResult.status === 'fulfilled') {
+            showToast('관리자 설정 페이지 로드 완료.', 'success');
+        }
     } catch (error) {
         showToast('페이지 초기화 중 치명적 오류 발생: ' + error.message, 'error');
     } finally {
-        if (loadingOverlay) loadingOverlay.classList.add('hidden');
-        // 타이머 리셋 (약간의 지연 후)
         setTimeout(() => {
             loadPageDataDebounceTimer = null;
         }, 100);
     }
 }
+
 
 // 전역으로 loadPageData 함수 노출
 window.loadPageData = loadPageData;

@@ -652,9 +652,6 @@ class PopupManagementTab {
         }
 
         try {
-            const loadingOverlay = document.getElementById('adminLoadingOverlay');
-            if (loadingOverlay) loadingOverlay.classList.remove('hidden');
-
             if (this.currentPopupId) {
                 await popupManagementApi.updatePopup(this.currentPopupId, formData);
                 showToast('팝업이 성공적으로 수정되었습니다.', 'success');
@@ -668,8 +665,6 @@ class PopupManagementTab {
         } catch (error) {
             showToast('저장 실패: ' + error.message, 'error');
         } finally {
-            const loadingOverlay = document.getElementById('adminLoadingOverlay');
-            if (loadingOverlay) loadingOverlay.classList.add('hidden');
             if (saveBtn) saveBtn.disabled = false;
         }
     }
@@ -680,17 +675,11 @@ class PopupManagementTab {
         }
 
         try {
-            const loadingOverlay = document.getElementById('adminLoadingOverlay');
-            if (loadingOverlay) loadingOverlay.classList.remove('hidden');
-
             await popupManagementApi.deletePopup(popupId);
             showToast('팝업이 성공적으로 삭제되었습니다.', 'success');
             this.loadPopups();
         } catch (error) {
             showToast('삭제 실패: ' + error.message, 'error');
-        } finally {
-            const loadingOverlay = document.getElementById('adminLoadingOverlay');
-            if (loadingOverlay) loadingOverlay.classList.add('hidden');
         }
     }
 

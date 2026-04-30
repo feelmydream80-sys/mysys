@@ -12,28 +12,17 @@ import { renderSettingsTable, renderIconTable, populateIconSelects, hideIconForm
  * // <button onclick="window.syncSettings()">설정 동기화</button>
  */
 export async function syncSettings() {
-    const container = document.getElementById('mngr_sett_page');
-    if (!container) return;
-    const adminLoadingOverlay = container.querySelector('#adminLoadingOverlay');
-
-    if (adminLoadingOverlay) adminLoadingOverlay.classList.remove('hidden');
-
+    showToast('설정 동기화 중...', 'info');
     try {
         const result = await syncSettingsApi();
-        console.log('=== syncSettings() result:', result);
         showToast(result.message, 'success');
-        
         // 동기화 후 설정 테이블 재렌더링 (캐시 무효화로 최신 데이터 가져오기)
         const [allMngrSettResult, allIcons] = await Promise.all([refreshAdminSettingsData(), refreshIconsData()]);
-        // API 응답이 환경에 따라 배열 또는 객체 { data: [...] }로 반환될 수 있으므로 정규화
         const allMngrSett = Array.isArray(allMngrSettResult) ? allMngrSettResult : (allMngrSettResult.data || []);
         renderSettingsTable(allMngrSett, allIcons);
         populateIconSelects(allIcons);
     } catch (error) {
-        console.error('Error syncing settings:', error);
         showToast('설정 동기화 실패: ' + error.message, 'error');
-    } finally {
-        if (adminLoadingOverlay) adminLoadingOverlay.classList.add('hidden');
     }
 }
 
@@ -51,10 +40,7 @@ export async function syncSettings() {
 export async function saveBasicSettings() {
     const container = document.getElementById('mngr_sett_page');
     if (!container) return;
-    const adminLoadingOverlay = container.querySelector('#adminLoadingOverlay');
     const settingsTableBody = container.querySelector('#settingsTableBody');
-
-    if (adminLoadingOverlay) adminLoadingOverlay.classList.remove('hidden');
 
     const settingsMap = new Map();
     if (settingsTableBody) {
@@ -90,12 +76,8 @@ export async function saveBasicSettings() {
         }
         await saveAllSettingsApi(payload);
         showToast('기본 설정이 성공적으로 저장되었습니다.', 'success');
-        // location.reload(); // 저장 후 자동 새로고침이 필요하다면 주석 해제
     } catch (error) {
-        console.error('Error saving basic settings:', error);
         showToast('기본 설정 저장 실패: ' + error.message, 'error');
-    } finally {
-        if (adminLoadingOverlay) adminLoadingOverlay.classList.add('hidden');
     }
 }
 
@@ -108,10 +90,7 @@ export async function saveBasicSettings() {
 export async function saveChartSettings() {
     const container = document.getElementById('mngr_sett_page');
     if (!container) return;
-    const adminLoadingOverlay = container.querySelector('#adminLoadingOverlay');
     const chartSettingsTableBody = container.querySelector('#chartSettingsTableBody');
-
-    if (adminLoadingOverlay) adminLoadingOverlay.classList.remove('hidden');
 
     const settingsMap = new Map();
     if (chartSettingsTableBody) {
@@ -139,10 +118,7 @@ export async function saveChartSettings() {
         await saveAllSettingsApi(payload);
         showToast('차트 설정이 성공적으로 저장되었습니다.', 'success');
     } catch (error) {
-        console.error('Error saving chart settings:', error);
         showToast('차트 설정 저장 실패: ' + error.message, 'error');
-    } finally {
-        if (adminLoadingOverlay) adminLoadingOverlay.classList.add('hidden');
     }
 }
 
@@ -171,17 +147,12 @@ export async function exportSettings() {
 export async function importSettings() {
     const container = document.getElementById('mngr_sett_page');
     if (!container) return;
-    const adminLoadingOverlay = container.querySelector('#adminLoadingOverlay');
     const importFileInput = container.querySelector('#importFile');
 
     const file = importFileInput ? importFileInput.files[0] : null;
     if (!file) {
         showToast('가져올 JSON 파일을 선택해주세요.', 'warning');
         return;
-    }
-
-    if (adminLoadingOverlay) {
-        adminLoadingOverlay.classList.remove('hidden');
     }
 
     try {
@@ -196,12 +167,7 @@ export async function importSettings() {
             window.renderJobCheckboxes();
         }
     } catch (error) {
-        console.error('Error importing settings:', error);
         showToast('설정 가져오기 실패: ' + error.message, 'error');
-    } finally {
-        if (adminLoadingOverlay) {
-            adminLoadingOverlay.classList.add('hidden');
-        }
     }
 };
 
@@ -230,7 +196,6 @@ export function initializeIconManagementUI() {
 export async function saveIcon() {
     const container = document.getElementById('mngr_sett_page');
     if (!container) return;
-    const adminLoadingOverlay = container.querySelector('#adminLoadingOverlay');
 
     const iconData = {
         ICON_ID: container.querySelector('#iconId').value ? parseInt(container.querySelector('#iconId').value) : null,
@@ -245,9 +210,6 @@ export async function saveIcon() {
         return;
     }
 
-    if (adminLoadingOverlay) {
-        adminLoadingOverlay.classList.remove('hidden');
-    }
     try {
         await saveIconApi(iconData);
         showToast('아이콘이 성공적으로 저장되었습니다.', 'success');
@@ -256,12 +218,7 @@ export async function saveIcon() {
         renderIconTable(allIcons);
         populateIconSelects(allIcons);
     } catch (error) {
-        console.error("Failed to save icon:", error);
         showToast('아이콘 저장 실패: ' + error.message, 'error');
-    } finally {
-        if (adminLoadingOverlay) {
-            adminLoadingOverlay.classList.add('hidden');
-        }
     }
 }
 
@@ -276,12 +233,8 @@ export async function saveIcon() {
 export async function confirmAndDeleteIcon(iconId) {
     const container = document.getElementById('mngr_sett_page');
     if (!container) return;
-    const adminLoadingOverlay = container.querySelector('#adminLoadingOverlay');
 
     showConfirm('정말로 이 아이콘을 삭제하시겠습니까?', async () => {
-        if (adminLoadingOverlay) {
-            adminLoadingOverlay.classList.remove('hidden');
-        }
         try {
             await deleteIconApi(iconId);
             showToast('아이콘이 성공적으로 삭제되었습니다.', 'success');
@@ -289,12 +242,7 @@ export async function confirmAndDeleteIcon(iconId) {
             renderIconTable(allIcons);
             populateIconSelects(allIcons);
         } catch (error) {
-            console.error('Error deleting icon:', error);
-            showToast('아이콘 삭제 실패: ' + error.message, 'error');
-        } finally {
-            if (adminLoadingOverlay) {
-                adminLoadingOverlay.classList.add('hidden');
-            }
+            showToast('아이콘 삭제 실팴: ' + error.message, 'error');
         }
     });
 }
@@ -347,17 +295,12 @@ export async function exportIcons() {
 export async function importIcons() {
     const container = document.getElementById('mngr_sett_page');
     if (!container) return;
-    const adminLoadingOverlay = container.querySelector('#adminLoadingOverlay');
     const importIconsFile = container.querySelector('#importIconsFile');
 
     const file = importIconsFile ? importIconsFile.files[0] : null;
     if (!file) {
         showToast('가져올 CSV 파일을 선택해주세요.', 'warning');
         return;
-    }
-
-    if (adminLoadingOverlay) {
-        adminLoadingOverlay.classList.remove('hidden');
     }
 
     try {
@@ -367,12 +310,7 @@ export async function importIcons() {
         renderIconTable(allIcons);
         populateIconSelects(allIcons);
     } catch (error) {
-        console.error('Error importing icons:', error);
         showToast('아이콘 가져오기 실패: ' + error.message, 'error');
-    } finally {
-        if (adminLoadingOverlay) {
-            adminLoadingOverlay.classList.add('hidden');
-        }
     }
 };
 
